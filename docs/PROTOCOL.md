@@ -1,168 +1,103 @@
-﻿# Scenario 2 Study Protocol
+# Scenario 2 Study Protocol
 
-Version: 0.1
-Status: Pre-audit protocol
+Version: 0.2
+Status: Pre-download protocol, amended before waveform analysis and before Final Test
 
-## 1. Main objective
+## 1. Objective
 
-The study investigates subject-conditioned synthetic resting-state EEG generation under Eyes Open (EO) and Eyes Closed (EC) conditions.
+The study investigates `p(EEG | subject, eye_state)` in MPI-LEMON resting-state EEG. The primary generative question is whether synthetic EEG preserves individual EO-to-EC changes in alpha physiology, spatial alpha structure, and functional connectivity on recording blocks excluded from generator training. The augmentation question is whether adding synthetic EEG improves real held-out eye-state classification across at least three classifiers.
 
-The main question is whether synthetic EEG preserves individual EO-to-EC physiological changes on recording blocks excluded from generator training.
+## 2. Pre-download dataset audit
 
-## 2. Dataset
+The metadata clone contains 215 subjects. Each `channels.tsv` has 62 rows comprising 61 EEG and 1 EOG (`VEOG`); all 19 target scalp channels are present and marked good. Native sampling frequencies are 2500 Hz (208 subjects), 1000 Hz (6), and 500 Hz (1). All are structurally compatible with a future 128 Hz target, subject to resampling validation.
 
-Primary dataset:
+The distributed `participants.tsv` contains 215 IDs, but age, sex, handedness, weight, and height are all `n/a`. Those fields cannot be used for subject-level balance or distortion analysis. Dataset README aggregates are not substituted because they are not subject-linked and their stated age-group counts sum to 227 rather than 215.
 
-MPI-LEMON
+## 3. Event semantics and block reconstruction
 
-Target configuration:
+State semantics use `trial_type`, never the numeric `value` column:
 
-- resting-state EEG
-- EO and EC conditions
-- approximately 19 scalp channels
-- target sampling rate: 128 Hz
-- target window length: 4 s
-- target training stride: 2 s
+- `Stimulus/S200` -> EO
+- `Stimulus/S210` -> EC
 
-Exact usable subjects, blocks, and channels will be determined during dataset audit.
+`Stimulus/S208` is not globally defined. Two evidence-backed subject overrides are frozen before waveform analysis:
 
-## 3. Split rule
+- `sub-010078`: six initial S208 markers continue seamlessly at approximately 2 s cadence into 24 S210 markers, making one 30-marker EC run.
+- `sub-010126`: 240 S208 and 240 S200 markers form eight alternating approximately 60 s runs per code, with no S210; S208 is the subject-specific EC replacement.
 
-The split unit is a complete recording block.
+Repeated same-state markers form one state run. A numeric time gap alone never creates a block and never licenses an imputed state. An explicit `New Segment/` marker starts a new acquisition segment and prevents a run from bridging that boundary. `Stimulus/S  1` and comments provide context only; they have no EO/EC semantics.
 
-Window-level random splitting is prohibited.
+`sub-010059` and `sub-010081` contain explicit acquisition restarts. Their aborted initial EC fragments are preserved as evidence but excluded from the primary block sequence. Each post-restart main sequence contains eight complete EO and eight complete EC blocks. Unlabeled inter-block and interruption intervals remain unlabeled.
 
-All windows belonging to a block must belong exclusively to:
+## 4. Pre-download structural cohort
 
-- Train
-- Validation
-- Test
+This cohort uses no physiological, predictive, or generative outcome. Eligibility requires:
 
-## 4. Distribution-preserving principle
+1. readable channel metadata and all 19 target channels;
+2. available EO/EC `trial_type` annotations;
+3. eight alternating study blocks per state;
+4. eight complete 30-marker, approximately 60 s blocks per state after explicit interruption fragments are separated.
 
-Train, Validation, and Test must remain representative of the original dataset distribution as closely as reasonably possible.
+The resulting pre-download structural cohort contains 211 subjects. It is not the final physiological cohort.
 
-The split may consider non-outcome information such as:
+Four subjects are excluded structurally:
 
-- subject identity
-- eye state
-- block order
-- usable duration
-- number of usable windows
-- artifact rejection rate
-- bad-channel burden
-- general QC measures
+- `sub-010015`: 3 EO/3 EC runs, with a truncated 27-marker final EO.
+- `sub-010100`: 5 EO/6 EC runs, with a truncated 15-marker final EC and no sixth EO.
+- `sub-010203`: EO/EC annotations unavailable; no events table and no `Mk*` entries in `.vmrk`.
+- `sub-010285`: events contain no state marker.
 
-The following must NOT be used to optimize the split:
+All 211 retained subjects require waveform integrity, bad-channel, signal-quality, artifact, duration, and usable-window QC after download.
 
-- Alpha effect
-- Individual Alpha Frequency
-- Functional Connectivity
-- Classifier performance
-- Generator performance
-- TSTR
-- Augmentation performance
+## 5. Block-level split rule
 
-## 5. Provisional split
+Complete recording blocks are the atomic unit. Random window-level splitting is prohibited. Windows cannot cross block boundaries; filtering and other time-dependent preprocessing must not bridge blocks. Fitted normalization, transforms, generator training, and classifier training use Train data only. Hyperparameter selection uses real Validation only. Final Test remains real-only.
 
-If the dataset audit confirms eight usable blocks per state per subject:
+The study is a within-subject block holdout: subject identities occur in all partitions. It is not a held-out-subject generalization design.
 
-- 5 blocks Train
-- 1 block Validation
-- 2 blocks Test
+## 6. Provisional metadata-only allocation
 
-This allocation is provisional and will not be locked until the dataset audit is complete.
+The 211-subject structural cohort supports 5 Train / 1 Validation / 2 Test blocks per subject and state. A deterministic candidate is stored as `provisional_block_split_manifest.csv` with status `PROVISIONAL_METADATA_ONLY`.
 
-## 6. Test policy
+Subjects are ordered by SHA256 of a fixed version seed and subject ID. A fixed 5/1/2 base schedule is rotated by subject rank modulo eight, with a four-position EC offset. This makes every block order appear in every role and balances each state/order cell within one subject of perfect balance. No waveform or outcome enters the allocation.
 
-Final Test must not be used for tuning.
+This candidate is not final or locked. After outcome-blind QC rules are frozen and applied uniformly, the final eligible block set must be generated deterministically, checksummed, committed, and then frozen.
 
-Before opening Test, the following must be locked:
+## 7. Pilot analytical-access rule
 
-- preprocessing
-- split manifest
-- normalization
-- generator architecture
-- spectral-loss weight
-- checkpoint rule
-- CFG
-- final generator
-- classifier hyperparameters
-- augmentation ratio
-- IAAFT settings
-- random seeds
-- metrics
-- statistical analysis
+Downloading a BrainVision `.eeg` provides a subject's whole recording, including provisional Validation/Test blocks. During pilot pipeline development, only provisional Train blocks may be read or inspected, plus already-excluded interruption fragments strictly for loader diagnostics. Any complete pilot block exposed during method development must remain Train in the final manifest, or its subject must be excluded. Pilot Validation/Test signals must not influence filters, resampling, QC rules, artifact thresholds, or implementation choices.
 
-## 7. Generative models
+Possession on disk is not permission for analytical access. Access should be logged in the post-download phase.
 
-### B0
-Eye-State-only DDPM.
+## 8. Final-Test lock sequence
 
-### B1
-Subject + Eye-State conditioned DDPM.
+Before the final manifest is created:
 
-### B2
-Subject + Eye-State DDPM with multi-resolution spectral regularization.
+1. validate BrainVision links and resampling in the Train-only pilot;
+2. freeze outcome-blind waveform-QC and block-eligibility rules;
+3. apply those rules uniformly to the full candidate cohort;
+4. generate, checksum, commit, and lock the final cohort/split manifest.
 
-## 8. Connectivity
+Before Final Test is opened, additionally freeze preprocessing, normalization, model architectures, spectral-loss weight, checkpoint rule, CFG, classifiers and hyperparameters, augmentation ratio, IAAFT settings, random seeds, metrics, and the statistical analysis plan. Tuning uses Train and real Validation only. Final Test is evaluated once under the prespecified plan.
 
-Functional Connectivity is an evaluation target, not a training loss in the main study.
+QC quantities may determine pass/fail eligibility and feasibility under frozen rules. They must not be optimized to construct an unusually clean or easy Validation/Test set. Alpha power, IAF, connectivity, classifier accuracy, generator loss, TSTR, augmentation utility, and any final scientific outcome may never drive inclusion or allocation.
 
-Primary candidate:
+## 9. Planned models and evaluation
 
-- debiased wPLI
-- Alpha band
+Generators:
 
-## 9. Classification
+- B0: eye-state-only DDPM
+- B1: subject + eye-state DDPM
+- B2: subject + eye-state DDPM with multi-resolution spectral regularization
 
-Three classifiers are planned:
+Classifiers:
 
-- Log-bandpower + Logistic Regression
-- Tangent-Space + Linear SVM
+- log-bandpower + logistic regression
+- covariance/tangent-space + linear SVM
 - EEGNetv4
 
-## 10. Synthetic augmentation
+Augmentation ratios are 0.5x, 1.0x, and 2.0x, with an IAAFT spectral-surrogate control. The primary classification metric is subject-macro balanced accuracy. Secondary metrics include accuracy, macro-F1, ROC-AUC, MCC, state recalls, and confusion matrices. Primary comparisons use paired subject-level analysis with subject-level bootstrap confidence intervals. Debiased alpha-band wPLI is the primary connectivity candidate and an evaluation target, not a main-model training loss.
 
-Planned conditions:
+## 10. Amendments
 
-- Real only
-- Synthetic only
-- Real + 0.5x Synthetic
-- Real + 1.0x Synthetic
-- Real + 2.0x Synthetic
-
-Validation and Test remain real-only.
-
-## 11. IAAFT control
-
-IAAFT spectral-surrogate augmentation will be used to determine whether augmentation benefit is explainable mainly by spectral-statistical replication or requires richer synthetic structure.
-
-## 12. Primary classification metric
-
-Subject-macro Balanced Accuracy.
-
-Secondary metrics include:
-
-- Accuracy
-- Macro-F1
-- ROC-AUC
-- MCC
-- Recall EO
-- Recall EC
-- Confusion Matrix
-
-## 13. Statistics
-
-Primary comparisons will use paired subject-level analysis with subject-level bootstrap confidence intervals.
-
-## 14. Protocol amendments
-
-Any scientifically meaningful protocol change must:
-
-1. be documented in `docs/DECISIONS.md`
-2. be committed to Git
-3. include its rationale
-4. state whether it occurred before or after examining Validation outcomes
-
-No protocol change may be made in response to Final Test results.
+Every scientifically meaningful amendment must be recorded in `docs/DECISIONS.md`, committed, and marked relative to waveform analysis, Validation outcomes, and Final Test. No protocol change may respond to Final Test results.
