@@ -1,0 +1,18 @@
+cohort_name: MPI-LEMON pre-download structural cohort
+cohort_status: PRE_DOWNLOAD_STRUCTURAL_NOT_PHYSIOLOGICAL
+
+criteria:
+  require_readable_channels: true
+  require_all_19_target_channels: true
+  require_state_annotations: true
+  require_alternating_study_blocks: true
+  required_study_blocks_per_state: 8
+  required_complete_blocks_per_state: 8
+  target_sampling_frequency_hz: 128
+
+principles:
+  - Criteria use structural metadata only.
+  - Sampling rates of 500, 1000, and 2500 Hz are all structurally compatible with a 128 Hz target.
+  - Explicit acquisition-interruption fragments are retained as evidence but are not study blocks.
+  - All retained subjects still require uniform post-download waveform QC.
+  - No alpha, connectivity, predictive, generative, or augmentation outcome is used.

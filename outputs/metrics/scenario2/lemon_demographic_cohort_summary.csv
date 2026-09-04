@@ -1,0 +1,11 @@
+cohort,n_subjects,variable,level,count,percent_of_cohort,n_nonmissing,n_missing,percent_of_nonmissing
+full_metadata_cohort,215,age,<missing>,215,100.0,0,215,
+full_metadata_cohort,215,sex,<missing>,215,100.0,0,215,
+full_metadata_cohort,215,hand,<missing>,215,100.0,0,215,
+full_metadata_cohort,215,weight,<missing>,215,100.0,0,215,
+full_metadata_cohort,215,height,<missing>,215,100.0,0,215,
+pre_download_structurally_eligible,211,age,<missing>,211,100.0,0,211,
+pre_download_structurally_eligible,211,sex,<missing>,211,100.0,0,211,
+pre_download_structurally_eligible,211,hand,<missing>,211,100.0,0,211,
+pre_download_structurally_eligible,211,weight,<missing>,211,100.0,0,211,
+pre_download_structurally_eligible,211,height,<missing>,211,100.0,0,211,

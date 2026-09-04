@@ -1,0 +1,21 @@
+{
+  "n_participant_rows": 215,
+  "n_structurally_eligible": 211,
+  "participant_id_sets_match": true,
+  "available_variables": [
+    "age",
+    "sex",
+    "hand",
+    "weight",
+    "height"
+  ],
+  "nonmissing_counts_full_cohort": {
+    "age": 0,
+    "sex": 0,
+    "hand": 0,
+    "weight": 0,
+    "height": 0
+  },
+  "comparison_possible": false,
+  "interpretation": "All distributed participant-level demographic fields are n/a; structural-exclusion distortion cannot be assessed from participants.tsv. Dataset README aggregates are not substituted because they are not linked to subject IDs and their stated age-group counts sum to 227, not 215."
+}

@@ -1,0 +1,34 @@
+{
+  "cohort_status": "PRE_DOWNLOAD_STRUCTURAL_NOT_PHYSIOLOGICAL",
+  "n_full_metadata_cohort": 215,
+  "n_structurally_eligible": 211,
+  "n_structurally_excluded": 4,
+  "exclusion_reason_counts": {
+    "insufficient_complete_blocks_for_5_1_2": 2,
+    "state_annotations_unavailable_missing_events": 1,
+    "state_annotations_unavailable_no_state_markers": 1
+  },
+  "excluded_subjects": [
+    {
+      "subject_id": "sub-010015",
+      "primary_reason": "insufficient_complete_blocks_for_5_1_2",
+      "secondary_reason": "study_runs_EO=3;study_runs_EC=3;complete_EO=2;complete_EC=3"
+    },
+    {
+      "subject_id": "sub-010100",
+      "primary_reason": "insufficient_complete_blocks_for_5_1_2",
+      "secondary_reason": "study_runs_EO=5;study_runs_EC=6;complete_EO=5;complete_EC=5"
+    },
+    {
+      "subject_id": "sub-010203",
+      "primary_reason": "state_annotations_unavailable_missing_events",
+      "secondary_reason": "events.tsv is absent; vmrk has zero marker entries"
+    },
+    {
+      "subject_id": "sub-010285",
+      "primary_reason": "state_annotations_unavailable_no_state_markers",
+      "secondary_reason": "events.tsv contains no mapped EO/EC trial_type markers"
+    }
+  ],
+  "all_retained_require_waveform_qc": true
+}

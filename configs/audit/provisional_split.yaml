@@ -1,0 +1,41 @@
+status: PROVISIONAL_METADATA_ONLY
+algorithm_version: scenario2-provisional-split-v1
+subject_order_seed: scenario2-provisional-split-v1
+base_roles:
+  - Test
+  - Train
+  - Train
+  - Validation
+  - Train
+  - Test
+  - Train
+  - Train
+state_offsets:
+  EO: 0
+  EC: 4
+
+requirements:
+  blocks_per_subject_state: 8
+  train_blocks: 5
+  validation_blocks: 1
+  test_blocks: 2
+
+post_download_policy:
+  - This candidate is not final and must not be described as locked.
+  - Pilot development may inspect only provisional Train blocks.
+  - Any pilot block inspected during method development must remain Train if the subject enters the final cohort.
+  - Freeze outcome-blind waveform-QC rules before uniform full-cohort QC.
+  - Recompute and checksum the final manifest only after QC eligibility is known.
+  - Do not inspect final Test signals or outcomes until all analysis choices are frozen.
+
+pilot:
+  algorithm_version: scenario2-pilot-v1
+  n_subjects: 15
+  ordinary_2500_hz_slots: 4
+
+backing_store:
+  mechanism: NEMAR annex-key export pointers
+  base_url: https://nemar.s3.us-east-2.amazonaws.com/nm000179/objects
+  notes:
+    - The metadata clone has no functional .git/annex or DataLad metadata.
+    - Per-file pointer sizes and SHA256 digests must be verified after download.

@@ -1,0 +1,336 @@
+{
+  "split_status": "PROVISIONAL_METADATA_ONLY",
+  "algorithm_version": "scenario2-provisional-split-v1",
+  "n_eligible_subjects": 211,
+  "allocation_per_subject_state": {
+    "Train": 5,
+    "Validation": 1,
+    "Test": 2
+  },
+  "five_one_two_structurally_feasible": true,
+  "n_provisional_block_assignments": 3376,
+  "order_balance": [
+    {
+      "state": "EC",
+      "state_block_index": 1,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EC",
+      "state_block_index": 1,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 1,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EC",
+      "state_block_index": 2,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EC",
+      "state_block_index": 2,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 2,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EC",
+      "state_block_index": 3,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EC",
+      "state_block_index": 3,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 3,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EC",
+      "state_block_index": 4,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EC",
+      "state_block_index": 4,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 4,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EC",
+      "state_block_index": 5,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EC",
+      "state_block_index": 5,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 5,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EC",
+      "state_block_index": 6,
+      "split": "Test",
+      "n_blocks": 52
+    },
+    {
+      "state": "EC",
+      "state_block_index": 6,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 6,
+      "split": "Validation",
+      "n_blocks": 27
+    },
+    {
+      "state": "EC",
+      "state_block_index": 7,
+      "split": "Test",
+      "n_blocks": 52
+    },
+    {
+      "state": "EC",
+      "state_block_index": 7,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EC",
+      "state_block_index": 7,
+      "split": "Validation",
+      "n_blocks": 27
+    },
+    {
+      "state": "EC",
+      "state_block_index": 8,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EC",
+      "state_block_index": 8,
+      "split": "Train",
+      "n_blocks": 131
+    },
+    {
+      "state": "EC",
+      "state_block_index": 8,
+      "split": "Validation",
+      "n_blocks": 27
+    },
+    {
+      "state": "EO",
+      "state_block_index": 1,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EO",
+      "state_block_index": 1,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 1,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EO",
+      "state_block_index": 2,
+      "split": "Test",
+      "n_blocks": 52
+    },
+    {
+      "state": "EO",
+      "state_block_index": 2,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 2,
+      "split": "Validation",
+      "n_blocks": 27
+    },
+    {
+      "state": "EO",
+      "state_block_index": 3,
+      "split": "Test",
+      "n_blocks": 52
+    },
+    {
+      "state": "EO",
+      "state_block_index": 3,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 3,
+      "split": "Validation",
+      "n_blocks": 27
+    },
+    {
+      "state": "EO",
+      "state_block_index": 4,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EO",
+      "state_block_index": 4,
+      "split": "Train",
+      "n_blocks": 131
+    },
+    {
+      "state": "EO",
+      "state_block_index": 4,
+      "split": "Validation",
+      "n_blocks": 27
+    },
+    {
+      "state": "EO",
+      "state_block_index": 5,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EO",
+      "state_block_index": 5,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 5,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EO",
+      "state_block_index": 6,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EO",
+      "state_block_index": 6,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 6,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EO",
+      "state_block_index": 7,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EO",
+      "state_block_index": 7,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 7,
+      "split": "Validation",
+      "n_blocks": 26
+    },
+    {
+      "state": "EO",
+      "state_block_index": 8,
+      "split": "Test",
+      "n_blocks": 53
+    },
+    {
+      "state": "EO",
+      "state_block_index": 8,
+      "split": "Train",
+      "n_blocks": 132
+    },
+    {
+      "state": "EO",
+      "state_block_index": 8,
+      "split": "Validation",
+      "n_blocks": 26
+    }
+  ],
+  "final_lock_blockers": [
+    "waveform integrity and BrainVision linkage",
+    "prespecified channel/signal/artifact QC",
+    "usable duration and window counts after preprocessing",
+    "outcome-blind final cohort and block eligibility",
+    "final manifest checksum and commit"
+  ],
+  "pilot_subjects": {
+    "sub-010023": "deterministic ordinary 2500 Hz baseline",
+    "sub-010059": "explicit acquisition restart with excluded pre-sequence fragment",
+    "sub-010071": "deterministic ordinary 2500 Hz baseline",
+    "sub-010078": "documented subject-specific S208-to-EC override",
+    "sub-010081": "explicit acquisition restart with excluded pre-sequence fragment",
+    "sub-010126": "documented subject-specific S208-to-EC override",
+    "sub-010134": "deterministic ordinary 2500 Hz baseline",
+    "sub-010216": "rare native sampling rate: 500 Hz",
+    "sub-010250": "deterministic ordinary 2500 Hz baseline",
+    "sub-010276": "rare native sampling rate: 1000 Hz",
+    "sub-010277": "rare native sampling rate: 1000 Hz",
+    "sub-010278": "rare native sampling rate: 1000 Hz",
+    "sub-010279": "rare native sampling rate: 1000 Hz",
+    "sub-010280": "rare native sampling rate: 1000 Hz",
+    "sub-010282": "rare native sampling rate: 1000 Hz"
+  },
+  "pilot_n_subjects": 15,
+  "pilot_n_assets": 30,
+  "pilot_payload_bytes": 7012992712,
+  "full_n_subjects": 211,
+  "full_n_assets": 422,
+  "full_payload_bytes": 134813081876,
+  "commands_not_run": [
+    "python scripts/data/s2_06_download_manifest.py --manifest outputs/metrics/scenario2/pilot_download_manifest.csv --destination data_raw/MPI-LEMON --metadata-root D:/SHARIF/PROJECT/Datasets/MPI-LEMON --execute",
+    "python scripts/data/s2_06_download_manifest.py --manifest outputs/metrics/scenario2/full_candidate_download_manifest.csv --destination data_raw/MPI-LEMON --metadata-root D:/SHARIF/PROJECT/Datasets/MPI-LEMON --execute"
+  ]
+}
