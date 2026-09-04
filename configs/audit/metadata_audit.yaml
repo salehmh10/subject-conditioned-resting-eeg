@@ -1,0 +1,33 @@
+dataset_root: D:/SHARIF/PROJECT/Datasets/MPI-LEMON
+output_dir: outputs/metrics/scenario2
+
+target_channels:
+  - Fp1
+  - Fp2
+  - F7
+  - F8
+  - F3
+  - F4
+  - Fz
+  - T7
+  - T8
+  - C3
+  - C4
+  - Cz
+  - P7
+  - P8
+  - P3
+  - P4
+  - Pz
+  - O1
+  - O2
+
+expected_states:
+  - EO
+  - EC
+
+notes:
+  - No EEG waveform is read during metadata audit.
+  - No subject is excluded based on alpha, connectivity, or classifier outcomes.
+  - EO/EC semantics come from trial_type, never the numeric value column.
+  - Small NEMAR pointer text is inspected only to recover declared payload metadata.

@@ -1,0 +1,32 @@
+standard_mapping:
+  Stimulus/S200: EO
+  Stimulus/S210: EC
+
+subject_overrides:
+  sub-010078:
+    mapping:
+      Stimulus/S208: EC
+    evidence: >-
+      Six S208 markers at 9.204--19.204 s continue at the same approximately
+      2 s cadence into S210 at 21.204 s; together they form a 30-marker EC run.
+  sub-010126:
+    mapping:
+      Stimulus/S208: EC
+    evidence: >-
+      The recording contains 240 S208 and 240 S200 markers, no S210 markers,
+      and eight alternating approximately 60 s runs for each code. S208 is the
+      subject-specific replacement for EC.
+
+audit_thresholds:
+  expected_block_duration_sec: 60.0
+  minimum_typical_block_duration_sec: 55.0
+  maximum_typical_block_duration_sec: 65.0
+  expected_markers_per_block: 30
+  same_state_gap_warning_sec: 4.5
+  cross_state_gap_warning_sec: 30.0
+
+notes:
+  - S208 is not a global state code.
+  - Explicit New Segment markers, not arbitrary time gaps, split acquisition segments.
+  - A same-state gap without New Segment is flagged but does not create a new block.
+  - No unobserved state is imputed inside any marker gap.

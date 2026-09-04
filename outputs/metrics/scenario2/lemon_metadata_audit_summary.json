@@ -1,0 +1,24 @@
+{
+  "audit_scope": "metadata_only_no_waveform_read",
+  "dataset_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+  "n_subjects": 215,
+  "n_channels_readable": 215,
+  "n_events_readable": 214,
+  "n_target_19_present": 215,
+  "channel_count_combinations": [
+    {
+      "n_total_channels": 62,
+      "n_eeg_channels": 61,
+      "n_eog_channels": 1,
+      "n_misc_channels": 0,
+      "n_subjects": 215
+    }
+  ],
+  "sampling_frequency_counts": {
+    "500.0": 1,
+    "1000.0": 6,
+    "2500.0": 208
+  },
+  "eeg_pointer_payload_total_bytes": 136274957904,
+  "n_materialized_eeg_payloads": 0
+}
