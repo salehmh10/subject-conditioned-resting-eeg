@@ -4,6 +4,8 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
+Batch 003 is separately authorized and frozen at exactly **20 GiB**, with **33 subjects / 21,299,575,247 declared bytes (19.836775257 GiB)**. Execution awaits required tests, local commit, and durable authorization. Batch 004 is prohibited. The completed Batch 002 evidence below is historical and remains immutable.
+
 Batch 002 execution is complete: **16 verified all-block outputs (256 blocks)** under an immutable **10-GiB cap (10,737,418,240 bytes)**. Declared, expected, and measured response-body payload are each **10,141,417,744 bytes (9.444931284 GiB)**; unused capacity is **596,000,496 bytes**. There were no retries, resumptions, interruptions, or technical failures.
 
 Fifteen subjects pass frozen Train QC and provisional 5/1/2 feasibility. **sub-010030** fails both and retains its **645,403,807-byte** raw directory. The other fifteen raw directories were deleted after verification, freeing **9,496,716,931 bytes (8.844506863 GiB)**. Batch all-block HDF5 addition is **116,775,031 bytes (111.365348 MiB)**.
@@ -25,7 +27,7 @@ Check that no other pytest instance is using the shared external base, then run:
 .\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 002 --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-**NEXT ACTION — CHOOSE BATCH 003 SIZE.** Batch 003 has no chosen cap or planned membership. Do not regenerate completed subjects or run an unbounded full-manifest stream. No further download is authorized by this completed assignment.
+**Current action: execute frozen Batch 003 only at the user-selected 20-GiB cap.** Preserve all prior completions; do not plan Batch 004 or run an unbounded stream.
 
 ## Verified dataset facts
 

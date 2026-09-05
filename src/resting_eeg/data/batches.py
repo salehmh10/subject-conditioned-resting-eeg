@@ -225,14 +225,17 @@ def update_ledger(directory, batch_id, **changes):
 
 
 def verify_previous_state(root, batch_id, *, full=False):
-    """Preserve the separately captured prior completion state during Batch 002."""
-    if batch_id != '002':
+    """Preserve prior completions under a separately authorized batch boundary."""
+    if int(batch_id) < 2:
         return None
     directory = paths(root)['metrics_root']/'batches'
-    baseline = directory/'batch_002_starting_state.json'
+    baseline = directory/f'{batch_name(batch_id)}_starting_state.json'
     before = read_json(baseline)
-    if ledger_read(directory)['batches'][0] != before['batch_001_ledger_entry']:
-        raise ValueError('Batch 001 ledger changed')
+    previous = before.get('prior_ledger_entries')
+    if previous is None:  # Original Batch 002 baseline stays byte-identical.
+        previous = [before['batch_001_ledger_entry']]
+    if len(previous) != int(batch_id)-1 or ledger_read(directory)['batches'][:len(previous)] != previous:
+        raise ValueError('Prior batch ledger changed')
     for record in before['files']:
         file = Path(record['path'])
         # Full payload preservation is rehashed at authorization and acceptance;
@@ -245,10 +248,11 @@ def verify_previous_state(root, batch_id, *, full=False):
         prior = rows.loc[rows.subject_id.isin(before['completed_subjects'])].to_dict('records')
         if len(prior) != evidence['count'] or canonical_hash(prior) != evidence['sha256']:
             raise ValueError(f'Prior access registry changed: {name}')
-    if (directory/'batch_003_manifest.csv').exists() or any(e['batch_id'] not in {'001','002'} for e in ledger_read(directory)['batches']):
-        raise ValueError('Batch 003 is prohibited during Batch 002')
-    if any(runtime_directory(root).glob('batch_003*')):
-        raise ValueError('Batch 003 runtime record is prohibited')
+    next_id = f'{int(batch_id)+1:03}'
+    if any(directory.glob(f'batch_{next_id}*')) or any(int(e['batch_id']) > int(batch_id) for e in ledger_read(directory)['batches']):
+        raise ValueError(f'Batch {next_id} is prohibited during Batch {batch_id}')
+    if any(runtime_directory(root).glob(f'batch_{next_id}*')):
+        raise ValueError(f'Batch {next_id} runtime record is prohibited')
     return sha256_file(baseline)
 
 
@@ -310,10 +314,11 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
     hashes = frozen_hashes(root)
     frame, plan, entry = verify_frozen(directory, batch_id, manifest_path, requested_cap)
     prior_hash = verify_previous_state(root, batch_id, full=True)
-    if batch_id == '002':
-        before = read_json(directory/'batch_002_starting_state.json')
-        if plan['cap_bytes'] != 10*GIB or set(plan['subject_ids']) & set(before['completed_subjects']):
-            raise ValueError('Batch 002 cap or prior completion exclusion violated')
+    if int(batch_id) >= 2:
+        before = read_json(directory/f'{batch_name(batch_id)}_starting_state.json')
+        approved_cap = before.get('authorized_cap_bytes', 10*GIB if batch_id=='002' else None)
+        if approved_cap is None or plan['cap_bytes'] != approved_cap or set(plan['subject_ids']) & set(before['completed_subjects']):
+            raise ValueError(f'Batch {batch_id} cap or prior completion exclusion violated')
     if any(plan[k] != v for k, v in hashes.items()):
         raise ValueError('Frozen config differs from plan')
     report = network_preflight(frame, plan, p['raw_root'], p['output_root'])
@@ -345,7 +350,7 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
 def validate_authorization(root, batch_id, directory):
     frame, plan, entry = verify_frozen(directory, batch_id)
     auth = read_json(directory/f'{batch_name(batch_id)}_execution_authorization.json')
-    if batch_id == '002' and auth.get('prior_state_sha256') != verify_previous_state(root, batch_id):
+    if int(batch_id) >= 2 and auth.get('prior_state_sha256') != verify_previous_state(root, batch_id):
         raise ValueError('Prior-state authorization checksum changed')
     for key in ('cap_bytes', 'declared_bytes', 'subject_ids', 'batch_id'):
         if auth[key] != plan[key]:
@@ -555,6 +560,7 @@ def summarize(root, batch_id, directory):
     measured = sum(r.get('received_body_bytes',0) for r in events if r['status'] == 'response_body')
     completed = verified_completed(root)
     assigned = {s for entry in ledger_read(directory)['batches'] for s in verify_frozen(directory,entry['batch_id'])[1]['subject_ids']}
+    cumulative_receipts = [read_json(p['output_root']/f'{s}_all_blocks.provenance.json') for s in completed]
     candidates = set(pd.read_csv(p['metrics_root']/'full_candidate_download_manifest.csv').subject_id)
     summary = dict(plan, expected_network_bytes=auth['expected_new_network_bytes'], expected_network_gib=auth['expected_new_network_bytes']/GIB,
         actual_measured_network_payload_bytes=measured, actual_measured_network_payload_gib=measured/GIB,
@@ -574,6 +580,9 @@ def summarize(root, batch_id, directory):
         system_drive_before=preflight.get('system_drive'),
         system_drive_after=dict(free_bytes=shutil.disk_usage('C:/').free) if os.name=='nt' else None,
         cumulative_all_block_subject_count=len(completed), remaining_unassigned_candidate_count=len(candidates-set(completed)-assigned),
+        cumulative_train_qc_pass_subject_count=sum(r['qc_pass'] for r in cumulative_receipts),
+        cumulative_provisional_feasible_subject_count=sum(r['provisional_feasibility']['provisional_5_1_2_feasible'] for r in cumulative_receipts),
+        cumulative_processed_bytes=directory_bytes(p['output_root'].parent),
         cumulative_compact_bytes=sum(f.stat().st_size for f in p['output_root'].glob('*.h5')),
         cumulative_raw_bytes=directory_bytes(p['raw_root']), scientific_heldout_analysis=False, normalization_fitted=False,
         future_batch_planned=False, future_batch_cap=None, final_cohort_locked=False,
