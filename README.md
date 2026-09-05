@@ -4,32 +4,21 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
-**BATCH_003_RESUME_COMPLETE.** Both previously unresolved members, **sub-010073 and sub-010074**, completed technically, passed frozen Train QC and provisional 5/1/2 feasibility, and had raw cleanup verified. Batch 003 now has **33/33 complete outputs and 528 blocks**; its ledger is `complete`, with no unresolved technical failure or assessed QC/feasibility failure.
+**BATCH_004_AUTHORIZED_PENDING_EXECUTION.**
 
-The continuation reused the verified **402,653,184-byte (384-MiB)** sub-010073 prefix through HTTP 206 with exact Content-Range, then verified the complete source SHA256. New response-body transfer was **889,641,134 bytes (0.828542871 GiB)**, with **0 new retries and 0 new interruptions**. Sub-010074 downloaded fresh. Only these two subjects received new requests or preprocessing; all 280 pre-existing output/receipt artifacts and old journal prefixes remain unchanged.
+The user authorizes **Batch 004 only**, with an immutable maximum **45 GiB = 48,318,382,080 bytes** of complete declared `.eeg` plus `.vhdr` payload. Batch 003 resumed successfully and is 33/33 complete. Before changes, the clean starting HEAD `157f4ba1fdda3375d426f8fc87a7f66f5db29941` and all **72 all-block subjects / 1,152 blocks** were reverified; 69 pass frozen Train QC and 68 pass provisional 5/1/2 feasibility. The 381-artifact starting baseline protects all prior batches, outputs/receipts, retained raw, scientific source/configuration, and prior access rows.
 
-The frozen Batch 003 cap remains **20 GiB = 21,474,836,480 bytes**. Membership, order, manifest, plan, original authorization, and immutable ledger fields are unchanged. Total Batch 003 declared and measured response payload now both equal **21,299,575,247 bytes (19.836775257 GiB)**, including the prefix received during the prior attempt. Unused membership capacity remains **175,261,233 bytes (0.163224743 GiB)**. Earlier six retries/eight interruption events remain historical evidence; the numbered continuation did not add any.
+Batch 004 freezes **74 subjects / 148 assets**, starting at the verified first remaining candidate **sub-010075** and ending at **sub-010241**, in contiguous authoritative manifest order. Declared payload is **48,277,992,566 bytes (44.962384334 GiB)**, leaving **40,389,514 bytes (0.037615666 GiB)** unused. The next candidate, **sub-010242**, requires 662,012,959 bytes and does not fit. It remains unassigned. Exact ordered membership and per-subject bytes are in `outputs/metrics/scenario2/batches/batch_004_plan.json`. No bin packing, replacement, duplicate assignment, or earlier-subject reprocessing is permitted.
 
-The two new guarded deletions freed **1,292,382,143 bytes (1.203624665 GiB)**, including sidecars. New all-block HDF5 addition is **14,544,040 bytes (13.870277 MiB)**. Batch 003 has no retained raw or partials. Prior intentionally retained raw for sub-010012, sub-010030, and sub-010250 remains unchanged.
+The 45-GiB cap is a **network membership budget**, not simultaneous disk usage. Preflight reserves the maximum remaining payload for one subject plus 512 MiB preprocessing, 32 MiB compact output, and 1 GiB safety margin. Already retained raw is reported in the total peak footprint and is already deducted from free disk; it is not charged twice. The dynamic per-subject D: guard remains active as retained failures accumulate. No full-batch staging is allowed.
 
-Cumulative progress is **72/211 complete subjects / 1,152 blocks**, **69 Train-QC passes**, **68 provisional-feasibility passes**, and **139 unassigned candidates** beginning with sub-010075. Current retained raw is **1,945,164,030 bytes (1.811575172 GiB)**; total processed storage including Train references and receipts is **856,800,945 bytes (0.797958062 GiB)**. No final cohort or split is locked.
+Execution proceeds strictly one subject at a time, with a verified first-subject canary: download/Range resume, source and sidecar/header checks, Train-only fitting, unchanged mechanical Validation/Test application, all 16 blocks/masks/reasons, reopened HDF5 and durable receipt/journal, then immediate guarded raw cleanup. Frozen Train-QC failure retains raw; held-out feasibility failure alone does not block technically safe cleanup. Prior retained subjects sub-010012, sub-010030, and sub-010250 remain untouched. Infrastructure defects stop for tested, committed correction and numbered resume authorization under unchanged membership.
 
-Final verification passed for all 33 Batch 003 subjects; **291 tests passed in 33.03 seconds**, and compileall passed. Signal/temp/cache/runtime storage remains external on D:, with the 3-GiB C: guard active. Frozen preprocessing and mechanical-access hashes are unchanged. **Batch 004 was not planned. No scientific held-out analysis, normalization fit, or Git push occurred.**
+Detailed journals remain external on D:. A durable progress record is saved after every subject, with numbered snapshots after each ten terminal subjects and at final stop. It records measured response bytes, exact raw bytes freed/retained, compact output, counts, journal positions, free C:/D: space, and manifest hash. TEMP/TMP/TMPDIR and every cache remain beneath the external Scenario 2 D: root. The 3-GiB C: guard remains mandatory; pagefile settings are unchanged.
 
-See [completed Batch 003 resume handoff](docs/BATCH_003_RESUME_HANDOFF.md) for authorization, connectivity, per-subject results, and final acceptance. The [earlier partial-state handoff](docs/BATCH_003_STREAMING_HANDOFF.md) remains unchanged historical evidence.
+Offline synthetic/mocked tests, compileall, and the local code/docs/plan commit precede durable execution authorization and the first request. Scientific preprocessing and QC hashes remain unchanged. Scientific held-out outcomes remain sealed; normalization remains unfitted; the final cohort and split remain unlocked. **Batch 005 is prohibited and unplanned; its size remains a future user decision. No Git push is authorized.**
 
-## Verify and next action
-
-Check that no other pytest instance is using the shared external base, then run:
-
-```powershell
-. .\scripts\setup_scenario2_environment.ps1 -ForTests
-.\.venv\Scripts\python.exe -m pytest -q --basetemp "D:/SHARIF/PROJECT/Datasets/MPI-LEMON-Scenario2/temp/pytest" --junitxml outputs/logs/pytest.xml
-.\.venv\Scripts\python.exe -m compileall scripts src tests
-.\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 003 --require-clean --test-report outputs/logs/pytest.xml
-```
-
-**Current action: remain stopped after completed Batch 003.** No resume is needed. Batch 004 size and membership remain undecided.
+See [completed Batch 003 resume handoff](docs/BATCH_003_RESUME_HANDOFF.md) for the immutable starting evidence. Batch 004 completion will be recorded in `docs/BATCH_004_STREAMING_HANDOFF.md` after final verification.
 
 ## Verified dataset facts
 

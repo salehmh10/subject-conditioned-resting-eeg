@@ -45,7 +45,7 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     assert [e['batch_id'] for e in ledger]==[f'{i:03}' for i in range(1,int(batch_id)+1)]
     all_assigned=[s for e in ledger for s in b.verify_frozen(directory,e['batch_id'])[1]['subject_ids']]
     assert len(all_assigned)==len(set(all_assigned))
-    expected_cap={'001':5*b.GIB,'002':10*b.GIB,'003':20*b.GIB}[batch_id]
+    expected_cap={'001':5*b.GIB,'002':10*b.GIB,'003':20*b.GIB,'004':45*b.GIB}[batch_id]
     assert plan['cap_bytes']==expected_cap
     source=pd.read_csv(p['metrics_root']/'full_candidate_download_manifest.csv')
     prior=[s for e in ledger if e['batch_id']<batch_id for s in b.verify_frozen(directory,e['batch_id'])[1]['subject_ids']]
@@ -71,6 +71,19 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     assert sha256_file(runtime/f'{name}_download_journal.jsonl')==summary['download_journal_sha256']
     measured=sum(r.get('received_body_bytes',0) for r in events)
     assert measured==summary['actual_measured_network_payload_bytes']
+    if batch_id=='004':
+        progress=b.read_json(runtime/f'{name}_progress.json')
+        assert progress['final'] and progress['terminal_count']==len(terminals)
+        assert progress['completed_count']==len(successful)
+        assert progress['measured_response_body_bytes']==measured
+        assert progress['manifest_sha256']==auth['manifest_sha256']
+        assert progress['latest_durable_journal_position']==(runtime/f'{name}_streaming_journal.jsonl').stat().st_size
+        assert progress['raw_deleted_bytes']==summary['raw_bytes_freed']
+        for count in range(10,len(terminals)+1,10):
+            checkpoint=b.read_json(runtime/f'{name}_progress_{count:03}.json')
+            assert checkpoint['terminal_count']==count and checkpoint['manifest_sha256']==auth['manifest_sha256']
+        checkpoints=b.read_journal(runtime/f'{name}_progress_journal.jsonl')
+        assert set(plan['subject_ids']) <= {r.get('subject_id') for r in checkpoints}
     assert set(r['subject_id'] for r in events)<=set(plan['subject_ids'])
     assert set(r['relative_path'] for r in events)<=set(frame.relative_path)
     preflight=b.read_json(directory/f'{name}_network_preflight.json')

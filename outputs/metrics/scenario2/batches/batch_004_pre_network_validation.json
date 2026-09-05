@@ -1,0 +1,14 @@
+{
+    "batch_id":  "004",
+    "phase":  "before_network",
+    "pytest_passed":  299,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0,
+    "pytest_seconds":  38.479,
+    "junit_sha256":  "54665ee6d142645ea19d195629c1c1912dcf03b755530da99e6de13df6f50755",
+    "compileall":  "passed",
+    "network_requests_during_tests":  0,
+    "previous_test_fixture_failure":  "One new synthetic checkpoint fixture omitted runtime.mkdir; corrected before passing rerun.",
+    "recorded_utc":  "2026-09-05T21:10:18.3631534Z"
+}

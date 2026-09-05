@@ -169,6 +169,7 @@ def execution_mocks(tmp_path,monkeypatch,fail=False):
     monkeypatch.setattr(b,'frozen_hashes',lambda *a:{})
     monkeypatch.setattr(b.st,'_verify_receipt',lambda *a:{})
     monkeypatch.setattr(b,'summarize',lambda *a:{'subjects_completed':0 if fail else 2})
+    monkeypatch.setattr(b,'progress_checkpoint',lambda *a,**k:{})
     calls=[]
     def process(frame,**kwargs):
         ids=frame.subject_id.unique().tolist(); calls.extend(ids)

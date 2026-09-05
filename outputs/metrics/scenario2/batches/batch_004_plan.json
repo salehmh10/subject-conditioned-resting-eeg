@@ -1,0 +1,543 @@
+{
+  "asset_count": 148,
+  "authorization_head": "157f4ba1fdda3375d426f8fc87a7f66f5db29941",
+  "batch_id": "004",
+  "cap_bytes": 48318382080,
+  "cap_gib": 45.0,
+  "declared_bytes": 48277992566,
+  "declared_gib": 44.96238433383405,
+  "excluded_verified_completed": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012",
+    "sub-010016",
+    "sub-010017",
+    "sub-010019",
+    "sub-010020",
+    "sub-010021",
+    "sub-010022",
+    "sub-010023",
+    "sub-010024",
+    "sub-010026",
+    "sub-010027",
+    "sub-010028",
+    "sub-010029",
+    "sub-010030",
+    "sub-010031",
+    "sub-010032",
+    "sub-010033",
+    "sub-010034",
+    "sub-010035",
+    "sub-010036",
+    "sub-010037",
+    "sub-010038",
+    "sub-010039",
+    "sub-010040",
+    "sub-010041",
+    "sub-010042",
+    "sub-010044",
+    "sub-010045",
+    "sub-010046",
+    "sub-010047",
+    "sub-010048",
+    "sub-010049",
+    "sub-010050",
+    "sub-010051",
+    "sub-010052",
+    "sub-010053",
+    "sub-010056",
+    "sub-010059",
+    "sub-010060",
+    "sub-010061",
+    "sub-010062",
+    "sub-010063",
+    "sub-010064",
+    "sub-010065",
+    "sub-010066",
+    "sub-010067",
+    "sub-010068",
+    "sub-010069",
+    "sub-010070",
+    "sub-010071",
+    "sub-010072",
+    "sub-010073",
+    "sub-010074",
+    "sub-010078",
+    "sub-010081",
+    "sub-010126",
+    "sub-010134",
+    "sub-010216",
+    "sub-010250",
+    "sub-010276",
+    "sub-010277",
+    "sub-010278",
+    "sub-010279",
+    "sub-010280",
+    "sub-010282"
+  ],
+  "first_not_included": {
+    "declared_bytes": 662012959,
+    "reason": "next_subject_would_exceed_batch_cap",
+    "subject_id": "sub-010242"
+  },
+  "frozen_at_utc": "2026-09-05T21:05:18.305273+00:00",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "subject_count": 74,
+  "subject_ids": [
+    "sub-010075",
+    "sub-010076",
+    "sub-010077",
+    "sub-010079",
+    "sub-010080",
+    "sub-010083",
+    "sub-010084",
+    "sub-010085",
+    "sub-010086",
+    "sub-010087",
+    "sub-010088",
+    "sub-010089",
+    "sub-010090",
+    "sub-010091",
+    "sub-010092",
+    "sub-010093",
+    "sub-010094",
+    "sub-010104",
+    "sub-010136",
+    "sub-010137",
+    "sub-010138",
+    "sub-010141",
+    "sub-010142",
+    "sub-010146",
+    "sub-010148",
+    "sub-010150",
+    "sub-010152",
+    "sub-010155",
+    "sub-010157",
+    "sub-010162",
+    "sub-010163",
+    "sub-010164",
+    "sub-010165",
+    "sub-010166",
+    "sub-010168",
+    "sub-010170",
+    "sub-010176",
+    "sub-010183",
+    "sub-010191",
+    "sub-010192",
+    "sub-010193",
+    "sub-010194",
+    "sub-010195",
+    "sub-010196",
+    "sub-010197",
+    "sub-010199",
+    "sub-010200",
+    "sub-010201",
+    "sub-010202",
+    "sub-010204",
+    "sub-010207",
+    "sub-010210",
+    "sub-010213",
+    "sub-010214",
+    "sub-010215",
+    "sub-010218",
+    "sub-010219",
+    "sub-010220",
+    "sub-010222",
+    "sub-010223",
+    "sub-010224",
+    "sub-010226",
+    "sub-010227",
+    "sub-010228",
+    "sub-010230",
+    "sub-010231",
+    "sub-010232",
+    "sub-010233",
+    "sub-010234",
+    "sub-010236",
+    "sub-010238",
+    "sub-010239",
+    "sub-010240",
+    "sub-010241"
+  ],
+  "subjects": [
+    {
+      "asset_count": 2,
+      "declared_bytes": 665373359,
+      "subject_id": "sub-010075"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 644950559,
+      "subject_id": "sub-010076"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 645136559,
+      "subject_id": "sub-010077"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 633616959,
+      "subject_id": "sub-010079"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 641069359,
+      "subject_id": "sub-010080"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 622109759,
+      "subject_id": "sub-010083"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 693422159,
+      "subject_id": "sub-010084"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 651931759,
+      "subject_id": "sub-010085"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 630690559,
+      "subject_id": "sub-010086"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 655639359,
+      "subject_id": "sub-010087"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 670246559,
+      "subject_id": "sub-010088"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 635600959,
+      "subject_id": "sub-010089"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 647690959,
+      "subject_id": "sub-010090"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 660648959,
+      "subject_id": "sub-010091"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 639841759,
+      "subject_id": "sub-010092"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 628371759,
+      "subject_id": "sub-010093"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 648769759,
+      "subject_id": "sub-010094"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 645074559,
+      "subject_id": "sub-010104"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 648087759,
+      "subject_id": "sub-010136"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 707508559,
+      "subject_id": "sub-010137"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 668696559,
+      "subject_id": "sub-010138"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 661665759,
+      "subject_id": "sub-010141"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 637014559,
+      "subject_id": "sub-010142"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 676979759,
+      "subject_id": "sub-010146"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 643040959,
+      "subject_id": "sub-010148"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 649922959,
+      "subject_id": "sub-010150"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 668064159,
+      "subject_id": "sub-010152"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 672292559,
+      "subject_id": "sub-010155"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 656792559,
+      "subject_id": "sub-010157"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 627255759,
+      "subject_id": "sub-010162"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 659929759,
+      "subject_id": "sub-010163"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 650691759,
+      "subject_id": "sub-010164"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 636295359,
+      "subject_id": "sub-010165"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 633096159,
+      "subject_id": "sub-010166"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 636816159,
+      "subject_id": "sub-010168"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 631794159,
+      "subject_id": "sub-010170"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 619443759,
+      "subject_id": "sub-010176"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 631459359,
+      "subject_id": "sub-010183"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 704148159,
+      "subject_id": "sub-010191"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 654324959,
+      "subject_id": "sub-010192"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 655068959,
+      "subject_id": "sub-010193"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 673011759,
+      "subject_id": "sub-010194"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 658354959,
+      "subject_id": "sub-010195"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 662136959,
+      "subject_id": "sub-010196"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 621638559,
+      "subject_id": "sub-010197"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 630876559,
+      "subject_id": "sub-010199"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 681952159,
+      "subject_id": "sub-010200"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 649687359,
+      "subject_id": "sub-010201"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 629450559,
+      "subject_id": "sub-010202"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 678467759,
+      "subject_id": "sub-010204"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 626499359,
+      "subject_id": "sub-010207"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 660748159,
+      "subject_id": "sub-010210"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 657164559,
+      "subject_id": "sub-010213"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 660475359,
+      "subject_id": "sub-010214"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 672850559,
+      "subject_id": "sub-010215"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 641664559,
+      "subject_id": "sub-010218"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 625494959,
+      "subject_id": "sub-010219"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 647703359,
+      "subject_id": "sub-010220"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 633195359,
+      "subject_id": "sub-010222"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 634522159,
+      "subject_id": "sub-010223"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 661231759,
+      "subject_id": "sub-010224"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 647963759,
+      "subject_id": "sub-010226"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 662124559,
+      "subject_id": "sub-010227"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 662236159,
+      "subject_id": "sub-010228"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 688896159,
+      "subject_id": "sub-010230"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 679434959,
+      "subject_id": "sub-010231"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 676533359,
+      "subject_id": "sub-010232"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 675119759,
+      "subject_id": "sub-010233"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 620410959,
+      "subject_id": "sub-010234"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 647690959,
+      "subject_id": "sub-010236"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 675119759,
+      "subject_id": "sub-010238"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 650852959,
+      "subject_id": "sub-010239"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 661306159,
+      "subject_id": "sub-010240"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 632600159,
+      "subject_id": "sub-010241"
+    }
+  ],
+  "unused_capacity_bytes": 40389514,
+  "unused_capacity_gib": 0.037615666165947914,
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+}

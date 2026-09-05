@@ -316,9 +316,12 @@ def delete_verified_raw(
                and record.get("status") == "complete" and record.get("result") == checked
                and record.get("source_payloads") == source_payloads for record in completed):
         raise ValueError("raw cleanup requires a durable verified completion journal record")
-    append_status(journal, run_id, subject_id, "raw_delete_pending", raw_directory=str(target))
+    bytes_freed = sum(item.stat().st_size for item in target.rglob('*') if item.is_file())
+    append_status(journal, run_id, subject_id, "raw_delete_pending", raw_directory=str(target), bytes_to_free=bytes_freed)
     shutil.rmtree(target)
-    append_status(journal, run_id, subject_id, "raw_deleted", raw_directory=str(target))
+    if target.exists():
+        raise OSError('Guarded raw deletion did not remove subject directory')
+    append_status(journal, run_id, subject_id, "raw_deleted", raw_directory=str(target), bytes_freed=bytes_freed)
 
 
 def stream_subjects(

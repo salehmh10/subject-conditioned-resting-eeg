@@ -167,6 +167,8 @@ def verify_frozen(directory, batch_id, manifest_path=None, requested_cap=None):
     plan = read_json(directory/f'{name}_plan.json')
     if canonical_hash(plan) != entry['plan_sha256']:
         raise ValueError('Frozen batch plan/cap changed')
+    if entry.get('plan_file_sha256') and sha256_file(directory/f'{name}_plan.json') != entry['plan_file_sha256']:
+        raise ValueError('Frozen plan file changed')
     frame = pd.read_csv(manifest)
     ids = frame.subject_id.drop_duplicates().tolist()
     if ids != plan['subject_ids'] or plan['cap_bytes'] != entry['cap_bytes']:
@@ -207,7 +209,8 @@ def freeze_batch(directory, batch_id, cap, frame, completed, head, hashes):
         write_json(directory/f'{name}_plan.json', plan)
         ledger['batches'].append(dict(batch_id=batch_id, batch_status='frozen', cap_bytes=cap,
             cap_gib=cap/GIB, manifest_path=str(manifest.resolve()), manifest_sha256=sha256_file(manifest),
-            plan_sha256=canonical_hash(plan), subject_count=plan['subject_count'], declared_bytes=plan['declared_bytes'],
+            plan_sha256=canonical_hash(plan), plan_file_sha256=sha256_file(directory/f'{name}_plan.json'),
+            subject_count=plan['subject_count'], declared_bytes=plan['declared_bytes'],
             authorization_head=head, authorization_time_utc=plan['frozen_at_utc'],
             execution_started=None, execution_completed=None))
         write_json(directory/'batch_ledger.json', ledger)
@@ -261,37 +264,56 @@ def network_preflight(frame, plan, raw_root, output_root):
     system_drive = system_drive_guard('batch_network_preflight')
     verified = partial = 0
     prefixes = []
+    remaining_by_subject = {}
     for row, target in st._manifest_rows(frame, raw_root):
         size = int(row['payload_size_bytes'])
+        remaining = size
+        part = target.with_name(target.name + '.part')
+        st._assert_no_links(part)
+        if target.exists() and part.exists():
+            raise ValueError('Conflicting complete payload and partial transaction')
         if target.exists():
             st.downloader.verify_file(target, size, str(row['payload_sha256']))
             verified += size
+            remaining = 0
         else:
-            part = target.with_name(target.name + '.part')
-            st._assert_no_links(part)
+            if part.exists() and part.stat().st_size > size:
+                raise ValueError('Partial exceeds declared payload; preserve and investigate')
             if part.exists() and 0 < part.stat().st_size <= size:
                 if part.stat().st_size == size:
                     st.downloader.verify_file(part, size, str(row['payload_sha256']))
                 # Incomplete prefixes cannot be SHA-verified against a whole-file
                 # digest. These are resumable lengths; final SHA remains mandatory.
                 partial += part.stat().st_size
+                remaining -= part.stat().st_size
                 prefixes.append(dict(relative_path=str(row['relative_path']), bytes=part.stat().st_size,
                                      prefix_sha256=sha256_file(part), whole_file_sha_verified=part.stat().st_size == size))
+        subject = row['subject_id']
+        remaining_by_subject[subject] = remaining_by_subject.get(subject, 0) + remaining
     declared = int(frame.payload_size_bytes.sum())
-    largest = max(int(g.payload_size_bytes.sum()) for _, g in frame.groupby('subject_id', sort=False))
+    largest = max((int(g.payload_size_bytes.sum()) for _, g in frame.groupby('subject_id', sort=False)), default=0)
     compact = plan['subject_count'] * st.COMPACT_OUTPUT_ALLOWANCE_BYTES
     free = st._free_bytes(raw_root)
-    # Includes retained failures for the entire batch, not just the optimistic case.
-    required = declared - verified - partial + st.PROCESSING_OVERHEAD_BYTES + compact + st.SAFETY_MARGIN_BYTES
+    # Network membership never becomes a simultaneous disk reservation. Retained
+    # raw already occupies disk and is therefore already deducted from free space.
+    # The unchanged dynamic subject guard checks again as retained failures grow.
+    retained = directory_bytes(raw_root)
+    required = max(remaining_by_subject.values(), default=0) + st.PROCESSING_OVERHEAD_BYTES + st.COMPACT_OUTPUT_ALLOWANCE_BYTES + st.SAFETY_MARGIN_BYTES
     report = dict(batch_id=plan['batch_id'], cap_bytes=plan['cap_bytes'], declared_bytes=declared,
+        cap_gib=plan['cap_bytes']/GIB, declared_gib=declared/GIB,
         subject_count=plan['subject_count'], subject_ids=plan['subject_ids'],
         unused_capacity_bytes=plan['cap_bytes']-declared, system_drive=system_drive,
         verified_existing_bytes=verified, valid_partial_bytes=partial,
         partial_prefixes=prefixes, expected_new_network_bytes=declared-verified-partial,
         largest_subject_bytes=largest, processing_overhead_bytes=st.PROCESSING_OVERHEAD_BYTES,
         expected_compact_output_bytes=compact, compact_estimate_basis='conservative 32 MiB per subject including temporary allowance',
+        retained_raw_bytes=retained, remaining_payload_bytes_by_subject=remaining_by_subject,
+        maximum_one_subject_temporary_requirement_bytes=required,
+        peak_footprint_including_retained_raw_bytes=retained+required,
+        retained_raw_accounting='Already occupied; included in footprint, already deducted from current free space.',
+        disk_policy='one_subject_at_a_time_dynamic_guard',
         free_disk_bytes=free, required_free_bytes=required,
-        disk_ok=free >= required and st._free_bytes(output_root) >= compact + st.SAFETY_MARGIN_BYTES,
+        disk_ok=free >= required and st._free_bytes(output_root) >= st.COMPACT_OUTPUT_ALLOWANCE_BYTES + st.SAFETY_MARGIN_BYTES,
         created_utc=utc_now(), partial_note='Resumable incomplete prefixes are unverified until final whole-file SHA256; server may ignore Range.',
         traffic_note='Expected response payload excludes retries, ignored Range, and unmeasured HTTP/TLS/ISP overhead.')
     if declared > plan['cap_bytes'] or not report['disk_ok']:
@@ -303,12 +325,14 @@ def print_preflight(report):
     print(f"BATCH {report['batch_id']} NETWORK PREFLIGHT", flush=True)
     for label, key in [('Cap', 'cap_bytes'), ('Declared payload', 'declared_bytes'),
                        ('Expected new transfer', 'expected_new_network_bytes'), ('Verified existing', 'verified_existing_bytes'),
-                       ('Valid partial', 'valid_partial_bytes'), ('Free disk', 'free_disk_bytes'), ('Largest subject', 'largest_subject_bytes')]:
+                       ('Valid partial', 'valid_partial_bytes'), ('Free disk', 'free_disk_bytes'), ('Largest subject', 'largest_subject_bytes'),
+                       ('Maximum one-subject free-space need', 'required_free_bytes'), ('Retained raw', 'retained_raw_bytes')]:
         print(f'{label}: {report[key]/GIB:.4f} GiB', flush=True)
     print(f"Subjects: {report['subject_count']}\nExpected compact output: {report['expected_compact_output_bytes']/1024**2:.2f} MiB", flush=True)
 
 
 def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None):
+    from resting_eeg.data.paths import load_paths
     p = paths(root)
     head = require_committed_clean(root)
     hashes = frozen_hashes(root)
@@ -322,6 +346,8 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
     if any(plan[k] != v for k, v in hashes.items()):
         raise ValueError('Frozen config differs from plan')
     report = network_preflight(frame, plan, p['raw_root'], p['output_root'])
+    report.update(manifest_sha256=entry['manifest_sha256'], plan_sha256=entry['plan_sha256'],
+                  plan_file_sha256=sha256_file(directory/f'{batch_name(batch_id)}_plan.json'), **hashes)
     print_preflight(report)
     name = batch_name(batch_id)
     preflight_file = directory/f'{name}_network_preflight.json'
@@ -342,7 +368,11 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
         prohibited_next_batch_id=f'{int(batch_id)+1:03}',
         prior_state_sha256=prior_hash,
         network_preflight_sha256=sha256_file(preflight_file),
-        resolved_paths={k:str(v) for k,v in p.items()})
+        resolved_paths={k:str(v) for k,v in p.items()},
+        plan_file_sha256=report['plan_file_sha256'],
+        verified_existing_bytes=report['verified_existing_bytes'], valid_partial_bytes=report['valid_partial_bytes'],
+        partial_prefixes=report['partial_prefixes'], system_drive=report['system_drive'], free_disk_bytes=report['free_disk_bytes'],
+        storage_roots={k:str(v) for k,v in load_paths(root).items()})
     write_json(auth_file, auth)
     return auth
 
@@ -470,6 +500,48 @@ def cleanup_pilot(root):
     return summary
 
 
+def progress_checkpoint(root, batch_id, directory, current_subject=None, *, final=False):
+    """Persist engineering counts after each terminal, without reading EEG values."""
+    p = paths(root)
+    _, plan, entry = verify_frozen(directory, batch_id)
+    name = batch_name(batch_id)
+    runtime = runtime_directory(root)
+    journal = runtime/f'{name}_streaming_journal.jsonl'
+    download = runtime/f'{name}_download_journal.jsonl'
+    history = read_journal(journal)
+    events = read_journal(download)
+    terminal_statuses = {'complete','download_interrupted','preprocessing_failed','planning_failed','cleanup_failed','c_drive_low_space_guard'}
+    terminals = {r['subject_id']:r for r in history if r.get('subject_id') in plan['subject_ids'] and r['status'] in terminal_statuses}
+    completed = [r for r in terminals.values() if r['status']=='complete']
+    pending = [s for s in plan['subject_ids'] if s not in terminals]
+    raw_freed = {r['subject_id']:r['bytes_freed'] for r in history if r['status']=='raw_deleted' and 'bytes_freed' in r}
+    measured = sum(r.get('received_body_bytes',0) for r in events)
+    record = dict(batch_id=batch_id, timestamp_utc=utc_now(), frozen_membership_count=plan['subject_count'],
+        attempted_count=len({r['subject_id'] for r in history if r.get('subject_id') in plan['subject_ids']}),
+        terminal_count=len(terminals), completed_count=len(completed),
+        qc_failed_count=sum(not r['result']['qc_pass'] for r in completed),
+        technical_failed_count=sum(r['status']!='complete' for r in terminals.values()),
+        current_subject=current_subject, next_subject=pending[0] if pending else None,
+        measured_response_body_bytes=measured, measured_response_body_gib=measured/GIB,
+        raw_deleted_bytes=sum(raw_freed.values()), raw_deleted_gib=sum(raw_freed.values())/GIB,
+        raw_retained_bytes=directory_bytes(p['raw_root']), raw_retained_gib=directory_bytes(p['raw_root'])/GIB,
+        compact_output_bytes=sum(r['result']['output_bytes'] for r in completed),
+        compact_output_gib=sum(r['result']['output_bytes'] for r in completed)/GIB,
+        free_c_bytes=shutil.disk_usage('C:/').free if os.name=='nt' else None,
+        free_d_bytes=st._free_bytes(p['raw_root']),
+        latest_durable_journal_position=journal.stat().st_size if journal.exists() else 0,
+        download_journal_position=download.stat().st_size if download.exists() else 0,
+        manifest_sha256=entry['manifest_sha256'], final=final,
+        scientific_heldout_analysis=False, normalization_fitted=False, future_batch_planned=False)
+    write_json(runtime/f'{name}_progress.json',record)
+    st.append_status(runtime/f'{name}_progress_journal.jsonl','batch-progress',current_subject or '',
+                     'checkpoint',progress=record)
+    if len(terminals) and len(terminals)%10==0 or final:
+        suffix='final' if final else f'{len(terminals):03}'
+        write_json(runtime/f'{name}_progress_{suffix}.json',record)
+    return record
+
+
 def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=None,
                   delete_raw=False, continue_on_error=False, retries=3, timeout=60, selected=()):
     p = paths(root)
@@ -502,6 +574,7 @@ def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=Non
                 journal_path=journal, download_journal_path=download)[0]
             print(json.dumps(result if result['status'] != 'complete' else dict(subject_id=subject,
                 status='complete', qc_pass=result['result']['qc_pass'], raw_retained=result['raw_retained'])), flush=True)
+            progress_checkpoint(root, batch_id, directory, subject)
             if result['status'] == 'complete':
                 st._verify_receipt(result['result'], subject, p['config_path'], p['output_root'])
                 frozen_hashes(root)
@@ -517,10 +590,12 @@ def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=Non
                 # QC failure is a complete result with a recorded cleanup blocker.
                 update_ledger(directory, batch_id, batch_status='failed_or_partial')
                 summarize(root, batch_id, directory)
+                progress_checkpoint(root, batch_id, directory, subject, final=True)
                 raise RuntimeError(f'Stopped frozen batch for investigation: {result}')
         summary = summarize(root, batch_id, directory)
         status = 'complete' if summary['subjects_completed'] == plan['subject_count'] else 'failed_or_partial'
         update_ledger(directory, batch_id, batch_status=status, execution_completed=utc_now())
+        progress_checkpoint(root, batch_id, directory, final=True)
         return summary
 
 

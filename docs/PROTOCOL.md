@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 003 complete after authorized two-subject continuation; scientific rules remain frozen
+Status: Batch 004 authorized for 45-GiB sequential streaming; scientific rules remain frozen
 
 ## 1. Objective
 
@@ -282,3 +282,18 @@ Cumulative progress is **72/211 complete subjects / 1,152 blocks**, **69 Train-Q
 Final verification passed for all 33 Batch 003 subjects; **291 tests passed in 33.03 seconds**, and compileall passed. Signal/temp/cache/runtime storage remains external on D:, with the 3-GiB C: guard active. Frozen preprocessing and mechanical-access hashes are unchanged. **Batch 004 was not planned. No scientific held-out analysis, normalization fit, or Git push occurred.**
 
 See `BATCH_003_RESUME_HANDOFF.md` for final continuation evidence. Earlier partial-state entries are historical and are superseded by this completed-state entry.
+
+
+## 2026-09-06: Batch 004 authorization before network I/O
+
+The user authorizes **Batch 004 only**, with an immutable maximum **45 GiB = 48,318,382,080 bytes** of complete declared `.eeg` plus `.vhdr` payload. Batch 003 resumed successfully and is 33/33 complete. Before changes, the clean starting HEAD `157f4ba1fdda3375d426f8fc87a7f66f5db29941` and all **72 all-block subjects / 1,152 blocks** were reverified; 69 pass frozen Train QC and 68 pass provisional 5/1/2 feasibility. The 381-artifact starting baseline protects all prior batches, outputs/receipts, retained raw, scientific source/configuration, and prior access rows.
+
+Batch 004 freezes **74 subjects / 148 assets**, starting at the verified first remaining candidate **sub-010075** and ending at **sub-010241**, in contiguous authoritative manifest order. Declared payload is **48,277,992,566 bytes (44.962384334 GiB)**, leaving **40,389,514 bytes (0.037615666 GiB)** unused. The next candidate, **sub-010242**, requires 662,012,959 bytes and does not fit. It remains unassigned. Exact ordered membership and per-subject bytes are in `outputs/metrics/scenario2/batches/batch_004_plan.json`. No bin packing, replacement, duplicate assignment, or earlier-subject reprocessing is permitted.
+
+The 45-GiB cap is a **network membership budget**, not simultaneous disk usage. Preflight reserves the maximum remaining payload for one subject plus 512 MiB preprocessing, 32 MiB compact output, and 1 GiB safety margin. Already retained raw is reported in the total peak footprint and is already deducted from free disk; it is not charged twice. The dynamic per-subject D: guard remains active as retained failures accumulate. No full-batch staging is allowed.
+
+Execution proceeds strictly one subject at a time, with a verified first-subject canary: download/Range resume, source and sidecar/header checks, Train-only fitting, unchanged mechanical Validation/Test application, all 16 blocks/masks/reasons, reopened HDF5 and durable receipt/journal, then immediate guarded raw cleanup. Frozen Train-QC failure retains raw; held-out feasibility failure alone does not block technically safe cleanup. Prior retained subjects sub-010012, sub-010030, and sub-010250 remain untouched. Infrastructure defects stop for tested, committed correction and numbered resume authorization under unchanged membership.
+
+Detailed journals remain external on D:. A durable progress record is saved after every subject, with numbered snapshots after each ten terminal subjects and at final stop. It records measured response bytes, exact raw bytes freed/retained, compact output, counts, journal positions, free C:/D: space, and manifest hash. TEMP/TMP/TMPDIR and every cache remain beneath the external Scenario 2 D: root. The 3-GiB C: guard remains mandatory; pagefile settings are unchanged.
+
+Offline synthetic/mocked tests, compileall, and the local code/docs/plan commit precede durable execution authorization and the first request. Scientific preprocessing and QC hashes remain unchanged. Scientific held-out outcomes remain sealed; normalization remains unfitted; the final cohort and split remain unlocked. **Batch 005 is prohibited and unplanned; its size remains a future user decision. No Git push is authorized.**
