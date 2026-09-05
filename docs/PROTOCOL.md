@@ -126,9 +126,9 @@ Final normalization is global channelwise mean and population standard deviation
 
 ## 12. Subject streaming and raw retention
 
-The 211-subject manifest remains the authoritative inventory, but simultaneous full download is superseded by one-subject streaming. Download/resume and verify one source pair, copy validated sidecars, check headers, derive subject parameters from Train only, produce/verify compact output, durably journal completion, then proceed. The current implementation processes provisional Train only. Processing held-out blocks mechanically for final QC requires a separately authorized extension after the preprocessing freeze and before final split lock; held-out scientific outcomes remain sealed.
+The 211-subject manifest remains the authoritative inventory, but simultaneous full download is superseded by one-subject streaming. Download/resume and verify one source pair, copy validated sidecars, check headers, derive subject parameters from Train only, produce/verify compact output, durably journal completion, then proceed. The all-block extension below now fits from provisional Train only and applies the frozen method mechanically to Validation/Test before final split lock; held-out scientific outcomes remain sealed.
 
-The downloader supports strict HTTP Range resume, safe full-response restart, exact size/SHA256 verification and atomic promotion, bounded retries, and a durable journal. Network tests use mocked responses only. Raw retention is the default. Explicit `--delete-raw-after-success` additionally requires fresh source/output/provenance verification, passing subject QC, a durable complete journal, accessible metadata, and confined paths with no unresolved partials. Pilot raw cleanup is prepared but is not executed in this phase.
+The downloader supports strict HTTP Range resume, safe full-response restart, exact size/SHA256 verification and atomic promotion, bounded retries, and a durable journal. Network tests use mocked responses only. Raw retention is the default. Explicit `--delete-raw-after-success` additionally requires fresh source/output/provenance verification, passing subject QC, a durable complete journal, accessible metadata, and confined paths with no unresolved partials. Pilot raw cleanup is prepared but is not executed in this phase. Train-only outputs are insufficient: all 16 assigned study blocks and apply-only Train parameter provenance must be verified before future deletion.
 
 
 ## 2026-09-05: frozen mechanical held-out authorization
@@ -164,3 +164,16 @@ cleanup eligibility. No pilot raw deletion, non-pilot download, metadata clone c
 or Git push is authorized in this phase. Future streaming supports `--processing-scope
 all-blocks-mechanical`: fit on Train first, then mechanically apply to held-out, verify
 all 16 blocks, durably journal, and delete only with the explicit guarded flag.
+
+
+## 2026-09-05: completed frozen mechanical pilot
+
+Authorization and execution code were committed at `887634f16a9637fe2ba91b27dd02f37850d5fd30` before the first held-out read. All 15 subjects completed without a real processing failure. The 15 separate all-block outputs contain 240 blocks: 150 byte-identical copied Train blocks and 90 newly mechanically processed held-out blocks (30 Validation, 60 Test). The original Train registry and frozen preprocessing files are unchanged.
+
+Frozen Train QC passes 14 subjects; provisional 5/1/2 feasibility passes 13. `sub-010250` remains a Train-QC failure, with its EO Validation and two EO Test blocks also ineligible. `sub-010280` has an ineligible assigned EO Validation block. No reassignment, threshold change, bad-channel refit, normalization fit or rescue occurred. These are provisional engineering labels, not final inclusion/exclusion decisions.
+
+Train EO/EC usable windows are 1632/1875 and 1858/1875; Validation EO/EC are 312/375 and 371/375; Test EO/EC are 653/750 and 743/750. Every assigned block remains stored with its mask and reason. State retention differences are reported without tuning.
+
+All-block storage is 109,736,191 bytes (104.652587 MiB); mean-pilot extrapolation to 211 subjects is 1.437610 GiB. The idempotent pilot rerun reused every output with unchanged hashes and access registries. Full synthetic/mock pytest passed 208 tests; compileall and the full 211-subject read-only dry run passed.
+
+Fourteen subjects are technically eligible for later cleanup under the preserved Train-QC safeguard and new mandatory all-block completeness checks; this differs from 13-subject scientific allocation feasibility. No cleanup was performed. All 105 raw files and old Train HDF5/receipts remain unchanged. No non-pilot download, scientific held-out computation, waveform plot, model training/evaluation, metadata-clone modification or Git push occurred. See `MECHANICAL_HELDOUT_HANDOFF.md` for detailed evidence and next-phase commands.

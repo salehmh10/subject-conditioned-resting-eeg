@@ -1,47 +1,40 @@
 # Subject-Conditioned Resting-State EEG
 
-Scenario 2 of the synthetic EEG project studies subject- and eye-state-conditioned generation with MPI-LEMON resting-state EEG. Scenario 1 is frozen separately at `D:/SHARIF/PROJECT/eye-state-diffusion`, commit `2731f3d`, tag `scenario1-final`.
+Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON resting EEG. Scenario 1 remains frozen separately.
 
 ## Current status
 
-The project is **PREPROCESSING_FROZEN_READY_FOR_STREAMING**. The 15-subject pilot has passed payload/header integrity and supports the frozen Train-only preprocessing and QC method. Compact pilot Train data are stored locally in ignored HDF5 files. No model or classifier has been trained, and nothing has been pushed.
+The frozen mechanical pilot has completed: **15 verified all-block HDF5 files, 240 blocks, 150 copied Train blocks, and exactly 90 mechanically processed Validation/Test blocks**. Thirteen subjects are provisionally 5/1/2 QC-feasible. `sub-010250` retains its Train-QC failure; `sub-010280` fails its assigned EO Validation block. No threshold or allocation changed.
 
-The pre-download structural cohort contains 211 of 215 subjects. It is not the final physiological cohort: every retained subject and block still requires prespecified, outcome-blind waveform QC.
+The terminal readiness state is `MECHANICAL_HELDOUT_PROCESSING_READY_FOR_FULL_STREAMING`, certified by the clean-worktree acceptance command below. The final cohort, final split/Test lock and normalization remain unfrozen. Scientific held-out outcomes remain sealed; no PSD, Alpha, Connectivity, classifier or generator analysis was performed.
 
-See [`docs/PILOT_PREPROCESSING_HANDOFF.md`](docs/PILOT_PREPROCESSING_HANDOFF.md) for results, limitations, and exact continuation commands. [`docs/PRE_DOWNLOAD_HANDOFF.md`](docs/PRE_DOWNLOAD_HANDOFF.md) is the historical metadata-phase record; its simultaneous full-download strategy is superseded by subject streaming.
+See [MECHANICAL_HELDOUT_HANDOFF.md](docs/MECHANICAL_HELDOUT_HANDOFF.md) for results, limitations, authorization timing, cleanup safeguards and exact next-phase commands. Earlier handoffs are historical; Train-only cleanup eligibility is superseded by mandatory verified all-block storage.
 
-The frozen method uses blockwise 1–40 Hz zero-phase filtering, anti-aliased 128 Hz resampling, pooled Train bad-channel/QC references, interpolation within fixed limits, full 61-channel CAR, and ordered 19-channel float32 µV storage. The filter-support edge guard is 3.3828125 seconds; 4-second candidate windows advance by 2 seconds. HDF5 stores continuous blocks and window masks, without duplicating overlapping windows. VEOG guides artifact QC but is not a generated target. Final normalization is specified but remains unfitted.
+All 150 previously exposed pilot blocks must remain Train or their subjects must be excluded. Frozen preprocessing and its checksum are unchanged. All-block storage totals **104.653 MiB**, with a pilot-based 211-subject estimate of **1.438 GiB**. Existing Train-only outputs and all 105 pilot raw files are preserved. No non-pilot EEG was downloaded, raw deleted or Git push performed.
 
-Only complete provisional Train blocks can pass the waveform access gate; Validation, Test, and interrupted fragments are refused and tested. Every exposed pilot block must remain Train in the future final split, or its subject must be excluded. No held-out waveform has been inspected, no non-pilot EEG has been downloaded, and all pilot raw files remain staged. The final cohort and split remain unfrozen.
+## Verify and continue
 
-## Reproduce and continue
-
-Use the isolated project environment:
+Use the existing pinned environment:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m compileall -q scripts src tests
-.\.venv\Scripts\python.exe scripts/data/s2_10_verify_preprocessing_freeze.py --require-clean
+.\.venv\Scripts\python.exe -m pytest -q --junitxml outputs/logs/pytest.xml
+.\.venv\Scripts\python.exe -m compileall scripts src tests
+.\.venv\Scripts\python.exe scripts/data/s2_11_verify_mechanical_pilot.py --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-Plan the full cohort without network requests or waveform access:
+Plan all 211 subjects without downloads or waveform reads:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/data/s2_07_stream_preprocess_subjects.py --dry-run
+.\.venv\Scripts\python.exe scripts/data/s2_07_stream_preprocess_subjects.py --processing-scope all-blocks-mechanical --dry-run --keep-raw
 ```
 
-Verify/reuse the already staged pilot with raw retained:
+Verify/reuse the staged pilot without additional native waveform access:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/data/s2_07_stream_preprocess_subjects.py --manifest outputs/metrics/scenario2/pilot_download_manifest.csv --execute --local-existing-only --keep-raw --journal outputs/logs/pilot_idempotence_verify.jsonl
-.\.venv\Scripts\python.exe scripts/data/s2_09_summarize_pilot.py
+.\.venv\Scripts\python.exe scripts/data/s2_07_stream_preprocess_subjects.py --processing-scope all-blocks-mechanical --manifest outputs/metrics/scenario2/pilot_download_manifest.csv --execute --local-existing-only --keep-raw --journal outputs/logs/pilot_all_block_restart_verify.jsonl
 ```
 
-Execution uses one subject at a time and preserves valid partial downloads across connection failures. HTTP Range responses, final size, and SHA256 are checked before atomic promotion. Output/provenance receipts and a durable journal make reruns verifiable. Raw deletion is disabled by default; `--delete-raw-after-success` requires all safeguards to pass. The prepared pilot cleanup command has not been executed.
-
-The current streaming implementation produces provisional Train blocks only. Future mechanical held-out QC requires a separately authorized extension after the method freeze; scientific held-out outcomes remain sealed. See the handoff before any non-pilot execution.
+Future streaming stages one subject, fits parameters from Train only, mechanically applies them to all assigned held-out blocks, verifies a complete all-block output and durable provenance/journal, then continues. Raw deletion is off by default and requires `--delete-raw-after-success` plus every guard. Train-only output can never authorize raw deletion. Non-pilot execution belongs to the next phase.
 
 ## Verified dataset facts
 
