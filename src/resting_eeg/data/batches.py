@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 
 import pandas as pd
@@ -223,7 +224,37 @@ def update_ledger(directory, batch_id, **changes):
         write_json(directory/'batch_ledger.json', ledger)
 
 
+def verify_previous_state(root, batch_id, *, full=False):
+    """Preserve the separately captured prior completion state during Batch 002."""
+    if batch_id != '002':
+        return None
+    directory = paths(root)['metrics_root']/'batches'
+    baseline = directory/'batch_002_starting_state.json'
+    before = read_json(baseline)
+    if ledger_read(directory)['batches'][0] != before['batch_001_ledger_entry']:
+        raise ValueError('Batch 001 ledger changed')
+    for record in before['files']:
+        file = Path(record['path'])
+        # Full payload preservation is rehashed at authorization and acceptance;
+        # small prior records and frozen scientific source are checked per subject.
+        if full or record['bytes'] < 1024*1024:
+            if not file.is_file() or sha256_file(file) != record['sha256']:
+                raise ValueError(f'Prior completed artifact changed: {file}')
+    for name, evidence in before['registries'].items():
+        rows = pd.read_csv(paths(root)['metrics_root']/name).fillna('')
+        prior = rows.loc[rows.subject_id.isin(before['completed_subjects'])].to_dict('records')
+        if len(prior) != evidence['count'] or canonical_hash(prior) != evidence['sha256']:
+            raise ValueError(f'Prior access registry changed: {name}')
+    if (directory/'batch_003_manifest.csv').exists() or any(e['batch_id'] not in {'001','002'} for e in ledger_read(directory)['batches']):
+        raise ValueError('Batch 003 is prohibited during Batch 002')
+    if any(runtime_directory(root).glob('batch_003*')):
+        raise ValueError('Batch 003 runtime record is prohibited')
+    return sha256_file(baseline)
+
+
 def network_preflight(frame, plan, raw_root, output_root):
+    from resting_eeg.data.environment import system_drive_guard
+    system_drive = system_drive_guard('batch_network_preflight')
     verified = partial = 0
     prefixes = []
     for row, target in st._manifest_rows(frame, raw_root):
@@ -249,7 +280,9 @@ def network_preflight(frame, plan, raw_root, output_root):
     # Includes retained failures for the entire batch, not just the optimistic case.
     required = declared - verified - partial + st.PROCESSING_OVERHEAD_BYTES + compact + st.SAFETY_MARGIN_BYTES
     report = dict(batch_id=plan['batch_id'], cap_bytes=plan['cap_bytes'], declared_bytes=declared,
-        subject_count=plan['subject_count'], verified_existing_bytes=verified, valid_partial_bytes=partial,
+        subject_count=plan['subject_count'], subject_ids=plan['subject_ids'],
+        unused_capacity_bytes=plan['cap_bytes']-declared, system_drive=system_drive,
+        verified_existing_bytes=verified, valid_partial_bytes=partial,
         partial_prefixes=prefixes, expected_new_network_bytes=declared-verified-partial,
         largest_subject_bytes=largest, processing_overhead_bytes=st.PROCESSING_OVERHEAD_BYTES,
         expected_compact_output_bytes=compact, compact_estimate_basis='conservative 32 MiB per subject including temporary allowance',
@@ -276,6 +309,11 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
     head = require_committed_clean(root)
     hashes = frozen_hashes(root)
     frame, plan, entry = verify_frozen(directory, batch_id, manifest_path, requested_cap)
+    prior_hash = verify_previous_state(root, batch_id, full=True)
+    if batch_id == '002':
+        before = read_json(directory/'batch_002_starting_state.json')
+        if plan['cap_bytes'] != 10*GIB or set(plan['subject_ids']) & set(before['completed_subjects']):
+            raise ValueError('Batch 002 cap or prior completion exclusion violated')
     if any(plan[k] != v for k, v in hashes.items()):
         raise ValueError('Frozen config differs from plan')
     report = network_preflight(frame, plan, p['raw_root'], p['output_root'])
@@ -296,6 +334,8 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
         expected_new_network_bytes=report['expected_new_network_bytes'], authorization_utc=utc_now(),
         permission=f'Execute Batch {batch_id} ONLY; no future batch planning or execution authorized by this record.',
         prohibit_batch_002_during_this_assignment=batch_id == '001',
+        prohibited_next_batch_id=f'{int(batch_id)+1:03}',
+        prior_state_sha256=prior_hash,
         network_preflight_sha256=sha256_file(preflight_file),
         resolved_paths={k:str(v) for k,v in p.items()})
     write_json(auth_file, auth)
@@ -305,6 +345,8 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
 def validate_authorization(root, batch_id, directory):
     frame, plan, entry = verify_frozen(directory, batch_id)
     auth = read_json(directory/f'{batch_name(batch_id)}_execution_authorization.json')
+    if batch_id == '002' and auth.get('prior_state_sha256') != verify_previous_state(root, batch_id):
+        raise ValueError('Prior-state authorization checksum changed')
     for key in ('cap_bytes', 'declared_bytes', 'subject_ids', 'batch_id'):
         if auth[key] != plan[key]:
             raise ValueError(f'Authorization mismatch: {key}')
@@ -346,7 +388,7 @@ def authorize_resume(root, batch_id, directory):
     record=dict(previous,authorization_code_head=head,authorization_utc=utc_now(),
         original_authorization_sha256=sha256_file(directory/f'{batch_name(batch_id)}_execution_authorization.json'),
         previous_authorization_code_head=previous['authorization_code_head'],
-        resume_reason='User manually stopped for C: low space; D-only cache hardening and 3-GiB C: guard',
+        resume_reason='Explicit continuation of the same frozen batch after a stopped execution',
         completed_subjects_reverified=[s for s in plan['subject_ids'] if s in completed],
         resume_network_preflight=report,environment_preflight=environment)
     write_json(directory/f'{name}.json',record)
@@ -529,6 +571,8 @@ def summarize(root, batch_id, directory):
         raw_directories_retained=[r['subject_id'] for r in cleanup if r['raw_retained']], raw_bytes_freed=sum(r['raw_bytes_freed'] for r in cleanup),
         raw_bytes_retained=sum(r['raw_bytes_retained'] for r in cleanup), compact_bytes_added=sum(r['output_bytes'] for r in outputs),
         free_disk_before=preflight['free_disk_bytes'], free_disk_after=st._free_bytes(p['raw_root']),
+        system_drive_before=preflight.get('system_drive'),
+        system_drive_after=dict(free_bytes=shutil.disk_usage('C:/').free) if os.name=='nt' else None,
         cumulative_all_block_subject_count=len(completed), remaining_unassigned_candidate_count=len(candidates-set(completed)-assigned),
         cumulative_compact_bytes=sum(f.stat().st_size for f in p['output_root'].glob('*.h5')),
         cumulative_raw_bytes=directory_bytes(p['raw_root']), scientific_heldout_analysis=False, normalization_fitted=False,

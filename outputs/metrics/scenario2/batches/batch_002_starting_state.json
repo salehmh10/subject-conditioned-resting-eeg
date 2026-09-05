@@ -1,0 +1,760 @@
+{
+  "batch_001_ledger_entry": {
+    "authorization_head": "13cd91df96357d42dfc2a7284ac9382050878a13",
+    "authorization_time_utc": "2026-09-05T13:36:43.761301+00:00",
+    "batch_id": "001",
+    "batch_status": "complete",
+    "cap_bytes": 5368709120,
+    "cap_gib": 5.0,
+    "declared_bytes": 5104883272,
+    "execution_completed": "2026-09-05T15:14:42.281585+00:00",
+    "execution_started": "2026-09-05T14:37:37.467971+00:00",
+    "manifest_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_manifest.csv",
+    "manifest_sha256": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865",
+    "plan_sha256": "bc875d3808a29aa7733b28cd0fb70c25b7b21ec65e70648b3ca75ab910579166",
+    "subject_count": 8
+  },
+  "completed_subjects": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012",
+    "sub-010023",
+    "sub-010059",
+    "sub-010071",
+    "sub-010078",
+    "sub-010081",
+    "sub-010126",
+    "sub-010134",
+    "sub-010216",
+    "sub-010250",
+    "sub-010276",
+    "sub-010277",
+    "sub-010278",
+    "sub-010279",
+    "sub-010280",
+    "sub-010282"
+  ],
+  "environment": {
+    "environment": {
+      "JOBLIB_TEMP_FOLDER": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\joblib",
+      "MNE_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne",
+      "MNE_DONTWRITE_HOME": "true",
+      "MPLCONFIGDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\matplotlib",
+      "PIP_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pip",
+      "PYTEST_ADDOPTS": "--basetemp=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest\" -o cache_dir=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest-cache\"",
+      "PYTHONPYCACHEPREFIX": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "SCENARIO2_RUNTIME_ROOT": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "TEMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMPDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "XDG_CACHE_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "XDG_CONFIG_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "_MNE_FAKE_HOME_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne"
+    },
+    "resolved_paths": {
+      "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+      "processed_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed",
+      "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+      "runtime_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "scenario2_data_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2",
+      "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+    },
+    "system_drive": {
+      "applicable": true,
+      "free_bytes": 14847004672,
+      "minimum_free_bytes": 3221225472,
+      "operation": "environment_preflight",
+      "system_drive": "C:/"
+    },
+    "tempfile_gettempdir": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+  },
+  "files": [
+    {
+      "bytes": 654,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_canary_verification.json",
+      "sha256": "0f662968b9e7fa2840eb8448d73611212e55bef33360832cf6b1a43d0ee199f7"
+    },
+    {
+      "bytes": 389,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_cleanup_results.csv",
+      "sha256": "d57492915285168ec6905db8575c8fa05f5c262ad266e9aac8a505d49aa63707"
+    },
+    {
+      "bytes": 2066,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_execution_authorization.json",
+      "sha256": "b842c7245d2a376f6cf10467980b0362e5f49d4ee597cdfffc6228680470018e"
+    },
+    {
+      "bytes": 1659,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_final_verification.json",
+      "sha256": "fcf2b2d94302514a34876b76eba7b18ef6075ee9ffb0c265b07c48a6733aca2e"
+    },
+    {
+      "bytes": 4214,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_interruption_resume_preflight.json",
+      "sha256": "dc84f16b6427d3e9a00d8021a76b0e8bfb88ffc47624447eb4c2b3815d0c126b"
+    },
+    {
+      "bytes": 2052,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_latest_environment_preflight.json",
+      "sha256": "835fa0ed733cbe002538a536cf567fee35bf1147fcbff264944f4690b14dec79"
+    },
+    {
+      "bytes": 7759,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_manifest.csv",
+      "sha256": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865"
+    },
+    {
+      "bytes": 837,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_network_preflight.json",
+      "sha256": "40bb30827fb1c1d0d323a1a8eefd4ed05bd3d85a6c52ac2093fbebb749386431"
+    },
+    {
+      "bytes": 2056,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_output_manifest.csv",
+      "sha256": "05f75bd6d7e9671a2ec94c33c391b0e98b1c221fbb413bcf0c1af5d51a874496"
+    },
+    {
+      "bytes": 2179,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_plan.json",
+      "sha256": "64ee0671cf073af5bfc2066f721a28804fb6c561b5207dd8b3357580afb0ca66"
+    },
+    {
+      "bytes": 5732,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_resume_authorization_001.json",
+      "sha256": "3bc80539703d078c1f2f71140275263038395f8e4db067f937288c012cda7907"
+    },
+    {
+      "bytes": 787,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_subject_results.csv",
+      "sha256": "3f6ad4b2ace92d2c03b0741ad719db7ca75c1d3bdc0c2f6d8c6978f5cfaca61a"
+    },
+    {
+      "bytes": 4297,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_001_summary.json",
+      "sha256": "01031c827ddee105e9c34b2fb72a6a201151e8bb34581d1923541488628af2d6"
+    },
+    {
+      "bytes": 1454,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\pilot_cleanup_execution.csv",
+      "sha256": "a01afb0af606543ff13c57d95ea313773b70ba809ad912d1a378f09b81ea3dc2"
+    },
+    {
+      "bytes": 4103,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\pilot_cleanup_summary.json",
+      "sha256": "45e1beee7dde1ef87405e5d4e78228e496e0f73805ed78e9bc5e93b7c85db8d4"
+    },
+    {
+      "bytes": 337951,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_001_download_journal.jsonl",
+      "sha256": "6f30d1e2a35c58ecba9c75bdc70f18ca830aae49641fb116dde9f0b48753050e"
+    },
+    {
+      "bytes": 2780,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_001_final_acceptance.json",
+      "sha256": "8031c52f284d8fb25f842d2cfeb95fa9e83c709056e089700b783fa9645049eb"
+    },
+    {
+      "bytes": 588429,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_001_streaming_journal.jsonl",
+      "sha256": "8e5c833511f3c25748709be1176848fb8654f0988aa11a5cc68838ba0b1c4b98"
+    },
+    {
+      "bytes": 328131,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\pilot_cleanup_journal.jsonl",
+      "sha256": "abeab8c665941b78c7d24a7a2e150ef3cd48fdc66c7f842a041cb89b3bebbc00"
+    },
+    {
+      "bytes": 7382961,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010002_all_blocks.h5",
+      "sha256": "adbd9ac7ba876b028803de01dfd38f58c8062ab1e6e8137d06e7855a7b383da6"
+    },
+    {
+      "bytes": 26555,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010002_all_blocks.provenance.json",
+      "sha256": "8f765324c0f6cbb824e6758a15bd7377d79b4b8744bf40d2015b1f0efc02f588"
+    },
+    {
+      "bytes": 7268893,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010003_all_blocks.h5",
+      "sha256": "17833ac308dc61e893c9dae4a3927f94b6ea1cf49c1bcbc962438e35d04f3da9"
+    },
+    {
+      "bytes": 26600,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010003_all_blocks.provenance.json",
+      "sha256": "9bb5494ad5be478119ae818e8bd781c4ccddb7b571f1bd3d4451ad1d71ce1423"
+    },
+    {
+      "bytes": 7310733,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010004_all_blocks.h5",
+      "sha256": "9f43a71db5a12d0142e153016f29348051afad4a2892085de4712a3434354bf9"
+    },
+    {
+      "bytes": 26576,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010004_all_blocks.provenance.json",
+      "sha256": "74d7365f08527ff1bd41622cc3745c117c8ac21076069029a3f9fa4227e413d7"
+    },
+    {
+      "bytes": 7214475,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010005_all_blocks.h5",
+      "sha256": "2ae037ce8ed09afbfdc2fb08c09d7253c6e0471f382b2748ca9f0d8ff02ed3b8"
+    },
+    {
+      "bytes": 26530,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010005_all_blocks.provenance.json",
+      "sha256": "37d5da8b090b59e9efd7c9ace7d7b9942ffb868319b5a0271135300e00c5a5f6"
+    },
+    {
+      "bytes": 7347949,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010006_all_blocks.h5",
+      "sha256": "ce325e7929dad1ccbf8bc4bb0433b91ca9e104ad9382ccbdd7eebd4388a55669"
+    },
+    {
+      "bytes": 26536,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010006_all_blocks.provenance.json",
+      "sha256": "b4b1b59b6f7d9b7ae5a2d8c7500bdab10ba30a2c039047526fc651eece7624f2"
+    },
+    {
+      "bytes": 7342738,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010007_all_blocks.h5",
+      "sha256": "2a93668fd5809c616c71fb009626f0abeaf94e7f1c3e00d9d4481bb6beda05b2"
+    },
+    {
+      "bytes": 26437,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010007_all_blocks.provenance.json",
+      "sha256": "02aab1dc891cc45101e7c666f07ba30c4a0018180331762da3f4915b4fc0d41a"
+    },
+    {
+      "bytes": 7307849,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010010_all_blocks.h5",
+      "sha256": "8d6a132044e98032fb4c31543a94e8fd0c2bedbf2deb193da3a02c3d1c304e8e"
+    },
+    {
+      "bytes": 26529,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010010_all_blocks.provenance.json",
+      "sha256": "789d0fe348545283b1a329798caa6894099b490f74c91490237a56d903a0ae24"
+    },
+    {
+      "bytes": 7332647,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010012_all_blocks.h5",
+      "sha256": "0f95225c0d55c449376232fc3bbf2f1a31dc3a46dc7ef1ca005e08c79118f463"
+    },
+    {
+      "bytes": 26770,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010012_all_blocks.provenance.json",
+      "sha256": "4822a43dfd536b222811a366c3bb4a82956ed4af290cbbdae4d43cc3c51591f4"
+    },
+    {
+      "bytes": 7286326,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010023_all_blocks.h5",
+      "sha256": "bcb533aeffcb402c6537c75992482651f3113d3ca7496bef8dcb520584f53d08"
+    },
+    {
+      "bytes": 26596,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010023_all_blocks.provenance.json",
+      "sha256": "147661e9196e3882af835ee7790fb446b7af55dd36805f7f95fc67c90105170d"
+    },
+    {
+      "bytes": 7346182,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010059_all_blocks.h5",
+      "sha256": "7aed49a1ea3c779c165e3295318a6b884214bf93138e8c750e5800b40c282b64"
+    },
+    {
+      "bytes": 26499,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010059_all_blocks.provenance.json",
+      "sha256": "244727e56237f88f6adb5f247942740dd0cbc410a234d6993f2b11f57f4a86f2"
+    },
+    {
+      "bytes": 7241194,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010071_all_blocks.h5",
+      "sha256": "0edc88d9c5d7404bb7c8fa08e0293a539e9e621aa11cc04d4ee0af5bd0457be5"
+    },
+    {
+      "bytes": 26532,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010071_all_blocks.provenance.json",
+      "sha256": "d2518912a92f56cc4a5c55a1b182fcd1201db2a7c7bda21b439b3ae319b76f45"
+    },
+    {
+      "bytes": 7287360,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010078_all_blocks.h5",
+      "sha256": "f17d12fa16bfa56d2af51b459383f2dfe2698ca1d0b08e363f4f7e27aec7dbe5"
+    },
+    {
+      "bytes": 26624,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010078_all_blocks.provenance.json",
+      "sha256": "94c08faeb9508584a20cda95eb189d2039bb3a75c6ffe85caaa090ba1a4fb318"
+    },
+    {
+      "bytes": 7334861,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010081_all_blocks.h5",
+      "sha256": "df2676c8b1085c43de9e8011f1643449708107d7d223c8ea7195eadd1a139df3"
+    },
+    {
+      "bytes": 26556,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010081_all_blocks.provenance.json",
+      "sha256": "17df4c5ff3a31df600bfffadf8005981d0d7de6ab3a8c97dd7471d44c81c739f"
+    },
+    {
+      "bytes": 7237540,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010126_all_blocks.h5",
+      "sha256": "f11e067ada0aaf5f9cd8fb55cb7daf83f7152488238cd4cfeb3d9959e997555b"
+    },
+    {
+      "bytes": 26516,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010126_all_blocks.provenance.json",
+      "sha256": "6e6b442da1646a2599da2e4cdd5d59c35fa5146f0e71f5d5e307dee6229e0958"
+    },
+    {
+      "bytes": 7294384,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010134_all_blocks.h5",
+      "sha256": "d2325bb72a375465de1194033cb10b3f5fe7dd1709a9219be3ac7cdf6d5c56b9"
+    },
+    {
+      "bytes": 26548,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010134_all_blocks.provenance.json",
+      "sha256": "acc3015ec46eb4a2ba7b4342495e8324bf1dac89003e6095e978607fdf5ee533"
+    },
+    {
+      "bytes": 7306685,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010216_all_blocks.h5",
+      "sha256": "0d04d2e41db01a2464c501c9f94ca0178a93798d895037ec7a150ce98697f570"
+    },
+    {
+      "bytes": 26391,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010216_all_blocks.provenance.json",
+      "sha256": "67fd1af6ce9b3b1892eda9d26e844ebdce64dfa96b7ebc27313a1ae4cbe131d0"
+    },
+    {
+      "bytes": 7350061,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010250_all_blocks.h5",
+      "sha256": "190ee366902defcd242851897999a6cd6337d93204a80068838eb5857f0fc56d"
+    },
+    {
+      "bytes": 26828,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010250_all_blocks.provenance.json",
+      "sha256": "510cc8316f8678d3ebdbd51449f91ad44c55e92f8ea80c0636b93d3841de939f"
+    },
+    {
+      "bytes": 7347367,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010276_all_blocks.h5",
+      "sha256": "394f0b682b40eae053581b404b8fd8e6b7a0bf44b6f5fd25343a58d5ad01937b"
+    },
+    {
+      "bytes": 26428,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010276_all_blocks.provenance.json",
+      "sha256": "105c28639e77350ea6439b7ccee37bcf2a95095cb9982ee05e757774650fc5d1"
+    },
+    {
+      "bytes": 7365502,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010277_all_blocks.h5",
+      "sha256": "5495645e267caa7f8d0826ae35cd105203ac5dae3b5faa40229e749ef7e0eff0"
+    },
+    {
+      "bytes": 26361,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010277_all_blocks.provenance.json",
+      "sha256": "75097ed7fd11ac15e092fe0945deeeb366bb207aef62893f752af5cc1f3101e8"
+    },
+    {
+      "bytes": 7320396,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010278_all_blocks.h5",
+      "sha256": "6ddfa71d5fa9632501f73ee5adf2e9b384e338a6b46e9deae44f050ad20b7866"
+    },
+    {
+      "bytes": 26529,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010278_all_blocks.provenance.json",
+      "sha256": "fe2c31f5f8687f3bffceda5745a17f4e18400d73dc73ad41bc6cce5ddfd4d64b"
+    },
+    {
+      "bytes": 7333272,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010279_all_blocks.h5",
+      "sha256": "faba59bb6d2fadd923afbf0d21942824c242373b47272030e4a8e193ebc4e0ed"
+    },
+    {
+      "bytes": 26487,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010279_all_blocks.provenance.json",
+      "sha256": "7c3f9e776b03921592718883bb770374e14ae8a58a7b6301d0e38db4572b5525"
+    },
+    {
+      "bytes": 7355237,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010280_all_blocks.h5",
+      "sha256": "ab9ee5bc9debbf88ad72c4a0f6e5ecde1fab882668aac42d966ac76173aa46a1"
+    },
+    {
+      "bytes": 26518,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010280_all_blocks.provenance.json",
+      "sha256": "d2085c09b3ab919c38ed72f8270c272d6db8ca0934d9634b206d6a1ced8ea98d"
+    },
+    {
+      "bytes": 7329824,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010282_all_blocks.h5",
+      "sha256": "f98189bba1fc15cf84f9785029d095ee434f2309f64ef06a414198cf0fb1d49d"
+    },
+    {
+      "bytes": 26442,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010282_all_blocks.provenance.json",
+      "sha256": "022f0cab5f66f31a1464388d3257142e37684d25882bb42f1f7f73fcb3345964"
+    },
+    {
+      "bytes": 4611816,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010002_preprocessed.h5",
+      "sha256": "3dcc6843a1fda16a55729976a558b3052e69335794d3986cb8220c918880b60b"
+    },
+    {
+      "bytes": 4022,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010002_preprocessed.provenance.json",
+      "sha256": "7b64a7820b2e39278d46426ff8cada67036072fd3d47cbb3af832c0e598212af"
+    },
+    {
+      "bytes": 4540113,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010003_preprocessed.h5",
+      "sha256": "0e5cc28a3053a2efe2bf6f4268f887cc5ebdc647c4f14432148a512ebbb5e61f"
+    },
+    {
+      "bytes": 4034,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010003_preprocessed.provenance.json",
+      "sha256": "703aa2376a20b5b2cbd7d51395a0c7ab12942b5c2f193415020e6e8044e758d2"
+    },
+    {
+      "bytes": 4570795,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010004_preprocessed.h5",
+      "sha256": "677c09fe4320687aa4c8ba365465e416e78822595e8d3e3b91a42e60d6794cae"
+    },
+    {
+      "bytes": 4021,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010004_preprocessed.provenance.json",
+      "sha256": "96f473e0fe98fc1208f871cc6922d174b8e48fb255cba0039d6f47d90d61ab40"
+    },
+    {
+      "bytes": 4507988,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010005_preprocessed.h5",
+      "sha256": "2d6f970121795169b287bf2250f8feead385bca6c0a6a5b7bbb295d5d91c80a8"
+    },
+    {
+      "bytes": 4021,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010005_preprocessed.provenance.json",
+      "sha256": "3c22268bd1c226e0f7d448be76a4eb767b23931062944a44c6fae18573f76003"
+    },
+    {
+      "bytes": 4591410,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010006_preprocessed.h5",
+      "sha256": "484e82ae0b6b7fe1b4e49bd391e67a65383fe0d677c586519c79a3639d834dc4"
+    },
+    {
+      "bytes": 4035,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010006_preprocessed.provenance.json",
+      "sha256": "f1829d35a08cb02991c400feed848943356fb4ab6a57a1c9d3ce28cd87354539"
+    },
+    {
+      "bytes": 4588164,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010007_preprocessed.h5",
+      "sha256": "d9b9c2e385fceb15ada301be0333d4851f4d4abc7c02fa14cd7e25f6fcd96cd1"
+    },
+    {
+      "bytes": 4009,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010007_preprocessed.provenance.json",
+      "sha256": "e198d90cd1b19dd0f101e262e902b3d5d6b4ef736019747a1ac67ea58976e208"
+    },
+    {
+      "bytes": 4566237,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010010_preprocessed.h5",
+      "sha256": "7609030af6c7f64feb51d842cc656d840b5e9c7364a9941cd302eb7eba987ed2"
+    },
+    {
+      "bytes": 4019,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010010_preprocessed.provenance.json",
+      "sha256": "77b426d6901d4dcb451d1589bd887210cd64ff73de3d6bc7c704a908052cd2c5"
+    },
+    {
+      "bytes": 4582082,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010012_preprocessed.h5",
+      "sha256": "fd7ffff7238f74243d94694d1d1050ef4c54fa7664ce4266e595a2a87f4c585f"
+    },
+    {
+      "bytes": 4074,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010012_preprocessed.provenance.json",
+      "sha256": "51d2776f839d9f1a0b739896a7934d6adb2b9952118e7c1f0d8ed9efdfed7d48"
+    },
+    {
+      "bytes": 4550872,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010023_preprocessed.h5",
+      "sha256": "f86d9acad92bfcb6d8d303e203b32980521df28c466570f2857c0a9159fa5f07"
+    },
+    {
+      "bytes": 4025,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010023_preprocessed.provenance.json",
+      "sha256": "73b24dc3093677988c0acddd51abbe492d5759e3de16a1c95061ce422e027598"
+    },
+    {
+      "bytes": 4591354,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010059_preprocessed.h5",
+      "sha256": "d387c685b29e78d00ccba55dcf8aad0161348aa3c675057cf1aa70dac468e03b"
+    },
+    {
+      "bytes": 3986,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010059_preprocessed.provenance.json",
+      "sha256": "fae4b665891d0cdff82e7c842366d0a1812ad3495fee1edcc6b643362db2e8f4"
+    },
+    {
+      "bytes": 4525177,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010071_preprocessed.h5",
+      "sha256": "c8bcd41ce842cc24b665f7698e281036de5f319a18a8fbdf8f6c7425725142cc"
+    },
+    {
+      "bytes": 4036,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010071_preprocessed.provenance.json",
+      "sha256": "c92c7536f47f410aa00b839d502883da53a6783c9a16fbc8226090b62e03fcdd"
+    },
+    {
+      "bytes": 4553353,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010078_preprocessed.h5",
+      "sha256": "bf81f0ff12051b5866886357950e79c300b8962727aef2fd385e891c8ee080f2"
+    },
+    {
+      "bytes": 4037,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010078_preprocessed.provenance.json",
+      "sha256": "a81a623925dd3ebcaadd79956025eb59d922fcaaeefc0345fede3056a2cebafb"
+    },
+    {
+      "bytes": 4583552,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010081_preprocessed.h5",
+      "sha256": "a1c3a7b39586653c78310593454aaddb697b991b0e8303bea28be66bdc4263f6"
+    },
+    {
+      "bytes": 4021,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010081_preprocessed.provenance.json",
+      "sha256": "3bccc3deae45ecbbf1f77353bb587d2c861c06e84ae95c7ad2ba59077bd1a90f"
+    },
+    {
+      "bytes": 4523083,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010126_preprocessed.h5",
+      "sha256": "75439a3ead4cf33e3128d32125fc94cf3a8821e89e3f300c895d1be3081c201f"
+    },
+    {
+      "bytes": 4034,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010126_preprocessed.provenance.json",
+      "sha256": "d05ef690fa4f5441993f9b3e3764b975b5d775b3b856eaa1d8a117fba8db628c"
+    },
+    {
+      "bytes": 4556192,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010134_preprocessed.h5",
+      "sha256": "dd88a4585752c244d37379807d9b0c6577eeb7f37fde7513f0942ce220464ec1"
+    },
+    {
+      "bytes": 4034,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010134_preprocessed.provenance.json",
+      "sha256": "621a4bc82e8cd8bda3dbc8f8c7d33883827df106128b37c0a307ae54ea3a8898"
+    },
+    {
+      "bytes": 4564450,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010216_preprocessed.h5",
+      "sha256": "2fcd871faa2f719d6fd5b82b2cfc396aa1beb51fd8ca51bc4dd197e499a60262"
+    },
+    {
+      "bytes": 3998,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010216_preprocessed.provenance.json",
+      "sha256": "3186f75b25f570d5d842d266e265e1450e8c4b97c22379f875fd478c51e2826c"
+    },
+    {
+      "bytes": 4590650,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010250_preprocessed.h5",
+      "sha256": "135fc9c76c6bda8fca3fd884040e04be8b249982a71ab8bcffdcb7f81bd165de"
+    },
+    {
+      "bytes": 4103,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010250_preprocessed.provenance.json",
+      "sha256": "7afb47480af1751fc682309b0b001251d0f0034ff39917e304971f261a4009d6"
+    },
+    {
+      "bytes": 4589022,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010276_preprocessed.h5",
+      "sha256": "5afbb07d29460c911e6fbcf849ba70fedf3613cdb8e6cd733b3266c0c45fa6ff"
+    },
+    {
+      "bytes": 4022,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010276_preprocessed.provenance.json",
+      "sha256": "404ed4d6936158923632d31b8d12b7eca7d739a07eed6b04c370debd34fb6317"
+    },
+    {
+      "bytes": 4602528,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010277_preprocessed.h5",
+      "sha256": "56b9ce0b9da826f4cb45ac0166cd6293077256cebbaf413703de7ad7f9adfe05"
+    },
+    {
+      "bytes": 3999,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010277_preprocessed.provenance.json",
+      "sha256": "3d8dd383c007cb7e4b4c8116311b0036f802b06c3e9be35de68f1a11d76ac718"
+    },
+    {
+      "bytes": 4571016,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010278_preprocessed.h5",
+      "sha256": "f6162fb0d4c3e7f1bfb9941a22f8c92f5bf337b4bab0a0a960462ae2dcce0247"
+    },
+    {
+      "bytes": 4023,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010278_preprocessed.provenance.json",
+      "sha256": "cc78345d38fd2f983b94f36cc95650ee23aa1591ac07f501441fbf626accca94"
+    },
+    {
+      "bytes": 4581638,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010279_preprocessed.h5",
+      "sha256": "7350eb4e5510f2809becd2a4245ebe735aacce8b7c9476b3605d1a68e47e3642"
+    },
+    {
+      "bytes": 4037,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010279_preprocessed.provenance.json",
+      "sha256": "b28d8310e8768518ed91199188bad11a8172ff7b72194d9ec4d2e8d24e863523"
+    },
+    {
+      "bytes": 4596679,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010280_preprocessed.h5",
+      "sha256": "bed60effbd59ca9e5215a75598872269957bf2b68b226bc43bda511e9262fb12"
+    },
+    {
+      "bytes": 4022,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010280_preprocessed.provenance.json",
+      "sha256": "4314b3583d7d6437d790f5243d756e8cd12e5953310c676ddad23d7958b5c71d"
+    },
+    {
+      "bytes": 4584253,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010282_preprocessed.h5",
+      "sha256": "62d116521620c079215cea6a88557251d082dca6d8e0932f3c6a7bb7955b9ee6"
+    },
+    {
+      "bytes": 4035,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1\\sub-010282_preprocessed.provenance.json",
+      "sha256": "d36b0b013fc3a63d5922b13b8202cd47da8864c87a65cb7e67169f2b61fd5fa5"
+    },
+    {
+      "bytes": 4904,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_channels.tsv",
+      "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+    },
+    {
+      "bytes": 648383600,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.eeg",
+      "sha256": "58bb03b87d22252d9454c8f4d03ee18fbfa0770ba2b68e80f498e51bbee4a180"
+    },
+    {
+      "bytes": 1489,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.json",
+      "sha256": "8985b36d2fc696c420e5a84d8f308aa21cd4f2b26934f239f2c2e44d1508847f"
+    },
+    {
+      "bytes": 1759,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.vhdr",
+      "sha256": "9c665e9756088144a34aa527a4a1ce05cf3822d3e39aed102333981a56d8fcee"
+    },
+    {
+      "bytes": 16652,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.vmrk",
+      "sha256": "40d4123313931a8f8a867a61d434f2af17f8f9694d8e6abcb9397121f65f1ed6"
+    },
+    {
+      "bytes": 786,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_events.json",
+      "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+    },
+    {
+      "bytes": 20151,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_events.tsv",
+      "sha256": "dfbc1fb41dc34c70cc7630df6f5019b46da93ac1aa5623dac85c100d85f0764c"
+    },
+    {
+      "bytes": 4904,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_channels.tsv",
+      "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+    },
+    {
+      "bytes": 651285200,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.eeg",
+      "sha256": "48b390022ff23a9c53a487ed9e50e2ee4883ab47642511a1f1c63c6c06ca8aed"
+    },
+    {
+      "bytes": 1489,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.json",
+      "sha256": "27f931352231fa5d515e3e3df486a0a4999da92bba7d700c97a26be98217dac9"
+    },
+    {
+      "bytes": 1759,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.vhdr",
+      "sha256": "9e3abec6985b74c24d91ffda68aed61feffeb398c2bb270a0fb9edc9e83d9773"
+    },
+    {
+      "bytes": 16632,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.vmrk",
+      "sha256": "b198d7d640e1fdb4d0110f99514fbf3f97bbbe1d9b855205f0a33fb09a23a38d"
+    },
+    {
+      "bytes": 786,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_events.json",
+      "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+    },
+    {
+      "bytes": 20112,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_events.tsv",
+      "sha256": "212959f18e9c535cd2891ab2b752b65c38d56a1fa9797e5ffb4fe9ba98e22f0c"
+    },
+    {
+      "bytes": 11740,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\src\\resting_eeg\\preprocessing\\signal.py",
+      "sha256": "53386376544d72d78d65ca2deb41f8ac58a8283131abf00964dca5abf2d08f09"
+    },
+    {
+      "bytes": 20759,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\src\\resting_eeg\\preprocessing\\all_blocks.py",
+      "sha256": "1a68335655c04a26d533f3d031f740d5bcb000526e75d99522be4b9eb947f311"
+    },
+    {
+      "bytes": 20747,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\src\\resting_eeg\\preprocessing\\pipeline.py",
+      "sha256": "f43d3dc57b4cca4b8dedb52e06a56fae074b361b594352cb06079754d068c9a0"
+    },
+    {
+      "bytes": 4058,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\configs\\preprocessing\\frozen_preprocessing_v1.yaml",
+      "sha256": "da57489746e66fa819da16217e585cdd0ca3b4e5cbe4491603e831be98889110"
+    },
+    {
+      "bytes": 928,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\configs\\access\\mechanical_heldout_v1.yaml",
+      "sha256": "4fbf4106c7f42957325cd12ba66294fd2d1a43e435e5f7282a318e8102976053"
+    },
+    {
+      "bytes": 467701,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\provisional_block_split_manifest.csv",
+      "sha256": "6adc10b108a7e7b587757cbda630a3c4909c97f8cc2faf24320b0a6e89af0b26"
+    },
+    {
+      "bytes": 757140,
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\lemon_block_inventory.csv",
+      "sha256": "d5deff471d02baa55ac60539986595b82594d5137fcf1bffac6a5ec982b28742"
+    }
+  ],
+  "frozen_hashes": {
+    "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+    "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+    "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+  },
+  "git_head": "bb51533b9a5019a8006235e30c1fe3d00684526c",
+  "registries": {
+    "pilot_mechanical_heldout_access_registry.csv": {
+      "count": 138,
+      "sha256": "f3608649e6ca5e6c586a36d5b00525e02e73001f79e16077d5d9929540f66c46"
+    },
+    "pilot_waveform_access_registry.csv": {
+      "count": 150,
+      "sha256": "2b1820e9d106dafe3eded64e86e044ce740886d03e3aef1b665dfc5332fae94c"
+    },
+    "streaming_train_access_registry.csv": {
+      "count": 80,
+      "sha256": "084a56becb4e864e9eec9c6d91354c7c0ae090d22ad7c7db75f13e36792028e1"
+    }
+  },
+  "verified_utc": "2026-09-05T16:01:58.429906+00:00",
+  "worktree_clean": true
+}

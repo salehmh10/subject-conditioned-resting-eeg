@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 001 streaming complete; scientific rules remain frozen; Batch 002 cap undecided
+Status: Batch 002 frozen at 10 GiB and authorized for execution; scientific rules remain frozen
 
 ## 1. Objective
 
@@ -215,3 +215,14 @@ Batch compact HDF5 addition is 58,508,245 bytes. Cumulative all-block storage is
 The full final suite passed 275 tests; compileall and the read-only batch verifier passed. Scientific preprocessing and QC hashes are unchanged. No scientific held-out analysis, waveform plot, normalization fit, final cohort/split lock, replacement subject, or Git push occurred. The first canary used implementation/migration commit 13cd91df96357d42dfc2a7284ac9382050878a13; the resumed subjects used D-only environment/guard commit 5a9210ea2cbf85f205c518d5abb39ed208d7d575 with a separate resume authorization preserving original frozen artifacts.
 
 Batch 002 was NOT planned or executed. Its cap remains UNDECIDED and user-selectable. See BATCH_001_STREAMING_HANDOFF.md for final acceptance and examples that were not executed.
+
+
+## 2026-09-05: Batch 002 authorization before network I/O
+
+The user now explicitly authorizes Batch 002 only with exactly 10 GiB (10,737,418,240 bytes) of complete declared EEG/header payload. Batch 001 was verified complete at clean HEAD bb51533b9a5019a8006235e30c1fe3d00684526c before changes. Its original records, ledger entry, 23 existing outputs/receipts, retained raw, scientific source/configurations, and prior access records are protected by batch_002_starting_state.json. Historical Batch 002 prohibitions described the earlier assignment; this separate authorization supersedes that stop boundary for Batch 002 only. Batch 003 remains prohibited and unplanned.
+
+The frozen contiguous membership is: sub-010016, sub-010017, sub-010019, sub-010020, sub-010021, sub-010022, sub-010024, sub-010026, sub-010027, sub-010028, sub-010029, sub-010030, sub-010031, sub-010032, sub-010033, sub-010034. Total 10,141,417,744 bytes (9.444931283593 GiB), 16 subjects / 32 assets, unused 596,000,496 bytes. The first unassigned subject afterward is sub-010035; it is not assigned to a future batch. No bin packing, replacements, or reprocessing of completed subjects is permitted.
+
+All runtime/cache/temp/signal storage remains external on D:. The 3-GiB C: guard, sequential processing, strict source/Range verification, Train-only fitting, mechanical held-out apply-only access, all 16 blocks/masks/reasons, durable receipt/journal and immediate guarded cleanup remain mandatory. Train-QC failures retain raw. Scientific preprocessing, QC, provisional allocation, and normalization status are unchanged. No scientific held-out analysis, model evaluation, plots, final cohort lock, normalization fitting, or push is authorized.
+
+The verifier now supports cumulative access registries and checks prior-batch preservation. Offline regressions cover the exact 10-GiB contiguous membership, exclusion, immutable prior ledger/artifacts, registry tampering and the Batch 003 boundary. Required tests and implementation/documentation commit precede durable execution authorization and first network I/O. Detailed execution journals remain external; only compact evidence is committed.

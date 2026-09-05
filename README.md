@@ -4,6 +4,8 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
+Batch 002 is now separately authorized and frozen at exactly **10 GiB**, with **16 subjects / 10,141,417,744 declared bytes (9.444931284 GiB)**. Execution is pending the required tests, local commit, and durable authorization. Batch 003 is prohibited. The completed Batch 001 evidence below is historical and remains immutable.
+
 Batch 001 execution is complete: **8 verified all-block outputs (128 blocks)** under an immutable **5-GiB cap**. Its ordered members are `sub-010002`, `sub-010003`, `sub-010004`, `sub-010005`, `sub-010006`, `sub-010007`, `sub-010010`, and `sub-010012`. Declared and measured response-body payload both equal **5,104,883,272 bytes (4.754293 GiB)**; **263,825,848 bytes (0.245707 GiB)** were unused.
 
 Seven subjects passed Train QC and provisional 5/1/2 feasibility. `sub-010012` failed Train QC and its assigned EO Validation/Test mechanical eligibility; its raw is retained. Seven Batch raw directories and 14 eligible Pilot raw directories were deleted after verification. Pilot `sub-010250` remains retained. Batch compact HDF5 addition is **58,508,245 bytes (55.797811 MiB)**. Cumulative progress is **23 all-block subjects / 368 blocks**, with **188 unassigned candidates**.
@@ -23,7 +25,7 @@ Check that no other pytest instance is running before using its shared external 
 .\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 001 --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-**NEXT ACTION — CHOOSE BATCH 002 SIZE.** Batch 002 was not planned or executed. Its cap is deliberately undecided and may differ from Batch 001. Do not regenerate Batch 001 or execute an unbounded full-manifest stream. No further download is authorized by this completed assignment.
+**Current action: execute frozen Batch 002 only at the user-selected 10-GiB cap.** Preserve all prior completions. Do not plan Batch 003 or run an unbounded stream.
 
 ## Verified dataset facts
 

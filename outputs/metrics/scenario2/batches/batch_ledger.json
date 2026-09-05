@@ -14,6 +14,21 @@
       "manifest_sha256": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865",
       "plan_sha256": "bc875d3808a29aa7733b28cd0fb70c25b7b21ec65e70648b3ca75ab910579166",
       "subject_count": 8
+    },
+    {
+      "authorization_head": "bb51533b9a5019a8006235e30c1fe3d00684526c",
+      "authorization_time_utc": "2026-09-05T16:03:17.089599+00:00",
+      "batch_id": "002",
+      "batch_status": "frozen",
+      "cap_bytes": 10737418240,
+      "cap_gib": 10.0,
+      "declared_bytes": 10141417744,
+      "execution_completed": null,
+      "execution_started": null,
+      "manifest_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\batches\\batch_002_manifest.csv",
+      "manifest_sha256": "0cd751ec43982097fc4cc396fccb8341d4690c4178e35f3e9ea11feddb4c31c1",
+      "plan_sha256": "b71998c721d05e019b2346d50a57aee59027974b9fbafd66f4b39795601e10a6",
+      "subject_count": 16
     }
   ],
   "schema_version": 1

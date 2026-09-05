@@ -21,6 +21,18 @@ from resting_eeg.preprocessing import all_blocks as ab
 def verify(batch_id='001',require_clean=False,test_report=None):
     p=b.paths(ROOT);storage=load_paths(ROOT);directory=p['metrics_root']/'batches'
     frame,plan,auth=b.validate_authorization(ROOT,batch_id,directory)
+    b.verify_previous_state(ROOT,batch_id,full=True)
+    ledger=b.ledger_read(directory)['batches']
+    assert [e['batch_id'] for e in ledger]==[f'{i:03}' for i in range(1,int(batch_id)+1)]
+    all_assigned=[s for e in ledger for s in b.verify_frozen(directory,e['batch_id'])[1]['subject_ids']]
+    assert len(all_assigned)==len(set(all_assigned))
+    expected_cap={'001':5*b.GIB,'002':10*b.GIB}[batch_id]
+    assert plan['cap_bytes']==expected_cap
+    source=pd.read_csv(p['metrics_root']/'full_candidate_download_manifest.csv')
+    prior=[s for e in ledger if e['batch_id']<batch_id for s in b.verify_frozen(directory,e['batch_id'])[1]['subject_ids']]
+    expected_frame,expected=b.plan_membership(source,expected_cap,plan['excluded_verified_completed'],prior)
+    assert expected_frame.to_dict('records')==frame.to_dict('records')
+    assert expected['subject_ids']==plan['subject_ids']
     name=b.batch_name(batch_id)
     summary=b.read_json(directory/f'{name}_summary.json')
     outputs=pd.read_csv(directory/f'{name}_output_manifest.csv')
@@ -72,7 +84,7 @@ def verify(batch_id='001',require_clean=False,test_report=None):
         assert any(r.get('subject_id')==previous and r['status']=='complete' for r in history[:next_position])
     assert b.read_json(directory/f'{name}_canary_verification.json')['passed']
     pilot=set(pd.read_csv(p['metrics_root']/'pilot_download_manifest.csv').subject_id)
-    allowed=pilot|set(plan['subject_ids'])
+    allowed=pilot|set(all_assigned)
     heldout=MechanicalHeldoutAccessGate(p['metrics_root']/'provisional_block_split_manifest.csv',
         p['metrics_root']/'lemon_block_inventory.csv',p['metrics_root']/'pilot_mechanical_heldout_access_registry.csv',
         ROOT,p['access_config_path'],p['config_path'])
@@ -87,8 +99,8 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     assert len(batch_registry)==6*plan['subject_count'] and not batch_registry.block_uid.duplicated().any()
     trainpath=p['metrics_root']/'streaming_train_access_registry.csv'
     train=pd.read_csv(trainpath)
-    assert set(train.subject_id)==set(plan['subject_ids']) and set(train.split)=={'Train'}
-    assert train.access_allowed.all() and len(train)==10*plan['subject_count'] and not train.block_uid.duplicated().any()
+    assert set(train.subject_id)==set(all_assigned) and set(train.split)=={'Train'}
+    assert train.access_allowed.all() and len(train)==10*len(all_assigned) and not train.block_uid.duplicated().any()
     gate=TrainAccessGate(p['metrics_root']/'provisional_block_split_manifest.csv',p['metrics_root']/'lemon_block_inventory.csv',trainpath,ROOT)
     for row in train.to_dict('records'):
         block=gate.authorize(row['subject_id'],row['block_index'])
@@ -96,8 +108,8 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     for path in (trainpath,heldout.registry_path):
         rows=pd.read_csv(path);new=rows.loc[rows.subject_id.isin(plan['subject_ids'])]
         head_column='code_git_head' if 'code_git_head' in new else 'git_head'
-        authorizations=[b.read_json(directory/'batch_001_execution_authorization.json')]
-        authorizations += [b.read_json(f) for f in sorted(directory.glob('batch_001_resume_authorization_*.json'))]
+        authorizations=[b.read_json(directory/f'{b.batch_name(batch_id)}_execution_authorization.json')]
+        authorizations += [b.read_json(f) for f in sorted(directory.glob(f'{b.batch_name(batch_id)}_resume_authorization_*.json'))]
         for row in new.to_dict('records'):
             matching=[a for a in authorizations if a['authorization_code_head']==row[head_column]
                       and pd.Timestamp(a['authorization_utc'])<=pd.Timestamp(row['timestamp_utc'])]
@@ -115,13 +127,15 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     for folder in ('data_raw','data_processed'):
         assert not any(f.is_file() for f in (ROOT/folder).rglob('*'))
     assert not list(storage['temp_root'].glob('*.h5')) and not list(storage['temp_root'].glob('*.tmp'))
-    assert not (directory/'batch_002_manifest.csv').exists()
-    assert [e['batch_id'] for e in b.ledger_read(directory)['batches']]==['001']
+    next_id=f'{int(batch_id)+1:03}'
+    assert not list(directory.glob(f'batch_{next_id}*'))
+    assert not list(runtime.glob(f'batch_{next_id}*'))
     assert (p['raw_root']/'sub-010250').is_dir()
     cleanup=b.read_json(directory/'pilot_cleanup_summary.json')
     assert len(cleanup['deleted_subjects'])==14 and cleanup['retained_subjects']==['sub-010250']
     assert all(not (p['raw_root']/s).exists() for s in cleanup['deleted_subjects'])
-    assert len(b.verified_completed(ROOT))==15+plan['subject_count']
+    assert set(b.verified_completed(ROOT))==allowed
+    assert summary['normalization_fitted'] is False and summary['scientific_heldout_analysis'] is False
     tracked=subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitlines()
     assert not any(Path(f).suffix.lower() in {'.eeg','.vhdr','.part','.h5','.hdf5','.npy','.npz'} for f in tracked)
     metadata_status=subprocess.check_output(['git','-c',f'safe.directory={storage["metadata_root"].as_posix()}',
@@ -138,7 +152,8 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     if require_clean:assert not dirty
     return dict(verification='passed',batch_id=batch_id,subjects=len(outputs),blocks=16*len(outputs),
         measured_network_payload_bytes=measured,pytest_count=tests,git_head=git_head(ROOT),worktree_clean=not dirty,
-        no_batch_002=True,no_normalization=True,no_scientific_heldout_analysis=True,metadata_clone_clean=True,
+        prohibited_next_batch=next_id,no_future_batch=True,prior_batch_unchanged=True,
+        no_normalization=True,no_scientific_heldout_analysis=True,metadata_clone_clean=True,
         audit_limit='Application-level code, provenance, and registry verification; not OS-wide surveillance.')
 
 

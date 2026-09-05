@@ -1,0 +1,146 @@
+{
+  "asset_count": 32,
+  "authorization_head": "bb51533b9a5019a8006235e30c1fe3d00684526c",
+  "batch_id": "002",
+  "cap_bytes": 10737418240,
+  "cap_gib": 10.0,
+  "declared_bytes": 10141417744,
+  "declared_gib": 9.444931283593178,
+  "excluded_verified_completed": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012",
+    "sub-010023",
+    "sub-010059",
+    "sub-010071",
+    "sub-010078",
+    "sub-010081",
+    "sub-010126",
+    "sub-010134",
+    "sub-010216",
+    "sub-010250",
+    "sub-010276",
+    "sub-010277",
+    "sub-010278",
+    "sub-010279",
+    "sub-010280",
+    "sub-010282"
+  ],
+  "first_not_included": {
+    "declared_bytes": 633988959,
+    "reason": "next_subject_would_exceed_batch_cap",
+    "subject_id": "sub-010035"
+  },
+  "frozen_at_utc": "2026-09-05T16:03:17.089599+00:00",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "subject_count": 16,
+  "subject_ids": [
+    "sub-010016",
+    "sub-010017",
+    "sub-010019",
+    "sub-010020",
+    "sub-010021",
+    "sub-010022",
+    "sub-010024",
+    "sub-010026",
+    "sub-010027",
+    "sub-010028",
+    "sub-010029",
+    "sub-010030",
+    "sub-010031",
+    "sub-010032",
+    "sub-010033",
+    "sub-010034"
+  ],
+  "subjects": [
+    {
+      "asset_count": 2,
+      "declared_bytes": 625866959,
+      "subject_id": "sub-010016"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 626263759,
+      "subject_id": "sub-010017"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 650319759,
+      "subject_id": "sub-010019"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 624763359,
+      "subject_id": "sub-010020"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 626858959,
+      "subject_id": "sub-010021"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 621303759,
+      "subject_id": "sub-010022"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 630566559,
+      "subject_id": "sub-010024"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 644516559,
+      "subject_id": "sub-010026"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 633976559,
+      "subject_id": "sub-010027"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 636555759,
+      "subject_id": "sub-010028"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 636456559,
+      "subject_id": "sub-010029"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 645359759,
+      "subject_id": "sub-010030"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 646004559,
+      "subject_id": "sub-010031"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 620820159,
+      "subject_id": "sub-010032"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 625767759,
+      "subject_id": "sub-010033"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 646016959,
+      "subject_id": "sub-010034"
+    }
+  ],
+  "unused_capacity_bytes": 596000496,
+  "unused_capacity_gib": 0.5550687164068222,
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+}
