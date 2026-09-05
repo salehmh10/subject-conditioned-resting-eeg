@@ -18,6 +18,18 @@ from scripts.data import s2_06_download_manifest as download
 PAYLOAD = b"audited waveform payload used only in synthetic unit tests"
 
 
+def test_measured_body_accounting_with_retry(tmp_path,monkeypatch):
+    prefix=10
+    install_responses(monkeypatch,Response(PAYLOAD,fail_after=prefix),resume_response(prefix))
+    journal=download.DownloadJournal(tmp_path/'events.jsonl')
+    download.fetch_one(asset(),tmp_path/'asset.eeg',journal=journal,backoff=0)
+    records=[json.loads(line) for line in journal.path.read_text().splitlines()]
+    assert sum(r.get('received_body_bytes',0) for r in records)==len(PAYLOAD)
+    assert sum(r['status']=='retry_scheduled' for r in records)==1
+    assert sum(r['status']=='download_interrupted' for r in records)==1
+    assert [r['resume_offset'] for r in records if r['status']=='downloading']==[0,prefix]
+
+
 def asset(subject="sub-001", payload=PAYLOAD):
     return pd.Series({
         "subject_id": subject,

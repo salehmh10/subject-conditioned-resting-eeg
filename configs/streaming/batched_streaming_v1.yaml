@@ -1,0 +1,27 @@
+scope_name: scenario2-variable-batched-streaming-v1
+batch_size_policy:
+  unit: GiB
+  gibibyte_bytes: 1073741824
+  require_explicit_cap_before_freeze: true
+  allow_different_cap_for_future_batches: true
+  frozen_batch_cap_is_immutable: true
+membership_accounting:
+  basis: complete_subject_declared_payload
+  included_roles: [waveform, brainvision_header]
+  use_full_subject_payload: true
+  verified_local_bytes_do_not_change_membership: true
+  partial_bytes_do_not_change_membership: true
+ordering:
+  source: authoritative_full_candidate_manifest
+  rule: preserve_authoritative_subject_order
+completed_policy:
+  exclude_verified_completed_all_block_subjects: true
+execution:
+  sequential_subject_processing: true
+  max_concurrent_new_subjects: 1
+  auto_start_next_batch: false
+  pull_replacement_after_failure: false
+  freeze_manifest_before_network: true
+cleanup:
+  explicit_flag_required: true
+  failed_or_unresolved_subject_raw_is_retained: true

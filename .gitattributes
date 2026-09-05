@@ -1,0 +1,3 @@
+configs/streaming/* text eol=lf
+outputs/metrics/scenario2/batches/*.csv text eol=lf
+outputs/metrics/scenario2/batches/*.json text eol=lf

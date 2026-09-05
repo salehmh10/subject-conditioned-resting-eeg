@@ -205,6 +205,9 @@ def create_figure(path, subjects, blocks, rates):
     plt.close(figure)
 
 
+from resting_eeg.data.paths import load_paths, relocated_path
+
+
 def summarize(repo_root, raw_root, processed_root, metrics_root, config_path, metadata_root, figure_path):
     config, config_hash = load_config(config_path)
     current_code_hash = code_digest(repo_root)
@@ -228,7 +231,7 @@ def summarize(repo_root, raw_root, processed_root, metrics_root, config_path, me
         receipt = read_json(receipt_path)
         require(receipt["subject_id"] == subject and receipt["source_hash_verified"] is True and receipt["processed_verified"] is True,
                 f"Invalid source/output verification receipt: {subject}")
-        require(Path(receipt["output_path"]).resolve() == output.resolve(), f"Receipt points to a different output: {subject}")
+        require(relocated_path(receipt["output_path"], repo_root) == output.resolve(), f"Receipt points to a different output: {subject}")
         require(receipt["config_sha256"] == config_hash and receipt["code_content_sha256"] == current_code_hash,
                 f"Receipt differs from frozen configuration/source: {subject}")
         blocks = gate.train_blocks(subject)
@@ -303,7 +306,7 @@ def summarize(repo_root, raw_root, processed_root, metrics_root, config_path, me
             cleanup_executed=False,
         ))
         processed_rows.append(dict(
-            subject_id=subject, output_path=str(output.relative_to(repo_root)), output_bytes=checked["output_bytes"],
+            subject_id=subject, output_path=str(output.resolve()), output_bytes=checked["output_bytes"],
             output_sha256=checked["output_sha256"], config_sha256=config_hash, code_git_head=receipt["code_git_head"],
             code_content_sha256=current_code_hash, input_signature=signature,
             source_eeg_sha256=source_hashes[".eeg"], source_vhdr_sha256=source_hashes[".vhdr"],
@@ -465,11 +468,11 @@ def summarize(repo_root, raw_root, processed_root, metrics_root, config_path, me
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[2])
-    parser.add_argument("--raw-root", type=Path, default=Path("data_raw/MPI-LEMON"))
-    parser.add_argument("--processed-root", type=Path, default=Path("data_processed/MPI-LEMON"))
+    parser.add_argument("--raw-root", type=Path, default=load_paths(Path(__file__).resolve().parents[2])["raw_root"])
+    parser.add_argument("--processed-root", type=Path, default=load_paths(Path(__file__).resolve().parents[2])["processed_root"]/"train-only-v1")
     parser.add_argument("--metrics-root", type=Path, default=Path("outputs/metrics/scenario2"))
     parser.add_argument("--config", type=Path, default=Path("configs/preprocessing/frozen_preprocessing_v1.yaml"))
-    parser.add_argument("--metadata-root", type=Path, default=Path("D:/SHARIF/PROJECT/Datasets/MPI-LEMON"))
+    parser.add_argument("--metadata-root", type=Path, default=load_paths(Path(__file__).resolve().parents[2])["metadata_root"])
     parser.add_argument("--figure", type=Path, default=Path("outputs/figures/scenario2/pilot_train_qc_summary.png"))
     args = parser.parse_args()
     root = args.repo_root.resolve()

@@ -15,6 +15,7 @@ sys.path.insert(0, str(REPO))
 import pandas as pd
 
 from resting_eeg.common import sha256_file
+from resting_eeg.data.paths import load_paths
 from resting_eeg.data.access import TrainAccessGate, sample_interval
 from resting_eeg.data.integrity import audit_pilot_inventory
 from resting_eeg.preprocessing.pipeline import load_config, verify_output
@@ -22,9 +23,10 @@ from resting_eeg.preprocessing.pipeline import load_config, verify_output
 
 def verify(repo_root=REPO, require_clean=False, test_report=None):
     repo_root = Path(repo_root)
+    storage = load_paths(repo_root)
     metrics = repo_root / 'outputs/metrics/scenario2'
     pilot = pd.read_csv(metrics/'pilot_download_manifest.csv')
-    inventory = audit_pilot_inventory(repo_root/'data_raw/MPI-LEMON', pilot)
+    inventory = audit_pilot_inventory(storage['raw_root'], pilot)
     assert inventory['inventory_pass'] and inventory['n_subjects'] == 15
     config, digest = load_config(repo_root/'configs/preprocessing/frozen_preprocessing_v1.yaml')
     gate = TrainAccessGate(metrics/'provisional_block_split_manifest.csv', metrics/'lemon_block_inventory.csv',
@@ -41,7 +43,7 @@ def verify(repo_root=REPO, require_clean=False, test_report=None):
     manifest = pd.read_csv(metrics/'pilot_processed_manifest.csv')
     assert len(manifest) == 15 and set(manifest.subject_id) == set(pilot.subject_id)
     for subject in sorted(pilot.subject_id.unique()):
-        path = repo_root/'data_processed/MPI-LEMON'/f'{subject}_preprocessed.h5'
+        path = storage['processed_root']/'train-only-v1'/f'{subject}_preprocessed.h5'
         receipt = json.loads(path.with_suffix('.provenance.json').read_text())
         expected = [b['block_uid'] for b in gate.train_blocks(subject)]
         result = verify_output(path, digest, expected)

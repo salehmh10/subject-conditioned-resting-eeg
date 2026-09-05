@@ -16,6 +16,7 @@ import pandas as pd
 import numpy as np
 import h5py
 from resting_eeg.common import sha256_file,write_json,canonical_hash,git_head
+from resting_eeg.data.paths import load_paths, relocated_path
 from resting_eeg.data.access import sample_interval
 from resting_eeg.data.mechanical_access import MechanicalHeldoutAccessGate,PURPOSES,FROZEN_SHA,load_access_config
 from resting_eeg.data.integrity import audit_pilot_inventory,audit_subject
@@ -24,7 +25,8 @@ from resting_eeg.preprocessing.pipeline import load_config
 
 
 def verify(write=False,require_clean=False,test_report=None):
-    m=ROOT/'outputs/metrics/scenario2'; raw=ROOT/'data_raw/MPI-LEMON'
+    storage_paths=load_paths(ROOT)
+    m=ROOT/'outputs/metrics/scenario2'; raw=storage_paths['raw_root']
     pre=json.loads((m/'mechanical_preflight.json').read_text())
     config_path=ROOT/'configs/preprocessing/frozen_preprocessing_v1.yaml'
     config,digest=load_config(config_path)
@@ -36,9 +38,9 @@ def verify(write=False,require_clean=False,test_report=None):
     assert len(train)==train.block_uid.nunique()==150 and set(train.split)=={'Train'}
     pilot=pd.read_csv(m/'pilot_download_manifest.csv');subjects=sorted(pilot.subject_id.unique())
     raw_inventory=audit_pilot_inventory(raw,pilot)
-    current_raw={str(p.relative_to(ROOT)):sha256_file(p) for p in raw.rglob('*') if p.is_file()}
+    current_raw={str(Path('data_raw/MPI-LEMON')/p.relative_to(raw)):sha256_file(p) for p in raw.rglob('*') if p.is_file()}
     assert current_raw==pre['raw_files'], 'Pilot raw files missing/changed or unexpected payload exists'
-    for name,sha in pre['train_outputs'].items():assert sha256_file(ROOT/name)==sha
+    for name,sha in pre['train_outputs'].items():assert sha256_file(relocated_path(ROOT/name))==sha
     inventory=pd.read_csv(m/'lemon_block_inventory.csv')
     full=pd.read_csv(m/'full_candidate_download_manifest.csv')
     spec,access_hash=load_access_config(ROOT/'configs/access/mechanical_heldout_v1.yaml',config_path)
@@ -69,14 +71,14 @@ def verify(write=False,require_clean=False,test_report=None):
     calls={n.func.id if isinstance(n.func,ast.Name) else n.func.attr for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,(ast.Name,ast.Attribute))}
     assert not calls & {'fit_window_thresholds','fit_bad_channels','compute_psd','psd','plot','fit','wpli','savefig'}
     rows=[];processed=[];feasibility=[];cleanup=[];total=0
-    journals=[json.loads(line) for line in (m/'streaming_all_block_status.jsonl').read_text().splitlines()]
+    journals=[json.loads(line) for line in (storage_paths['runtime_root']/'streaming_all_block_status.jsonl').read_text().splitlines()]
     for subject in subjects:
         integrity=audit_subject(subject,full,raw,inventory,config['target_channels'])
         assert integrity['integrity_pass']
         blocks=ab.expected_subject_blocks(ROOT,subject)
-        path=ROOT/'data_processed/MPI-LEMON-all-blocks-v1'/f'{subject}_all_blocks.h5'
+        path=storage_paths['processed_root']/'all-blocks-v1'/f'{subject}_all_blocks.h5'
         receipt=json.loads(path.with_suffix('.provenance.json').read_text())
-        params,param_hash=ab.verified_train_parameters(ROOT/'data_processed/MPI-LEMON'/f'{subject}_preprocessed.h5',config,digest,blocks,m)
+        params,param_hash=ab.verified_train_parameters(storage_paths['processed_root']/'train-only-v1'/f'{subject}_preprocessed.h5',config,digest,blocks,m)
         assert params==receipt['train_parameters'] and param_hash==receipt['train_parameter_source_hash']
         checked=ab.verify_all_block_output(path,digest,blocks,access_hash,param_hash)
         assert checked['output_sha256']==receipt['output_sha256'] and receipt['source_hash_verified']
@@ -84,11 +86,11 @@ def verify(write=False,require_clean=False,test_report=None):
         assert completed and completed[-1]['result']['output_sha256']==checked['output_sha256']
         assert not any(r['status']=='raw_deleted' for r in journals)
         total+=checked['output_bytes']
-        processed.append(dict(subject_id=subject,output_path=str(path.relative_to(ROOT)),output_sha256=checked['output_sha256'],
+        processed.append(dict(subject_id=subject,output_path=str(path),output_sha256=checked['output_sha256'],
             output_bytes=checked['output_bytes'],processed_verified=True,source_hash_verified=True,n_blocks=16,
             train_blocks_reused=10,heldout_blocks_processed=6,preprocessing_config_sha256=digest,
             mechanical_access_config_sha256=access_hash,train_parameter_source_hash=param_hash,processing_code_head=receipt['code_git_head']))
-        with h5py.File(path,'r') as h,h5py.File(ROOT/'data_processed/MPI-LEMON'/f'{subject}_preprocessed.h5','r') as old:
+        with h5py.File(path,'r') as h,h5py.File(storage_paths['processed_root']/'train-only-v1'/f'{subject}_preprocessed.h5','r') as old:
             for b in blocks:
                 g=h['blocks'][b['block_uid']]; mask=g['window_usable_mask'][:];reasons=g['window_qc_reason'][:].astype(str)
                 if b['split']=='Train':
@@ -154,8 +156,8 @@ def verify(write=False,require_clean=False,test_report=None):
         assert dry['subjects']==211 and dry['all_disk_checks_pass'] and dry['value_reads']==dry['downloads']==dry['raw_deletions']==0
         repeated=json.loads((m/'pilot_all_block_idempotence_summary.json').read_text())
         assert repeated['subjects']==15 and repeated['all_reused'] and repeated['registry_unchanged'] and repeated['output_hashes_unchanged']
-        assert len(list((ROOT/'data_processed/MPI-LEMON-all-blocks-v1').glob('*.h5')))==15
-        assert not list((ROOT/'data_processed/MPI-LEMON-all-blocks-v1').glob('*.tmp'))
+        assert len(list((storage_paths['processed_root']/'all-blocks-v1').glob('*.h5')))==15
+        assert not list((storage_paths['processed_root']/'all-blocks-v1').glob('*.tmp'))
         tracked=subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitlines()
         assert not any(Path(p).suffix.lower() in {'.eeg','.vhdr','.h5','.hdf5','.npy','.npz','.pt','.pth','.ckpt'} for p in tracked)
         for name,data in [('pilot_all_block_qc_summary.json',qc),('pilot_all_block_storage_summary.json',storage),('pilot_mechanical_access_summary.json',summary)]:

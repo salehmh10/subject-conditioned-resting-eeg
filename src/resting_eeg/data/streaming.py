@@ -247,7 +247,8 @@ def _verify_receipt(result: dict, subject_id: str, config_path: Path, output_roo
     config_hash = _frozen_config_hash(config_path)
     if result["config_sha256"] != config_hash:
         raise ValueError("processing receipt config hash does not match current frozen config")
-    output = Path(result["output_path"]).resolve()
+    from resting_eeg.data.paths import relocated_path
+    output = relocated_path(result["output_path"])
     if not _is_within(output, output_root.resolve()) or output == output_root.resolve():
         raise ValueError("compact output escapes output root")
     _assert_no_links(output)
@@ -271,6 +272,8 @@ def _verify_receipt(result: dict, subject_id: str, config_path: Path, output_roo
     _assert_no_links(receipt_path)
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     for key in required:
+        if key == 'output_path' and relocated_path(receipt.get(key, '')) == relocated_path(result[key]):
+            continue
         if receipt.get(key) != result[key]:
             raise ValueError(f"persisted provenance receipt disagrees on {key}")
     return {**result, "output_path": str(output), "receipt_path": str(receipt_path)}
@@ -325,6 +328,8 @@ def stream_subjects(
     journal_path: Path | None = None,
     processing_scope: str = "train-only", access_config_path: Path | None = None,
     train_output_root: Path | None = None, fit_parameters_from: str = "Train_only",
+    download_journal_path: Path | None = None,
+    temp_root: Path | None = None,
 ) -> list[dict]:
     """Plan or process each selected subject sequentially; return terminal records.
 
@@ -378,7 +383,7 @@ def stream_subjects(
         return append_status(*args, **details)
     with _journal_lock(journal):
         history = _recover_journal(journal)
-        download_journal = downloader.DownloadJournal(metrics_root / "streaming_download_status.jsonl")
+        download_journal = downloader.DownloadJournal(download_journal_path or metrics_root / "streaming_download_status.jsonl")
         for subject_id, rows in grouped.items():
             stage = "planning"
             try:
@@ -415,6 +420,8 @@ def stream_subjects(
                 record_status(journal, run_id, subject_id, "preprocessing")
                 kwargs = dict(repo_root=repo_root, raw_root=raw_root, output_root=output_root,
                               config_path=config_path, metrics_root=metrics_root)
+                if temp_root is not None:
+                    kwargs['temp_root'] = Path(temp_root)
                 if processing_scope == "all-blocks-mechanical":
                     from resting_eeg.preprocessing.all_blocks import process_all_blocks
                     result = process_all_blocks(subject_id, **kwargs, access_config_path=access_config_path,
@@ -428,6 +435,11 @@ def stream_subjects(
                                          cleanup_requested=delete_raw_after_success)
                 if delete_raw_after_success:
                     stage = "cleanup"
+                    if result["qc_pass"] is not True:
+                        terminal.append(record_status(journal, run_id, subject_id, "complete", result=result,
+                            source_payloads=plan["source_payloads"], raw_retained=True,
+                            cleanup_requested=True, cleanup_blocker="frozen_Train_QC_failed"))
+                        continue
                     delete_verified_raw(subject_id, raw_root=raw_root, metadata_root=metadata_root,
                                         output_root=output_root, config_path=config_path, journal=journal,
                                         run_id=run_id, result=result, source_payloads=plan["source_payloads"],

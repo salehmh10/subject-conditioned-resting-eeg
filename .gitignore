@@ -107,3 +107,8 @@ Thumbs.db
 
 # Durable all-block execution journal stays local; commit compact audit evidence.
 outputs/metrics/scenario2/streaming_all_block_status.jsonl
+outputs/metrics/scenario2/batches/*.lock
+outputs/metrics/scenario2/batches/*_streaming_journal.jsonl
+outputs/metrics/scenario2/batches/*_download_journal.jsonl
+outputs/metrics/scenario2/batches/pilot_cleanup_journal.jsonl
+configs/paths/local_data_paths.yaml

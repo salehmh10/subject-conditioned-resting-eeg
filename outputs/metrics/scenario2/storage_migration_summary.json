@@ -1,0 +1,36 @@
+{
+  "batch_001_status": "not_frozen_no_network",
+  "bytes_moved": 7193811222,
+  "completed_utc": "2026-09-05T13:28:34.717630+00:00",
+  "duplicates_removed": 166,
+  "files_moved": 166,
+  "inventory_sha256": "f1f718503a09252d580f24b1c3d04e1a4593aa4424d1d17da8443d8b5a8cfd40",
+  "legacy_payload_files_remaining": 0,
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "metadata_clone_write_operations": 0,
+  "new_roots": [
+    "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+    "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1",
+    "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1",
+    "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\streaming_all_block_status.jsonl"
+  ],
+  "old_roots": [
+    "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\data_raw\\MPI-LEMON",
+    "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\data_processed\\MPI-LEMON",
+    "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\data_processed\\MPI-LEMON-all-blocks-v1",
+    "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\streaming_all_block_status.jsonl"
+  ],
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "processed_hashes_verified": 30,
+  "raw_hashes_verified": 30,
+  "receipts_preserved_byte_identical": true,
+  "resolved_paths": {
+    "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+    "processed_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed",
+    "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+    "runtime_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+    "scenario2_data_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2",
+    "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+  },
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+}

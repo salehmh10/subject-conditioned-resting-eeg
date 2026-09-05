@@ -1,0 +1,8 @@
+# Reproducible policy: resolve paths relative to the repository root.
+# Optional ignored local_data_paths.yaml or SCENARIO2_PATH_CONFIG overrides keys.
+metadata_root: ../Datasets/MPI-LEMON
+scenario2_data_root: ../Datasets/MPI-LEMON-Scenario2
+raw_root: raw
+processed_root: processed
+temp_root: temp
+runtime_root: runtime

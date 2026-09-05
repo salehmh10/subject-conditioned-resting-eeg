@@ -85,7 +85,7 @@ def native_block_failure(sanity, uid, bads, config):
                 (rows.flat_fraction > config['qc']['maximum_repeated_difference_fraction']).any())
 
 
-def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path, metrics_root, train_registry_path=None):
+def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path, metrics_root, train_registry_path=None, temp_root=None):
     repo_root, raw_root, output_root, metrics_root = map(Path, (repo_root, raw_root, output_root, metrics_root))
     config, config_hash = load_config(config_path)
     authoritative = repo_root / 'outputs/metrics/scenario2'
@@ -135,8 +135,10 @@ def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path
             for path in (output, receipt_path):
                 if path.exists():
                     os.replace(path, path.with_name(path.name + '.orphan-' + token))
-        temporary = output.with_suffix('.h5.tmp')
-        cache_path = output.with_suffix('.cache.h5')
+        workspace = Path(temp_root) if temp_root is not None else output_root.parent/'temp'
+        workspace.mkdir(parents=True, exist_ok=True)
+        temporary = workspace/(output.name + '.tmp')
+        cache_path = workspace/(output.stem + '.cache.h5')
         native_sanity, bad_metrics = [], []
         veog_nonfinite = set()
         created = utc_now()
@@ -146,7 +148,7 @@ def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path
         try:
             with h5py.File(cache_path, 'w') as cache:
                 with TrainBlockLoader(subject_id, vhdr, gate, integrity,
-                                       repo_root/'outputs/tmp/waveform_processing.lock') as loader:
+                                       workspace/'waveform_processing.lock') as loader:
                     for block in blocks:
                         physical = loader.read(block['block_index'], 'pilot_Train_sanity_and_frozen_preprocessing')
                         names, types, rate = physical.channel_names, physical.channel_types, physical.sfreq

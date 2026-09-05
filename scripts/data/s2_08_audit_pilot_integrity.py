@@ -14,9 +14,11 @@ from resting_eeg.data.integrity import TARGET_CHANNELS, audit_pilot_inventory, a
 
 
 def main() -> int:
+    from resting_eeg.data.paths import load_paths
+    storage = load_paths(Path(__file__).resolve().parents[2])
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=Path("outputs/metrics/scenario2/pilot_download_manifest.csv"))
-    parser.add_argument("--raw-root", type=Path, default=Path("data_raw/MPI-LEMON"))
+    parser.add_argument("--raw-root", type=Path, default=storage["raw_root"])
     parser.add_argument("--blocks", type=Path, default=Path("outputs/metrics/scenario2/lemon_block_inventory.csv"))
     parser.add_argument("--output-dir", type=Path, default=Path("outputs/metrics/scenario2"))
     args = parser.parse_args()

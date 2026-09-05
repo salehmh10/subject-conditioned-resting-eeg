@@ -267,7 +267,12 @@ def test_deletion_requires_every_verification(allblock_staged, monkeypatch, alte
     monkeypatch.setattr(streaming, "process_subject", altered)
     result = streaming.stream_subjects(one(frame), **paths, execute=True, local_existing_only=True,
                                       delete_raw_after_success=True)[0]
-    assert result["status"] in {"preprocessing_failed", "cleanup_failed"}
+    if alteration == 'qc':
+        assert result['status'] == 'complete'
+        assert result['cleanup_blocker'] == 'frozen_Train_QC_failed'
+        assert result['raw_retained'] is True
+    else:
+        assert result["status"] in {"preprocessing_failed", "cleanup_failed"}
     assert (paths["raw_root"] / "sub-001").is_dir()
     assert not any(record["status"] == "raw_deleted" for record in journal_records(paths))
 

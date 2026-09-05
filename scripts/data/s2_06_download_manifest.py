@@ -275,6 +275,10 @@ def fetch_one(
                         except http.client.IncompleteRead as exc:
                             # Some HTTP readers carry the final valid prefix in the exception.
                             chunk, interrupted = exc.partial, exc
+                        if chunk:
+                            # Application body bytes, including retries and bytes that
+                            # subsequently fail integrity. Never equate file size with traffic.
+                            emit("response_body", attempt=attempt, received_body_bytes=len(chunk))
                         if received + len(chunk) > expected:
                             raise DownloadIntegrityError(f"response body exceeds expected {expected} bytes")
                         if chunk:
@@ -336,10 +340,14 @@ def copy_sidecars(subject_ids: list[str], metadata_root: Path, destination: Path
 
 
 def main(argv: list[str] | None = None) -> int:
+    root = Path(__file__).resolve().parents[2]
+    sys.path[:0] = [str(root), str(root/"src")]
+    from resting_eeg.data.paths import load_paths
+    storage = load_paths(root)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True)
-    parser.add_argument("--destination", default="data_raw/MPI-LEMON")
-    parser.add_argument("--metadata-root", default="D:/SHARIF/PROJECT/Datasets/MPI-LEMON")
+    parser.add_argument("--destination", default=str(storage["raw_root"]))
+    parser.add_argument("--metadata-root", default=str(storage["metadata_root"]))
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--execute", action="store_true", help="perform downloads and local writes")
     mode.add_argument("--dry-run", action="store_true", help="validate and plan only (the default)")
@@ -350,7 +358,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--retries", type=int, default=3, help="maximum additional attempts per asset")
     parser.add_argument("--backoff", type=float, default=1.0, help="initial exponential retry delay, capped at 60 seconds")
     parser.add_argument("--continue-on-error", action="store_true")
-    parser.add_argument("--journal", default="outputs/metrics/scenario2/download_journal.jsonl")
+    parser.add_argument("--journal", default=str(storage["runtime_root"]/"download_journal.jsonl"))
     args = parser.parse_args(argv)
     if not math.isfinite(args.timeout) or args.timeout <= 0 or args.retries < 0 or not math.isfinite(args.backoff) or args.backoff < 0:
         parser.error("timeout must be positive and finite; retries/backoff must be nonnegative and finite")

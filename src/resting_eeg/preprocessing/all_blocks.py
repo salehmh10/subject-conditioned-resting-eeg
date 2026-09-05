@@ -193,10 +193,12 @@ def subject_feasibility(path, train_summary):
 
 
 def process_all_blocks(subject_id, *, repo_root, raw_root, output_root, config_path, metrics_root,
-                       access_config_path, train_output_root=None, fit_parameters_from='Train_only'):
+                       access_config_path, train_output_root=None, fit_parameters_from='Train_only', temp_root=None):
     if fit_parameters_from != 'Train_only':
         raise ValueError('Held-out parameter fitting is prohibited')
     repo_root, raw_root, output_root, metrics_root = map(Path,(repo_root,raw_root,output_root,metrics_root))
+    workspace = Path(temp_root) if temp_root is not None else output_root.parent/'temp'
+    workspace.mkdir(parents=True, exist_ok=True)
     config,digest = load_config(config_path)
     spec,access_hash = load_access_config(access_config_path,config_path)
     authoritative = repo_root/'outputs/metrics/scenario2'
@@ -214,13 +216,13 @@ def process_all_blocks(subject_id, *, repo_root, raw_root, output_root, config_p
     # New value access is permitted only from committed, clean code. Existing
     # receipts above support read-only verification after documentation commits.
     head = require_committed_clean(repo_root)
-    if output.exists() or receipt_path.exists() or output.with_suffix('.h5.tmp').exists():
+    if output.exists() or receipt_path.exists() or (workspace/(output.name + '.tmp')).exists() or output.with_suffix('.h5.tmp').exists():
         raise ValueError('Partial all-block transaction: investigate and invalidate explicitly before restart')
-    train_root = Path(train_output_root) if train_output_root else repo_root/'data_processed/MPI-LEMON'
+    train_root = Path(train_output_root) if train_output_root else output_root.parent/'train-only-v1'
     train_path = train_root/f'{subject_id}_preprocessed.h5'
     if not train_path.exists():
         process_subject(subject_id,repo_root=repo_root,raw_root=raw_root,output_root=train_root,config_path=config_path,metrics_root=metrics_root,
-                        train_registry_path=metrics_root/'streaming_train_access_registry.csv')
+                        train_registry_path=metrics_root/'streaming_train_access_registry.csv', temp_root=workspace)
     params,param_hash = verified_train_parameters(train_path,config,digest,blocks,metrics_root)
     manifest = pd.read_csv(authoritative/'full_candidate_download_manifest.csv')
     inventory = pd.read_csv(authoritative/'lemon_block_inventory.csv')
@@ -237,7 +239,7 @@ def process_all_blocks(subject_id, *, repo_root, raw_root, output_root, config_p
     source_hashes = {Path(r['relative_path']).suffix:r['payload_sha256'] for r in sources}
     header = raw_root/next(r['relative_path'] for r in sources if r['relative_path'].endswith('.vhdr'))
     output_root.mkdir(parents=True,exist_ok=True)
-    temporary = output.with_suffix('.h5.tmp')
+    temporary = workspace/(output.name + '.tmp')
     with exclusive_lock(output.with_suffix('.lock')):
         with h5py.File(train_path,'r') as train, h5py.File(temporary,'w') as h:
             for key,value in train.attrs.items():
@@ -248,7 +250,7 @@ def process_all_blocks(subject_id, *, repo_root, raw_root, output_root, config_p
             for b in blocks:
                 if b['split']=='Train':
                     train.copy(train['blocks'][b['block_uid']],root,name=b['block_uid'])
-            with MechanicalHeldoutBlockLoader(subject_id,header,gate,integrity,repo_root/'outputs/tmp/waveform_processing.lock') as loader:
+            with MechanicalHeldoutBlockLoader(subject_id,header,gate,integrity,workspace/'waveform_processing.lock') as loader:
                 for b in blocks:
                     if b['split']=='Train':
                         continue
