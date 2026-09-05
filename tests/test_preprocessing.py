@@ -158,6 +158,17 @@ def test_car_full_61_then_deterministic_target_order_and_eog(config):
     np.testing.assert_allclose(eog,123.)
 
 
+def test_eligible_bad_target_interpolates_before_car(config):
+    montage=mne.channels.make_standard_montage('standard_1005')
+    names=config['target_channels']+[n for n in montage.ch_names if n not in config['target_channels']][:42]+['VEOG']
+    common=20e-6*np.sin(np.arange(1000)*.13)
+    x=np.tile(common,(62,1));x[0]=0
+    target,eog=reference_and_select(x,names,['eeg']*61+['eog'],['Fp1'],config)
+    assert np.isfinite(target).all()
+    np.testing.assert_allclose(target,0,atol=1e-5)
+    np.testing.assert_allclose(eog,common*1e6)
+
+
 def test_units_sanity_and_spike_qc(config):
     x=np.array([[1e-6,2e-6,3e-6,4e-6]])
     metrics=sanity_metrics(x,['Fp1'])[0]

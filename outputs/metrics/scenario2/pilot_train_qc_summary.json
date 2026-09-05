@@ -1,0 +1,115 @@
+{
+  "candidate_multipliers": [
+    6,
+    8,
+    10
+  ],
+  "candidate_windows": 3750,
+  "failed_subjects": [
+    {
+      "bad_channel_limits_pass": true,
+      "eligible_Train_blocks_by_state": {
+        "EC": 5,
+        "EO": 1
+      },
+      "failing_states": [
+        "EO"
+      ],
+      "failure_reason": "bad_channel_limits_or_fewer_than_3_usable_Train_blocks_per_state",
+      "required_eligible_Train_blocks_per_state": 3,
+      "subject_id": "sub-010250",
+      "threshold_fit_available": true
+    }
+  ],
+  "n_Train_blocks": 150,
+  "n_eligible_blocks": 143,
+  "n_qc_fail": 1,
+  "n_qc_pass": 14,
+  "n_subjects": 15,
+  "native_rate_groups": [
+    {
+      "candidate_windows": 250,
+      "finite_compact_window_fraction": 1.0,
+      "minimum_native_finite_fraction": 1.0,
+      "n_bad_eeg": 0,
+      "n_bad_target": 0,
+      "n_blocks": 10,
+      "n_qc_pass": 1,
+      "n_subjects": 1,
+      "n_usable_blocks": 10,
+      "native_inf_count": 0,
+      "native_nan_count": 0,
+      "native_sfreq": 500.0,
+      "retained_fraction": 0.968,
+      "usable_windows": 242
+    },
+    {
+      "candidate_windows": 1500,
+      "finite_compact_window_fraction": 1.0,
+      "minimum_native_finite_fraction": 1.0,
+      "n_bad_eeg": 0,
+      "n_bad_target": 0,
+      "n_blocks": 60,
+      "n_qc_pass": 6,
+      "n_subjects": 6,
+      "n_usable_blocks": 57,
+      "native_inf_count": 0,
+      "native_nan_count": 0,
+      "native_sfreq": 1000.0,
+      "retained_fraction": 0.9393333333333334,
+      "usable_windows": 1409
+    },
+    {
+      "candidate_windows": 2000,
+      "finite_compact_window_fraction": 1.0,
+      "minimum_native_finite_fraction": 1.0,
+      "n_bad_eeg": 0,
+      "n_bad_target": 0,
+      "n_blocks": 80,
+      "n_qc_pass": 7,
+      "n_subjects": 8,
+      "n_usable_blocks": 76,
+      "native_inf_count": 0,
+      "native_nan_count": 0,
+      "native_sfreq": 2500.0,
+      "retained_fraction": 0.9195,
+      "usable_windows": 1839
+    }
+  ],
+  "rejected_windows": 260,
+  "rejection_reason_counts": {
+    "target_max_diff_uv": 40,
+    "target_max_ptp_uv": 71,
+    "target_max_scale_uv": 5,
+    "veog_ptp_uv": 220
+  },
+  "rejection_reasons_may_overlap": true,
+  "retained_fraction": 0.9306666666666666,
+  "scope": "Engineering rejection balance only; no Alpha, Connectivity, classifier, or model outcomes computed.",
+  "selected_multiplier": 8,
+  "state_balance": [
+    {
+      "candidate_windows": 1875,
+      "eligible_blocks": 75,
+      "rejected_windows": 17,
+      "retained_fraction": 0.9909333333333333,
+      "state": "EC",
+      "total_blocks": 75,
+      "usable_windows": 1858
+    },
+    {
+      "candidate_windows": 1875,
+      "eligible_blocks": 68,
+      "rejected_windows": 243,
+      "retained_fraction": 0.8704,
+      "state": "EO",
+      "total_blocks": 75,
+      "usable_windows": 1632
+    }
+  ],
+  "thresholds_fitted_on": "subject_pooled_EO_EC_Train",
+  "thresholds_selected_using_heldout_data": false,
+  "usable_windows": 3490,
+  "usable_windows_in_eligible_blocks": 3415,
+  "usable_windows_in_eligible_blocks_of_QC_passing_subjects": 3276
+}

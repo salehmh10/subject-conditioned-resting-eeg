@@ -1,0 +1,11 @@
+{
+  "access_registry_unchanged": true,
+  "all_output_hashes_unchanged": true,
+  "container_timestamps_may_differ_on_rebuild": true,
+  "elapsed_sec": 26.17199999999866,
+  "exit_code": 0,
+  "independent_scientific_rebuild": "synthetic_HDF5_test_all_datasets_identical",
+  "n_subjects": 15,
+  "network_requests": 0,
+  "raw_deletion_requested": false
+}

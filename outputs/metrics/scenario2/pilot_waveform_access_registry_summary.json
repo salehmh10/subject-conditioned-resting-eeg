@@ -1,0 +1,19 @@
+{
+  "access_registry_pass": true,
+  "block_inventory_sha256": "d5deff471d02baa55ac60539986595b82594d5137fcf1bffac6a5ec982b28742",
+  "complete_Train_only": true,
+  "exact_authoritative_interval_checks_pass": true,
+  "future_split_constraint": "Every development-accessed block must remain Train at final split lock, or its subject must be excluded.",
+  "git_heads": [
+    "1322bad5cd136d22446af76efcc8c427d8a507b2"
+  ],
+  "n_access_events": 150,
+  "n_interrupted_fragment_accesses": 0,
+  "n_repeated_authorized_events": 0,
+  "n_subjects": 15,
+  "n_test_accesses": 0,
+  "n_unique_train_blocks": 150,
+  "n_validation_accesses": 0,
+  "registry_semantics": "Durable authorization is written before raw value reads; events are permitted read attempts.",
+  "split_manifest_sha256": "6adc10b108a7e7b587757cbda630a3c4909c97f8cc2faf24320b0a6e89af0b26"
+}

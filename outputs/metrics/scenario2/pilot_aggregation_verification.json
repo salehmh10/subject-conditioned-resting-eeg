@@ -1,0 +1,27 @@
+{
+  "access_events": 150,
+  "code_content_sha256": "652ed2428aae5732fcd4080da938dfedff13ba55ee625323dadb498ffce4bed0",
+  "compact_bytes": 68563819,
+  "config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "estimated_211_all_16_blocks_gib": 1.437163930038611,
+  "figure": "outputs\\figures\\scenario2\\pilot_train_qc_summary.png",
+  "integrity_pass": 15,
+  "output_csv_bytes": {
+    "pilot_bad_channel_decisions.csv": 92916,
+    "pilot_bad_channel_metrics.csv": 678397,
+    "pilot_native_rate_qc_summary.csv": 365,
+    "pilot_processed_manifest.csv": 11209,
+    "pilot_qc_candidate_comparison.csv": 3675,
+    "pilot_raw_cleanup_manifest.csv": 4767,
+    "pilot_train_block_qc.csv": 8179,
+    "pilot_train_signal_sanity.csv": 439056,
+    "pilot_train_subject_qc.csv": 4138,
+    "pilot_train_window_qc.csv": 450695
+  },
+  "pilot_subjects": 15,
+  "processed_verified": 15,
+  "qc_pass": 14,
+  "raw_cleanup_executed": false,
+  "raw_waveform_values_read_by_summary": false,
+  "unique_Train_blocks_accessed": 150
+}

@@ -1,0 +1,31 @@
+{
+  "bad_channels_by_subject": {
+    "sub-010023": [],
+    "sub-010059": [],
+    "sub-010071": [],
+    "sub-010078": [],
+    "sub-010081": [],
+    "sub-010126": [],
+    "sub-010134": [],
+    "sub-010216": [],
+    "sub-010250": [],
+    "sub-010276": [],
+    "sub-010277": [],
+    "sub-010278": [],
+    "sub-010279": [],
+    "sub-010280": [],
+    "sub-010282": []
+  },
+  "fit_pool": "subject_pooled_EO_EC_provisional_Train",
+  "interpolation_limit_eeg": 6,
+  "interpolation_limit_target": 2,
+  "max_bad_eeg_observed": 0,
+  "max_bad_target_observed": 0,
+  "n_bad_eeg": 0,
+  "n_bad_target": 0,
+  "n_decisions": 915,
+  "n_subjects": 15,
+  "n_subjects_with_bad_channels": 0,
+  "n_subjects_within_interpolation_limits": 15,
+  "state_specific_rules_used": false
+}

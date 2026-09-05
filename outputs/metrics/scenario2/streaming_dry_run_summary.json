@@ -1,0 +1,11 @@
+{
+  "all_disk_checks_pass": true,
+  "download_requests": 0,
+  "dry_run": true,
+  "local_payload_pairs": 15,
+  "maximum_required_free_bytes": 2427576127,
+  "planned_subjects": 211,
+  "raw_deletions": 0,
+  "scope": "provisional_Train_only",
+  "waveform_reads": 0
+}

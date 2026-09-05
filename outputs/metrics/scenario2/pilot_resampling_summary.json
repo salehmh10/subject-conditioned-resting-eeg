@@ -1,0 +1,72 @@
+{
+  "all_real_compact_shapes_and_finiteness_verified": true,
+  "all_synthetic_rates_pass": true,
+  "edge_guard_samples": 433,
+  "edge_guard_sec": 3.3828125,
+  "engineering_tones_hz": [
+    5,
+    20,
+    35,
+    60,
+    100
+  ],
+  "maximum_100hz_residual": 6.766251437182843e-08,
+  "maximum_60hz_residual": 0.0009066787239624,
+  "maximum_combined_half_support_sec": 3.378125,
+  "maximum_passband_gain_error": 0.0004378990736351174,
+  "physiological_spectral_outcomes_computed": false,
+  "real_Train_native_rate_groups": [
+    {
+      "candidate_windows": 250,
+      "finite_compact_window_fraction": 1.0,
+      "minimum_native_finite_fraction": 1.0,
+      "n_bad_eeg": 0,
+      "n_bad_target": 0,
+      "n_blocks": 10,
+      "n_qc_pass": 1,
+      "n_subjects": 1,
+      "n_usable_blocks": 10,
+      "native_inf_count": 0,
+      "native_nan_count": 0,
+      "native_sfreq": 500.0,
+      "retained_fraction": 0.968,
+      "usable_windows": 242
+    },
+    {
+      "candidate_windows": 1500,
+      "finite_compact_window_fraction": 1.0,
+      "minimum_native_finite_fraction": 1.0,
+      "n_bad_eeg": 0,
+      "n_bad_target": 0,
+      "n_blocks": 60,
+      "n_qc_pass": 6,
+      "n_subjects": 6,
+      "n_usable_blocks": 57,
+      "native_inf_count": 0,
+      "native_nan_count": 0,
+      "native_sfreq": 1000.0,
+      "retained_fraction": 0.9393333333333334,
+      "usable_windows": 1409
+    },
+    {
+      "candidate_windows": 2000,
+      "finite_compact_window_fraction": 1.0,
+      "minimum_native_finite_fraction": 1.0,
+      "n_bad_eeg": 0,
+      "n_bad_target": 0,
+      "n_blocks": 80,
+      "n_qc_pass": 7,
+      "n_subjects": 8,
+      "n_usable_blocks": 76,
+      "native_inf_count": 0,
+      "native_nan_count": 0,
+      "native_sfreq": 2500.0,
+      "retained_fraction": 0.9195,
+      "usable_windows": 1839
+    }
+  ],
+  "stride_samples": 256,
+  "synthetic_validation_path": "outputs/metrics/scenario2/pilot_resampling_validation.csv",
+  "target_sfreq": 128,
+  "window_samples": 512
+}

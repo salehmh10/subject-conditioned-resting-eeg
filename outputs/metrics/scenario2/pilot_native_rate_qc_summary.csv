@@ -1,0 +1,4 @@
+native_sfreq,n_subjects,n_qc_pass,n_blocks,n_usable_blocks,candidate_windows,usable_windows,retained_fraction,minimum_native_finite_fraction,native_nan_count,native_inf_count,finite_compact_window_fraction,n_bad_eeg,n_bad_target
+500,1,1,10,10,250,242,0.968,1,0,0,1,0,0
+1000,6,6,60,57,1500,1409,0.93933333,1,0,0,1,0,0
+2500,8,7,80,76,2000,1839,0.9195,1,0,0,1,0,0

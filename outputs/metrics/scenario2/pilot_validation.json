@@ -1,0 +1,15 @@
+{
+  "compileall_command": ".venv/Scripts/python.exe -m compileall -q scripts src tests",
+  "compileall_exit_code": 0,
+  "lint_framework_configured": false,
+  "metadata_clone_head": "16702890507291b5a09fa7390245ec60bff6128e",
+  "metadata_clone_worktree_clean": true,
+  "pytest_command": ".venv/Scripts/python.exe -m pytest -q --junitxml=outputs/logs/pytest.xml",
+  "pytest_errors": 0,
+  "pytest_failures": 0,
+  "pytest_junit_report": "outputs/logs/pytest.xml",
+  "pytest_skipped": 0,
+  "pytest_tests": 166,
+  "real_all15_idempotence_report": "pilot_reproducibility_summary.json",
+  "synthetic_independent_rebuild_equal": true
+}
