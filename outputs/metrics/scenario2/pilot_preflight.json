@@ -1,0 +1,21 @@
+{
+  "commands_inspected": [
+    "git status --short",
+    "git log --oneline --decorate -10",
+    "git rev-parse HEAD",
+    "git diff",
+    "git diff --cached",
+    "git status --ignored --short"
+  ],
+  "global_python_modified": false,
+  "metadata_clone_modified": false,
+  "starting_branch": "main",
+  "starting_head": "504670270775813795876d4ba20833117b0022d6",
+  "starting_ignored": [
+    ".pytest_cache/",
+    ".vscode/",
+    "data_raw/",
+    "Python bytecode caches"
+  ],
+  "starting_worktree_clean": true
+}

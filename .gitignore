@@ -34,6 +34,8 @@ outputs/checkpoints/
 outputs/samples/
 outputs/logs/
 outputs/tmp/
+outputs/metrics/scenario2/subjects/
+outputs/metrics/scenario2/*.lock
 
 runs/
 wandb/

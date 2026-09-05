@@ -1,0 +1,17 @@
+{
+  "environment": ".venv",
+  "executable": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\.venv\\Scripts\\python.exe",
+  "global_install_modified": false,
+  "platform": "Windows-11-10.0.22621-SP0",
+  "python": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
+  "versions": {
+    "PyYAML": "6.0.3",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "mne": "1.12.1",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "pytest": "9.1.1",
+    "scipy": "1.18.1"
+  }
+}

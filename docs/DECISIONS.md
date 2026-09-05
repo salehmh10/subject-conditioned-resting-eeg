@@ -88,9 +88,7 @@ The following are intentionally not yet locked:
 - exact number of EO/EC blocks
 - exact Train/Validation/Test block allocation
 - final channel availability
-- bad-channel eligibility rule
-- artifact-QC thresholds
-- block-duration eligibility rule
+- final waveform-QC eligibility across the full cohort (methods specified below)
 
 ---
 
@@ -137,7 +135,21 @@ Final membership waits for frozen outcome-blind waveform QC. After QC, the final
 
 ### Pilot access and leakage prevention
 
-Because one `.eeg` file contains a whole recording, pilot download does not authorize inspection of every contained block. Pipeline development may access provisional Train blocks only, plus already-excluded fragments for loader diagnostics. Exposed complete blocks must remain Train in the final manifest or their subject must be excluded. Pilot Validation/Test signals cannot guide preprocessing or QC choices.
+Because one `.eeg` file contains a whole recording, pilot download does not authorize inspection of every contained block. The original pre-download allowance for excluded-fragment diagnostics is superseded by the stricter 2026-09-05 amendment below. Exposed complete blocks must remain Train in the final manifest or their subject must be excluded. Pilot Validation/Test signals cannot guide preprocessing or QC choices.
+
+## 2026-09-05  Pilot engineering specification before value access
+
+Timing: specified after header/hash validation and synthetic tests, before any pilot waveform values, Validation/Test waveform inspection, generator/classifier development, or Final Test. The user explicitly disallows interruption-fragment access; the earlier exception is removed.
+
+The 15 subjects and all 30 backed payloads pass size/SHA256, MNE header, linkage, sample-count, channel, unit and template-montage checks. Native header resolution 0.1 µV corresponds to 1e-7 V per binary unit in MNE. Metadata duration uses the last-sample-time convention. Use a new isolated `.venv`; no Scenario 1 or global installation was modified.
+
+Protocol 0.3 section 11 and the canonical YAML specify every parameter. The 1–40 Hz FIR and polyphase resampler have finite combined half-support 3.378125 s; rounding upward gives the 433-sample edge guard. Synthetic passband gains are within 0.0005 of unity, 60 Hz residual amplitude <0.001, and 100 Hz residual <7e-8 at all three native rates. These are synthetic engineering tests, not physiological measurements. The implementation follows [MNE filter semantics](https://mne.tools/1.6/generated/mne.filter.filter_data.html) and locally inspected pinned source.
+
+Use conservative robust broadband metrics and at least two ordinary bad-channel votes, bounded interpolation (six of 61 EEG, two of 19 targets), and full 61-channel CAR. Template coordinates are used because no individual digitization is staged. VEOG is an artifact proxy, not a generated channel. The thresholds are engineering safeguards, not clinically validated artifact labels. Channel-amplitude and derivative features are related, so ordinary failure requires low correlation plus an amplitude or derivative outlier. Amplitude and derivative alone cannot designate a bad channel.
+
+Predeclare pooled Train window multiplier 8 with floors/caps and sensitivity candidates 6/8/10; no state-specific fitting or outcome optimization. Require ten windows and 50% retention per block, and three usable Train blocks per state for pilot engineering acceptance. The rule avoids claiming final 5/1/2 feasibility before held-out mechanical QC. Pilot evidence will confirm or challenge these fixed engineering choices and will be recorded below.
+
+HDF5 stores continuous physical-unit blocks plus window indices/masks, avoiding overlap duplication. Final normalization uses unique usable final Real Train samples once each and remains unfitted. Streaming replaces simultaneous 125.554 GiB staging. Raw deletion requires explicit later execution plus successful fresh verification; all pilot raw remains staged in this phase.
 
 ### Download planning
 

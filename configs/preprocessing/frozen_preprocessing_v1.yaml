@@ -1,0 +1,150 @@
+protocol_version: '0.3'
+method_version: scenario2-preprocessing-v1
+input_format: BrainVision multiplexed IEEE_FLOAT_32
+scope: complete_provisional_Train_only
+channel_handling: preserve_native_order_61_EEG_plus_VEOG
+montage: standard_1005
+target_channels:
+- Fp1
+- Fp2
+- F7
+- F8
+- F3
+- F4
+- Fz
+- T7
+- T8
+- C3
+- C4
+- Cz
+- P7
+- P8
+- P3
+- P4
+- Pz
+- O1
+- O2
+filter:
+  implementation: mne.filter.filter_data
+  method: fir
+  fir_design: firwin
+  fir_window: hamming
+  phase: zero
+  l_freq: 1.0
+  h_freq: 40.0
+  l_trans_bandwidth: 0.5
+  h_trans_bandwidth: 10.0
+  filter_length: auto
+  pad: reflect_limited
+  lengths_by_native_rate:
+    '500': 3301
+    '1000': 6601
+    '2500': 16501
+resampling:
+  implementation: scipy.signal.resample_poly
+  target_sfreq: 128
+  fir_window: kaiser
+  kaiser_beta: 5.0
+  half_length_multiplier: 10
+  padtype: line
+  output_length: ceil_native_samples_times_128_divided_by_native_sfreq
+edge:
+  rule: ceil_to_128_grid_of_max_native_FIR_half_support_plus_polyphase_half_support
+  filter_half_support_sec: 3.3
+  resampling_half_support_sec: 0.078125
+  guard_samples_at_128: 433
+  guard_sec: 3.3828125
+bad_channels:
+  fit_pool: subject_pooled_EO_EC_provisional_Train_blocks
+  robust_scale: 1.4826_times_MAD
+  log_scale_floor: 0.1
+  log_outlier_z: 6.0
+  low_median_absolute_correlation: 0.1
+  minimum_ordinary_votes: 2
+  metrics:
+  - log_robust_scale
+  - log_derivative_scale
+  - median_absolute_correlation
+  catastrophic_nonfinite_any: true
+  catastrophic_flat_scale_uv: 1.0e-06
+  catastrophic_flat_block_fraction: 0.5
+  max_bad_eeg: 6
+  max_bad_target: 2
+  interpolation: MNE_spherical_spline_accurate_origin_0_0_0.04_m
+  failure_policy: preserve_compact_diagnostic_output_reject_all_windows_if_limits_exceeded
+  ordinary_requires_correlation_plus_amplitude_or_derivative: true
+reference: average_all_61_EEG_after_interpolation_before_target_selection
+unit:
+  mne_input: V
+  output: uV
+  volts_to_microvolts: 1000000.0
+window:
+  length_sec: 4
+  stride_sec: 2
+  length_samples: 512
+  stride_samples: 256
+qc:
+  fit_pool: subject_pooled_EO_EC_provisional_Train_windows
+  multiplier_candidates:
+  - 6
+  - 8
+  - 10
+  multiplier: 8
+  selection: predeclared_k8_confirm_engineering_retention_no_optimization
+  formula: min_hard_cap_max_floor_median_plus_k_times_1.4826_MAD
+  features:
+  - target_max_ptp_uv
+  - target_max_scale_uv
+  - target_max_diff_uv
+  - veog_ptp_uv
+  threshold_floors:
+  - 150.0
+  - 30.0
+  - 50.0
+  - 250.0
+  threshold_caps:
+  - 1000.0
+  - 200.0
+  - 300.0
+  - 1500.0
+  minimum_channel_scale_uv: 0.01
+  maximum_repeated_difference_fraction: 0.99
+  require_all_finite: true
+  veog_policy: same_filtered_unreferenced_VEOG_ptp_rule_no_ICA
+  minimum_usable_windows_per_block: 10
+  minimum_usable_fraction_per_block: 0.5
+  minimum_usable_Train_blocks_per_state: 3
+  block_policy: mark_ineligible_without_reassigning_split_or_discarding_mask
+  minimum_veog_scale_uv: 0.01
+  native_nonfinite_veog_policy: reject_entire_affected_block
+  native_unrepaired_integrity_policy: reject_block_if_any_uninterpolated_channel_nonfinite_or_scale_below_1e-6_uV_or_repeated_fraction_above_0.99
+  empty_reference_pool_policy: fixed_caps_diagnostic_only_reject_all_windows
+storage:
+  format: HDF5
+  dtype: float32
+  compression: gzip
+  compression_level: 4
+  shuffle: true
+  chunk_channels: 19
+  chunk_samples: 1024
+  overlapping_windows_materialized: false
+  store_veog: false
+normalization:
+  method: global_channelwise_mean_and_standard_deviation
+  fit_population: unique_continuous_samples_covered_by_usable_windows_in_eligible_final_Real_Train_blocks
+  weighting: each_unique_time_sample_once_no_overlap_duplication
+  ddof: 0
+  minimum_std_uv: 1.0e-06
+  below_minimum_policy: fail_scaler_fit
+  per_window: false
+  per_state: false
+  fitted: false
+software_versions:
+  numpy: 2.5.2
+  pandas: 2.3.3
+  scipy: 1.18.1
+  mne: 1.12.1
+  h5py: 3.16.0
+  PyYAML: 6.0.3
+  pytest: 9.1.1
+  matplotlib: 3.11.1
