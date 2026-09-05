@@ -1,0 +1,59 @@
+{
+  "blocks": 240,
+  "by_split_state": [
+    {
+      "blocks": 30,
+      "candidate_windows": 750,
+      "eligible_blocks": 30,
+      "provisional_split": "Test",
+      "state": "EC",
+      "usable_windows": 743
+    },
+    {
+      "blocks": 30,
+      "candidate_windows": 750,
+      "eligible_blocks": 28,
+      "provisional_split": "Test",
+      "state": "EO",
+      "usable_windows": 653
+    },
+    {
+      "blocks": 75,
+      "candidate_windows": 1875,
+      "eligible_blocks": 75,
+      "provisional_split": "Train",
+      "state": "EC",
+      "usable_windows": 1858
+    },
+    {
+      "blocks": 75,
+      "candidate_windows": 1875,
+      "eligible_blocks": 68,
+      "provisional_split": "Train",
+      "state": "EO",
+      "usable_windows": 1632
+    },
+    {
+      "blocks": 15,
+      "candidate_windows": 375,
+      "eligible_blocks": 15,
+      "provisional_split": "Validation",
+      "state": "EC",
+      "usable_windows": 371
+    },
+    {
+      "blocks": 15,
+      "candidate_windows": 375,
+      "eligible_blocks": 13,
+      "provisional_split": "Validation",
+      "state": "EO",
+      "usable_windows": 312
+    }
+  ],
+  "final_cohort_locked": false,
+  "final_split_locked": false,
+  "normalization_fitted": false,
+  "provisional_5_1_2_feasible": 13,
+  "subjects": 15,
+  "train_subjects_pass": 14
+}

@@ -1,0 +1,16 @@
+subject_id,train_criterion_pass,source_header_output_verified,EO_Train_eligible_blocks,EC_Train_eligible_blocks,EO_Validation_eligible_blocks,EC_Validation_eligible_blocks,EO_Test_eligible_blocks,EC_Test_eligible_blocks,provisional_5_1_2_feasible,label,reason
+sub-010023,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010059,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010071,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010078,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010081,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010126,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010134,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010216,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010250,False,True,1,5,0,1,0,2,False,pilot_all_block_qc_not_feasible,frozen_Train_QC_failed;EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible
+sub-010276,True,True,4,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010277,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010278,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010279,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,
+sub-010280,True,True,3,5,0,1,2,2,False,pilot_all_block_qc_not_feasible,EO_Validation_assigned_block_ineligible
+sub-010282,True,True,5,5,1,1,2,2,True,pilot_all_block_qc_feasible,

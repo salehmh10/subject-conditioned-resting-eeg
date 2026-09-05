@@ -1,0 +1,9 @@
+{
+  "blocks": 240,
+  "estimate_basis": "measured pilot all-block mean times 211; excludes preserved Train outputs and receipts",
+  "estimated_211_GiB": 1.4376104064906636,
+  "estimated_211_bytes": 1543622420.0666666,
+  "pilot_MiB": 104.65258693695068,
+  "pilot_bytes": 109736191,
+  "subjects": 15
+}

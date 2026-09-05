@@ -1,0 +1,16 @@
+subject_id,raw_directory,source_hash_verified,all_16_blocks_verified,output_sha256,provenance_verified,journal_complete,technically_eligible_for_later_cleanup,blocker,raw_deleted
+sub-010023,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010023,True,True,bcb533aeffcb402c6537c75992482651f3113d3ca7496bef8dcb520584f53d08,True,True,True,,False
+sub-010059,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010059,True,True,7aed49a1ea3c779c165e3295318a6b884214bf93138e8c750e5800b40c282b64,True,True,True,,False
+sub-010071,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010071,True,True,0edc88d9c5d7404bb7c8fa08e0293a539e9e621aa11cc04d4ee0af5bd0457be5,True,True,True,,False
+sub-010078,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010078,True,True,f17d12fa16bfa56d2af51b459383f2dfe2698ca1d0b08e363f4f7e27aec7dbe5,True,True,True,,False
+sub-010081,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010081,True,True,df2676c8b1085c43de9e8011f1643449708107d7d223c8ea7195eadd1a139df3,True,True,True,,False
+sub-010126,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010126,True,True,f11e067ada0aaf5f9cd8fb55cb7daf83f7152488238cd4cfeb3d9959e997555b,True,True,True,,False
+sub-010134,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010134,True,True,d2325bb72a375465de1194033cb10b3f5fe7dd1709a9219be3ac7cdf6d5c56b9,True,True,True,,False
+sub-010216,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010216,True,True,0d04d2e41db01a2464c501c9f94ca0178a93798d895037ec7a150ce98697f570,True,True,True,,False
+sub-010250,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010250,True,True,190ee366902defcd242851897999a6cd6337d93204a80068838eb5857f0fc56d,True,True,False,frozen_Train_subject_QC_failed,False
+sub-010276,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010276,True,True,394f0b682b40eae053581b404b8fd8e6b7a0bf44b6f5fd25343a58d5ad01937b,True,True,True,,False
+sub-010277,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010277,True,True,5495645e267caa7f8d0826ae35cd105203ac5dae3b5faa40229e749ef7e0eff0,True,True,True,,False
+sub-010278,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010278,True,True,6ddfa71d5fa9632501f73ee5adf2e9b384e338a6b46e9deae44f050ad20b7866,True,True,True,,False
+sub-010279,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010279,True,True,faba59bb6d2fadd923afbf0d21942824c242373b47272030e4a8e193ebc4e0ed,True,True,True,,False
+sub-010280,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010280,True,True,ab9ee5bc9debbf88ad72c4a0f6e5ecde1fab882668aac42d966ac76173aa46a1,True,True,True,,False
+sub-010282,D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\data_raw\MPI-LEMON\sub-010282,True,True,f98189bba1fc15cf84f9785029d095ee434f2309f64ef06a414198cf0fb1d49d,True,True,True,,False

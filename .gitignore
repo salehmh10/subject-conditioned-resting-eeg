@@ -104,3 +104,6 @@ Thumbs.db
 *.temp
 *.bak
 ~$*
+
+# Durable all-block execution journal stays local; commit compact audit evidence.
+outputs/metrics/scenario2/streaming_all_block_status.jsonl

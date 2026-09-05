@@ -1,0 +1,33 @@
+{
+  "journal_bytes": 1412500,
+  "journal_path": "outputs\\metrics\\scenario2\\streaming_all_block_status.jsonl",
+  "journal_sha256": "edda2afbb82d72c1dd289fa9a9d8c03f59a42b10f6b74821f18e4ff2f604436a",
+  "outputs": {
+    "sub-010023": "bcb533aeffcb402c6537c75992482651f3113d3ca7496bef8dcb520584f53d08",
+    "sub-010059": "7aed49a1ea3c779c165e3295318a6b884214bf93138e8c750e5800b40c282b64",
+    "sub-010071": "0edc88d9c5d7404bb7c8fa08e0293a539e9e621aa11cc04d4ee0af5bd0457be5",
+    "sub-010078": "f17d12fa16bfa56d2af51b459383f2dfe2698ca1d0b08e363f4f7e27aec7dbe5",
+    "sub-010081": "df2676c8b1085c43de9e8011f1643449708107d7d223c8ea7195eadd1a139df3",
+    "sub-010126": "f11e067ada0aaf5f9cd8fb55cb7daf83f7152488238cd4cfeb3d9959e997555b",
+    "sub-010134": "d2325bb72a375465de1194033cb10b3f5fe7dd1709a9219be3ac7cdf6d5c56b9",
+    "sub-010216": "0d04d2e41db01a2464c501c9f94ca0178a93798d895037ec7a150ce98697f570",
+    "sub-010250": "190ee366902defcd242851897999a6cd6337d93204a80068838eb5857f0fc56d",
+    "sub-010276": "394f0b682b40eae053581b404b8fd8e6b7a0bf44b6f5fd25343a58d5ad01937b",
+    "sub-010277": "5495645e267caa7f8d0826ae35cd105203ac5dae3b5faa40229e749ef7e0eff0",
+    "sub-010278": "6ddfa71d5fa9632501f73ee5adf2e9b384e338a6b46e9deae44f050ad20b7866",
+    "sub-010279": "faba59bb6d2fadd923afbf0d21942824c242373b47272030e4a8e193ebc4e0ed",
+    "sub-010280": "ab9ee5bc9debbf88ad72c4a0f6e5ecde1fab882668aac42d966ac76173aa46a1",
+    "sub-010282": "f98189bba1fc15cf84f9785029d095ee434f2309f64ef06a414198cf0fb1d49d"
+  },
+  "processing_failures": 0,
+  "raw_deletions": 0,
+  "status_counts": {
+    "complete": 30,
+    "download_verified": 30,
+    "downloading": 30,
+    "planned": 30,
+    "preprocessing": 30,
+    "processed_verified": 30
+  },
+  "subjects_complete": 15
+}

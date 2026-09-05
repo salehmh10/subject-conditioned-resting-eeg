@@ -1,0 +1,241 @@
+subject_id,block_uid,block_index,state,provisional_split,candidate_windows,usable_windows,retained_fraction,block_eligible,finite,n_samples,rejection_reasons
+sub-010023,sub-010023_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-02,2,EO,Train,25,19,0.76,True,True,6815,"{""veog_ptp_uv"": 6}"
+sub-010023,sub-010023_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-04,4,EO,Validation,25,18,0.72,True,True,6815,"{""veog_ptp_uv"": 7}"
+sub-010023,sub-010023_block-05,5,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-06,6,EO,Train,25,17,0.68,True,True,6815,"{""target_max_scale_uv"": 1, ""veog_ptp_uv"": 8}"
+sub-010023,sub-010023_block-07,7,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-08,8,EO,Test,25,20,0.8,True,True,6815,"{""veog_ptp_uv"": 5}"
+sub-010023,sub-010023_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-10,10,EO,Train,25,21,0.84,True,True,6815,"{""veog_ptp_uv"": 4}"
+sub-010023,sub-010023_block-11,11,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-12,12,EO,Train,25,16,0.64,True,True,6815,"{""veog_ptp_uv"": 9}"
+sub-010023,sub-010023_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-14,14,EO,Test,25,21,0.84,True,True,6815,"{""veog_ptp_uv"": 4}"
+sub-010023,sub-010023_block-15,15,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010023,sub-010023_block-16,16,EO,Train,25,21,0.84,True,True,6815,"{""veog_ptp_uv"": 4}"
+sub-010059,sub-010059_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-04,4,EO,Validation,25,17,0.68,True,True,6815,"{""target_max_ptp_uv"": 6, ""veog_ptp_uv"": 6}"
+sub-010059,sub-010059_block-05,5,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-06,6,EO,Train,25,17,0.68,True,True,6815,"{""target_max_ptp_uv"": 8, ""veog_ptp_uv"": 8}"
+sub-010059,sub-010059_block-07,7,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-08,8,EO,Test,25,16,0.64,True,True,6815,"{""target_max_ptp_uv"": 9, ""veog_ptp_uv"": 9}"
+sub-010059,sub-010059_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-10,10,EO,Train,25,19,0.76,True,True,6815,"{""target_max_ptp_uv"": 6, ""target_max_scale_uv"": 1, ""veog_ptp_uv"": 6}"
+sub-010059,sub-010059_block-11,11,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-12,12,EO,Train,25,19,0.76,True,True,6815,"{""target_max_ptp_uv"": 6, ""veog_ptp_uv"": 6}"
+sub-010059,sub-010059_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-14,14,EO,Test,25,17,0.68,True,True,6815,"{""target_max_ptp_uv"": 8, ""veog_ptp_uv"": 8}"
+sub-010059,sub-010059_block-15,15,EC,Test,25,23,0.92,True,True,6815,"{""target_max_ptp_uv"": 2, ""veog_ptp_uv"": 2}"
+sub-010059,sub-010059_block-16,16,EO,Train,25,17,0.68,True,True,6815,"{""target_max_ptp_uv"": 8, ""veog_ptp_uv"": 8}"
+sub-010059,sub-010059_block-17,17,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010059,sub-010059_block-18,18,EO,Train,25,17,0.68,True,True,6815,"{""target_max_ptp_uv"": 8, ""veog_ptp_uv"": 8}"
+sub-010071,sub-010071_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-02,2,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-03,3,EC,Validation,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010071,sub-010071_block-04,4,EO,Train,25,24,0.96,True,True,6815,"{""target_max_diff_uv"": 1}"
+sub-010071,sub-010071_block-05,5,EC,Train,25,22,0.88,True,True,6815,"{""target_max_diff_uv"": 3}"
+sub-010071,sub-010071_block-06,6,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-07,7,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-08,8,EO,Train,25,21,0.84,True,True,6815,"{""target_max_diff_uv"": 4, ""target_max_ptp_uv"": 2}"
+sub-010071,sub-010071_block-09,9,EC,Train,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010071,sub-010071_block-10,10,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-11,11,EC,Train,25,19,0.76,True,True,6815,"{""target_max_diff_uv"": 6, ""target_max_ptp_uv"": 2}"
+sub-010071,sub-010071_block-12,12,EO,Validation,25,20,0.8,True,True,6815,"{""target_max_diff_uv"": 3, ""target_max_ptp_uv"": 2, ""target_max_scale_uv"": 1, ""veog_ptp_uv"": 2}"
+sub-010071,sub-010071_block-13,13,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-14,14,EO,Train,25,19,0.76,True,True,6815,"{""target_max_diff_uv"": 6}"
+sub-010071,sub-010071_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010071,sub-010071_block-16,16,EO,Test,25,18,0.72,True,True,6815,"{""target_max_diff_uv"": 7}"
+sub-010078,sub-010078_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-02,2,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-04,4,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-05,5,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-06,6,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-07,7,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-08,8,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-09,9,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-10,10,EO,Train,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010078,sub-010078_block-11,11,EC,Train,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010078,sub-010078_block-12,12,EO,Train,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010078,sub-010078_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-14,14,EO,Validation,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010078,sub-010078_block-15,15,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010078,sub-010078_block-16,16,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-02,2,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-03,3,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-04,4,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-05,5,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-06,6,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-07,7,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-08,8,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-09,9,EO,Validation,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-10,10,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-11,11,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-12,12,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-13,13,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-14,14,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-15,15,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-16,16,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010081,sub-010081_block-17,17,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-01,1,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-02,2,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-04,4,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-05,5,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-06,6,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-07,7,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-08,8,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-10,10,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-11,11,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-12,12,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-14,14,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010126,sub-010126_block-16,16,EO,Validation,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-02,2,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-03,3,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-04,4,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-05,5,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-06,6,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-07,7,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-08,8,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-10,10,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-11,11,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-12,12,EO,Validation,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-13,13,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-14,14,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010134,sub-010134_block-16,16,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-02,2,EO,Test,25,25,1.0,True,True,6814,{}
+sub-010216,sub-010216_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-04,4,EO,Train,25,23,0.92,True,True,6815,"{""veog_ptp_uv"": 2}"
+sub-010216,sub-010216_block-05,5,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-06,6,EO,Train,25,23,0.92,True,True,6815,"{""veog_ptp_uv"": 2}"
+sub-010216,sub-010216_block-07,7,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-08,8,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-09,9,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-10,10,EO,Train,25,25,1.0,True,True,6814,{}
+sub-010216,sub-010216_block-11,11,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-12,12,EO,Train,25,23,0.92,True,True,6815,"{""target_max_ptp_uv"": 1, ""target_max_scale_uv"": 2, ""veog_ptp_uv"": 2}"
+sub-010216,sub-010216_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-14,14,EO,Validation,25,23,0.92,True,True,6815,"{""veog_ptp_uv"": 2}"
+sub-010216,sub-010216_block-15,15,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010216,sub-010216_block-16,16,EO,Train,25,23,0.92,True,True,6815,"{""veog_ptp_uv"": 2}"
+sub-010250,sub-010250_block-01,1,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-02,2,EO,Train,25,9,0.36,False,True,6815,"{""veog_ptp_uv"": 16}"
+sub-010250,sub-010250_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-04,4,EO,Test,25,12,0.48,False,True,6815,"{""veog_ptp_uv"": 13}"
+sub-010250,sub-010250_block-05,5,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-06,6,EO,Train,25,14,0.56,True,True,6815,"{""veog_ptp_uv"": 11}"
+sub-010250,sub-010250_block-07,7,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-08,8,EO,Train,25,12,0.48,False,True,6815,"{""veog_ptp_uv"": 13}"
+sub-010250,sub-010250_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-10,10,EO,Validation,25,6,0.24,False,True,6815,"{""veog_ptp_uv"": 19}"
+sub-010250,sub-010250_block-11,11,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-12,12,EO,Train,25,12,0.48,False,True,6815,"{""veog_ptp_uv"": 13}"
+sub-010250,sub-010250_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-14,14,EO,Test,25,8,0.32,False,True,6815,"{""veog_ptp_uv"": 17}"
+sub-010250,sub-010250_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010250,sub-010250_block-16,16,EO,Train,25,12,0.48,False,True,6815,"{""veog_ptp_uv"": 13}"
+sub-010276,sub-010276_block-01,1,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010276,sub-010276_block-02,2,EO,Train,25,7,0.28,False,True,6815,"{""target_max_ptp_uv"": 18, ""veog_ptp_uv"": 18}"
+sub-010276,sub-010276_block-03,3,EC,Train,25,25,1.0,True,True,6814,{}
+sub-010276,sub-010276_block-04,4,EO,Test,25,21,0.84,True,True,6815,"{""target_max_ptp_uv"": 4, ""target_max_scale_uv"": 1, ""veog_ptp_uv"": 4}"
+sub-010276,sub-010276_block-05,5,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010276,sub-010276_block-06,6,EO,Train,25,23,0.92,True,True,6815,"{""target_max_ptp_uv"": 2, ""target_max_scale_uv"": 1, ""veog_ptp_uv"": 2}"
+sub-010276,sub-010276_block-07,7,EC,Train,25,25,1.0,True,True,6814,{}
+sub-010276,sub-010276_block-08,8,EO,Train,25,23,0.92,True,True,6815,"{""target_max_ptp_uv"": 2, ""veog_ptp_uv"": 2}"
+sub-010276,sub-010276_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010276,sub-010276_block-10,10,EO,Validation,25,23,0.92,True,True,6815,"{""veog_ptp_uv"": 2}"
+sub-010276,sub-010276_block-11,11,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010276,sub-010276_block-12,12,EO,Train,25,23,0.92,True,True,6814,"{""veog_ptp_uv"": 2}"
+sub-010276,sub-010276_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010276,sub-010276_block-14,14,EO,Test,25,23,0.92,True,True,6815,"{""target_max_ptp_uv"": 2, ""veog_ptp_uv"": 2}"
+sub-010276,sub-010276_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010276,sub-010276_block-16,16,EO,Train,25,19,0.76,True,True,6814,"{""target_max_ptp_uv"": 6, ""veog_ptp_uv"": 6}"
+sub-010277,sub-010277_block-01,1,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-02,2,EO,Train,25,23,0.92,True,True,6814,"{""target_max_diff_uv"": 2}"
+sub-010277,sub-010277_block-03,3,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-04,4,EO,Test,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010277,sub-010277_block-05,5,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-06,6,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-07,7,EC,Validation,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010277,sub-010277_block-08,8,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-10,10,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-11,11,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-12,12,EO,Train,25,25,1.0,True,True,6814,{}
+sub-010277,sub-010277_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-14,14,EO,Train,25,25,1.0,True,True,6814,{}
+sub-010277,sub-010277_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010277,sub-010277_block-16,16,EO,Validation,25,25,1.0,True,True,6814,{}
+sub-010278,sub-010278_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-02,2,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-03,3,EC,Test,25,22,0.88,True,True,6815,"{""target_max_diff_uv"": 3, ""target_max_ptp_uv"": 2}"
+sub-010278,sub-010278_block-04,4,EO,Train,25,21,0.84,True,True,6815,"{""target_max_diff_uv"": 4, ""target_max_ptp_uv"": 2}"
+sub-010278,sub-010278_block-05,5,EC,Train,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010278,sub-010278_block-06,6,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-07,7,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-08,8,EO,Validation,25,21,0.84,True,True,6815,"{""target_max_diff_uv"": 2, ""veog_ptp_uv"": 2}"
+sub-010278,sub-010278_block-09,9,EC,Test,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010278,sub-010278_block-10,10,EO,Train,25,25,1.0,True,True,6814,{}
+sub-010278,sub-010278_block-11,11,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-12,12,EO,Test,25,15,0.6,True,True,6815,"{""target_max_diff_uv"": 10, ""target_max_ptp_uv"": 6}"
+sub-010278,sub-010278_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-14,14,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-15,15,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010278,sub-010278_block-16,16,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-01,1,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-02,2,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-03,3,EC,Train,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2}"
+sub-010279,sub-010279_block-04,4,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-05,5,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-06,6,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-07,7,EC,Validation,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-08,8,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-10,10,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-11,11,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-12,12,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-13,13,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-14,14,EO,Train,25,23,0.92,True,True,6814,"{""target_max_diff_uv"": 2}"
+sub-010279,sub-010279_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010279,sub-010279_block-16,16,EO,Validation,25,25,1.0,True,True,6814,{}
+sub-010280,sub-010280_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-02,2,EO,Train,25,23,0.92,True,True,6815,"{""veog_ptp_uv"": 2}"
+sub-010280,sub-010280_block-03,3,EC,Validation,25,25,1.0,True,True,6814,{}
+sub-010280,sub-010280_block-04,4,EO,Train,25,11,0.44,False,True,6815,"{""veog_ptp_uv"": 14}"
+sub-010280,sub-010280_block-05,5,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-06,6,EO,Test,25,17,0.68,True,True,6815,"{""veog_ptp_uv"": 8}"
+sub-010280,sub-010280_block-07,7,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-08,8,EO,Train,25,15,0.6,True,True,6815,"{""veog_ptp_uv"": 10}"
+sub-010280,sub-010280_block-09,9,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-10,10,EO,Train,25,12,0.48,False,True,6814,"{""veog_ptp_uv"": 13}"
+sub-010280,sub-010280_block-11,11,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-12,12,EO,Validation,25,11,0.44,False,True,6815,"{""veog_ptp_uv"": 14}"
+sub-010280,sub-010280_block-13,13,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-14,14,EO,Train,25,15,0.6,True,True,6815,"{""veog_ptp_uv"": 10}"
+sub-010280,sub-010280_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010280,sub-010280_block-16,16,EO,Test,25,19,0.76,True,True,6815,"{""veog_ptp_uv"": 6}"
+sub-010282,sub-010282_block-01,1,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-02,2,EO,Validation,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-03,3,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-04,4,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-05,5,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-06,6,EO,Test,25,23,0.92,True,True,6815,"{""target_max_diff_uv"": 2, ""target_max_ptp_uv"": 2, ""target_max_scale_uv"": 2}"
+sub-010282,sub-010282_block-07,7,EC,Train,25,25,1.0,True,True,6814,{}
+sub-010282,sub-010282_block-08,8,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-09,9,EC,Validation,25,25,1.0,True,True,6814,{}
+sub-010282,sub-010282_block-10,10,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-11,11,EC,Train,25,25,1.0,True,True,6814,{}
+sub-010282,sub-010282_block-12,12,EO,Test,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-13,13,EC,Test,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-14,14,EO,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-15,15,EC,Train,25,25,1.0,True,True,6815,{}
+sub-010282,sub-010282_block-16,16,EO,Train,25,25,1.0,True,True,6815,{}
