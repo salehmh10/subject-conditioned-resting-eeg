@@ -1,0 +1,20 @@
+{
+  "batch_id": "001",
+  "cap_bytes": 5368709120,
+  "compact_estimate_basis": "conservative 32 MiB per subject including temporary allowance",
+  "created_utc": "2026-09-05T13:37:04.901782+00:00",
+  "declared_bytes": 5104883272,
+  "disk_ok": true,
+  "expected_compact_output_bytes": 268435456,
+  "expected_new_network_bytes": 5104883272,
+  "free_disk_bytes": 50063872000,
+  "largest_subject_bytes": 679868959,
+  "partial_note": "Resumable incomplete prefixes are unverified until final whole-file SHA256; server may ignore Range.",
+  "partial_prefixes": [],
+  "processing_overhead_bytes": 536870912,
+  "required_free_bytes": 6983931464,
+  "subject_count": 8,
+  "traffic_note": "Expected response payload excludes retries, ignored Range, and unmeasured HTTP/TLS/ISP overhead.",
+  "valid_partial_bytes": 0,
+  "verified_existing_bytes": 0
+}

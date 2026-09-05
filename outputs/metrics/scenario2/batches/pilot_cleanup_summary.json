@@ -1,0 +1,133 @@
+{
+  "bytes_freed": 6362309563,
+  "completed_utc": "2026-09-05T13:36:02.782633+00:00",
+  "deleted_subjects": [
+    "sub-010023",
+    "sub-010059",
+    "sub-010071",
+    "sub-010078",
+    "sub-010081",
+    "sub-010126",
+    "sub-010134",
+    "sub-010216",
+    "sub-010276",
+    "sub-010277",
+    "sub-010278",
+    "sub-010279",
+    "sub-010280",
+    "sub-010282"
+  ],
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "results": [
+    {
+      "blocker": "",
+      "bytes_freed": 622748849,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010023",
+      "subject_id": "sub-010023"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 687961825,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010059",
+      "subject_id": "sub-010059"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 668170092,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010071",
+      "subject_id": "sub-010071"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 666074358,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010078",
+      "subject_id": "sub-010078"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 692859211,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010081",
+      "subject_id": "sub-010081"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 654789237,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010126",
+      "subject_id": "sub-010126"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 627088826,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010134",
+      "subject_id": "sub-010134"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 129991024,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010216",
+      "subject_id": "sub-010216"
+    },
+    {
+      "blocker": "ValueError: frozen_Train_QC_failed; explicitly retained Pilot subject",
+      "bytes_freed": 0,
+      "raw_deleted": false,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250",
+      "subject_id": "sub-010250"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 266108363,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010276",
+      "subject_id": "sub-010276"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 269922633,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010277",
+      "subject_id": "sub-010277"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 268315488,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010278",
+      "subject_id": "sub-010278"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 276697921,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010279",
+      "subject_id": "sub-010279"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 260329886,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010280",
+      "subject_id": "sub-010280"
+    },
+    {
+      "blocker": "",
+      "bytes_freed": 271251850,
+      "raw_deleted": true,
+      "raw_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010282",
+      "subject_id": "sub-010282"
+    }
+  ],
+  "retained_subjects": [
+    "sub-010250"
+  ],
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+}

@@ -156,6 +156,8 @@ def test_disk_guard(tmp_path,monkeypatch):
 
 
 def execution_mocks(tmp_path,monkeypatch,fail=False):
+    from resting_eeg.data import environment
+    monkeypatch.setattr(environment,'configure_environment',lambda *a:{})
     freeze(tmp_path)
     frame, plan, _ = b.verify_frozen(tmp_path,'001')
     auth = {'authorization_code_head':'head'}

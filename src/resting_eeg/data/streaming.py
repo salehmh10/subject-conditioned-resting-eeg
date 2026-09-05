@@ -19,6 +19,7 @@ import pandas as pd
 import yaml
 
 from resting_eeg.common import canonical_hash
+from resting_eeg.data.environment import system_drive_guard, SystemDriveLowSpaceError
 from scripts.data import s2_06_download_manifest as downloader
 
 
@@ -408,6 +409,7 @@ def stream_subjects(
                 if local_existing_only and not plan["local_payloads_present"]:
                     raise FileNotFoundError(f"local-existing-only requires both complete payloads for {subject_id}")
                 stage = "downloading"
+                system_drive_guard('begin_or_resume_subject_download')
                 record_status(journal, run_id, subject_id, "downloading", local_existing_only=local_existing_only)
                 for row, target in rows:
                     if local_existing_only:
@@ -417,6 +419,7 @@ def stream_subjects(
                 downloader.copy_sidecars([subject_id], metadata_root, raw_root)
                 record_status(journal, run_id, subject_id, "download_verified", source_payloads=plan["source_payloads"])
                 stage = "preprocessing"
+                system_drive_guard('start_subject_preprocessing')
                 record_status(journal, run_id, subject_id, "preprocessing")
                 kwargs = dict(repo_root=repo_root, raw_root=raw_root, output_root=output_root,
                               config_path=config_path, metrics_root=metrics_root)
@@ -451,10 +454,12 @@ def stream_subjects(
             except Exception as exc:
                 status = {"downloading": "download_interrupted", "preprocessing": "preprocessing_failed",
                           "cleanup": "cleanup_failed"}.get(stage, "planning_failed")
+                if isinstance(exc, SystemDriveLowSpaceError):
+                    status = 'c_drive_low_space_guard'
                 terminal.append(record_status(journal, run_id, subject_id, status,
                                              error_type=type(exc).__name__, error=str(exc),
                                              raw_preserved=stage != "cleanup",
                                              raw_directory_exists=(raw_root / subject_id).is_dir()))
-                if not continue_on_error:
+                if isinstance(exc, SystemDriveLowSpaceError) or not continue_on_error:
                     break
     return terminal

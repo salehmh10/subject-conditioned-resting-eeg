@@ -46,6 +46,7 @@ def build_parser() -> argparse.ArgumentParser:
     mode.add_argument("--plan-next-batch", action="store_true")
     mode.add_argument("--execute-batch", action="store_true")
     mode.add_argument("--authorize-batch", action="store_true")
+    mode.add_argument("--authorize-resume", action="store_true")
     mode.add_argument("--cleanup-pilot", action="store_true")
     parser.add_argument("--batch-id")
     parser.add_argument("--batch-max-gib")
@@ -68,7 +69,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.retries < 0 or args.timeout <= 0:
             raise ValueError("retries must be nonnegative and timeout must be positive")
-        if any((args.plan_next_batch, args.execute_batch, args.authorize_batch, args.cleanup_pilot)):
+        if any((args.plan_next_batch, args.execute_batch, args.authorize_batch, args.authorize_resume, args.cleanup_pilot)):
             from resting_eeg.data import batches
             if args.processing_scope != 'all-blocks-mechanical':
                 raise ValueError('Batch operations require all-blocks-mechanical scope')
@@ -99,6 +100,8 @@ def main(argv: list[str] | None = None) -> int:
                     batches.verified_completed(REPO_ROOT),batches.git_head(REPO_ROOT),batches.frozen_hashes(REPO_ROOT)),indent=2))
             elif args.authorize_batch:
                 print(json.dumps(batches.authorize(REPO_ROOT,args.batch_id,directory,args.batch_manifest,cap),indent=2))
+            elif args.authorize_resume:
+                print(json.dumps(batches.authorize_resume(REPO_ROOT,args.batch_id,directory),indent=2))
             else:
                 if args.batch_manifest is None:
                     raise ValueError('Execution requires --batch-manifest')

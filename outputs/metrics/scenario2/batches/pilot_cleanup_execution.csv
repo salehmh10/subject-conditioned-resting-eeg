@@ -1,0 +1,16 @@
+subject_id,raw_directory,raw_deleted,bytes_freed,blocker
+sub-010023,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010023,True,622748849,
+sub-010059,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010059,True,687961825,
+sub-010071,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010071,True,668170092,
+sub-010078,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010078,True,666074358,
+sub-010081,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010081,True,692859211,
+sub-010126,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010126,True,654789237,
+sub-010134,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010134,True,627088826,
+sub-010216,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010216,True,129991024,
+sub-010250,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010250,False,0,ValueError: frozen_Train_QC_failed; explicitly retained Pilot subject
+sub-010276,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010276,True,266108363,
+sub-010277,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010277,True,269922633,
+sub-010278,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010278,True,268315488,
+sub-010279,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010279,True,276697921,
+sub-010280,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010280,True,260329886,
+sub-010282,D:\SHARIF\PROJECT\Datasets\MPI-LEMON-Scenario2\raw\sub-010282,True,271251850,

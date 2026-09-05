@@ -259,10 +259,19 @@ def fetch_one(
         if partial.exists():
             headers["Range"] = f"bytes={offset}-"
         request = urllib.request.Request(str(row["source_url"]), headers=headers)
+        from resting_eeg.data.environment import system_drive_guard, SystemDriveLowSpaceError
+        try:
+            system_drive_guard('begin_or_resume_asset_download')
+        except SystemDriveLowSpaceError as exc:
+            emit('c_drive_low_space_guard', error=str(exc), partial_preserved=partial.exists())
+            raise
         emit("downloading", attempt=attempt, resume_offset=offset)
         try:
             with urllib.request.urlopen(request, timeout=timeout) as response:
                 mode, expected = _validate_response(response, offset, size)
+                emit('response_validated', attempt=attempt, http_status=response.status,
+                     content_range=response.headers.get('Content-Range'), resume_offset=offset,
+                     resumed_prefix_bytes=offset if mode=='ab' else 0)
                 if offset and mode == "wb":
                     emit("range_ignored_restarting", attempt=attempt, resume_offset=offset)
                 received = 0

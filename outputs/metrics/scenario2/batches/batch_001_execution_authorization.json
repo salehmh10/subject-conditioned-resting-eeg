@@ -1,0 +1,38 @@
+{
+  "authorization_code_head": "13cd91df96357d42dfc2a7284ac9382050878a13",
+  "authorization_utc": "2026-09-05T13:37:04.903750+00:00",
+  "batch_id": "001",
+  "cap_bytes": 5368709120,
+  "cap_gib": 5.0,
+  "declared_bytes": 5104883272,
+  "expected_new_network_bytes": 5104883272,
+  "manifest_sha256": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "network_preflight_sha256": "40bb30827fb1c1d0d323a1a8eefd4ed05bd3d85a6c52ac2093fbebb749386431",
+  "permission": "Execute Batch 001 ONLY; no future batch planning or execution authorized by this record.",
+  "plan_sha256": "bc875d3808a29aa7733b28cd0fb70c25b7b21ec65e70648b3ca75ab910579166",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "prohibit_batch_002_during_this_assignment": true,
+  "resolved_paths": {
+    "access_config_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\configs\\access\\mechanical_heldout_v1.yaml",
+    "config_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\configs\\preprocessing\\frozen_preprocessing_v1.yaml",
+    "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+    "metrics_root": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2",
+    "output_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1",
+    "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+    "repo_root": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg",
+    "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+    "train_output_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1"
+  },
+  "subject_ids": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012"
+  ],
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+}

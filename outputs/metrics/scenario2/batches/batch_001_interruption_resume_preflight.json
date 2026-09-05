@@ -1,0 +1,64 @@
+{
+  "batch_id": "001",
+  "canary_output_sha256": "adbd9ac7ba876b028803de01dfd38f58c8062ab1e6e8137d06e7855a7b383da6",
+  "canary_raw_absent": true,
+  "canary_receipt_sha256": "8f765324c0f6cbb824e6758a15bd7377d79b4b8744bf40d2015b1f0efc02f588",
+  "canary_train_output_sha256": "3dcc6843a1fda16a55729976a558b3052e69335794d3986cb8220c918880b60b",
+  "environment": {
+    "environment": {
+      "JOBLIB_TEMP_FOLDER": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\joblib",
+      "MNE_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne",
+      "MNE_DONTWRITE_HOME": "true",
+      "MPLCONFIGDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\matplotlib",
+      "PIP_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pip",
+      "PYTEST_ADDOPTS": "--basetemp=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest\" -o cache_dir=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest-cache\"",
+      "PYTHONPYCACHEPREFIX": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "SCENARIO2_RUNTIME_ROOT": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "TEMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMPDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "XDG_CACHE_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "XDG_CONFIG_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "_MNE_FAKE_HOME_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne"
+    },
+    "resolved_paths": {
+      "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+      "processed_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed",
+      "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+      "runtime_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "scenario2_data_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2",
+      "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+    },
+    "system_drive": {
+      "applicable": true,
+      "free_bytes": 9439858688,
+      "minimum_free_bytes": 3221225472,
+      "operation": "environment_preflight",
+      "system_drive": "C:/"
+    },
+    "tempfile_gettempdir": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+  },
+  "expected_annex_key": "SHA256E-s624922800--c94aa307f18b1c7d4abb6e2b6c46d77d7b191a35797003594154140f93ebb4e8.eeg",
+  "expected_payload_bytes": 624922800,
+  "expected_payload_sha256": "c94aa307f18b1c7d4abb6e2b6c46d77d7b191a35797003594154140f93ebb4e8",
+  "frozen_artifact_sha256": {
+    "batch_001_execution_authorization.json": "b842c7245d2a376f6cf10467980b0362e5f49d4ee597cdfffc6228680470018e",
+    "batch_001_manifest.csv": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865",
+    "batch_001_plan.json": "64ee0671cf073af5bfc2066f721a28804fb6c561b5207dd8b3357580afb0ca66",
+    "batch_ledger.json": "ef7661c53427fb59c532b271ee31f1b3874cff664c5fc0c48aadf0228987d83d"
+  },
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "no_batch_002": true,
+  "no_conflicting_final": true,
+  "partial_bytes": 419430400,
+  "partial_note": "Resumable length and identity verified; full source SHA256 is verified only after completion.",
+  "partial_path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010003\\eeg\\sub-010003_task-resting_eeg.eeg.part",
+  "partial_sha256": "729802c20cb4e7367df8e67ab7a3fc42fc935bccc39de11c24a4b7f1f908d317",
+  "partial_subject": "sub-010003",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "range_header": "bytes=419430400-",
+  "sub_010002_verified": true,
+  "user_report": "User manually stopped at approximately 600 MB C: free; manually cleared approximately 7.7 GB pip cache; C: recovered to approximately 8.8 GiB.",
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced",
+  "verified_utc": "2026-09-05T14:33:44.075647+00:00"
+}

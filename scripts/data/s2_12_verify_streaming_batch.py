@@ -96,8 +96,12 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     for path in (trainpath,heldout.registry_path):
         rows=pd.read_csv(path);new=rows.loc[rows.subject_id.isin(plan['subject_ids'])]
         head_column='code_git_head' if 'code_git_head' in new else 'git_head'
-        assert set(new[head_column])=={auth['authorization_code_head']}
-        assert min(pd.to_datetime(new.timestamp_utc))>=pd.Timestamp(auth['authorization_utc'])
+        authorizations=[b.read_json(directory/'batch_001_execution_authorization.json')]
+        authorizations += [b.read_json(f) for f in sorted(directory.glob('batch_001_resume_authorization_*.json'))]
+        for row in new.to_dict('records'):
+            matching=[a for a in authorizations if a['authorization_code_head']==row[head_column]
+                      and pd.Timestamp(a['authorization_utc'])<=pd.Timestamp(row['timestamp_utc'])]
+            assert matching
     committed=pd.Timestamp(subprocess.check_output(['git','show','-s','--format=%cI',auth['authorization_code_head']],cwd=ROOT,text=True).strip())
     assert committed<=pd.Timestamp(auth['authorization_utc'])
     pre=b.read_json(p['metrics_root']/'mechanical_preflight.json')

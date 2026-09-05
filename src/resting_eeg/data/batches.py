@@ -317,7 +317,40 @@ def validate_authorization(root, batch_id, directory):
         raise ValueError('Authorized storage paths changed')
     if auth['network_preflight_sha256'] != sha256_file(directory/f'{batch_name(batch_id)}_network_preflight.json'):
         raise ValueError('Authorized network preflight changed')
+    base_path = directory/f'{batch_name(batch_id)}_execution_authorization.json'
+    for resume_path in sorted(directory.glob(f'{batch_name(batch_id)}_resume_authorization_*.json')):
+        resumed = read_json(resume_path)
+        if resumed['original_authorization_sha256'] != sha256_file(base_path):
+            raise ValueError('Original authorization changed after interruption')
+        for key in ('cap_bytes','declared_bytes','subject_ids','batch_id','manifest_sha256','plan_sha256',
+                    'preprocessing_config_sha256','mechanical_access_config_sha256','variable_batch_config_sha256',
+                    'resolved_paths','expected_new_network_bytes','network_preflight_sha256'):
+            if resumed[key] != auth[key]:
+                raise ValueError(f'Resume authorization changed frozen evidence: {key}')
+        auth = resumed
     return frame, plan, auth
+
+
+def authorize_resume(root, batch_id, directory):
+    """Supersede execution code only; preserve original authorization and freeze."""
+    from resting_eeg.data.environment import configure_environment
+    head=require_committed_clean(root)
+    frame,plan,previous=validate_authorization(root,batch_id,directory)
+    environment=configure_environment(root)
+    completed=verified_completed(root)
+    remaining=frame.loc[~frame.subject_id.isin(completed)].copy()
+    remaining_plan=dict(plan,subject_count=remaining.subject_id.nunique())
+    report=network_preflight(remaining,remaining_plan,paths(root)['raw_root'],paths(root)['output_root'])
+    sequence=len(list(directory.glob(f'{batch_name(batch_id)}_resume_authorization_*.json')))+1
+    name=f'{batch_name(batch_id)}_resume_authorization_{sequence:03}'
+    record=dict(previous,authorization_code_head=head,authorization_utc=utc_now(),
+        original_authorization_sha256=sha256_file(directory/f'{batch_name(batch_id)}_execution_authorization.json'),
+        previous_authorization_code_head=previous['authorization_code_head'],
+        resume_reason='User manually stopped for C: low space; D-only cache hardening and 3-GiB C: guard',
+        completed_subjects_reverified=[s for s in plan['subject_ids'] if s in completed],
+        resume_network_preflight=report,environment_preflight=environment)
+    write_json(directory/f'{name}.json',record)
+    return record
 
 
 def directory_bytes(path):
@@ -403,6 +436,9 @@ def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=Non
     journal = runtime/f'{name}_streaming_journal.jsonl'
     download = runtime/f'{name}_download_journal.jsonl'
     with st._journal_lock(runtime/'batch_execution'):
+        from resting_eeg.data.environment import configure_environment
+        environment=configure_environment(root)
+        write_json(directory/f'{name}_latest_environment_preflight.json',environment)
         # Recheck immediately before any subject request, and at each boundary.
         network_preflight(frame, plan, p['raw_root'], p['output_root'])
         update_ledger(directory, batch_id, batch_status='executing', execution_started=utc_now())
@@ -422,12 +458,12 @@ def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=Non
                 frozen_hashes(root)
                 if not result['raw_retained'] and (p['raw_root']/subject).exists():
                     raise ValueError('Cleanup verification failed')
-                if index == 0:
+                if index == 0 and not (directory/f'{name}_canary_verification.json').exists():
                     write_json(directory/f'{name}_canary_verification.json', dict(subject_id=subject,
                         passed=True, verified_utc=utc_now(), output_sha256=result['result']['output_sha256'],
                         n_blocks=16, fit_parameters_from='Train_only', heldout_parameters_are='apply_only',
                         durable_completion=True, raw_retained=result['raw_retained'], **frozen_hashes(root)))
-            elif index == 0 or not continue_on_error or result['status'] in {'preprocessing_failed','planning_failed','cleanup_failed'}:
+            elif index == 0 or not continue_on_error or result['status'] in {'preprocessing_failed','planning_failed','cleanup_failed','c_drive_low_space_guard'}:
                 # Implementation/infrastructure failure stops immediately; legitimate
                 # QC failure is a complete result with a recorded cleanup blocker.
                 update_ledger(directory, batch_id, batch_status='failed_or_partial')
@@ -450,7 +486,7 @@ def summarize(root, batch_id, directory):
     records, outputs, cleanup = [], [], []
     for subject in plan['subject_ids']:
         entries = [r for r in history if r.get('subject_id') == subject]
-        terminals = [r for r in entries if r['status'] in {'complete','download_interrupted','preprocessing_failed','planning_failed','cleanup_failed'}]
+        terminals = [r for r in entries if r['status'] in {'complete','download_interrupted','preprocessing_failed','planning_failed','cleanup_failed','c_drive_low_space_guard'}]
         terminal = terminals[-1] if terminals else {'status':'not_attempted', 'error':'No terminal journal entry'}
         successful = terminal['status'] == 'complete'
         receipt = terminal.get('result', {})
@@ -482,7 +518,9 @@ def summarize(root, batch_id, directory):
         actual_measured_network_payload_bytes=measured, actual_measured_network_payload_gib=measured/GIB,
         resumed_prefix_bytes_already_local=preflight['valid_partial_bytes'], verified_existing_bytes=preflight['verified_existing_bytes'],
         request_resume_offsets=[r['resume_offset'] for r in events if r['status']=='downloading' and r['resume_offset']],
-        retries=sum(r['status']=='retry_scheduled' for r in events), interruptions=sum(r['status']=='download_interrupted' for r in events),
+        resumed_prefix_bytes_validated=sum(r.get('resumed_prefix_bytes',0) for r in events if r['status']=='response_validated'),
+        manually_interrupted_runs=len(list(directory.glob(f'{name}_resume_authorization_*.json'))),
+        retries=sum(r['status']=='retry_scheduled' for r in events), interruptions=sum(r['status'] in {'download_interrupted','manual_interruption'} for r in events),
         subjects_completed=len(outputs), train_qc_passing=[r['subject_id'] for r in records if r['completed'] and r['train_qc_pass']],
         train_qc_failed=[r['subject_id'] for r in records if r['completed'] and not r['train_qc_pass']],
         provisionally_feasible=[r['subject_id'] for r in records if r['completed'] and r['provisional_5_1_2_feasible']],
