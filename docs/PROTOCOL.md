@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 004 stopped with 12 complete and 62 unresolved download failures; scientific rules remain frozen
+Status: Batch 004 autonomous continuation authorized for its 62 unresolved members; scientific rules remain frozen
 
 ## 1. Objective
 
@@ -314,3 +314,11 @@ All-block HDF5 addition is **87,664,489 bytes (83.603372 MiB)**. Cumulative prog
 The one-subject disk guard remains active; the 45-GiB network budget never became a simultaneous disk requirement. All 381 protected prior artifacts, original access records, scientific source/configuration, and the metadata clone remain unchanged. Each terminal subject has durable progress; snapshots exist after 10/20/30/40/50/60/70 terminals and final stop. Final tests: **299 passed in 38.11 seconds**; compileall and the read-only terminal-state verifier passed. Scientific held-out outcomes remain sealed, normalization remains unfitted, and the final cohort/split remain unlocked. **Batch 005 is unplanned. No Git push occurred.**
 
 See `BATCH_004_STREAMING_HANDOFF.md` for exact membership, results, preservation hashes, and conditional continuation instructions.
+
+## 2026-09-06: Persistent Batch 004 network recovery authorized
+
+The user explicitly authorizes continuation of exactly the 62 unresolved members of the existing Batch 004, starting at sub-010090 in frozen manifest order, without another prompt after temporary connectivity loss. This supersedes the earlier stopped-state instruction; historical failures remain audit evidence. All 84 existing completions, the three prior retained raw subjects, and the 528,482,304-byte sub-010232 partial were reverified at clean HEAD cd06b3671569346deb1945fb208fb659a1ad6373 before changes.
+
+The engineering-only network policy waits indefinitely on transient DNS/TCP/TLS/HTTP conditions, keeps the same subject/asset active, preserves partials, confirms recovery with two tiny probes, and resumes strict validated Range requests automatically. A detached single-instance supervisor, external D: heartbeat/logs, progress watchdog, and explicit graceful stop support operation independent of another conversational prompt. Hard identity/filesystem/disk/provenance/invariant failures stop without replacements. Tests and a local commit precede the numbered resume authorization and real requests. See BATCH_004_AUTONOMOUS_RUNNER.md for implementation and operating details.
+
+The exact 45-GiB cap, 74-member manifest/plan, original authorization, preprocessing/access hashes, Train-only fitting and held-out apply-only rules are unchanged. Original progress archives and journal prefixes are preserved. No Batch 005, scientific held-out analysis, normalization, final cohort/split lock, service, scheduled task, or Git push is authorized. Technical success requires 74 complete outputs and 1,184 verified blocks; final acceptance also requires tests, verifier, preservation checks, handoff, and clean Git.

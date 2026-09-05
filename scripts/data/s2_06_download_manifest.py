@@ -8,9 +8,11 @@ orchestrator for future execution. Retries are additional attempts, not a total.
 from __future__ import annotations
 
 import argparse
+from contextlib import nullcontext
 import hashlib
 import http.client
 import json
+from itertools import count
 import math
 import os
 import re
@@ -31,7 +33,7 @@ import pandas as pd
 REQUIRED_COLUMNS = {
     "subject_id", "relative_path", "source_url", "payload_size_bytes", "payload_sha256",
 }
-RETRYABLE_HTTP_CODES = {408, 429, 500, 502, 503, 504}
+RETRYABLE_HTTP_CODES = {408, 425, 429, 500, 502, 503, 504}
 
 
 class DownloadIntegrityError(ValueError):
@@ -199,6 +201,7 @@ def fetch_one(
     journal: DownloadJournal | None = None,
     progress: Callable[[str], None] | None = None,
     chunk_size: int = 8 * 1024 * 1024,
+    network_wait=None,
 ) -> str:
     """Verify/fetch one asset; preserve incomplete prefixes on transient failures.
 
@@ -215,6 +218,8 @@ def fetch_one(
     size = int(row["payload_size_bytes"])
     digest = str(row["payload_sha256"])
     partial = target.with_name(target.name + ".part")
+    if network_wait is not None:
+        network_wait.begin(row, target)
 
     def emit(status: str, **details: object) -> None:
         if journal is not None:
@@ -243,7 +248,10 @@ def fetch_one(
     target.parent.mkdir(parents=True, exist_ok=True)
     if partial.is_symlink():
         raise ValueError(f"refusing symlink partial: {partial}")
-    for attempt in range(1, retries + 2):
+    integrity_restarts = 0
+    for attempt in (count(1) if network_wait is not None else range(1, retries + 2)):
+        if network_wait is not None:
+            network_wait.check_stop()
         # The previous read can fail immediately after delivering all bytes. Check
         # for a complete prefix on every attempt instead of requesting bytes=N-.
         if partial.exists() and partial.stat().st_size >= size:
@@ -252,8 +260,14 @@ def fetch_one(
                     return promote("resumed_and_verified")
                 except DownloadIntegrityError:
                     pass
-            quarantine = _quarantine(partial)
-            emit("partial_quarantined", quarantine=str(quarantine))
+            if network_wait is not None:
+                if integrity_restarts:
+                    raise DownloadIntegrityError('Repeated complete partial integrity mismatch')
+                network_wait.quarantine(partial, emit, 'invalid_complete_partial')
+                integrity_restarts += 1
+            else:
+                quarantine = _quarantine(partial)
+                emit("partial_quarantined", quarantine=str(quarantine))
         offset = partial.stat().st_size if partial.exists() else 0
         headers = {"User-Agent": "scenario2-audited-downloader/2", "Accept-Encoding": "identity"}
         if partial.exists():
@@ -267,45 +281,77 @@ def fetch_one(
             raise
         emit("downloading", attempt=attempt, resume_offset=offset)
         try:
-            with urllib.request.urlopen(request, timeout=timeout) as response:
+            if network_wait is not None:
+                network_wait.guard(size - offset)
+            with urllib.request.urlopen(request, timeout=45 if network_wait is not None else timeout) as response:
+                if network_wait is not None:
+                    from resting_eeg.data.network_wait import response_identity
+                    response_identity(response, row)
                 mode, expected = _validate_response(response, offset, size)
                 emit('response_validated', attempt=attempt, http_status=response.status,
                      content_range=response.headers.get('Content-Range'), resume_offset=offset,
                      resumed_prefix_bytes=offset if mode=='ab' else 0)
                 if offset and mode == "wb":
-                    emit("range_ignored_restarting", attempt=attempt, resume_offset=offset)
+                    if network_wait is not None:
+                        network_wait.quarantine(partial, emit, 'server_ignored_range')
+                        network_wait.guard(size)
+                    else:
+                        quarantine = _quarantine(partial)
+                        emit('partial_quarantined', quarantine=str(quarantine), reason='server_ignored_range')
+                    emit("range_ignored_restarting", attempt=attempt, resume_offset=offset, extra_required_body_bytes=offset)
                 received = 0
                 next_report = 64 * 1024 * 1024
-                with partial.open(mode) as handle:
-                    while True:
-                        interrupted = None
-                        try:
-                            chunk = response.read(min(chunk_size, expected - received + 1))
-                        except http.client.IncompleteRead as exc:
-                            # Some HTTP readers carry the final valid prefix in the exception.
-                            chunk, interrupted = exc.partial, exc
-                        if chunk:
-                            # Application body bytes, including retries and bytes that
-                            # subsequently fail integrity. Never equate file size with traffic.
-                            emit("response_body", attempt=attempt, received_body_bytes=len(chunk))
-                        if received + len(chunk) > expected:
-                            raise DownloadIntegrityError(f"response body exceeds expected {expected} bytes")
-                        if chunk:
-                            handle.write(chunk)
-                            received += len(chunk)
-                            if received >= next_report:
-                                emit("progress", attempt=attempt, bytes=(offset if mode == "ab" else 0) + received)
-                                next_report = received + 64 * 1024 * 1024
-                        if interrupted is not None:
-                            raise interrupted
-                        if not chunk:
-                            break
-                    handle.flush()
-                    os.fsync(handle.fileno())
+                unrecorded = 0
+                last_fsync = time.monotonic()
+                watch = network_wait.watch(response) if network_wait is not None else nullcontext(lambda: None)
+                with watch as byte_progress, partial.open(mode) as handle:
+                    try:
+                        while True:
+                            if network_wait is not None:
+                                network_wait.check_stop()
+                            interrupted = None
+                            try:
+                                reader = getattr(response, 'read1', response.read) if network_wait is not None else response.read
+                                chunk = reader(min(chunk_size, expected - received + 1))
+                            except http.client.IncompleteRead as exc:
+                                chunk, interrupted = exc.partial, exc
+                            unrecorded += len(chunk)
+                            if received + len(chunk) > expected:
+                                raise DownloadIntegrityError(f"response body exceeds expected {expected} bytes")
+                            if chunk:
+                                handle.write(chunk)
+                                received += len(chunk)
+                                byte_progress()
+                                if network_wait is not None:
+                                    network_wait.received(len(chunk), (offset if mode == 'ab' else 0) + received)
+                                if network_wait is None or unrecorded >= chunk_size or time.monotonic()-last_fsync >= 10:
+                                    handle.flush()
+                                    os.fsync(handle.fileno())
+                                    emit('response_body', attempt=attempt, received_body_bytes=unrecorded)
+                                    unrecorded = 0
+                                    last_fsync = time.monotonic()
+                                if received >= next_report:
+                                    emit("progress", attempt=attempt, bytes=(offset if mode == "ab" else 0) + received)
+                                    next_report = received + 64 * 1024 * 1024
+                            if interrupted is not None:
+                                raise interrupted
+                            if not chunk:
+                                break
+                    finally:
+                        handle.flush()
+                        os.fsync(handle.fileno())
+                        if unrecorded:
+                            emit('response_body', attempt=attempt, received_body_bytes=unrecorded)
                 if received != expected:
                     raise http.client.IncompleteRead(b"", expected - received)
             return promote("resumed_and_verified" if offset and mode == "ab" else "downloaded_and_verified")
         except DownloadIntegrityError as exc:
+            if network_wait is not None and partial.exists():
+                network_wait.quarantine(partial, emit, str(exc))
+                if integrity_restarts == 0:
+                    integrity_restarts += 1
+                    emit('controlled_integrity_redownload', error=str(exc))
+                    continue
             quarantine = _quarantine(partial) if partial.exists() else None
             emit("failed", attempt=attempt, error=str(exc), quarantine=str(quarantine) if quarantine else None)
             raise
@@ -313,6 +359,9 @@ def fetch_one(
             emit("failed", attempt=attempt, error=str(exc), partial_preserved=partial.exists())
             raise
         except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException, OSError) as exc:
+            if network_wait is not None:
+                network_wait.recover(exc, row, partial, emit)
+                continue
             retryable = not isinstance(exc, urllib.error.HTTPError) or exc.code in RETRYABLE_HTTP_CODES
             emit("download_interrupted", attempt=attempt, error=str(exc), partial_bytes=partial.stat().st_size if partial.exists() else 0)
             if not retryable or attempt > retries:

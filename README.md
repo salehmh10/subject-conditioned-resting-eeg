@@ -4,6 +4,8 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
+**Batch 004 automatic continuation is authorized.** The 62 unresolved members will resume in the original frozen order with unlimited transient network waiting and a persistent supervisor. The 12 Batch 004 completions and 72 earlier completions are preserved. See [runner policy and safe-stop instructions](docs/BATCH_004_AUTONOMOUS_RUNNER.md). Batch 005 remains prohibited. The following numbers describe the verified starting state of this continuation.
+
 **BATCH_004_FAILED_OR_PARTIAL.** Network execution is stopped after **74/74 frozen members reached durable terminal states**. **12 completed technically (192 blocks); 62 remain unresolved download failures**, with QC and provisional feasibility unassessed. The ledger is `failed_or_partial`. This does not claim all 74 were processed.
 
 The immutable **45-GiB cap is 48,318,382,080 bytes**. Frozen membership contains **74 subjects / 148 assets** in contiguous authoritative order, beginning with sub-010075 and ending with sub-010241. Declared and initially expected payload: **48,277,992,566 bytes (44.962384334 GiB)**. Unused membership capacity: **40,389,514 bytes (0.037615666 GiB)**. The first unassigned candidate remains sub-010242 (662,012,959 bytes); no replacement or Batch 005 membership was generated.

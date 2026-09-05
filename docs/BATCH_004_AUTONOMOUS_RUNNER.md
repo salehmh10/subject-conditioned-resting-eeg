@@ -1,0 +1,29 @@
+# Batch 004 persistent continuation
+
+The user authorized automatic continuation of the existing 74-member, 45-GiB Batch 004 on 2026-09-06. This supersedes the historical stop instruction in `BATCH_004_STREAMING_HANDOFF.md`. The original manifest, plan, authorization, scientific code/configuration, and completed results remain frozen. Batch 005 is prohibited.
+
+The clean starting HEAD was `cd06b3671569346deb1945fb208fb659a1ad6373`. The read-only verifier passed all 84 existing completions, 1,344 blocks, prior retained raw, frozen hashes, and current partial state. External `runtime/batches/batch_004_autonomous_starting_state.json` protects 357 existing output/receipt/raw files, original progress archives, and all three journal prefixes. It records the 12 completed Batch 004 members, 62 unresolved members derived in frozen order, and the sub-010232 prefix (528,482,304 bytes; SHA256 `105dca88b62df36d3b88d0b66d3dfab76120b2b60c5672db904f7551180f86a1`). The first continuation subject is sub-010090.
+
+`network_wait.py` supplies an opt-in transport policy to the existing downloader and sequential streaming implementation. DNS, connection/read timeouts, reset/abort, temporary TLS, disconnect, incomplete body, and HTTP 408/425/429/500/502/503/504 enter nonterminal `waiting_for_network`. They never exhaust a retry budget or advance the current subject. Backoff is 15/30/60/120/300 seconds with small capped jitter, repeated indefinitely. HTTP 429 Retry-After can require a longer delay. Recovery requires two successful checks five seconds apart: exact-host DNS and an HTTPS HEAD (TCP/TLS and certificate validation) of the exact frozen object, matching its size. An unsupported HEAD permits only a one-byte Range probe with measured discarded bytes. Full-file size/SHA256 remains mandatory.
+
+Downloads use a 45-second connect timeout, 120-second socket read timeout, and a separate 180-second watchdog on actual delivered bytes. The watchdog shuts down only the current socket/response. Every 8 MiB or ten seconds of received progress, and on exit from the file writer, the partial is flushed and fsynced. Interruptions record exact prefix size/SHA256. Resume appends only after HTTP 206 and exact Content-Range. HTTP 200 on a Range request quarantines the old prefix externally before a guarded full restart. Corrupt full payloads get one controlled redownload; a repeated mismatch is hard-blocking. Quarantine evidence stays under external runtime, outside raw cleanup.
+
+Persistent 403/404 contradicting the manifest, unsafe paths, identity/protocol/frozen-hash mismatch, filesystem errors, disk safety guard failure, provenance/output failure, or another code invariant stop the runner as `BATCH_004_HARD_BLOCKED`. No replacement subject is selected. Scientific processing and cleanup retain the existing verification gates, Train-only fitting, apply-only held-out behavior, and recorded QC retention rules.
+
+The supervisor (`scripts/data/s2_14_autonomous_batch_supervisor.py`) holds an OS single-instance lock and monitors one child running `batches.execute_batch`. The child derives the unresolved list from the unchanged manifest and verified completion evidence. It never requests the 84 pre-existing completions. Process locks are released by the OS after exit; a stale lock filename alone does not mean a process is alive. An unexplained child exit is a hard invariant failure, with stderr preserved.
+
+After the implementation/tests/docs commit, create the numbered authorization and launch:
+
+```powershell
+. .\scripts\setup_scenario2_environment.ps1
+.\.venv\Scripts\python.exe scripts/data/s2_14_autonomous_batch_supervisor.py --authorize-resume
+.\scripts\run_batch_004_autoresume.ps1
+```
+
+The launcher uses hidden `Start-Process` and does not install a service or scheduled task. `-Attached` is available if detachment is unavailable. PID, OS lock, heartbeat, worker state, and append-only stdout/stderr logs are under external `runtime/batches`, prefixed `batch_004_autoresume`. The worker snapshot and parent heartbeat update every 30 seconds, including during waits. Heartbeat records current subject/asset, partial and expected size, subject percentage, completed/unresolved counts, connectivity failures/backoff, last successful network time, cumulative measured response bytes, free C:/D: GiB, and manifest SHA256.
+
+For an explicit graceful stop, create external `runtime/batches/STOP_BATCH_004`. The downloader finishes/fsyncs its received chunk, closes the response, journals a nonterminal pause, and exits `manually_paused`. Ctrl+C requests the same behavior. During scientific processing a stop is honored at the next safe boundary. The runner does not create the sentinel during ordinary operation. Remove an intentionally created sentinel before a later manually requested restart. No further authorization is needed merely for transient network recovery while the process remains alive.
+
+Historical download/streaming/progress journal lines remain unchanged. Continuation events append. Original progress archives remain immutable; continuation archives use distinct names. Current summary/progress are refreshed as subjects complete. Processing completion is labeled `BATCH_004_AWAITING_FINAL_ACCEPTANCE` until final tests, the read-only verifier, preservation checks, handoff, and a clean local results commit are complete. Only then is `BATCH_004_AUTONOMOUS_RESUME_COMPLETE` reported. No scientific held-out analysis, numerical normalization, final cohort/split lock, or push is authorized.
+
+Pre-continuation validation: the full offline suite passed 344 tests in 78.55 seconds, including 45 added recovery/supervision cases; compileall passed. All tests used external D: temp/cache paths and mocked or synthetic network behavior. The read-only starting-state verifier passed before implementation changes. No real EEG request was made during implementation or testing.

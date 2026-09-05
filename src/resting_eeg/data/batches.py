@@ -408,7 +408,7 @@ def validate_authorization(root, batch_id, directory):
     return frame, plan, auth
 
 
-def authorize_resume(root, batch_id, directory):
+def authorize_resume(root, batch_id, directory, *, network_policy=None):
     """Supersede execution code only; preserve original authorization and freeze."""
     from resting_eeg.data.environment import configure_environment
     head=require_committed_clean(root)
@@ -428,6 +428,10 @@ def authorize_resume(root, batch_id, directory):
         completed_subjects_reverified=[s for s in plan['subject_ids'] if s in completed],
         unresolved_subject_ids=remaining_ids,
         resume_network_preflight=report,environment_preflight=environment)
+    if network_policy is not None:
+        record.update(network_wait_policy=network_policy, network_wait_policy_sha256=canonical_hash(network_policy),
+            autonomous_starting_state_sha256=sha256_file(runtime_directory(root)/f'{batch_name(batch_id)}_autonomous_starting_state.json'),
+            partial_prefixes=report['partial_prefixes'], prohibit_batch_005=True)
     write_json(directory/f'{name}.json',record)
     return record
 
@@ -513,7 +517,7 @@ def progress_checkpoint(root, batch_id, directory, current_subject=None, *, fina
     terminal_statuses = {'complete','download_interrupted','preprocessing_failed','planning_failed','cleanup_failed','c_drive_low_space_guard'}
     terminals = {r['subject_id']:r for r in history if r.get('subject_id') in plan['subject_ids'] and r['status'] in terminal_statuses}
     completed = [r for r in terminals.values() if r['status']=='complete']
-    pending = [s for s in plan['subject_ids'] if s not in terminals]
+    pending = [s for s in plan['subject_ids'] if s not in terminals or terminals[s]['status'] != 'complete']
     raw_freed = {r['subject_id']:r['bytes_freed'] for r in history if r['status']=='raw_deleted' and 'bytes_freed' in r}
     measured = sum(r.get('received_body_bytes',0) for r in events)
     record = dict(batch_id=batch_id, timestamp_utc=utc_now(), frozen_membership_count=plan['subject_count'],
@@ -536,14 +540,18 @@ def progress_checkpoint(root, batch_id, directory, current_subject=None, *, fina
     write_json(runtime/f'{name}_progress.json',record)
     st.append_status(runtime/f'{name}_progress_journal.jsonl','batch-progress',current_subject or '',
                      'checkpoint',progress=record)
-    if len(terminals) and len(terminals)%10==0 or final:
+    if (len(terminals) and len(terminals)%10==0) or (completed and len(completed)%10==0) or final:
         suffix='final' if final else f'{len(terminals):03}'
-        write_json(runtime/f'{name}_progress_{suffix}.json',record)
+        archive = runtime/f'{name}_progress_{suffix}.json'
+        # Original attempt snapshots remain immutable audit evidence on continuation.
+        if archive.exists():
+            archive = runtime/f'{name}_progress_resume_{len(completed):03}_{suffix}.json'
+        write_json(archive,record)
     return record
 
 
 def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=None,
-                  delete_raw=False, continue_on_error=False, retries=3, timeout=60, selected=()):
+                  delete_raw=False, continue_on_error=False, retries=3, timeout=60, selected=(), network_wait=None):
     p = paths(root)
     verify_frozen(directory, batch_id, manifest_path, requested_cap)
     frame, plan, auth = validate_authorization(root, batch_id, directory)
@@ -566,16 +574,22 @@ def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=Non
         for index, subject in enumerate(plan['subject_ids']):
             if selected and subject not in selected:
                 continue
+            if network_wait is not None:
+                network_wait.check_stop()
+                network_wait.update(state='subject_preflight', current_subject=subject, current_asset=None)
             validate_authorization(root, batch_id, directory)
             print(f'BATCH {batch_id} [{index+1}/{len(plan["subject_ids"])}] {subject}', flush=True)
+            options = {'network_wait': network_wait} if network_wait is not None else {}
             result = st.stream_subjects(frame.loc[frame.subject_id == subject], **p,
                 execute=True, processing_scope='all-blocks-mechanical', delete_raw_after_success=delete_raw,
                 continue_on_error=True, retries=retries, timeout=timeout,
-                journal_path=journal, download_journal_path=download)[0]
+                journal_path=journal, download_journal_path=download, **options)[0]
             print(json.dumps(result if result['status'] != 'complete' else dict(subject_id=subject,
                 status='complete', qc_pass=result['result']['qc_pass'], raw_retained=result['raw_retained'])), flush=True)
             progress_checkpoint(root, batch_id, directory, subject)
             if result['status'] == 'complete':
+                if network_wait is not None:
+                    network_wait.update(state='subject_complete', completed_subject=subject, current_asset=None)
                 st._verify_receipt(result['result'], subject, p['config_path'], p['output_root'])
                 frozen_hashes(root)
                 if not result['raw_retained'] and (p['raw_root']/subject).exists():

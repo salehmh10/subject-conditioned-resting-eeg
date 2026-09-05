@@ -107,7 +107,7 @@ def test_checkpoints_preserve_terminal_failure_and_exact_measured_counts(tmp_pat
     assert record['completed_count']==9 and record['technical_failed_count']==1 and record['qc_failed_count']==1
     assert record['measured_response_body_bytes']==50 and record['raw_deleted_bytes']==10
     assert record['raw_retained_bytes']==7 and record['compact_output_bytes']==27
-    assert record['next_subject']=='sub-011'
+    assert record['next_subject']=='sub-010'  # unresolved failures stay assigned in original order
     assert b.read_json(runtime/'batch_004_progress_010.json')==record
     assert len(b.read_journal(runtime/'batch_004_progress_journal.jsonl'))==10
     final=b.progress_checkpoint(tmp_path,'004',tmp_path,final=True)

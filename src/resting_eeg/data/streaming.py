@@ -20,6 +20,7 @@ import yaml
 
 from resting_eeg.common import canonical_hash
 from resting_eeg.data.environment import system_drive_guard, SystemDriveLowSpaceError
+from resting_eeg.data.network_wait import ManuallyPaused
 from scripts.data import s2_06_download_manifest as downloader
 
 
@@ -334,6 +335,7 @@ def stream_subjects(
     train_output_root: Path | None = None, fit_parameters_from: str = "Train_only",
     download_journal_path: Path | None = None,
     temp_root: Path | None = None,
+    network_wait=None,
 ) -> list[dict]:
     """Plan or process each selected subject sequentially; return terminal records.
 
@@ -418,10 +420,14 @@ def stream_subjects(
                     if local_existing_only:
                         downloader.verify_file(target, int(row["payload_size_bytes"]), str(row["payload_sha256"]))
                     else:
-                        downloader.fetch_one(row, target, retries=retries, timeout=timeout, journal=download_journal)
+                        options = {'network_wait': network_wait} if network_wait is not None else {}
+                        downloader.fetch_one(row, target, retries=retries, timeout=timeout, journal=download_journal, **options)
                 downloader.copy_sidecars([subject_id], metadata_root, raw_root)
                 record_status(journal, run_id, subject_id, "download_verified", source_payloads=plan["source_payloads"])
                 stage = "preprocessing"
+                if network_wait is not None:
+                    network_wait.check_stop()
+                    network_wait.update(state='preprocessing', current_asset=None)
                 system_drive_guard('start_subject_preprocessing')
                 record_status(journal, run_id, subject_id, "preprocessing")
                 kwargs = dict(repo_root=repo_root, raw_root=raw_root, output_root=output_root,
@@ -454,6 +460,9 @@ def stream_subjects(
                                              source_payloads=plan["source_payloads"], raw_retained=False,
                                              cleanup_requested=True)
                 terminal.append(complete)
+            except (KeyboardInterrupt, ManuallyPaused):
+                record_status(journal, run_id, subject_id, 'manually_paused', raw_preserved=True, terminal=False)
+                raise
             except Exception as exc:
                 status = {"downloading": "download_interrupted", "preprocessing": "preprocessing_failed",
                           "cleanup": "cleanup_failed"}.get(stage, "planning_failed")
