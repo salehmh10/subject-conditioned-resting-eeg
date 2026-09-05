@@ -30,5 +30,5 @@ sub-010068,complete,True,True,True,True,True,,,,True,False,656786850,0
 sub-010069,complete,True,True,True,True,True,,,,True,False,641113249,0
 sub-010070,complete,True,True,True,True,True,,,,True,False,663904523,0
 sub-010072,complete,True,True,True,True,True,,,,True,False,639736836,0
-sub-010073,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,402653184
-sub-010074,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
+sub-010073,complete,True,True,True,True,True,,,,True,False,625588452,0
+sub-010074,complete,True,True,True,True,True,,,,True,False,666793691,0

@@ -1,0 +1,304 @@
+{
+  "batch_004_planned": false,
+  "batch_blocks": 528,
+  "batch_ledger_state": "complete",
+  "batch_subjects_complete": 33,
+  "compact_hdf5_bytes_added": 14544040,
+  "cumulative_completed_subjects": 72,
+  "cumulative_provisionally_feasible": 68,
+  "cumulative_train_qc_pass": 69,
+  "execution_exit_code": 0,
+  "execution_head": "14a1b10df5a226901f347e8c0cfca2f577449ed0",
+  "frozen_files_unchanged": true,
+  "git_push_occurred": false,
+  "network_stopped": true,
+  "new_interruptions": 0,
+  "new_requested_subjects": [
+    "sub-010073",
+    "sub-010074"
+  ],
+  "new_response_body_bytes": 889641134,
+  "new_retries": 0,
+  "normalization_fitted": false,
+  "outputs": [
+    {
+      "blocks": "16",
+      "output_bytes": "7285207",
+      "output_path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010073_all_blocks.h5",
+      "output_sha256": "24edc57526ef3c0255d6ef641b43bcd5ba66a4d97b5d806d3d59ff8b0b510ba0",
+      "receipt_sha256": "b3fc7f9f312170a7344641cb28163ad7558c3a6c9b0928110413a67aee979676",
+      "subject_id": "sub-010073"
+    },
+    {
+      "blocks": "16",
+      "output_bytes": "7258833",
+      "output_path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1\\sub-010074_all_blocks.h5",
+      "output_sha256": "791fd35685538c984ce343034d6aa7ab09f890486131c59255e201ec70246dae",
+      "receipt_sha256": "65365ceb3296b257ae7d612484cd3497a0e788f9e7663acf723d02f007f0cd21",
+      "subject_id": "sub-010074"
+    }
+  ],
+  "prior_batches_unchanged": true,
+  "prior_download_journal_prefix_unchanged": true,
+  "prior_output_artifacts_unchanged": 280,
+  "prior_streaming_journal_prefix_unchanged": true,
+  "raw_bytes_freed": 1292382143,
+  "raw_directories_deleted": [
+    "sub-010073",
+    "sub-010074"
+  ],
+  "remaining_unassigned_subjects": 139,
+  "resume_authorization": "batch_003_resume_authorization_001.json",
+  "resume_authorization_sha256": "7bb658917ddeff1b61218b9333d06676da8c79062565149375d25eebc3da90e3",
+  "resume_responses": [
+    {
+      "attempt": 1,
+      "content_range": "bytes 402653184-625542799/625542800",
+      "expected_bytes": 625542800,
+      "expected_sha256": "9024d86996460bd58d11bb5dcfa5d61fa104523f549b8869bf00f0df69abcd40",
+      "http_status": 206,
+      "relative_path": "sub-010073/eeg/sub-010073_task-resting_eeg.eeg",
+      "resume_offset": 402653184,
+      "resumed_prefix_bytes": 402653184,
+      "status": "response_validated",
+      "subject_id": "sub-010073",
+      "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.eeg",
+      "timestamp_utc": "2026-09-05T20:38:14.937304+00:00"
+    },
+    {
+      "attempt": 1,
+      "content_range": null,
+      "expected_bytes": 1759,
+      "expected_sha256": "d4904687770f24b0385c1f80e38678521190b84fdde8f4a966570b552c3e8534",
+      "http_status": 200,
+      "relative_path": "sub-010073/eeg/sub-010073_task-resting_eeg.vhdr",
+      "resume_offset": 0,
+      "resumed_prefix_bytes": 0,
+      "status": "response_validated",
+      "subject_id": "sub-010073",
+      "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.vhdr",
+      "timestamp_utc": "2026-09-05T20:39:21.824557+00:00"
+    },
+    {
+      "attempt": 1,
+      "content_range": null,
+      "expected_bytes": 666748000,
+      "expected_sha256": "57a7adc35a5067d8928faadaa6347a7351248520f969290633b7631aba0ff2c4",
+      "http_status": 200,
+      "relative_path": "sub-010074/eeg/sub-010074_task-resting_eeg.eeg",
+      "resume_offset": 0,
+      "resumed_prefix_bytes": 0,
+      "status": "response_validated",
+      "subject_id": "sub-010074",
+      "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010074\\eeg\\sub-010074_task-resting_eeg.eeg",
+      "timestamp_utc": "2026-09-05T20:39:50.671907+00:00"
+    },
+    {
+      "attempt": 1,
+      "content_range": null,
+      "expected_bytes": 1759,
+      "expected_sha256": "612790387c661d1bafd7fccd20edbdeb49a47c4391e6c6aafd739fd762fa1537",
+      "http_status": 200,
+      "relative_path": "sub-010074/eeg/sub-010074_task-resting_eeg.vhdr",
+      "resume_offset": 0,
+      "resumed_prefix_bytes": 0,
+      "status": "response_validated",
+      "subject_id": "sub-010074",
+      "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010074\\eeg\\sub-010074_task-resting_eeg.vhdr",
+      "timestamp_utc": "2026-09-05T20:43:03.431914+00:00"
+    }
+  ],
+  "reused_original_partial_bytes": 402653184,
+  "scientific_heldout_analysis": false,
+  "starting_baseline_sha256": "db6466a43ddc1e6df3ed877fb6a4787b8fbb7a4e06074486143ed655bd9ff051",
+  "starting_head": "ac58dba2c717af8877a2c4e85b9743592ebb2dab",
+  "state": "BATCH_003_RESUME_COMPLETE",
+  "storage": {
+    "all_block_hdf5_bytes": 525972075,
+    "c_free_bytes": 14393200640,
+    "cumulative_all_block_subjects": 72,
+    "cumulative_provisionally_feasible": 68,
+    "cumulative_train_qc_pass": 69,
+    "d_free_bytes": 48268034048,
+    "preserved_partials": [],
+    "processed_bytes": 856800945,
+    "raw_bytes": 1945164030,
+    "retained_raw": [
+      {
+        "bytes": 648429341,
+        "files": [
+          {
+            "bytes": 4904,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_channels.tsv",
+            "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+          },
+          {
+            "bytes": 648383600,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.eeg",
+            "sha256": "58bb03b87d22252d9454c8f4d03ee18fbfa0770ba2b68e80f498e51bbee4a180"
+          },
+          {
+            "bytes": 1489,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.json",
+            "sha256": "8985b36d2fc696c420e5a84d8f308aa21cd4f2b26934f239f2c2e44d1508847f"
+          },
+          {
+            "bytes": 1759,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.vhdr",
+            "sha256": "9c665e9756088144a34aa527a4a1ce05cf3822d3e39aed102333981a56d8fcee"
+          },
+          {
+            "bytes": 16652,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.vmrk",
+            "sha256": "40d4123313931a8f8a867a61d434f2af17f8f9694d8e6abcb9397121f65f1ed6"
+          },
+          {
+            "bytes": 786,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_events.json",
+            "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+          },
+          {
+            "bytes": 20151,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_events.tsv",
+            "sha256": "dfbc1fb41dc34c70cc7630df6f5019b46da93ac1aa5623dac85c100d85f0764c"
+          }
+        ],
+        "source_pair_rehashed": true,
+        "subject_id": "sub-010012"
+      },
+      {
+        "bytes": 645403807,
+        "files": [
+          {
+            "bytes": 4904,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_channels.tsv",
+            "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+          },
+          {
+            "bytes": 645358000,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.eeg",
+            "sha256": "6407f58a1e1be9e684204550fc04ca68997edd7786b288822243edb3ec4c618c"
+          },
+          {
+            "bytes": 1489,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.json",
+            "sha256": "843a1f22c4eeda298543b4a2087ce3fe5cd012e10a6454539d22ce7f3b8b9411"
+          },
+          {
+            "bytes": 1759,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.vhdr",
+            "sha256": "64dfcc66442abe7e2a182db3d7f76a41add8ada307951152a4a76de85be7126c"
+          },
+          {
+            "bytes": 16695,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.vmrk",
+            "sha256": "47847898df09818416ce5800e9bfd429b823f8aabf1ef1642947d589433ace7b"
+          },
+          {
+            "bytes": 786,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_events.json",
+            "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+          },
+          {
+            "bytes": 20174,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_events.tsv",
+            "sha256": "241b57db5cd256b12a1e4fdc34f78066d9b4d89b021e15a02a7caff104fbe17e"
+          }
+        ],
+        "source_pair_rehashed": true,
+        "subject_id": "sub-010030"
+      },
+      {
+        "bytes": 651330882,
+        "files": [
+          {
+            "bytes": 4904,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_channels.tsv",
+            "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+          },
+          {
+            "bytes": 651285200,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.eeg",
+            "sha256": "48b390022ff23a9c53a487ed9e50e2ee4883ab47642511a1f1c63c6c06ca8aed"
+          },
+          {
+            "bytes": 1489,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.json",
+            "sha256": "27f931352231fa5d515e3e3df486a0a4999da92bba7d700c97a26be98217dac9"
+          },
+          {
+            "bytes": 1759,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.vhdr",
+            "sha256": "9e3abec6985b74c24d91ffda68aed61feffeb398c2bb270a0fb9edc9e83d9773"
+          },
+          {
+            "bytes": 16632,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.vmrk",
+            "sha256": "b198d7d640e1fdb4d0110f99514fbf3f97bbbe1d9b855205f0a33fb09a23a38d"
+          },
+          {
+            "bytes": 786,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_events.json",
+            "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+          },
+          {
+            "bytes": 20112,
+            "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_events.tsv",
+            "sha256": "212959f18e9c535cd2891ab2b752b65c38d56a1fa9797e5ffb4fe9ba98e22f0c"
+          }
+        ],
+        "source_pair_rehashed": true,
+        "subject_id": "sub-010250"
+      }
+    ],
+    "runtime_files": [
+      {
+        "bytes": 1419562,
+        "name": "batch_003_download_journal.jsonl",
+        "sha256": "8c899c0c84352a68e9e9f195de418b9bfa20f28929fd318349ea734ab2d60a66"
+      },
+      {
+        "bytes": 2322831,
+        "name": "batch_003_streaming_journal.jsonl",
+        "sha256": "2ec9e8a8140252f5dc495801611c5156264196504ee4597078ca730f70579905"
+      }
+    ],
+    "train_reference_hdf5_bytes": 328629530,
+    "verified_utc": "2026-09-05T20:46:56.556064+00:00"
+  },
+  "subject_results": [
+    {
+      "cleanup_blocker": "",
+      "completed": "True",
+      "failure_reason": "",
+      "feasibility_reason": "",
+      "provisional_5_1_2_feasible": "True",
+      "provisional_feasibility_assessed": "True",
+      "raw_bytes_freed": "625588452",
+      "raw_bytes_retained": "0",
+      "raw_deleted": "True",
+      "raw_retained": "False",
+      "status": "complete",
+      "subject_id": "sub-010073",
+      "train_qc_assessed": "True",
+      "train_qc_pass": "True"
+    },
+    {
+      "cleanup_blocker": "",
+      "completed": "True",
+      "failure_reason": "",
+      "feasibility_reason": "",
+      "provisional_5_1_2_feasible": "True",
+      "provisional_feasibility_assessed": "True",
+      "raw_bytes_freed": "666793691",
+      "raw_bytes_retained": "0",
+      "raw_deleted": "True",
+      "raw_retained": "False",
+      "status": "complete",
+      "subject_id": "sub-010074",
+      "train_qc_assessed": "True",
+      "train_qc_pass": "True"
+    }
+  ],
+  "verified_utc": "2026-09-05T20:46:56.583512+00:00"
+}

@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 003 attempt sequence terminal; 31 complete, 2 download failures; scientific rules remain frozen
+Status: Batch 003 complete after authorized two-subject continuation; scientific rules remain frozen
 
 ## 1. Objective
 
@@ -265,3 +265,20 @@ Cumulative progress is **70/211 technically complete subjects / 1,120 blocks**, 
 Final tests passed **291 in 49.89 seconds**; compileall and the read-only terminal-state verifier passed. Post-stop verifier changes distinguish download failure from technical completion and require durable matching failure evidence and intact retained files; they do not change preprocessing or authorize further network I/O. All signal/temp/cache/runtime storage remains external on D:, with the 3-GiB C: guard active. Frozen preprocessing and access rules remain unchanged. No scientific held-out analysis, waveform plot, normalization fitting, final cohort/split lock, or Git push occurred. **Batch 004 was not planned; its size remains undecided.**
 
 See `BATCH_003_STREAMING_HANDOFF.md` for exact membership, hashes, network accounting, cleanup, and conditional restart commands.
+
+
+## 2026-09-06: Batch 003 continuation complete
+
+**BATCH_003_RESUME_COMPLETE.** Both previously unresolved members, **sub-010073 and sub-010074**, completed technically, passed frozen Train QC and provisional 5/1/2 feasibility, and had raw cleanup verified. Batch 003 now has **33/33 complete outputs and 528 blocks**; its ledger is `complete`, with no unresolved technical failure or assessed QC/feasibility failure.
+
+The continuation reused the verified **402,653,184-byte (384-MiB)** sub-010073 prefix through HTTP 206 with exact Content-Range, then verified the complete source SHA256. New response-body transfer was **889,641,134 bytes (0.828542871 GiB)**, with **0 new retries and 0 new interruptions**. Sub-010074 downloaded fresh. Only these two subjects received new requests or preprocessing; all 280 pre-existing output/receipt artifacts and old journal prefixes remain unchanged.
+
+The frozen Batch 003 cap remains **20 GiB = 21,474,836,480 bytes**. Membership, order, manifest, plan, original authorization, and immutable ledger fields are unchanged. Total Batch 003 declared and measured response payload now both equal **21,299,575,247 bytes (19.836775257 GiB)**, including the prefix received during the prior attempt. Unused membership capacity remains **175,261,233 bytes (0.163224743 GiB)**. Earlier six retries/eight interruption events remain historical evidence; the numbered continuation did not add any.
+
+The two new guarded deletions freed **1,292,382,143 bytes (1.203624665 GiB)**, including sidecars. New all-block HDF5 addition is **14,544,040 bytes (13.870277 MiB)**. Batch 003 has no retained raw or partials. Prior intentionally retained raw for sub-010012, sub-010030, and sub-010250 remains unchanged.
+
+Cumulative progress is **72/211 complete subjects / 1,152 blocks**, **69 Train-QC passes**, **68 provisional-feasibility passes**, and **139 unassigned candidates** beginning with sub-010075. Current retained raw is **1,945,164,030 bytes (1.811575172 GiB)**; total processed storage including Train references and receipts is **856,800,945 bytes (0.797958062 GiB)**. No final cohort or split is locked.
+
+Final verification passed for all 33 Batch 003 subjects; **291 tests passed in 33.03 seconds**, and compileall passed. Signal/temp/cache/runtime storage remains external on D:, with the 3-GiB C: guard active. Frozen preprocessing and mechanical-access hashes are unchanged. **Batch 004 was not planned. No scientific held-out analysis, normalization fit, or Git push occurred.**
+
+See `BATCH_003_RESUME_HANDOFF.md` for final continuation evidence. Earlier partial-state entries are historical and are superseded by this completed-state entry.

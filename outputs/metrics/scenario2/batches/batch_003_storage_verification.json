@@ -1,19 +1,13 @@
 {
-  "all_block_hdf5_bytes": 511428035,
-  "c_free_bytes": 13969948672,
-  "cumulative_all_block_subjects": 70,
-  "cumulative_provisionally_feasible": 66,
-  "cumulative_train_qc_pass": 67,
-  "d_free_bytes": 47890272256,
-  "preserved_partials": [
-    {
-      "bytes": 402653184,
-      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.eeg.part",
-      "sha256": "72df8eb5246c8bff83eb2c576427faaf850e05870a374bb529b203e87cf3f233"
-    }
-  ],
-  "processed_bytes": 833108692,
-  "raw_bytes": 2347817214,
+  "all_block_hdf5_bytes": 525972075,
+  "c_free_bytes": 14393200640,
+  "cumulative_all_block_subjects": 72,
+  "cumulative_provisionally_feasible": 68,
+  "cumulative_train_qc_pass": 69,
+  "d_free_bytes": 48268034048,
+  "preserved_partials": [],
+  "processed_bytes": 856800945,
+  "raw_bytes": 1945164030,
   "retained_raw": [
     {
       "bytes": 648429341,
@@ -100,22 +94,6 @@
       "subject_id": "sub-010030"
     },
     {
-      "bytes": 402653184,
-      "files": [
-        {
-          "bytes": 402653184,
-          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.eeg.part",
-          "sha256": "72df8eb5246c8bff83eb2c576427faaf850e05870a374bb529b203e87cf3f233"
-        }
-      ],
-      "subject_id": "sub-010073"
-    },
-    {
-      "bytes": 0,
-      "files": [],
-      "subject_id": "sub-010074"
-    },
-    {
       "bytes": 651330882,
       "files": [
         {
@@ -160,16 +138,16 @@
   ],
   "runtime_files": [
     {
-      "bytes": 1358840,
+      "bytes": 1419562,
       "name": "batch_003_download_journal.jsonl",
-      "sha256": "a2120c9aeace4afc9845b58041a12058990664f255349368de4c9da1b8877977"
+      "sha256": "8c899c0c84352a68e9e9f195de418b9bfa20f28929fd318349ea734ab2d60a66"
     },
     {
-      "bytes": 2182164,
+      "bytes": 2322831,
       "name": "batch_003_streaming_journal.jsonl",
-      "sha256": "faa1ba8210ed23344116f3d342bdebb49c8c6af31b66271591978866d80bea4b"
+      "sha256": "2ec9e8a8140252f5dc495801611c5156264196504ee4597078ca730f70579905"
     }
   ],
-  "train_reference_hdf5_bytes": 319542416,
-  "verified_utc": "2026-09-05T20:05:07.549351+00:00"
+  "train_reference_hdf5_bytes": 328629530,
+  "verified_utc": "2026-09-05T20:46:56.556064+00:00"
 }

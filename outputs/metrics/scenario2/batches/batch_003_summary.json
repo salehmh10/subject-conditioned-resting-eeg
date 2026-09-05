@@ -1,22 +1,22 @@
 {
-  "actual_measured_network_payload_bytes": 20409934113,
-  "actual_measured_network_payload_gib": 19.008232385851443,
+  "actual_measured_network_payload_bytes": 21299575247,
+  "actual_measured_network_payload_gib": 19.836775257252157,
   "all_frozen_subjects_terminal": true,
   "asset_count": 66,
   "authorization_head": "28815a4a3245aacd36aea241a17cf6458f459ef4",
   "batch_id": "003",
   "cap_bytes": 21474836480,
   "cap_gib": 20.0,
-  "compact_bytes_added": 226408568,
-  "cumulative_all_block_subject_count": 70,
-  "cumulative_compact_bytes": 511428035,
-  "cumulative_processed_bytes": 833108692,
-  "cumulative_provisional_feasible_subject_count": 66,
-  "cumulative_raw_bytes": 2347817214,
-  "cumulative_train_qc_pass_subject_count": 67,
+  "compact_bytes_added": 240952608,
+  "cumulative_all_block_subject_count": 72,
+  "cumulative_compact_bytes": 525972075,
+  "cumulative_processed_bytes": 856800945,
+  "cumulative_provisional_feasible_subject_count": 68,
+  "cumulative_raw_bytes": 1945164030,
+  "cumulative_train_qc_pass_subject_count": 69,
   "declared_bytes": 21299575247,
   "declared_gib": 19.836775257252157,
-  "download_journal_sha256": "a2120c9aeace4afc9845b58041a12058990664f255349368de4c9da1b8877977",
+  "download_journal_sha256": "8c899c0c84352a68e9e9f195de418b9bfa20f28929fd318349ea734ab2d60a66",
   "excluded_verified_completed": [
     "sub-010002",
     "sub-010003",
@@ -66,13 +66,13 @@
     "reason": "next_subject_would_exceed_batch_cap",
     "subject_id": "sub-010075"
   },
-  "free_disk_after": 47890272256,
+  "free_disk_after": 48268034048,
   "free_disk_before": 48674209792,
   "frozen_at_utc": "2026-09-05T17:19:21.571085+00:00",
   "future_batch_cap": null,
   "future_batch_planned": false,
   "interruptions": 8,
-  "manually_interrupted_runs": 0,
+  "manually_interrupted_runs": 1,
   "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
   "network_measurement_note": "Application response-body bytes; HTTP/TLS/ISP overhead not measured. Retried payload is counted.",
   "normalization_fitted": false,
@@ -108,15 +108,14 @@
     "sub-010068",
     "sub-010069",
     "sub-010070",
-    "sub-010072"
-  ],
-  "provisionally_infeasible": [],
-  "qc_not_evaluated": [
+    "sub-010072",
     "sub-010073",
     "sub-010074"
   ],
-  "raw_bytes_freed": 20008642245,
-  "raw_bytes_retained": 402653184,
+  "provisionally_infeasible": [],
+  "qc_not_evaluated": [],
+  "raw_bytes_freed": 21301024388,
+  "raw_bytes_retained": 0,
   "raw_directories_deleted": [
     "sub-010035",
     "sub-010036",
@@ -148,24 +147,24 @@
     "sub-010068",
     "sub-010069",
     "sub-010070",
-    "sub-010072"
-  ],
-  "raw_directories_retained": [
+    "sub-010072",
     "sub-010073",
     "sub-010074"
   ],
+  "raw_directories_retained": [],
   "remaining_unassigned_candidate_count": 139,
   "request_resume_offsets": [
+    402653184,
     402653184,
     402653184,
     402653184
   ],
   "resumed_prefix_bytes_already_local": 0,
-  "resumed_prefix_bytes_validated": 0,
+  "resumed_prefix_bytes_validated": 402653184,
   "retries": 6,
   "runtime_journal_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches",
   "scientific_heldout_analysis": false,
-  "streaming_journal_sha256": "faa1ba8210ed23344116f3d342bdebb49c8c6af31b66271591978866d80bea4b",
+  "streaming_journal_sha256": "2ec9e8a8140252f5dc495801611c5156264196504ee4597078ca730f70579905",
   "subject_count": 33,
   "subject_ids": [
     "sub-010035",
@@ -369,11 +368,11 @@
       "subject_id": "sub-010074"
     }
   ],
-  "subjects_completed": 31,
+  "subjects_completed": 33,
   "subjects_with_terminal_state": 33,
-  "summarized_utc": "2026-09-05T20:05:02.787123+00:00",
+  "summarized_utc": "2026-09-05T20:43:40.136833+00:00",
   "system_drive_after": {
-    "free_bytes": 13969694720
+    "free_bytes": 14381768704
   },
   "system_drive_before": {
     "applicable": true,
@@ -382,40 +381,7 @@
     "operation": "batch_network_preflight",
     "system_drive": "C:/"
   },
-  "technical_failures": [
-    {
-      "cleanup_blocker": "<urlopen error [Errno 11001] getaddrinfo failed>",
-      "completed": false,
-      "failure_reason": "<urlopen error [Errno 11001] getaddrinfo failed>",
-      "feasibility_reason": "",
-      "provisional_5_1_2_feasible": false,
-      "provisional_feasibility_assessed": false,
-      "raw_bytes_freed": 0,
-      "raw_bytes_retained": 402653184,
-      "raw_deleted": false,
-      "raw_retained": true,
-      "status": "download_interrupted",
-      "subject_id": "sub-010073",
-      "train_qc_assessed": false,
-      "train_qc_pass": false
-    },
-    {
-      "cleanup_blocker": "<urlopen error [Errno 11001] getaddrinfo failed>",
-      "completed": false,
-      "failure_reason": "<urlopen error [Errno 11001] getaddrinfo failed>",
-      "feasibility_reason": "",
-      "provisional_5_1_2_feasible": false,
-      "provisional_feasibility_assessed": false,
-      "raw_bytes_freed": 0,
-      "raw_bytes_retained": 0,
-      "raw_deleted": false,
-      "raw_retained": true,
-      "status": "download_interrupted",
-      "subject_id": "sub-010074",
-      "train_qc_assessed": false,
-      "train_qc_pass": false
-    }
-  ],
+  "technical_failures": [],
   "train_qc_failed": [],
   "train_qc_passing": [
     "sub-010035",
@@ -448,7 +414,9 @@
     "sub-010068",
     "sub-010069",
     "sub-010070",
-    "sub-010072"
+    "sub-010072",
+    "sub-010073",
+    "sub-010074"
   ],
   "unused_capacity_bytes": 175261233,
   "unused_capacity_gib": 0.16322474274784327,

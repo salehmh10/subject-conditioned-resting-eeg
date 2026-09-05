@@ -30,5 +30,5 @@ sub-010068,True,False,656786850,0,
 sub-010069,True,False,641113249,0,
 sub-010070,True,False,663904523,0,
 sub-010072,True,False,639736836,0,
-sub-010073,False,True,0,402653184,<urlopen error [Errno 11001] getaddrinfo failed>
-sub-010074,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010073,True,False,625588452,0,
+sub-010074,True,False,666793691,0,

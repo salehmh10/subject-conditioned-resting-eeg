@@ -1,0 +1,39 @@
+{
+  "compileall_passed": true,
+  "execution_exit_code": 0,
+  "network_stopped": true,
+  "pytest": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "DESKTOP-FMB2F2E",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "291",
+    "time": "33.018",
+    "timestamp": "2026-09-06T01:14:11.602394+04:30"
+  },
+  "pytest_console_seconds": 33.03,
+  "pytest_report_sha256": "b25471d78e4b50cd2f36f05fc600015584b2a92942b2b1349d03670d4fe06a96",
+  "state": "BATCH_003_RESUME_COMPLETE",
+  "verification": {
+    "all_subjects_technically_complete": true,
+    "audit_limit": "Application-level code, provenance, and registry verification; not OS-wide surveillance.",
+    "batch_id": "003",
+    "blocks": 528,
+    "git_head": "14a1b10df5a226901f347e8c0cfca2f577449ed0",
+    "measured_network_payload_bytes": 21299575247,
+    "metadata_clone_clean": true,
+    "no_future_batch": true,
+    "no_normalization": true,
+    "no_scientific_heldout_analysis": true,
+    "prior_batch_unchanged": true,
+    "prohibited_next_batch": "004",
+    "pytest_count": 291,
+    "subjects": 33,
+    "technical_failed_subjects": [],
+    "terminal_subjects": 33,
+    "verification": "passed",
+    "worktree_clean": false
+  },
+  "verified_utc": "2026-09-05T20:47:53.809431+00:00"
+}

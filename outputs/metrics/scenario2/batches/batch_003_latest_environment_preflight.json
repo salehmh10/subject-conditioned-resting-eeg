@@ -25,7 +25,7 @@
   },
   "system_drive": {
     "applicable": true,
-    "free_bytes": 14483288064,
+    "free_bytes": 14388342784,
     "minimum_free_bytes": 3221225472,
     "operation": "environment_preflight",
     "system_drive": "C:/"
