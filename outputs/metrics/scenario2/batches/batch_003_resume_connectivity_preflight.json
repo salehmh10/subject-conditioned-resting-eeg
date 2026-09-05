@@ -1,0 +1,24 @@
+{
+  "accept_ranges": "bytes",
+  "addresses": [
+    "16.12.64.82",
+    "3.5.128.203",
+    "3.5.128.226",
+    "3.5.128.71",
+    "3.5.130.215",
+    "3.5.132.146",
+    "3.5.90.108",
+    "52.219.142.74"
+  ],
+  "checked_utc": "2026-09-05T20:34:58.924886+00:00",
+  "connectivity_passed": true,
+  "content_length": "625542800",
+  "dns_resolved": true,
+  "final_url": "https://nemar.s3.us-east-2.amazonaws.com/nm000179/objects/SHA256E-s625542800--9024d86996460bd58d11bb5dcfa5d61fa104523f549b8869bf00f0df69abcd40.eeg",
+  "host": "nemar.s3.us-east-2.amazonaws.com",
+  "http_status": 200,
+  "method": "HEAD",
+  "response_body_bytes_read": 0,
+  "resume_authorization_created": false,
+  "url": "https://nemar.s3.us-east-2.amazonaws.com/nm000179/objects/SHA256E-s625542800--9024d86996460bd58d11bb5dcfa5d61fa104523f549b8869bf00f0df69abcd40.eeg"
+}

@@ -386,7 +386,8 @@ def authorize_resume(root, batch_id, directory):
     environment=configure_environment(root)
     completed=verified_completed(root)
     remaining=frame.loc[~frame.subject_id.isin(completed)].copy()
-    remaining_plan=dict(plan,subject_count=remaining.subject_id.nunique())
+    remaining_ids=remaining.subject_id.drop_duplicates().tolist()
+    remaining_plan=dict(plan,subject_count=len(remaining_ids),subject_ids=remaining_ids)
     report=network_preflight(remaining,remaining_plan,paths(root)['raw_root'],paths(root)['output_root'])
     sequence=len(list(directory.glob(f'{batch_name(batch_id)}_resume_authorization_*.json')))+1
     name=f'{batch_name(batch_id)}_resume_authorization_{sequence:03}'
@@ -395,6 +396,7 @@ def authorize_resume(root, batch_id, directory):
         previous_authorization_code_head=previous['authorization_code_head'],
         resume_reason='Explicit continuation of the same frozen batch after a stopped execution',
         completed_subjects_reverified=[s for s in plan['subject_ids'] if s in completed],
+        unresolved_subject_ids=remaining_ids,
         resume_network_preflight=report,environment_preflight=environment)
     write_json(directory/f'{name}.json',record)
     return record

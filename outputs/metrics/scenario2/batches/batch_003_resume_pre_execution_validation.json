@@ -1,0 +1,19 @@
+{
+    "verified_utc":  "2026-09-05T20:37:13.0704653Z",
+    "starting_head":  "ac58dba2c717af8877a2c4e85b9743592ebb2dab",
+    "baseline_path":  "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_003_resume_starting_state.json",
+    "baseline_sha256":  "db6466a43ddc1e6df3ed877fb6a4787b8fbb7a4e06074486143ed655bd9ff051",
+    "pytest_passed":  291,
+    "pytest_seconds":  51.39,
+    "pytest_report_sha256":  "ac8401c369ca5b70d4f6a4001dc3c1f57ae38e4bea5c8672fa9ffd47968165ad",
+    "compileall_passed":  true,
+    "partial_hash_verified":  true,
+    "completed_batch_003_outputs_reverified":  31,
+    "all_existing_outputs_reverified":  70,
+    "resume_only":  [
+                        "sub-010073",
+                        "sub-010074"
+                    ],
+    "expected_new_response_bytes":  889641134,
+    "batch_004_planned":  false
+}

@@ -81,8 +81,10 @@ def test_resume_authorization_preserves_freeze(tmp_path,monkeypatch):
     monkeypatch.setattr(b,'verified_completed',lambda *a:['sub-001'])
     monkeypatch.setattr(env,'configure_environment',lambda *a:{'tempfile_gettempdir':'D:/synthetic'})
     selected=[]
-    def preflight(frame,*a):
+    def preflight(frame,remaining_plan,*a):
         selected.extend(frame.subject_id.unique())
+        assert remaining_plan['subject_ids']==['sub-002']
+        assert remaining_plan['subject_count']==1
         return {'valid_partial_bytes':12,'expected_new_network_bytes':38}
     monkeypatch.setattr(b,'network_preflight',preflight)
     b.write_json(tmp_path/'batch_001_network_preflight.json',{})
@@ -96,6 +98,7 @@ def test_resume_authorization_preserves_freeze(tmp_path,monkeypatch):
     resumed=b.authorize_resume(tmp_path,'001',tmp_path)
     assert resumed['authorization_code_head']=='hardened'
     assert resumed['completed_subjects_reverified']==['sub-001'] and selected==['sub-002']
+    assert resumed['unresolved_subject_ids']==['sub-002']
     assert before=={f:b.sha256_file(tmp_path/f) for f in protected}
     assert b.validate_authorization(tmp_path,'001',tmp_path)[2]['authorization_code_head']=='hardened'
     assert not (tmp_path/'batch_002_manifest.csv').exists()
