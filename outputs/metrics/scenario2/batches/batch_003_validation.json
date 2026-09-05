@@ -1,0 +1,62 @@
+{
+  "batch_004_planned": false,
+  "compileall_passed": true,
+  "execution_exit_code": 1,
+  "git_push_occurred": false,
+  "ledger_status": "failed_or_partial",
+  "network_execution_stopped": true,
+  "normalization_fitted": false,
+  "pre_network_tests": {
+    "passed": 284,
+    "seconds": 64.42
+  },
+  "preserved_partials": [
+    {
+      "bytes": 402653184,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.eeg.part",
+      "sha256": "72df8eb5246c8bff83eb2c576427faaf850e05870a374bb529b203e87cf3f233"
+    }
+  ],
+  "pytest": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "DESKTOP-FMB2F2E",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "291",
+    "time": "49.856",
+    "timestamp": "2026-09-06T00:37:30.649309+04:30"
+  },
+  "pytest_report_sha256": "f09d3b9406e26d01552cd82f77f7ba0007bcb5ea7792b22a294f80fe3193adfb",
+  "qc_not_evaluated": [
+    "sub-010073",
+    "sub-010074"
+  ],
+  "scientific_heldout_analysis": false,
+  "state": "BATCH_003_STREAMING_COMPLETE",
+  "state_definition": "All 33 frozen subjects have durable terminal attempt states; 31 technically complete, 2 download failures remain assigned and unresolved. Network stopped; no automatic retry or replacement.",
+  "verification": {
+    "all_subjects_technically_complete": false,
+    "audit_limit": "Application-level code, provenance, and registry verification; not OS-wide surveillance.",
+    "batch_id": "003",
+    "blocks": 496,
+    "git_head": "3e1d63b7557393c0a4f82a628b39c27c261f4f3b",
+    "measured_network_payload_bytes": 20409934113,
+    "metadata_clone_clean": true,
+    "no_future_batch": true,
+    "no_normalization": true,
+    "no_scientific_heldout_analysis": true,
+    "prior_batch_unchanged": true,
+    "prohibited_next_batch": "004",
+    "pytest_count": 291,
+    "subjects": 31,
+    "technical_failed_subjects": [
+      "sub-010073",
+      "sub-010074"
+    ],
+    "terminal_subjects": 33,
+    "verification": "passed",
+    "worktree_clean": false
+  },
+  "verified_utc": "2026-09-05T20:14:20.628077+00:00"
+}

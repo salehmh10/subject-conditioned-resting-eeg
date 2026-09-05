@@ -544,6 +544,7 @@ def summarize(root, batch_id, directory):
             freed = int(frame.loc[frame.subject_id == subject, 'payload_size_bytes'].sum())
             freed += sum((p['metadata_root']/subject/'eeg'/f'{subject}_task-resting_{suffix}').stat().st_size for suffix in st.REQUIRED_SIDECARS)
         record = dict(subject_id=subject, status=terminal['status'], completed=successful,
+            train_qc_assessed=successful, provisional_feasibility_assessed=successful,
             train_qc_pass=receipt.get('qc_pass', False), provisional_5_1_2_feasible=receipt.get('provisional_feasibility',{}).get('provisional_5_1_2_feasible',False),
             feasibility_reason=receipt.get('provisional_feasibility',{}).get('reason',''),
             failure_reason=terminal.get('error',''), cleanup_blocker=terminal.get('cleanup_blocker', terminal.get('error','')),
@@ -570,6 +571,9 @@ def summarize(root, batch_id, directory):
         manually_interrupted_runs=len(list(directory.glob(f'{name}_resume_authorization_*.json'))),
         retries=sum(r['status']=='retry_scheduled' for r in events), interruptions=sum(r['status'] in {'download_interrupted','manual_interruption'} for r in events),
         subjects_completed=len(outputs), train_qc_passing=[r['subject_id'] for r in records if r['completed'] and r['train_qc_pass']],
+        subjects_with_terminal_state=sum(r['status']!='not_attempted' for r in records),
+        all_frozen_subjects_terminal=all(r['status']!='not_attempted' for r in records),
+        qc_not_evaluated=[r['subject_id'] for r in records if not r['completed']],
         train_qc_failed=[r['subject_id'] for r in records if r['completed'] and not r['train_qc_pass']],
         provisionally_feasible=[r['subject_id'] for r in records if r['completed'] and r['provisional_5_1_2_feasible']],
         provisionally_infeasible=[r['subject_id'] for r in records if r['completed'] and not r['provisional_5_1_2_feasible']],

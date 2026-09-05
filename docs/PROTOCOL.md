@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 003 frozen at 20 GiB and authorized for execution; scientific rules remain frozen
+Status: Batch 003 attempt sequence terminal; 31 complete, 2 download failures; scientific rules remain frozen
 
 ## 1. Objective
 
@@ -250,3 +250,18 @@ Frozen contiguous membership: sub-010035, sub-010036, sub-010037, sub-010038, su
 Execution remains strictly sequential with a first-subject canary. Only one subject is active staging work at a time; terminal QC/technical failures retain raw and partials. Train-only fitting, mechanical held-out apply-only processing, all 16 blocks/masks/reasons, source/sidecar/BrainVision/output/receipt verification, durable journals, and guarded immediate raw cleanup remain unchanged. Held-out infeasibility alone does not block cleanup when Train QC and technical completeness pass. A software/infrastructure failure stops for investigation and committed correction under the same immutable membership.
 
 All signal/temp/cache/runtime storage remains external on D:. Dot-source the environment bootstrap before every Python command, and stop before expensive steps below 3 GiB C: free space. No pagefile change, scientific held-out analysis, waveform plot, numerical normalization fitting, final cohort/split lock, or push is authorized. The generalized prior-state guard and Batch 003 verifier enforce the two prior ledger entries and Batch 004 boundary; cumulative summary accounting now includes Train-QC and provisional-feasibility counts and total processed bytes. Required offline tests and local code/docs commit precede durable authorization and first network I/O.
+
+
+## 2026-09-06: Batch 003 terminal accounting and stop boundary
+
+**BATCH_003_STREAMING_COMPLETE** means the frozen attempt sequence has stopped: **33 terminal subjects, 31 technically complete, 2 unresolved download failures**. The ledger correctly remains `failed_or_partial`. The immutable cap is **20 GiB = 21,474,836,480 bytes**, covering 33 subjects / 66 assets and **21,299,575,247 declared bytes (19.836775257 GiB)**. Unused capacity is **175,261,233 bytes (0.163224743 GiB)**.
+
+All 31 completed subjects pass frozen Train QC and provisional 5/1/2 feasibility; their 496 stored blocks, hashes, receipts, journals, and guarded raw deletion verify. No assessed Batch 003 subject fails QC or feasibility. **sub-010073 and sub-010074** failed downloading after retry exhaustion and have no QC/feasibility assessment or processed output. Sub-010073 retains a **402,653,184-byte (384-MiB)** partial; sub-010074 retains its empty raw directory. The initial timeout was followed by DNS failures. There were **6 retries, 8 download interruption events, 0 manual restarts, and 0 validated resumed-prefix bytes**. Network execution ended with exit code 1; no further download or replacement was attempted after all terminal states.
+
+Initially expected transfer was **19.836775257 GiB**; measured response-body transfer was **20,409,934,113 bytes (19.008232386 GiB)**. HTTP/TLS/ISP overhead is not measured. Guarded cleanup deleted 31 raw directories and freed **20,008,642,245 bytes (18.634500210 GiB)** including sidecars. Batch all-block HDF5 addition is **226,408,568 bytes (215.920036 MiB)**.
+
+Cumulative progress is **70/211 technically complete subjects / 1,120 blocks**, **67 Train-QC passes**, and **66 provisional-feasibility passes**. There are **139 unassigned candidates**, beginning with sub-010075, plus the two incomplete subjects still assigned to Batch 003. Current raw storage is **2,347,817,214 bytes (2.186575172 GiB)**; processed storage including Train references and receipts is **833,108,692 bytes (0.775892932 GiB)**. Prior Batch 001/002 evidence, all 39 prior outputs/receipts, and retained raw sub-010012, sub-010030, and sub-010250 remain unchanged.
+
+Final tests passed **291 in 49.89 seconds**; compileall and the read-only terminal-state verifier passed. Post-stop verifier changes distinguish download failure from technical completion and require durable matching failure evidence and intact retained files; they do not change preprocessing or authorize further network I/O. All signal/temp/cache/runtime storage remains external on D:, with the 3-GiB C: guard active. Frozen preprocessing and access rules remain unchanged. No scientific held-out analysis, waveform plot, normalization fitting, final cohort/split lock, or Git push occurred. **Batch 004 was not planned; its size remains undecided.**
+
+See `BATCH_003_STREAMING_HANDOFF.md` for exact membership, hashes, network accounting, cleanup, and conditional restart commands.

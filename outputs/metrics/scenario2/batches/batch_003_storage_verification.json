@@ -1,0 +1,175 @@
+{
+  "all_block_hdf5_bytes": 511428035,
+  "c_free_bytes": 13969948672,
+  "cumulative_all_block_subjects": 70,
+  "cumulative_provisionally_feasible": 66,
+  "cumulative_train_qc_pass": 67,
+  "d_free_bytes": 47890272256,
+  "preserved_partials": [
+    {
+      "bytes": 402653184,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.eeg.part",
+      "sha256": "72df8eb5246c8bff83eb2c576427faaf850e05870a374bb529b203e87cf3f233"
+    }
+  ],
+  "processed_bytes": 833108692,
+  "raw_bytes": 2347817214,
+  "retained_raw": [
+    {
+      "bytes": 648429341,
+      "files": [
+        {
+          "bytes": 4904,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_channels.tsv",
+          "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+        },
+        {
+          "bytes": 648383600,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.eeg",
+          "sha256": "58bb03b87d22252d9454c8f4d03ee18fbfa0770ba2b68e80f498e51bbee4a180"
+        },
+        {
+          "bytes": 1489,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.json",
+          "sha256": "8985b36d2fc696c420e5a84d8f308aa21cd4f2b26934f239f2c2e44d1508847f"
+        },
+        {
+          "bytes": 1759,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.vhdr",
+          "sha256": "9c665e9756088144a34aa527a4a1ce05cf3822d3e39aed102333981a56d8fcee"
+        },
+        {
+          "bytes": 16652,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_eeg.vmrk",
+          "sha256": "40d4123313931a8f8a867a61d434f2af17f8f9694d8e6abcb9397121f65f1ed6"
+        },
+        {
+          "bytes": 786,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_events.json",
+          "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+        },
+        {
+          "bytes": 20151,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010012\\eeg\\sub-010012_task-resting_events.tsv",
+          "sha256": "dfbc1fb41dc34c70cc7630df6f5019b46da93ac1aa5623dac85c100d85f0764c"
+        }
+      ],
+      "source_pair_rehashed": true,
+      "subject_id": "sub-010012"
+    },
+    {
+      "bytes": 645403807,
+      "files": [
+        {
+          "bytes": 4904,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_channels.tsv",
+          "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+        },
+        {
+          "bytes": 645358000,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.eeg",
+          "sha256": "6407f58a1e1be9e684204550fc04ca68997edd7786b288822243edb3ec4c618c"
+        },
+        {
+          "bytes": 1489,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.json",
+          "sha256": "843a1f22c4eeda298543b4a2087ce3fe5cd012e10a6454539d22ce7f3b8b9411"
+        },
+        {
+          "bytes": 1759,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.vhdr",
+          "sha256": "64dfcc66442abe7e2a182db3d7f76a41add8ada307951152a4a76de85be7126c"
+        },
+        {
+          "bytes": 16695,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_eeg.vmrk",
+          "sha256": "47847898df09818416ce5800e9bfd429b823f8aabf1ef1642947d589433ace7b"
+        },
+        {
+          "bytes": 786,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_events.json",
+          "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+        },
+        {
+          "bytes": 20174,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010030\\eeg\\sub-010030_task-resting_events.tsv",
+          "sha256": "241b57db5cd256b12a1e4fdc34f78066d9b4d89b021e15a02a7caff104fbe17e"
+        }
+      ],
+      "source_pair_rehashed": true,
+      "subject_id": "sub-010030"
+    },
+    {
+      "bytes": 402653184,
+      "files": [
+        {
+          "bytes": 402653184,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010073\\eeg\\sub-010073_task-resting_eeg.eeg.part",
+          "sha256": "72df8eb5246c8bff83eb2c576427faaf850e05870a374bb529b203e87cf3f233"
+        }
+      ],
+      "subject_id": "sub-010073"
+    },
+    {
+      "bytes": 0,
+      "files": [],
+      "subject_id": "sub-010074"
+    },
+    {
+      "bytes": 651330882,
+      "files": [
+        {
+          "bytes": 4904,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_channels.tsv",
+          "sha256": "7fa7a3014a4f33ed3b851f197989aa50e19e4a3441cf7556e93dff7546c955ac"
+        },
+        {
+          "bytes": 651285200,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.eeg",
+          "sha256": "48b390022ff23a9c53a487ed9e50e2ee4883ab47642511a1f1c63c6c06ca8aed"
+        },
+        {
+          "bytes": 1489,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.json",
+          "sha256": "27f931352231fa5d515e3e3df486a0a4999da92bba7d700c97a26be98217dac9"
+        },
+        {
+          "bytes": 1759,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.vhdr",
+          "sha256": "9e3abec6985b74c24d91ffda68aed61feffeb398c2bb270a0fb9edc9e83d9773"
+        },
+        {
+          "bytes": 16632,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_eeg.vmrk",
+          "sha256": "b198d7d640e1fdb4d0110f99514fbf3f97bbbe1d9b855205f0a33fb09a23a38d"
+        },
+        {
+          "bytes": 786,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_events.json",
+          "sha256": "7d8a1d3535368695b608f474a8532b59f92d7b8516b60156a4e8c58e285c3fad"
+        },
+        {
+          "bytes": 20112,
+          "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010250\\eeg\\sub-010250_task-resting_events.tsv",
+          "sha256": "212959f18e9c535cd2891ab2b752b65c38d56a1fa9797e5ffb4fe9ba98e22f0c"
+        }
+      ],
+      "source_pair_rehashed": true,
+      "subject_id": "sub-010250"
+    }
+  ],
+  "runtime_files": [
+    {
+      "bytes": 1358840,
+      "name": "batch_003_download_journal.jsonl",
+      "sha256": "a2120c9aeace4afc9845b58041a12058990664f255349368de4c9da1b8877977"
+    },
+    {
+      "bytes": 2182164,
+      "name": "batch_003_streaming_journal.jsonl",
+      "sha256": "faa1ba8210ed23344116f3d342bdebb49c8c6af31b66271591978866d80bea4b"
+    }
+  ],
+  "train_reference_hdf5_bytes": 319542416,
+  "verified_utc": "2026-09-05T20:05:07.549351+00:00"
+}

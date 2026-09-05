@@ -1,0 +1,457 @@
+{
+  "actual_measured_network_payload_bytes": 20409934113,
+  "actual_measured_network_payload_gib": 19.008232385851443,
+  "all_frozen_subjects_terminal": true,
+  "asset_count": 66,
+  "authorization_head": "28815a4a3245aacd36aea241a17cf6458f459ef4",
+  "batch_id": "003",
+  "cap_bytes": 21474836480,
+  "cap_gib": 20.0,
+  "compact_bytes_added": 226408568,
+  "cumulative_all_block_subject_count": 70,
+  "cumulative_compact_bytes": 511428035,
+  "cumulative_processed_bytes": 833108692,
+  "cumulative_provisional_feasible_subject_count": 66,
+  "cumulative_raw_bytes": 2347817214,
+  "cumulative_train_qc_pass_subject_count": 67,
+  "declared_bytes": 21299575247,
+  "declared_gib": 19.836775257252157,
+  "download_journal_sha256": "a2120c9aeace4afc9845b58041a12058990664f255349368de4c9da1b8877977",
+  "excluded_verified_completed": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012",
+    "sub-010016",
+    "sub-010017",
+    "sub-010019",
+    "sub-010020",
+    "sub-010021",
+    "sub-010022",
+    "sub-010023",
+    "sub-010024",
+    "sub-010026",
+    "sub-010027",
+    "sub-010028",
+    "sub-010029",
+    "sub-010030",
+    "sub-010031",
+    "sub-010032",
+    "sub-010033",
+    "sub-010034",
+    "sub-010059",
+    "sub-010071",
+    "sub-010078",
+    "sub-010081",
+    "sub-010126",
+    "sub-010134",
+    "sub-010216",
+    "sub-010250",
+    "sub-010276",
+    "sub-010277",
+    "sub-010278",
+    "sub-010279",
+    "sub-010280",
+    "sub-010282"
+  ],
+  "expected_network_bytes": 21299575247,
+  "expected_network_gib": 19.836775257252157,
+  "final_cohort_locked": false,
+  "first_not_included": {
+    "declared_bytes": 665373359,
+    "reason": "next_subject_would_exceed_batch_cap",
+    "subject_id": "sub-010075"
+  },
+  "free_disk_after": 47890272256,
+  "free_disk_before": 48674209792,
+  "frozen_at_utc": "2026-09-05T17:19:21.571085+00:00",
+  "future_batch_cap": null,
+  "future_batch_planned": false,
+  "interruptions": 8,
+  "manually_interrupted_runs": 0,
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "network_measurement_note": "Application response-body bytes; HTTP/TLS/ISP overhead not measured. Retried payload is counted.",
+  "normalization_fitted": false,
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "provisionally_feasible": [
+    "sub-010035",
+    "sub-010036",
+    "sub-010037",
+    "sub-010038",
+    "sub-010039",
+    "sub-010040",
+    "sub-010041",
+    "sub-010042",
+    "sub-010044",
+    "sub-010045",
+    "sub-010046",
+    "sub-010047",
+    "sub-010048",
+    "sub-010049",
+    "sub-010050",
+    "sub-010051",
+    "sub-010052",
+    "sub-010053",
+    "sub-010056",
+    "sub-010060",
+    "sub-010061",
+    "sub-010062",
+    "sub-010063",
+    "sub-010064",
+    "sub-010065",
+    "sub-010066",
+    "sub-010067",
+    "sub-010068",
+    "sub-010069",
+    "sub-010070",
+    "sub-010072"
+  ],
+  "provisionally_infeasible": [],
+  "qc_not_evaluated": [
+    "sub-010073",
+    "sub-010074"
+  ],
+  "raw_bytes_freed": 20008642245,
+  "raw_bytes_retained": 402653184,
+  "raw_directories_deleted": [
+    "sub-010035",
+    "sub-010036",
+    "sub-010037",
+    "sub-010038",
+    "sub-010039",
+    "sub-010040",
+    "sub-010041",
+    "sub-010042",
+    "sub-010044",
+    "sub-010045",
+    "sub-010046",
+    "sub-010047",
+    "sub-010048",
+    "sub-010049",
+    "sub-010050",
+    "sub-010051",
+    "sub-010052",
+    "sub-010053",
+    "sub-010056",
+    "sub-010060",
+    "sub-010061",
+    "sub-010062",
+    "sub-010063",
+    "sub-010064",
+    "sub-010065",
+    "sub-010066",
+    "sub-010067",
+    "sub-010068",
+    "sub-010069",
+    "sub-010070",
+    "sub-010072"
+  ],
+  "raw_directories_retained": [
+    "sub-010073",
+    "sub-010074"
+  ],
+  "remaining_unassigned_candidate_count": 139,
+  "request_resume_offsets": [
+    402653184,
+    402653184,
+    402653184
+  ],
+  "resumed_prefix_bytes_already_local": 0,
+  "resumed_prefix_bytes_validated": 0,
+  "retries": 6,
+  "runtime_journal_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches",
+  "scientific_heldout_analysis": false,
+  "streaming_journal_sha256": "faa1ba8210ed23344116f3d342bdebb49c8c6af31b66271591978866d80bea4b",
+  "subject_count": 33,
+  "subject_ids": [
+    "sub-010035",
+    "sub-010036",
+    "sub-010037",
+    "sub-010038",
+    "sub-010039",
+    "sub-010040",
+    "sub-010041",
+    "sub-010042",
+    "sub-010044",
+    "sub-010045",
+    "sub-010046",
+    "sub-010047",
+    "sub-010048",
+    "sub-010049",
+    "sub-010050",
+    "sub-010051",
+    "sub-010052",
+    "sub-010053",
+    "sub-010056",
+    "sub-010060",
+    "sub-010061",
+    "sub-010062",
+    "sub-010063",
+    "sub-010064",
+    "sub-010065",
+    "sub-010066",
+    "sub-010067",
+    "sub-010068",
+    "sub-010069",
+    "sub-010070",
+    "sub-010072",
+    "sub-010073",
+    "sub-010074"
+  ],
+  "subjects": [
+    {
+      "asset_count": 2,
+      "declared_bytes": 633988959,
+      "subject_id": "sub-010035"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 644789359,
+      "subject_id": "sub-010036"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 623002559,
+      "subject_id": "sub-010037"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 667568159,
+      "subject_id": "sub-010038"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 624614559,
+      "subject_id": "sub-010039"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 622952959,
+      "subject_id": "sub-010040"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 629239759,
+      "subject_id": "sub-010041"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 639841759,
+      "subject_id": "sub-010042"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 641342159,
+      "subject_id": "sub-010044"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 630355759,
+      "subject_id": "sub-010045"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 624775759,
+      "subject_id": "sub-010046"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 623597759,
+      "subject_id": "sub-010047"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 626586159,
+      "subject_id": "sub-010048"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 629016559,
+      "subject_id": "sub-010049"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 644776959,
+      "subject_id": "sub-010050"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 630727759,
+      "subject_id": "sub-010051"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 695939359,
+      "subject_id": "sub-010052"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 633567359,
+      "subject_id": "sub-010053"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 647033759,
+      "subject_id": "sub-010056"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 651510159,
+      "subject_id": "sub-010060"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 699994159,
+      "subject_id": "sub-010061"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 640846159,
+      "subject_id": "sub-010062"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 664678959,
+      "subject_id": "sub-010063"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 671734559,
+      "subject_id": "sub-010064"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 663451359,
+      "subject_id": "sub-010065"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 637374159,
+      "subject_id": "sub-010066"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 662608159,
+      "subject_id": "sub-010067"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 656742959,
+      "subject_id": "sub-010068"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 641069359,
+      "subject_id": "sub-010069"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 663860559,
+      "subject_id": "sub-010070"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 639692959,
+      "subject_id": "sub-010072"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 625544559,
+      "subject_id": "sub-010073"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 666749759,
+      "subject_id": "sub-010074"
+    }
+  ],
+  "subjects_completed": 31,
+  "subjects_with_terminal_state": 33,
+  "summarized_utc": "2026-09-05T20:05:02.787123+00:00",
+  "system_drive_after": {
+    "free_bytes": 13969694720
+  },
+  "system_drive_before": {
+    "applicable": true,
+    "free_bytes": 14483337216,
+    "minimum_free_bytes": 3221225472,
+    "operation": "batch_network_preflight",
+    "system_drive": "C:/"
+  },
+  "technical_failures": [
+    {
+      "cleanup_blocker": "<urlopen error [Errno 11001] getaddrinfo failed>",
+      "completed": false,
+      "failure_reason": "<urlopen error [Errno 11001] getaddrinfo failed>",
+      "feasibility_reason": "",
+      "provisional_5_1_2_feasible": false,
+      "provisional_feasibility_assessed": false,
+      "raw_bytes_freed": 0,
+      "raw_bytes_retained": 402653184,
+      "raw_deleted": false,
+      "raw_retained": true,
+      "status": "download_interrupted",
+      "subject_id": "sub-010073",
+      "train_qc_assessed": false,
+      "train_qc_pass": false
+    },
+    {
+      "cleanup_blocker": "<urlopen error [Errno 11001] getaddrinfo failed>",
+      "completed": false,
+      "failure_reason": "<urlopen error [Errno 11001] getaddrinfo failed>",
+      "feasibility_reason": "",
+      "provisional_5_1_2_feasible": false,
+      "provisional_feasibility_assessed": false,
+      "raw_bytes_freed": 0,
+      "raw_bytes_retained": 0,
+      "raw_deleted": false,
+      "raw_retained": true,
+      "status": "download_interrupted",
+      "subject_id": "sub-010074",
+      "train_qc_assessed": false,
+      "train_qc_pass": false
+    }
+  ],
+  "train_qc_failed": [],
+  "train_qc_passing": [
+    "sub-010035",
+    "sub-010036",
+    "sub-010037",
+    "sub-010038",
+    "sub-010039",
+    "sub-010040",
+    "sub-010041",
+    "sub-010042",
+    "sub-010044",
+    "sub-010045",
+    "sub-010046",
+    "sub-010047",
+    "sub-010048",
+    "sub-010049",
+    "sub-010050",
+    "sub-010051",
+    "sub-010052",
+    "sub-010053",
+    "sub-010056",
+    "sub-010060",
+    "sub-010061",
+    "sub-010062",
+    "sub-010063",
+    "sub-010064",
+    "sub-010065",
+    "sub-010066",
+    "sub-010067",
+    "sub-010068",
+    "sub-010069",
+    "sub-010070",
+    "sub-010072"
+  ],
+  "unused_capacity_bytes": 175261233,
+  "unused_capacity_gib": 0.16322474274784327,
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced",
+  "verified_existing_bytes": 0
+}

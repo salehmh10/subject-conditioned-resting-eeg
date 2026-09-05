@@ -4,17 +4,17 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
-Batch 003 is separately authorized and frozen at exactly **20 GiB**, with **33 subjects / 21,299,575,247 declared bytes (19.836775257 GiB)**. Execution awaits required tests, local commit, and durable authorization. Batch 004 is prohibited. The completed Batch 002 evidence below is historical and remains immutable.
+**BATCH_003_STREAMING_COMPLETE** means the frozen attempt sequence has stopped: **33 terminal subjects, 31 technically complete, 2 unresolved download failures**. The ledger correctly remains `failed_or_partial`. The immutable cap is **20 GiB = 21,474,836,480 bytes**, covering 33 subjects / 66 assets and **21,299,575,247 declared bytes (19.836775257 GiB)**. Unused capacity is **175,261,233 bytes (0.163224743 GiB)**.
 
-Batch 002 execution is complete: **16 verified all-block outputs (256 blocks)** under an immutable **10-GiB cap (10,737,418,240 bytes)**. Declared, expected, and measured response-body payload are each **10,141,417,744 bytes (9.444931284 GiB)**; unused capacity is **596,000,496 bytes**. There were no retries, resumptions, interruptions, or technical failures.
+All 31 completed subjects pass frozen Train QC and provisional 5/1/2 feasibility; their 496 stored blocks, hashes, receipts, journals, and guarded raw deletion verify. No assessed Batch 003 subject fails QC or feasibility. **sub-010073 and sub-010074** failed downloading after retry exhaustion and have no QC/feasibility assessment or processed output. Sub-010073 retains a **402,653,184-byte (384-MiB)** partial; sub-010074 retains its empty raw directory. The initial timeout was followed by DNS failures. There were **6 retries, 8 download interruption events, 0 manual restarts, and 0 validated resumed-prefix bytes**. Network execution ended with exit code 1; no further download or replacement was attempted after all terminal states.
 
-Fifteen subjects pass frozen Train QC and provisional 5/1/2 feasibility. **sub-010030** fails both and retains its **645,403,807-byte** raw directory. The other fifteen raw directories were deleted after verification, freeing **9,496,716,931 bytes (8.844506863 GiB)**. Batch all-block HDF5 addition is **116,775,031 bytes (111.365348 MiB)**.
+Initially expected transfer was **19.836775257 GiB**; measured response-body transfer was **20,409,934,113 bytes (19.008232386 GiB)**. HTTP/TLS/ISP overhead is not measured. Guarded cleanup deleted 31 raw directories and freed **20,008,642,245 bytes (18.634500210 GiB)** including sidecars. Batch all-block HDF5 addition is **226,408,568 bytes (215.920036 MiB)**.
 
-Cumulative progress is **39/211 complete all-block subjects / 624 blocks**, with **172 unassigned candidates**. Cumulative Train-QC pass is 36/39 and provisional feasibility is 35/39. Raw remains only for sub-010012, sub-010030, and sub-010250: **1,945,164,030 bytes (1.811575172 GiB)**. Processed storage including Train references and receipts is **464,293,360 bytes (0.432406887 GiB)**. These engineering labels do not lock the final cohort or split.
+Cumulative progress is **70/211 technically complete subjects / 1,120 blocks**, **67 Train-QC passes**, and **66 provisional-feasibility passes**. There are **139 unassigned candidates**, beginning with sub-010075, plus the two incomplete subjects still assigned to Batch 003. Current raw storage is **2,347,817,214 bytes (2.186575172 GiB)**; processed storage including Train references and receipts is **833,108,692 bytes (0.775892932 GiB)**. Prior Batch 001/002 evidence, all 39 prior outputs/receipts, and retained raw sub-010012, sub-010030, and sub-010250 remain unchanged.
 
-Batch 001 records, its ledger entry, all 23 prior outputs/receipts, retained raw, and prior access records remain unchanged. All signal/temp/cache/runtime data stays external on D:, and the original metadata clone remains unchanged. Final tests passed **280 in 33.43 seconds**; compileall and the read-only Batch 002 verifier passed. No scientific held-out analysis, waveform plot, normalization fit, final cohort/split lock, or Git push occurred. **Batch 003 was not planned; its size remains undecided.**
+Final tests passed **291 in 49.89 seconds**; compileall and the read-only terminal-state verifier passed. Post-stop verifier changes distinguish download failure from technical completion and require durable matching failure evidence and intact retained files; they do not change preprocessing or authorize further network I/O. All signal/temp/cache/runtime storage remains external on D:, with the 3-GiB C: guard active. Frozen preprocessing and access rules remain unchanged. No scientific held-out analysis, waveform plot, normalization fitting, final cohort/split lock, or Git push occurred. **Batch 004 was not planned; its size remains undecided.**
 
-See [BATCH_002_STREAMING_HANDOFF.md](docs/BATCH_002_STREAMING_HANDOFF.md) for the complete handoff. [Batch 001 handoff](docs/BATCH_001_STREAMING_HANDOFF.md) remains historical immutable evidence.
+See [Batch 003 handoff](docs/BATCH_003_STREAMING_HANDOFF.md) for exact membership, output hashes, failure evidence, and conditional restart instructions. [Batch 001](docs/BATCH_001_STREAMING_HANDOFF.md) and [Batch 002](docs/BATCH_002_STREAMING_HANDOFF.md) handoffs remain unchanged historical evidence.
 
 ## Verify and next action
 
@@ -24,10 +24,10 @@ Check that no other pytest instance is using the shared external base, then run:
 . .\scripts\setup_scenario2_environment.ps1 -ForTests
 .\.venv\Scripts\python.exe -m pytest -q --basetemp "D:/SHARIF/PROJECT/Datasets/MPI-LEMON-Scenario2/temp/pytest" --junitxml outputs/logs/pytest.xml
 .\.venv\Scripts\python.exe -m compileall scripts src tests
-.\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 002 --require-clean --test-report outputs/logs/pytest.xml
+.\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 003 --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-**Current action: execute frozen Batch 003 only at the user-selected 20-GiB cap.** Preserve all prior completions; do not plan Batch 004 or run an unbounded stream.
+**Current action: remain stopped.** A later user continuation is required to retry the two assigned Batch 003 failures. Batch 004 size and membership remain undecided.
 
 ## Verified dataset facts
 

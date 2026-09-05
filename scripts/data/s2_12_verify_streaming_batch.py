@@ -18,6 +18,25 @@ from resting_eeg.data.access import TrainAccessGate,sample_interval
 from resting_eeg.preprocessing import all_blocks as ab
 
 
+def terminal_records(results,history,subject_ids):
+    """A finished attempt sequence may contain preserved download failures."""
+    assert results.subject_id.tolist()==subject_ids
+    terminals={}
+    statuses={'complete','download_interrupted','preprocessing_failed','planning_failed','cleanup_failed','c_drive_low_space_guard'}
+    for row in results.to_dict('records'):
+        entries=[r for r in history if r.get('subject_id')==row['subject_id'] and r['status'] in statuses]
+        assert entries, 'Missing durable terminal state'
+        terminal=entries[-1]
+        assert terminal['status']==row['status']
+        assert row['status'] in {'complete','download_interrupted'}, 'Unverified processing failure requires investigation'
+        assert bool(row['completed'])==(row['status']=='complete')
+        if row['status']=='download_interrupted':
+            assert terminal.get('raw_preserved') and row['raw_retained'] and not row['raw_deleted']
+            assert row['failure_reason']==terminal['error'] and terminal['error']
+        terminals[row['subject_id']]=terminal
+    return terminals
+
+
 def verify(batch_id='001',require_clean=False,test_report=None):
     p=b.paths(ROOT);storage=load_paths(ROOT);directory=p['metrics_root']/'batches'
     frame,plan,auth=b.validate_authorization(ROOT,batch_id,directory)
@@ -41,8 +60,13 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     history=b.read_journal(runtime/f'{name}_streaming_journal.jsonl')
     events=b.read_journal(runtime/f'{name}_download_journal.jsonl')
     assert len(results)==plan['subject_count'] and results.subject_id.tolist()==plan['subject_ids']
-    assert set(results.status)=={'complete'} and len(outputs)==plan['subject_count']
-    assert summary['subjects_completed']==plan['subject_count']
+    terminals=terminal_records(results,history,plan['subject_ids'])
+    successful=results.loc[results.completed,'subject_id'].tolist()
+    failed=results.loc[~results.completed,'subject_id'].tolist()
+    assert outputs.subject_id.tolist()==successful
+    assert summary['subjects_completed']==len(successful)
+    assert [r['subject_id'] for r in summary['technical_failures']]==failed
+    assert ledger[-1]['execution_completed'] and ledger[-1]['batch_status']==('failed_or_partial' if failed else 'complete')
     assert sha256_file(runtime/f'{name}_streaming_journal.jsonl')==summary['streaming_journal_sha256']
     assert sha256_file(runtime/f'{name}_download_journal.jsonl')==summary['download_journal_sha256']
     measured=sum(r.get('received_body_bytes',0) for r in events)
@@ -51,13 +75,38 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     assert set(r['relative_path'] for r in events)<=set(frame.relative_path)
     preflight=b.read_json(directory/f'{name}_network_preflight.json')
     assert preflight['declared_bytes']==preflight['verified_existing_bytes']+preflight['valid_partial_bytes']+preflight['expected_new_network_bytes']
+    if failed:
+        preservation=b.read_json(directory/f'{name}_storage_verification.json')
+        assert {f.name for f in p['raw_root'].iterdir() if f.is_dir()}=={r['subject_id'] for r in preservation['retained_raw']}
+        for record in preservation['retained_raw']:
+            folder=p['raw_root']/record['subject_id']
+            assert folder.is_dir() and b.directory_bytes(folder)==record['bytes']
+            assert {str(f) for f in folder.rglob('*') if f.is_file()}=={r['path'] for r in record['files']}
+            for artifact in record['files']:
+                file=Path(artifact['path'])
+                assert file.is_relative_to(folder) and file.stat().st_size==artifact['bytes']
+                assert sha256_file(file)==artifact['sha256']
     # Every new subject starts after the preceding complete/cleanup decision.
     first_positions=[]
     for subject in plan['subject_ids']:
         positions=[i for i,r in enumerate(history) if r.get('subject_id')==subject]
         assert positions
         first_positions.append(min(positions))
-        complete=[r for r in history if r.get('subject_id')==subject and r['status']=='complete'][-1]
+        complete=terminals[subject]
+        if subject in failed:
+            raw=p['raw_root']/subject
+            assert raw.is_dir()
+            assert not any(r.get('subject_id')==subject and r['status'] in {'preprocessing','processed_verified','raw_deleted'} for r in history)
+            assert not (p['output_root']/f'{subject}_all_blocks.h5').exists()
+            assert not (p['output_root']/f'{subject}_all_blocks.provenance.json').exists()
+            assert not (p['train_output_root']/f'{subject}_preprocessed.h5').exists()
+            failures=[r for r in events if r.get('subject_id')==subject and r['status']=='download_interrupted']
+            assert failures and any(r.get('subject_id')==subject and r['status']=='failed' for r in events)
+            for event in failures:
+                target=p['raw_root']/event['relative_path']
+                part=target.with_name(target.name+'.part')
+                assert (part.stat().st_size if part.exists() else 0)>=event.get('partial_bytes',0)
+            continue
         receipt=complete['result']
         checked=b.st._verify_receipt(receipt,subject,p['config_path'],p['output_root'])
         blocks=ab.expected_subject_blocks(ROOT,subject)
@@ -81,10 +130,11 @@ def verify(batch_id='001',require_clean=False,test_report=None):
             assert verified<durable<deleted
     assert first_positions==sorted(first_positions)
     for previous,next_position in zip(plan['subject_ids'],first_positions[1:]):
-        assert any(r.get('subject_id')==previous and r['status']=='complete' for r in history[:next_position])
+        assert any(r.get('subject_id')==previous and r['status'] in {'complete','download_interrupted'} for r in history[:next_position])
     assert b.read_json(directory/f'{name}_canary_verification.json')['passed']
     pilot=set(pd.read_csv(p['metrics_root']/'pilot_download_manifest.csv').subject_id)
-    allowed=pilot|set(all_assigned)
+    completed_assigned=set(all_assigned)-set(failed)
+    allowed=pilot|completed_assigned
     heldout=MechanicalHeldoutAccessGate(p['metrics_root']/'provisional_block_split_manifest.csv',
         p['metrics_root']/'lemon_block_inventory.csv',p['metrics_root']/'pilot_mechanical_heldout_access_registry.csv',
         ROOT,p['access_config_path'],p['config_path'])
@@ -96,11 +146,11 @@ def verify(batch_id='001',require_clean=False,test_report=None):
         assert block['split']==row['provisional_split']
         assert (row['native_start_sample'],row['native_stop_sample'])==sample_interval(block['start_sec'],block['end_estimate_capped_sec'],row['native_sfreq'])
     batch_registry=registry.loc[registry.subject_id.isin(plan['subject_ids'])]
-    assert len(batch_registry)==6*plan['subject_count'] and not batch_registry.block_uid.duplicated().any()
+    assert len(batch_registry)==6*len(successful) and not batch_registry.block_uid.duplicated().any()
     trainpath=p['metrics_root']/'streaming_train_access_registry.csv'
     train=pd.read_csv(trainpath)
-    assert set(train.subject_id)==set(all_assigned) and set(train.split)=={'Train'}
-    assert train.access_allowed.all() and len(train)==10*len(all_assigned) and not train.block_uid.duplicated().any()
+    assert set(train.subject_id)==completed_assigned and set(train.split)=={'Train'}
+    assert train.access_allowed.all() and len(train)==10*len(completed_assigned) and not train.block_uid.duplicated().any()
     gate=TrainAccessGate(p['metrics_root']/'provisional_block_split_manifest.csv',p['metrics_root']/'lemon_block_inventory.csv',trainpath,ROOT)
     for row in train.to_dict('records'):
         block=gate.authorize(row['subject_id'],row['block_index'])
@@ -151,6 +201,7 @@ def verify(batch_id='001',require_clean=False,test_report=None):
     dirty=subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip()
     if require_clean:assert not dirty
     return dict(verification='passed',batch_id=batch_id,subjects=len(outputs),blocks=16*len(outputs),
+        terminal_subjects=len(terminals),technical_failed_subjects=failed,all_subjects_technically_complete=not failed,
         measured_network_payload_bytes=measured,pytest_count=tests,git_head=git_head(ROOT),worktree_clean=not dirty,
         prohibited_next_batch=next_id,no_future_batch=True,prior_batch_unchanged=True,
         no_normalization=True,no_scientific_heldout_analysis=True,metadata_clone_clean=True,
