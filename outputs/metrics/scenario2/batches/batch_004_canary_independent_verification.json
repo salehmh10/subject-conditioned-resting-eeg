@@ -1,0 +1,56 @@
+{
+  "automatic_canary_utc": "2026-09-05T21:15:19.262005+00:00",
+  "durable_completion": true,
+  "environment": {
+    "environment": {
+      "JOBLIB_TEMP_FOLDER": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\joblib",
+      "MNE_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne",
+      "MNE_DONTWRITE_HOME": "true",
+      "MPLCONFIGDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\matplotlib",
+      "PIP_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pip",
+      "PYTEST_ADDOPTS": "--basetemp=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest\" -o cache_dir=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest-cache\"",
+      "PYTHONPYCACHEPREFIX": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "SCENARIO2_RUNTIME_ROOT": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "TEMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMPDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "XDG_CACHE_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "XDG_CONFIG_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "_MNE_FAKE_HOME_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne"
+    },
+    "resolved_paths": {
+      "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+      "processed_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed",
+      "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+      "runtime_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "scenario2_data_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2",
+      "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+    },
+    "system_drive": {
+      "applicable": true,
+      "free_bytes": 12701097984,
+      "minimum_free_bytes": 3221225472,
+      "operation": "environment_preflight",
+      "system_drive": "C:/"
+    },
+    "tempfile_gettempdir": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+  },
+  "fit_parameters_from": "Train_only",
+  "heldout_parameters_are": "apply_only",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "n_blocks": 16,
+  "normalization_fitted": false,
+  "output_sha256": "2cfda12212370d675d573b0ac3409bc6d1f10428e078303f4e4543b8195892fe",
+  "passed": true,
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "provisional_5_1_2_feasible": true,
+  "raw_deleted": true,
+  "receipt_sha256": "e123ca401896baff903a944cde9e06a8657aa98ab52e286d63ad3e89841952d0",
+  "scientific_heldout_analysis": false,
+  "second_subject_started_utc": "2026-09-05T21:15:20.083869+00:00",
+  "source_hashes_match": true,
+  "subject_id": "sub-010075",
+  "train_qc_pass": true,
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced",
+  "verified_utc": "2026-09-05T21:16:23.574708+00:00"
+}

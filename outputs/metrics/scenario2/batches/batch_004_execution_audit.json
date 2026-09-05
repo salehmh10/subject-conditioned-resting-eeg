@@ -1,0 +1,83 @@
+{
+  "all_prior_artifacts_unchanged": true,
+  "authorization_sha256": "b8f4c21caf1b05856a4c4727dd813e19c3fe7ed66e6ad1b150000bd8195a38f8",
+  "batch_id": "004",
+  "canonical_plan_sha256": "1c0b6356326029f27b95d016b500564b293769e698df1da26fc571b74d28acaa",
+  "checkpoints": [
+    {
+      "completed_count": 10,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_010.json",
+      "sha256": "eb237b0d91d537cca324d17760f645a6782e44fda39a43eebf5000aae719ef94",
+      "terminal_count": 10
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_020.json",
+      "sha256": "f1b34b4e9020417182f99aa2ad0f82676abe4b103f1d5f06456e519cfcb79c36",
+      "terminal_count": 20
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_030.json",
+      "sha256": "a69235c2e5ae35a1242cfc3e29dec9378f4ac6bc29f8e8da4ae1b7427c8e3fdd",
+      "terminal_count": 30
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_040.json",
+      "sha256": "d55e6db54756a80d7b061b0dd78d976abfb45afaaaa24dbaba2b382e66526408",
+      "terminal_count": 40
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_050.json",
+      "sha256": "073ee716ade99e4a130acd2fca83e52c6b6ecab1fbcff0fc32a1830121910a0a",
+      "terminal_count": 50
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_060.json",
+      "sha256": "49fba8e00f25a98b071b58988716ec5a3b096ef1adfc2796b71009bb182fb563",
+      "terminal_count": 60
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_070.json",
+      "sha256": "101776f72c080f34a5a92f73dee58ae99370f5e5b9f838391251db130b517131",
+      "terminal_count": 70
+    },
+    {
+      "completed_count": 12,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches\\batch_004_progress_final.json",
+      "sha256": "594d1cebc10109affc594a12ce48f6ecf31599f5e42a9746d541bec273547cb9",
+      "terminal_count": 74
+    }
+  ],
+  "completed_pair_payload_bytes": 7789787908,
+  "dns_failure_events": 247,
+  "execution_exit_code": 1,
+  "expected_untransferred_declared_bytes": 39959722354,
+  "first_network_event_utc": "2026-09-05T21:11:17.747565+00:00",
+  "frozen_manifest_sha256": "0be1d41165aa55e30dc86e72724a752270de4a8bec7a50fbad5595a158e37fb5",
+  "interruptions": 248,
+  "last_network_event_utc": "2026-09-05T22:07:16.761630+00:00",
+  "network_execution_stopped": true,
+  "no_future_batch": true,
+  "normalization_fitted": false,
+  "plan_file_sha256": "4e21f8371494a61b665fe4e868bc82794ffed31e21fe4d1c9a61e7b2fdd7cb48",
+  "preserved_prefixes": [
+    {
+      "bytes": 528482304,
+      "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010232\\eeg\\sub-010232_task-resting_eeg.eeg.part",
+      "sha256": "105dca88b62df36d3b88d0b66d3dfab76120b2b60c5672db904f7551180f86a1"
+    }
+  ],
+  "progress_journal_sha256": "7ca2000643e8991ddfcf8fe3d137db2ceaa6824d19ef133df87795c2b035bdb7",
+  "protected_artifact_count": 381,
+  "read_timeout_events": 1,
+  "response_body_bytes": 8318270212,
+  "resumed_prefix_bytes_validated": 0,
+  "retries": 186,
+  "scientific_heldout_analysis": false,
+  "verified_utc": "2026-09-05T22:16:00.099247+00:00"
+}

@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 004 authorized for 45-GiB sequential streaming; scientific rules remain frozen
+Status: Batch 004 stopped with 12 complete and 62 unresolved download failures; scientific rules remain frozen
 
 ## 1. Objective
 
@@ -297,3 +297,20 @@ Execution proceeds strictly one subject at a time, with a verified first-subject
 Detailed journals remain external on D:. A durable progress record is saved after every subject, with numbered snapshots after each ten terminal subjects and at final stop. It records measured response bytes, exact raw bytes freed/retained, compact output, counts, journal positions, free C:/D: space, and manifest hash. TEMP/TMP/TMPDIR and every cache remain beneath the external Scenario 2 D: root. The 3-GiB C: guard remains mandatory; pagefile settings are unchanged.
 
 Offline synthetic/mocked tests, compileall, and the local code/docs/plan commit precede durable execution authorization and the first request. Scientific preprocessing and QC hashes remain unchanged. Scientific held-out outcomes remain sealed; normalization remains unfitted; the final cohort and split remain unlocked. **Batch 005 is prohibited and unplanned; its size remains a future user decision. No Git push is authorized.**
+
+
+## 2026-09-06: Batch 004 terminal accounting and stop boundary
+
+**BATCH_004_FAILED_OR_PARTIAL.** Network execution is stopped after **74/74 frozen members reached durable terminal states**. **12 completed technically (192 blocks); 62 remain unresolved download failures**, with QC and provisional feasibility unassessed. The ledger is `failed_or_partial`. This does not claim all 74 were processed.
+
+The immutable **45-GiB cap is 48,318,382,080 bytes**. Frozen membership contains **74 subjects / 148 assets** in contiguous authoritative order, beginning with sub-010075 and ending with sub-010241. Declared and initially expected payload: **48,277,992,566 bytes (44.962384334 GiB)**. Unused membership capacity: **40,389,514 bytes (0.037615666 GiB)**. The first unassigned candidate remains sub-010242 (662,012,959 bytes); no replacement or Batch 005 membership was generated.
+
+Measured response-body transfer is **8,318,270,212 bytes (7.746992830 GiB)**: 7,789,787,908 bytes for the 12 completed source pairs plus a preserved **528,482,304-byte (504-MiB / 0.4921875-GiB)** sub-010232 prefix. There were **186 retries and 248 interruption events** (247 DNS failures and one read timeout), **zero manual restarts**, and **zero validated resumed-prefix bytes**. Connectivity briefly recovered for sub-010232, then timed out; its final Range retry failed DNS before any HTTP 206 response. No new request followed the final terminal sequence.
+
+All 12 completed subjects pass frozen Train QC and provisional 5/1/2 feasibility. Their guarded raw deletions freed **7,790,315,121 bytes (7.255296336 GiB)**. The 62 unresolved raw directories remain: sub-010232 contains the partial and 61 are empty. No download failure is described as a QC failure. The three prior retained QC-failure subjects sub-010012, sub-010030, and sub-010250 are unchanged.
+
+All-block HDF5 addition is **87,664,489 bytes (83.603372 MiB)**. Cumulative progress is **84/211 complete subjects / 1,344 blocks**, with **81 Train-QC passes**, **80 provisional-feasibility passes**, **65 unassigned candidates**, and **62 assigned unresolved Batch 004 members**. Total retained raw is **2,473,646,334 bytes (2.303762672 GiB)**; processed storage including Train references and receipts is **999,601,328 bytes (0.930951282 GiB)**.
+
+The one-subject disk guard remains active; the 45-GiB network budget never became a simultaneous disk requirement. All 381 protected prior artifacts, original access records, scientific source/configuration, and the metadata clone remain unchanged. Each terminal subject has durable progress; snapshots exist after 10/20/30/40/50/60/70 terminals and final stop. Final tests: **299 passed in 38.11 seconds**; compileall and the read-only terminal-state verifier passed. Scientific held-out outcomes remain sealed, normalization remains unfitted, and the final cohort/split remain unlocked. **Batch 005 is unplanned. No Git push occurred.**
+
+See `BATCH_004_STREAMING_HANDOFF.md` for exact membership, results, preservation hashes, and conditional continuation instructions.

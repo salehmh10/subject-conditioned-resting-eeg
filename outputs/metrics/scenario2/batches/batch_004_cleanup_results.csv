@@ -1,0 +1,75 @@
+subject_id,raw_deleted,raw_retained,raw_bytes_freed,raw_bytes_retained,cleanup_blocker
+sub-010075,True,False,665417334,0,
+sub-010076,True,False,644994490,0,
+sub-010077,True,False,645180464,0,
+sub-010079,True,False,633660902,0,
+sub-010080,True,False,641113249,0,
+sub-010083,True,False,622153650,0,
+sub-010084,True,False,693466094,0,
+sub-010085,True,False,651975716,0,
+sub-010086,True,False,630734464,0,
+sub-010087,True,False,655683355,0,
+sub-010088,True,False,670290544,0,
+sub-010089,True,False,635644859,0,
+sub-010090,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010091,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010092,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010093,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010094,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010104,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010136,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010137,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010138,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010141,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010142,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010146,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010148,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010150,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010152,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010155,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010157,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010162,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010163,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010164,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010165,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010166,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010168,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010170,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010176,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010183,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010191,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010192,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010193,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010194,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010195,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010196,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010197,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010199,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010200,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010201,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010202,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010204,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010207,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010210,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010213,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010214,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010215,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010218,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010219,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010220,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010222,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010223,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010224,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010226,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010227,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010228,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010230,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010231,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010232,False,True,0,528482304,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010233,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010234,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010236,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010238,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010239,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010240,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
+sub-010241,False,True,0,0,<urlopen error [Errno 11001] getaddrinfo failed>
