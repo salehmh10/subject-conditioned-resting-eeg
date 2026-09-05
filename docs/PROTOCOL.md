@@ -204,7 +204,7 @@ The Windows stability guard stops before subject download/resume, asset requests
 The original Batch 001 authorization, plan, manifest hash, cap and membership are preserved. A separate numbered resume authorization references the original authorization hash, the committed hardening code, reverified completed subjects, remaining-transfer preflight, and exact environment. `sub-010002` is reused without raw recreation or processing. `sub-010003` resumes from its preserved prefix; validated HTTP Content-Range and actual new response-body bytes are recorded. Batch 002 remains unplanned, and all scientific/QC rules remain unchanged.
 
 
-## 2026-09-05 ? Batch 001 results and stop boundary
+## 2026-09-05 — Batch 001 results and stop boundary
 
 The immutable 5-GiB batch completed the ordered subjects sub-010002, sub-010003, sub-010004, sub-010005, sub-010006, sub-010007, sub-010010, sub-010012. Declared, initially expected, and measured application response payload each equal 5,104,883,272 bytes (4.754293031990528 GiB); unused capacity is 263,825,848 bytes. One user-initiated low-C-space stop preserved a 419,430,400-byte sub-010003 prefix, later reused under validated HTTP 206 Content-Range. No network retry occurred. HTTP/TLS/ISP overhead and bytes not returned by the response reader are not measured by application accounting.
 

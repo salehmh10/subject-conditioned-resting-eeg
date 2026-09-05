@@ -23,7 +23,7 @@ Check that no other pytest instance is running before using its shared external 
 .\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 001 --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-**NEXT ACTION ? CHOOSE BATCH 002 SIZE.** Batch 002 was not planned or executed. Its cap is deliberately undecided and may differ from Batch 001. Do not regenerate Batch 001 or execute an unbounded full-manifest stream. No further download is authorized by this completed assignment.
+**NEXT ACTION — CHOOSE BATCH 002 SIZE.** Batch 002 was not planned or executed. Its cap is deliberately undecided and may differ from Batch 001. Do not regenerate Batch 001 or execute an unbounded full-manifest stream. No further download is authorized by this completed assignment.
 
 ## Verified dataset facts
 
