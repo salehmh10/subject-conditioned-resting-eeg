@@ -4,37 +4,26 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
-The frozen mechanical pilot has completed: **15 verified all-block HDF5 files, 240 blocks, 150 copied Train blocks, and exactly 90 mechanically processed Validation/Test blocks**. Thirteen subjects are provisionally 5/1/2 QC-feasible. `sub-010250` retains its Train-QC failure; `sub-010280` fails its assigned EO Validation block. No threshold or allocation changed.
+Batch 001 execution is complete: **8 verified all-block outputs (128 blocks)** under an immutable **5-GiB cap**. Its ordered members are `sub-010002`, `sub-010003`, `sub-010004`, `sub-010005`, `sub-010006`, `sub-010007`, `sub-010010`, and `sub-010012`. Declared and measured response-body payload both equal **5,104,883,272 bytes (4.754293 GiB)**; **263,825,848 bytes (0.245707 GiB)** were unused.
 
-The terminal readiness state is `MECHANICAL_HELDOUT_PROCESSING_READY_FOR_FULL_STREAMING`, certified by the clean-worktree acceptance command below. The final cohort, final split/Test lock and normalization remain unfrozen. Scientific held-out outcomes remain sealed; no PSD, Alpha, Connectivity, classifier or generator analysis was performed.
+Seven subjects passed Train QC and provisional 5/1/2 feasibility. `sub-010012` failed Train QC and its assigned EO Validation/Test mechanical eligibility; its raw is retained. Seven Batch raw directories and 14 eligible Pilot raw directories were deleted after verification. Pilot `sub-010250` remains retained. Batch compact HDF5 addition is **58,508,245 bytes (55.797811 MiB)**. Cumulative progress is **23 all-block subjects / 368 blocks**, with **188 unassigned candidates**.
 
-See [MECHANICAL_HELDOUT_HANDOFF.md](docs/MECHANICAL_HELDOUT_HANDOFF.md) for results, limitations, authorization timing, cleanup safeguards and exact next-phase commands. Earlier handoffs are historical; Train-only cleanup eligibility is superseded by mandatory verified all-block storage.
+All large data and project temp/cache/runtime storage use the external `Datasets/MPI-LEMON-Scenario2` root. The metadata clone remains read-only. After the user's C: low-space interruption, the preserved **400-MiB** prefix resumed with validated HTTP 206 Range; the completed canary was reused. Zero network retries occurred. System-drive guards now stop expensive operations below 3 GiB C: free space.
 
-All 150 previously exposed pilot blocks must remain Train or their subjects must be excluded. Frozen preprocessing and its checksum are unchanged. All-block storage totals **104.653 MiB**, with a pilot-based 211-subject estimate of **1.438 GiB**. Existing Train-only outputs and all 105 pilot raw files are preserved. No non-pilot EEG was downloaded, raw deleted or Git push performed.
+See [BATCH_001_STREAMING_HANDOFF.md](docs/BATCH_001_STREAMING_HANDOFF.md) for exact hashes, storage layout, interruption/resume, QC, cleanup, and audit evidence. Earlier handoffs describe historical phases. The final acceptance state `BATCH_001_STREAMING_COMPLETE` is certified by the clean-worktree verifier below. Final cohort/splits remain unlocked; no normalization or scientific held-out analysis occurred. All commits are local; no push occurred.
 
-## Verify and continue
+## Verify and next action
 
-Use the existing pinned environment:
+Check that no other pytest instance is running before using its shared external base:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q --junitxml outputs/logs/pytest.xml
+. .\scripts\setup_scenario2_environment.ps1 -ForTests
+.\.venv\Scripts\python.exe -m pytest -q --basetemp "D:/SHARIF/PROJECT/Datasets/MPI-LEMON-Scenario2/temp/pytest" --junitxml outputs/logs/pytest.xml
 .\.venv\Scripts\python.exe -m compileall scripts src tests
-.\.venv\Scripts\python.exe scripts/data/s2_11_verify_mechanical_pilot.py --require-clean --test-report outputs/logs/pytest.xml
+.\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 001 --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-Plan all 211 subjects without downloads or waveform reads:
-
-```powershell
-.\.venv\Scripts\python.exe scripts/data/s2_07_stream_preprocess_subjects.py --processing-scope all-blocks-mechanical --dry-run --keep-raw
-```
-
-Verify/reuse the staged pilot without additional native waveform access:
-
-```powershell
-.\.venv\Scripts\python.exe scripts/data/s2_07_stream_preprocess_subjects.py --processing-scope all-blocks-mechanical --manifest outputs/metrics/scenario2/pilot_download_manifest.csv --execute --local-existing-only --keep-raw --journal outputs/logs/pilot_all_block_restart_verify.jsonl
-```
-
-Future streaming stages one subject, fits parameters from Train only, mechanically applies them to all assigned held-out blocks, verifies a complete all-block output and durable provenance/journal, then continues. Raw deletion is off by default and requires `--delete-raw-after-success` plus every guard. Train-only output can never authorize raw deletion. Non-pilot execution belongs to the next phase.
+**NEXT ACTION ? CHOOSE BATCH 002 SIZE.** Batch 002 was not planned or executed. Its cap is deliberately undecided and may differ from Batch 001. Do not regenerate Batch 001 or execute an unbounded full-manifest stream. No further download is authorized by this completed assignment.
 
 ## Verified dataset facts
 
@@ -64,12 +53,13 @@ The remaining 211 subjects each have eight complete EO and eight complete EC blo
 From the repository root:
 
 ```powershell
+. .\scripts\setup_scenario2_environment.ps1 -ForTests
 python scripts/audit/s2_01_audit_metadata.py
 python scripts/audit/s2_02_audit_blocks.py
 python scripts/audit/s2_03_build_structural_cohort.py
 python scripts/audit/s2_04_audit_demographics.py
 python scripts/audit/s2_05_plan_splits_and_downloads.py
-python -m pytest -q
+python -m pytest -q --basetemp "D:/SHARIF/PROJECT/Datasets/MPI-LEMON-Scenario2/temp/pytest"
 ```
 
 These commands read only local metadata. The prepared downloader is validation-only unless its explicit `--execute` flag is supplied.

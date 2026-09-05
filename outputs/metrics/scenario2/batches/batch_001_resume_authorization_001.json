@@ -1,0 +1,105 @@
+{
+  "authorization_code_head": "5a9210ea2cbf85f205c518d5abb39ed208d7d575",
+  "authorization_utc": "2026-09-05T14:36:39.315025+00:00",
+  "batch_id": "001",
+  "cap_bytes": 5368709120,
+  "cap_gib": 5.0,
+  "completed_subjects_reverified": [
+    "sub-010002"
+  ],
+  "declared_bytes": 5104883272,
+  "environment_preflight": {
+    "environment": {
+      "JOBLIB_TEMP_FOLDER": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\joblib",
+      "MNE_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne",
+      "MNE_DONTWRITE_HOME": "true",
+      "MPLCONFIGDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\matplotlib",
+      "PIP_CACHE_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pip",
+      "PYTEST_ADDOPTS": "--basetemp=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest\" -o cache_dir=\"D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\pytest-cache\"",
+      "PYTHONPYCACHEPREFIX": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "SCENARIO2_RUNTIME_ROOT": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "TEMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMP": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "TMPDIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+      "XDG_CACHE_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "XDG_CONFIG_HOME": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\python",
+      "_MNE_FAKE_HOME_DIR": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp\\mne"
+    },
+    "resolved_paths": {
+      "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+      "processed_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed",
+      "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+      "runtime_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime",
+      "scenario2_data_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2",
+      "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+    },
+    "system_drive": {
+      "applicable": true,
+      "free_bytes": 9440514048,
+      "minimum_free_bytes": 3221225472,
+      "operation": "environment_preflight",
+      "system_drive": "C:/"
+    },
+    "tempfile_gettempdir": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp"
+  },
+  "expected_new_network_bytes": 5104883272,
+  "manifest_sha256": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "network_preflight_sha256": "40bb30827fb1c1d0d323a1a8eefd4ed05bd3d85a6c52ac2093fbebb749386431",
+  "original_authorization_sha256": "b842c7245d2a376f6cf10467980b0362e5f49d4ee597cdfffc6228680470018e",
+  "permission": "Execute Batch 001 ONLY; no future batch planning or execution authorized by this record.",
+  "plan_sha256": "bc875d3808a29aa7733b28cd0fb70c25b7b21ec65e70648b3ca75ab910579166",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "previous_authorization_code_head": "13cd91df96357d42dfc2a7284ac9382050878a13",
+  "prohibit_batch_002_during_this_assignment": true,
+  "resolved_paths": {
+    "access_config_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\configs\\access\\mechanical_heldout_v1.yaml",
+    "config_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\configs\\preprocessing\\frozen_preprocessing_v1.yaml",
+    "metadata_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON",
+    "metrics_root": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2",
+    "output_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\all-blocks-v1",
+    "raw_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw",
+    "repo_root": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg",
+    "temp_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\temp",
+    "train_output_root": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\processed\\train-only-v1"
+  },
+  "resume_network_preflight": {
+    "batch_id": "001",
+    "cap_bytes": 5368709120,
+    "compact_estimate_basis": "conservative 32 MiB per subject including temporary allowance",
+    "created_utc": "2026-09-05T14:36:39.315025+00:00",
+    "declared_bytes": 4471241513,
+    "disk_ok": true,
+    "expected_compact_output_bytes": 234881024,
+    "expected_new_network_bytes": 4051811113,
+    "free_disk_bytes": 49334505472,
+    "largest_subject_bytes": 679868959,
+    "partial_note": "Resumable incomplete prefixes are unverified until final whole-file SHA256; server may ignore Range.",
+    "partial_prefixes": [
+      {
+        "bytes": 419430400,
+        "prefix_sha256": "729802c20cb4e7367df8e67ab7a3fc42fc935bccc39de11c24a4b7f1f908d317",
+        "relative_path": "sub-010003/eeg/sub-010003_task-resting_eeg.eeg",
+        "whole_file_sha_verified": false
+      }
+    ],
+    "processing_overhead_bytes": 536870912,
+    "required_free_bytes": 5897304873,
+    "subject_count": 7,
+    "traffic_note": "Expected response payload excludes retries, ignored Range, and unmeasured HTTP/TLS/ISP overhead.",
+    "valid_partial_bytes": 419430400,
+    "verified_existing_bytes": 0
+  },
+  "resume_reason": "User manually stopped for C: low space; D-only cache hardening and 3-GiB C: guard",
+  "subject_ids": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012"
+  ],
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+}

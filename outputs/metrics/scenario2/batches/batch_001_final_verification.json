@@ -1,0 +1,43 @@
+{
+  "batch_verifier_passed": true,
+  "blocks": 128,
+  "c_drive_free_bytes": 14862200832,
+  "compileall_passed": true,
+  "final_clean_worktree_verification": "Run after results and handoff commits",
+  "junit_sha256": "59063608a0d4e196f9024dffc8315f06f9996d38d43ae3a85abbb44e77a5c1a3",
+  "manifest_sha256": "21a5676eb5fcefbe5f776bf467d9eace8e3d63ee0ede9d102c6f5bcdf43fb865",
+  "metadata_clone_clean": true,
+  "no_batch_002": true,
+  "no_legacy_signal_files_in_repository": true,
+  "no_normalization": true,
+  "no_push": true,
+  "no_scientific_heldout_analysis": true,
+  "original_authorization_sha256": "b842c7245d2a376f6cf10467980b0362e5f49d4ee597cdfffc6228680470018e",
+  "processed_storage_total_bytes": 274069895,
+  "pytest_count": 275,
+  "pytest_seconds": 31.39,
+  "resume_authorization_sha256": "3bc80539703d078c1f2f71140275263038395f8e4db067f937288c012cda7907",
+  "retained_raw_source_pairs_reverified": [
+    "sub-010012",
+    "sub-010250"
+  ],
+  "runtime_journal_files": {
+    "batch_001_download_journal.jsonl": {
+      "bytes": 337951,
+      "sha256": "6f30d1e2a35c58ecba9c75bdc70f18ca830aae49641fb116dde9f0b48753050e"
+    },
+    "batch_001_streaming_journal.jsonl": {
+      "bytes": 588429,
+      "sha256": "8e5c833511f3c25748709be1176848fb8654f0988aa11a5cc68838ba0b1c4b98"
+    },
+    "pilot_cleanup_journal.jsonl": {
+      "bytes": 328131,
+      "sha256": "abeab8c665941b78c7d24a7a2e150ef3cd48fdc66c7f842a041cb89b3bebbc00"
+    }
+  },
+  "subjects": 8,
+  "train_reference_hdf5_bytes": 105122424,
+  "verification": "passed",
+  "verification_code_head": "5a9210ea2cbf85f205c518d5abb39ed208d7d575",
+  "verified_utc": "2026-09-05T15:19:29.094006+00:00"
+}

@@ -1,0 +1,9 @@
+subject_id,status,completed,train_qc_pass,provisional_5_1_2_feasible,feasibility_reason,failure_reason,cleanup_blocker,raw_deleted,raw_retained,raw_bytes_freed,raw_bytes_retained
+sub-010002,complete,True,True,True,,,,True,False,633685690,0
+sub-010003,complete,True,True,True,,,,True,False,624968514,0
+sub-010004,complete,True,True,True,,,,True,False,633710474,0
+sub-010005,complete,True,True,True,,,,True,False,679912920,0
+sub-010006,complete,True,True,True,,,,True,False,625402282,0
+sub-010007,complete,True,True,True,,,,True,False,634107216,0
+sub-010010,complete,True,True,True,,,,True,False,625018062,0
+sub-010012,complete,True,False,False,frozen_Train_QC_failed;EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible,,frozen_Train_QC_failed,False,True,0,648429341

@@ -1,0 +1,160 @@
+{
+  "actual_measured_network_payload_bytes": 5104883272,
+  "actual_measured_network_payload_gib": 4.754293031990528,
+  "asset_count": 16,
+  "authorization_head": "13cd91df96357d42dfc2a7284ac9382050878a13",
+  "batch_id": "001",
+  "cap_bytes": 5368709120,
+  "cap_gib": 5.0,
+  "compact_bytes_added": 58508245,
+  "cumulative_all_block_subject_count": 23,
+  "cumulative_compact_bytes": 168244436,
+  "cumulative_raw_bytes": 1299760223,
+  "declared_bytes": 5104883272,
+  "declared_gib": 4.754293031990528,
+  "download_journal_sha256": "6f30d1e2a35c58ecba9c75bdc70f18ca830aae49641fb116dde9f0b48753050e",
+  "excluded_verified_completed": [
+    "sub-010023",
+    "sub-010059",
+    "sub-010071",
+    "sub-010078",
+    "sub-010081",
+    "sub-010126",
+    "sub-010134",
+    "sub-010216",
+    "sub-010250",
+    "sub-010276",
+    "sub-010277",
+    "sub-010278",
+    "sub-010279",
+    "sub-010280",
+    "sub-010282"
+  ],
+  "expected_network_bytes": 5104883272,
+  "expected_network_gib": 4.754293031990528,
+  "final_cohort_locked": false,
+  "first_not_included": {
+    "declared_bytes": 625866959,
+    "reason": "next_subject_would_exceed_batch_cap",
+    "subject_id": "sub-010016"
+  },
+  "free_disk_after": 49019097088,
+  "free_disk_before": 50063872000,
+  "frozen_at_utc": "2026-09-05T13:36:43.761301+00:00",
+  "future_batch_cap": null,
+  "future_batch_planned": false,
+  "interruptions": 1,
+  "manually_interrupted_runs": 1,
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "network_measurement_note": "Application response-body bytes; HTTP/TLS/ISP overhead not measured. Retried payload is counted.",
+  "normalization_fitted": false,
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "provisionally_feasible": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010"
+  ],
+  "provisionally_infeasible": [
+    "sub-010012"
+  ],
+  "raw_bytes_freed": 4456805158,
+  "raw_bytes_retained": 648429341,
+  "raw_directories_deleted": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010"
+  ],
+  "raw_directories_retained": [
+    "sub-010012"
+  ],
+  "remaining_unassigned_candidate_count": 188,
+  "request_resume_offsets": [
+    419430400
+  ],
+  "resumed_prefix_bytes_already_local": 0,
+  "resumed_prefix_bytes_validated": 419430400,
+  "retries": 0,
+  "runtime_journal_directory": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\runtime\\batches",
+  "scientific_heldout_analysis": false,
+  "streaming_journal_sha256": "8e5c833511f3c25748709be1176848fb8654f0988aa11a5cc68838ba0b1c4b98",
+  "subject_count": 8,
+  "subject_ids": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010",
+    "sub-010012"
+  ],
+  "subjects": [
+    {
+      "asset_count": 2,
+      "declared_bytes": 633641759,
+      "subject_id": "sub-010002"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 624924559,
+      "subject_id": "sub-010003"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 633666559,
+      "subject_id": "sub-010004"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 679868959,
+      "subject_id": "sub-010005"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 625358559,
+      "subject_id": "sub-010006"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 634063359,
+      "subject_id": "sub-010007"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 624974159,
+      "subject_id": "sub-010010"
+    },
+    {
+      "asset_count": 2,
+      "declared_bytes": 648385359,
+      "subject_id": "sub-010012"
+    }
+  ],
+  "subjects_completed": 8,
+  "summarized_utc": "2026-09-05T15:14:42.276732+00:00",
+  "technical_failures": [],
+  "train_qc_failed": [
+    "sub-010012"
+  ],
+  "train_qc_passing": [
+    "sub-010002",
+    "sub-010003",
+    "sub-010004",
+    "sub-010005",
+    "sub-010006",
+    "sub-010007",
+    "sub-010010"
+  ],
+  "unused_capacity_bytes": 263825848,
+  "unused_capacity_gib": 0.2457069680094719,
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced",
+  "verified_existing_bytes": 0
+}

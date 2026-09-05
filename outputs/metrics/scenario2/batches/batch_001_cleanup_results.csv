@@ -1,0 +1,9 @@
+subject_id,raw_deleted,raw_retained,raw_bytes_freed,raw_bytes_retained,cleanup_blocker
+sub-010002,True,False,633685690,0,
+sub-010003,True,False,624968514,0,
+sub-010004,True,False,633710474,0,
+sub-010005,True,False,679912920,0,
+sub-010006,True,False,625402282,0,
+sub-010007,True,False,634107216,0,
+sub-010010,True,False,625018062,0,
+sub-010012,False,True,0,648429341,frozen_Train_QC_failed
