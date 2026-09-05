@@ -1,0 +1,20 @@
+{
+  "compileall_passed": true,
+  "execution_code_head": "2124c7e39ebf6032649c823cbf678d7215c13d72",
+  "no_future_batch": true,
+  "no_normalization": true,
+  "no_push": true,
+  "no_scientific_heldout_analysis": true,
+  "prior_state_rehashed": true,
+  "pytest_count": 280,
+  "pytest_report": "outputs/logs/pytest.xml",
+  "pytest_report_sha256": "7c277c729facf4e689eefda8f2f69fb81f74c603ca4e01a12f48b475b4e6d840",
+  "pytest_seconds": 33.43,
+  "read_only_verifier_passed": true,
+  "retained_source_pairs_rehashed": true,
+  "streaming_exit_code": 0,
+  "streaming_stopped": true,
+  "validated_utc": "2026-09-05T17:06:13.418314+00:00",
+  "verified_blocks": 256,
+  "verified_subjects": 16
+}

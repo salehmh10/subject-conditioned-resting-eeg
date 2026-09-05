@@ -2,12 +2,12 @@
   "batch_id": "002",
   "cap_bytes": 10737418240,
   "compact_estimate_basis": "conservative 32 MiB per subject including temporary allowance",
-  "created_utc": "2026-09-05T16:06:25.287218+00:00",
+  "created_utc": "2026-09-05T16:07:17.839215+00:00",
   "declared_bytes": 10141417744,
   "disk_ok": true,
   "expected_compact_output_bytes": 536870912,
   "expected_new_network_bytes": 10141417744,
-  "free_disk_bytes": 49516867584,
+  "free_disk_bytes": 49516765184,
   "largest_subject_bytes": 650319759,
   "partial_note": "Resumable incomplete prefixes are unverified until final whole-file SHA256; server may ignore Range.",
   "partial_prefixes": [],
@@ -34,7 +34,7 @@
   ],
   "system_drive": {
     "applicable": true,
-    "free_bytes": 14854225920,
+    "free_bytes": 14811791360,
     "minimum_free_bytes": 3221225472,
     "operation": "batch_network_preflight",
     "system_drive": "C:/"

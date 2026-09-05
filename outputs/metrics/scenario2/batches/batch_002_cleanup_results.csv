@@ -1,0 +1,17 @@
+subject_id,raw_deleted,raw_retained,raw_bytes_freed,raw_bytes_retained,cleanup_blocker
+sub-010016,True,False,625910833,0,
+sub-010017,True,False,626307634,0,
+sub-010019,True,False,650363674,0,
+sub-010020,True,False,624807101,0,
+sub-010021,True,False,626902970,0,
+sub-010022,True,False,621347714,0,
+sub-010024,True,False,630610464,0,
+sub-010026,True,False,644560707,0,
+sub-010027,True,False,634020484,0,
+sub-010028,True,False,636599706,0,
+sub-010029,True,False,636500467,0,
+sub-010030,False,True,0,645403807,frozen_Train_QC_failed
+sub-010031,True,False,646048535,0,
+sub-010032,True,False,620864063,0,
+sub-010033,True,False,625811729,0,
+sub-010034,True,False,646060850,0,

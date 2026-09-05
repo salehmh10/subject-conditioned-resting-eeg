@@ -1,0 +1,53 @@
+{
+  "all_block_hdf5_bytes": 285019467,
+  "c_free_bytes": 13807886336,
+  "cumulative_all_block_subjects": 39,
+  "cumulative_provisionally_feasible": 35,
+  "cumulative_train_qc_pass": 36,
+  "d_free_bytes": 48674701312,
+  "processed_bytes": 464293360,
+  "raw_bytes": 1945164030,
+  "retained_qc": {
+    "EC_Test_eligible_blocks": 2,
+    "EC_Train_eligible_blocks": 5,
+    "EC_Validation_eligible_blocks": 1,
+    "EO_Test_eligible_blocks": 0,
+    "EO_Train_eligible_blocks": 2,
+    "EO_Validation_eligible_blocks": 1,
+    "label": "pilot_all_block_qc_not_feasible",
+    "provisional_5_1_2_feasible": false,
+    "reason": "frozen_Train_QC_failed;EO_Test_assigned_block_ineligible",
+    "train_criterion_pass": false
+  },
+  "retained_raw": [
+    {
+      "bytes": 648429341,
+      "source_pair_rehashed": true,
+      "subject_id": "sub-010012"
+    },
+    {
+      "bytes": 645403807,
+      "source_pair_rehashed": true,
+      "subject_id": "sub-010030"
+    },
+    {
+      "bytes": 651330882,
+      "source_pair_rehashed": true,
+      "subject_id": "sub-010250"
+    }
+  ],
+  "runtime_files": [
+    {
+      "bytes": 671426,
+      "name": "batch_002_download_journal.jsonl",
+      "sha256": "6639e5ecdebeac87eaf0616b11e38087edb7b63cb782e342c9708e29784e2aa7"
+    },
+    {
+      "bytes": 1124068,
+      "name": "batch_002_streaming_journal.jsonl",
+      "sha256": "4ba20b922caa0fa29472191ed99db8ceb53a35cd218e0bba96471db1ea340e0a"
+    }
+  ],
+  "train_reference_hdf5_bytes": 178082252,
+  "verified_utc": "2026-09-05T17:04:31.755489+00:00"
+}

@@ -4,28 +4,28 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
-Batch 002 is now separately authorized and frozen at exactly **10 GiB**, with **16 subjects / 10,141,417,744 declared bytes (9.444931284 GiB)**. Execution is pending the required tests, local commit, and durable authorization. Batch 003 is prohibited. The completed Batch 001 evidence below is historical and remains immutable.
+Batch 002 execution is complete: **16 verified all-block outputs (256 blocks)** under an immutable **10-GiB cap (10,737,418,240 bytes)**. Declared, expected, and measured response-body payload are each **10,141,417,744 bytes (9.444931284 GiB)**; unused capacity is **596,000,496 bytes**. There were no retries, resumptions, interruptions, or technical failures.
 
-Batch 001 execution is complete: **8 verified all-block outputs (128 blocks)** under an immutable **5-GiB cap**. Its ordered members are `sub-010002`, `sub-010003`, `sub-010004`, `sub-010005`, `sub-010006`, `sub-010007`, `sub-010010`, and `sub-010012`. Declared and measured response-body payload both equal **5,104,883,272 bytes (4.754293 GiB)**; **263,825,848 bytes (0.245707 GiB)** were unused.
+Fifteen subjects pass frozen Train QC and provisional 5/1/2 feasibility. **sub-010030** fails both and retains its **645,403,807-byte** raw directory. The other fifteen raw directories were deleted after verification, freeing **9,496,716,931 bytes (8.844506863 GiB)**. Batch all-block HDF5 addition is **116,775,031 bytes (111.365348 MiB)**.
 
-Seven subjects passed Train QC and provisional 5/1/2 feasibility. `sub-010012` failed Train QC and its assigned EO Validation/Test mechanical eligibility; its raw is retained. Seven Batch raw directories and 14 eligible Pilot raw directories were deleted after verification. Pilot `sub-010250` remains retained. Batch compact HDF5 addition is **58,508,245 bytes (55.797811 MiB)**. Cumulative progress is **23 all-block subjects / 368 blocks**, with **188 unassigned candidates**.
+Cumulative progress is **39/211 complete all-block subjects / 624 blocks**, with **172 unassigned candidates**. Cumulative Train-QC pass is 36/39 and provisional feasibility is 35/39. Raw remains only for sub-010012, sub-010030, and sub-010250: **1,945,164,030 bytes (1.811575172 GiB)**. Processed storage including Train references and receipts is **464,293,360 bytes (0.432406887 GiB)**. These engineering labels do not lock the final cohort or split.
 
-All large data and project temp/cache/runtime storage use the external `Datasets/MPI-LEMON-Scenario2` root. The metadata clone remains read-only. After the user's C: low-space interruption, the preserved **400-MiB** prefix resumed with validated HTTP 206 Range; the completed canary was reused. Zero network retries occurred. System-drive guards now stop expensive operations below 3 GiB C: free space.
+Batch 001 records, its ledger entry, all 23 prior outputs/receipts, retained raw, and prior access records remain unchanged. All signal/temp/cache/runtime data stays external on D:, and the original metadata clone remains unchanged. Final tests passed **280 in 33.43 seconds**; compileall and the read-only Batch 002 verifier passed. No scientific held-out analysis, waveform plot, normalization fit, final cohort/split lock, or Git push occurred. **Batch 003 was not planned; its size remains undecided.**
 
-See [BATCH_001_STREAMING_HANDOFF.md](docs/BATCH_001_STREAMING_HANDOFF.md) for exact hashes, storage layout, interruption/resume, QC, cleanup, and audit evidence. Earlier handoffs describe historical phases. The final acceptance state `BATCH_001_STREAMING_COMPLETE` is certified by the clean-worktree verifier below. Final cohort/splits remain unlocked; no normalization or scientific held-out analysis occurred. All commits are local; no push occurred.
+See [BATCH_002_STREAMING_HANDOFF.md](docs/BATCH_002_STREAMING_HANDOFF.md) for the complete handoff. [Batch 001 handoff](docs/BATCH_001_STREAMING_HANDOFF.md) remains historical immutable evidence.
 
 ## Verify and next action
 
-Check that no other pytest instance is running before using its shared external base:
+Check that no other pytest instance is using the shared external base, then run:
 
 ```powershell
 . .\scripts\setup_scenario2_environment.ps1 -ForTests
 .\.venv\Scripts\python.exe -m pytest -q --basetemp "D:/SHARIF/PROJECT/Datasets/MPI-LEMON-Scenario2/temp/pytest" --junitxml outputs/logs/pytest.xml
 .\.venv\Scripts\python.exe -m compileall scripts src tests
-.\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 001 --require-clean --test-report outputs/logs/pytest.xml
+.\.venv\Scripts\python.exe scripts/data/s2_12_verify_streaming_batch.py --batch-id 002 --require-clean --test-report outputs/logs/pytest.xml
 ```
 
-**Current action: execute frozen Batch 002 only at the user-selected 10-GiB cap.** Preserve all prior completions. Do not plan Batch 003 or run an unbounded stream.
+**NEXT ACTION — CHOOSE BATCH 003 SIZE.** Batch 003 has no chosen cap or planned membership. Do not regenerate completed subjects or run an unbounded full-manifest stream. No further download is authorized by this completed assignment.
 
 ## Verified dataset facts
 

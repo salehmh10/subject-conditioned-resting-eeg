@@ -271,3 +271,16 @@ The frozen contiguous membership is: sub-010016, sub-010017, sub-010019, sub-010
 All runtime/cache/temp/signal storage remains external on D:. The 3-GiB C: guard, sequential processing, strict source/Range verification, Train-only fitting, mechanical held-out apply-only access, all 16 blocks/masks/reasons, durable receipt/journal and immediate guarded cleanup remain mandatory. Train-QC failures retain raw. Scientific preprocessing, QC, provisional allocation, and normalization status are unchanged. No scientific held-out analysis, model evaluation, plots, final cohort lock, normalization fitting, or push is authorized.
 
 The verifier now supports cumulative access registries and checks prior-batch preservation. Offline regressions cover the exact 10-GiB contiguous membership, exclusion, immutable prior ledger/artifacts, registry tampering and the Batch 003 boundary. Required tests and implementation/documentation commit precede durable execution authorization and first network I/O. Detailed execution journals remain external; only compact evidence is committed.
+
+
+## 2026-09-05: Batch 002 results and stop boundary
+
+Batch 002 execution is complete: **16 verified all-block outputs (256 blocks)** under an immutable **10-GiB cap (10,737,418,240 bytes)**. Declared, expected, and measured response-body payload are each **10,141,417,744 bytes (9.444931284 GiB)**; unused capacity is **596,000,496 bytes**. There were no retries, resumptions, interruptions, or technical failures.
+
+Fifteen subjects pass frozen Train QC and provisional 5/1/2 feasibility. **sub-010030** fails both and retains its **645,403,807-byte** raw directory. The other fifteen raw directories were deleted after verification, freeing **9,496,716,931 bytes (8.844506863 GiB)**. Batch all-block HDF5 addition is **116,775,031 bytes (111.365348 MiB)**.
+
+Cumulative progress is **39/211 complete all-block subjects / 624 blocks**, with **172 unassigned candidates**. Cumulative Train-QC pass is 36/39 and provisional feasibility is 35/39. Raw remains only for sub-010012, sub-010030, and sub-010250: **1,945,164,030 bytes (1.811575172 GiB)**. Processed storage including Train references and receipts is **464,293,360 bytes (0.432406887 GiB)**. These engineering labels do not lock the final cohort or split.
+
+Batch 001 records, its ledger entry, all 23 prior outputs/receipts, retained raw, and prior access records remain unchanged. All signal/temp/cache/runtime data stays external on D:, and the original metadata clone remains unchanged. Final tests passed **280 in 33.43 seconds**; compileall and the read-only Batch 002 verifier passed. No scientific held-out analysis, waveform plot, normalization fit, final cohort/split lock, or Git push occurred. **Batch 003 was not planned; its size remains undecided.**
+
+See `BATCH_002_STREAMING_HANDOFF.md` for exact membership, hashes, network accounting, cleanup, verification, and restart commands.
