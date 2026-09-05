@@ -1,7 +1,5 @@
-"""Sequential, restartable subject staging and provisional-Train preprocessing.
+"""Sequential Train fitting followed by optional frozen mechanical held-out application.
 
-The processing scope is always Train. Held-out waveform processing requires a
-separately authorized future extension; this module has no split override.
 Planning is read-only. Execution and raw cleanup are separate explicit choices.
 """
 
@@ -226,7 +224,7 @@ def append_status(journal: Path, run_id: str, subject_id: str, status: str, **de
         "run_id": run_id,
         "subject_id": subject_id,
         "status": status,
-        "scope": "provisional_Train_only",
+        "scope": details.get("result", {}).get("scope", details.get("plan", {}).get("scope", "provisional_Train_only")),
         **details,
     }
     payload = (json.dumps(record, sort_keys=True, allow_nan=False) + "\n").encode("utf-8")
@@ -256,7 +254,17 @@ def _verify_receipt(result: dict, subject_id: str, config_path: Path, output_roo
     if not result["expected_blocks"] or len(result["expected_blocks"]) != len(set(result["expected_blocks"])):
         raise ValueError("processing receipt needs a nonempty, unique expected-block list")
     downloader.verify_file(output, int(result["output_bytes"]), str(result["output_sha256"]))
-    checked = verify_output(output, config_hash, result["expected_blocks"])
+    if result.get("scope") == "all_blocks_mechanical_provisional_v1":
+        from resting_eeg.preprocessing.all_blocks import verify_all_block_output
+        checked = verify_all_block_output(output, config_hash, result["authoritative_blocks"],
+                                          result["mechanical_access_config_sha256"], result["train_parameter_source_hash"])
+        for key in ("fit_parameters_from", "heldout_parameters_are", "train_parameter_source_hash",
+                    "mechanical_access_config_sha256", "authoritative_blocks", "scope"):
+            required.add(key)
+        if result["fit_parameters_from"] != "Train_only" or result["heldout_parameters_are"] != "apply_only":
+            raise ValueError("Held-out parameters must be apply-only")
+    else:
+        checked = verify_output(output, config_hash, result["expected_blocks"])
     if checked.get("processed_verified") is not True:
         raise ValueError("compact output verification did not affirm success")
     receipt_path = output.with_suffix(".provenance.json")
@@ -276,6 +284,8 @@ def delete_verified_raw(
     """Delete only after current verification and a durable completion receipt."""
     if not explicitly_requested:
         raise PermissionError("raw deletion requires --delete-raw-after-success")
+    if result.get("scope") != "all_blocks_mechanical_provisional_v1" or len(result.get("expected_blocks", [])) != 16:
+        raise ValueError("Raw deletion requires verified all-block output; Train-only output is insufficient")
     checked = _verify_receipt(result, subject_id, config_path, output_root)
     if checked["qc_pass"] is not True:
         raise ValueError("raw cleanup requires passing subject QC")
@@ -313,6 +323,8 @@ def stream_subjects(
     local_existing_only: bool = False, delete_raw_after_success: bool = False,
     continue_on_error: bool = False, retries: int = 3, timeout: float = 60,
     journal_path: Path | None = None,
+    processing_scope: str = "train-only", access_config_path: Path | None = None,
+    train_output_root: Path | None = None, fit_parameters_from: str = "Train_only",
 ) -> list[dict]:
     """Plan or process each selected subject sequentially; return terminal records.
 
@@ -323,25 +335,34 @@ def stream_subjects(
     """
     repo_root, raw_root, metadata_root = Path(repo_root), Path(raw_root), Path(metadata_root)
     output_root, config_path, metrics_root = Path(output_root), Path(config_path), Path(metrics_root)
-    for writable in (output_root, metrics_root):
+    for writable in (output_root, metrics_root, *([Path(train_output_root)] if train_output_root else [])):
         _assert_no_links(writable.absolute())
         if _is_within(writable.resolve(), metadata_root.resolve()):
             raise ValueError("output and metrics paths must not modify the read-only metadata clone")
+    if processing_scope not in ("train-only", "all-blocks-mechanical") or fit_parameters_from != "Train_only":
+        raise ValueError("Invalid processing scope or attempted held-out fitting")
+    if processing_scope == "all-blocks-mechanical":
+        from resting_eeg.data.mechanical_access import load_access_config
+        if access_config_path is None:
+            raise ValueError("All-block mode requires mechanical access configuration")
+        load_access_config(access_config_path, config_path)
     validated = _manifest_rows(manifest, raw_root)
     grouped: dict[str, list] = {}
     for row, target in validated:
         grouped.setdefault(str(row["subject_id"]), []).append((row, target))
     for subject_id in grouped:
         subject_dir = safe_subject_directory(raw_root, metadata_root, subject_id)
-        for protected in (output_root.resolve(), metrics_root.resolve(), config_path.resolve()):
+        for protected in (output_root.resolve(), metrics_root.resolve(), config_path.resolve(), *([Path(train_output_root).resolve()] if train_output_root else [])):
             if _is_within(protected, subject_dir):
                 raise ValueError("output, metrics, and config must be outside raw subject directories")
     if not execute:
-        return [_subject_plan(subject_id, rows, raw_root, output_root) for subject_id, rows in grouped.items()]
+        return [dict(_subject_plan(subject_id, rows, raw_root, output_root), processing_scope=processing_scope,
+                     scope="all_blocks_mechanical_provisional_v1" if processing_scope == "all-blocks-mechanical" else "provisional_Train_only")
+                for subject_id, rows in grouped.items()]
     if not config_path.is_file():
         raise FileNotFoundError(f"frozen preprocessing configuration unavailable: {config_path}")
     _frozen_config_hash(config_path)
-    journal = Path(journal_path) if journal_path is not None else metrics_root / "streaming_subject_status.jsonl"
+    journal = Path(journal_path) if journal_path is not None else metrics_root / ("streaming_all_block_status.jsonl" if processing_scope == "all-blocks-mechanical" else "streaming_subject_status.jsonl")
     _assert_no_links(journal.absolute())
     _assert_no_links(journal.with_name(journal.name + ".lock").absolute())
     if _is_within(journal.resolve(), metadata_root.resolve()):
@@ -352,6 +373,9 @@ def stream_subjects(
     journal.parent.mkdir(parents=True, exist_ok=True)
     run_id = uuid4().hex
     terminal = []
+    def record_status(*args, **details):
+        details.setdefault('scope', 'all_blocks_mechanical_provisional_v1' if processing_scope == 'all-blocks-mechanical' else 'provisional_Train_only')
+        return append_status(*args, **details)
     with _journal_lock(journal):
         history = _recover_journal(journal)
         download_journal = downloader.DownloadJournal(metrics_root / "streaming_download_status.jsonl")
@@ -359,15 +383,18 @@ def stream_subjects(
             stage = "planning"
             try:
                 plan = _subject_plan(subject_id, rows, raw_root, output_root)
-                append_status(journal, run_id, subject_id, "planned", plan=plan)
+                if processing_scope == "all-blocks-mechanical":
+                    plan["scope"] = "all_blocks_mechanical_provisional_v1"
+                record_status(journal, run_id, subject_id, "planned", plan=plan)
                 validate_metadata(subject_id, metadata_root)
                 subject_dir = safe_subject_directory(raw_root, metadata_root, subject_id)
                 prior = next((record for record in reversed(history)
                               if record.get("subject_id") == subject_id and record.get("status") == "complete"
-                              and record.get("source_payloads") == plan["source_payloads"]), None)
+                              and record.get("source_payloads") == plan["source_payloads"]
+                              and (record.get("result", {}).get("scope") == "all_blocks_mechanical_provisional_v1") == (processing_scope == "all-blocks-mechanical")), None)
                 if not subject_dir.exists() and prior is not None and prior.get("cleanup_requested"):
                     result = _verify_receipt(prior["result"], subject_id, config_path, output_root)
-                    terminal.append(append_status(journal, run_id, subject_id, "complete", result=result,
+                    terminal.append(record_status(journal, run_id, subject_id, "complete", result=result,
                                                   source_payloads=plan["source_payloads"], raw_retained=False,
                                                   cleanup_requested=True, reused_after_cleanup=True))
                     continue
@@ -376,21 +403,27 @@ def stream_subjects(
                 if local_existing_only and not plan["local_payloads_present"]:
                     raise FileNotFoundError(f"local-existing-only requires both complete payloads for {subject_id}")
                 stage = "downloading"
-                append_status(journal, run_id, subject_id, "downloading", local_existing_only=local_existing_only)
+                record_status(journal, run_id, subject_id, "downloading", local_existing_only=local_existing_only)
                 for row, target in rows:
                     if local_existing_only:
                         downloader.verify_file(target, int(row["payload_size_bytes"]), str(row["payload_sha256"]))
                     else:
                         downloader.fetch_one(row, target, retries=retries, timeout=timeout, journal=download_journal)
                 downloader.copy_sidecars([subject_id], metadata_root, raw_root)
-                append_status(journal, run_id, subject_id, "download_verified", source_payloads=plan["source_payloads"])
+                record_status(journal, run_id, subject_id, "download_verified", source_payloads=plan["source_payloads"])
                 stage = "preprocessing"
-                append_status(journal, run_id, subject_id, "preprocessing")
-                result = process_subject(subject_id, repo_root=repo_root, raw_root=raw_root,
-                                         output_root=output_root, config_path=config_path, metrics_root=metrics_root)
+                record_status(journal, run_id, subject_id, "preprocessing")
+                kwargs = dict(repo_root=repo_root, raw_root=raw_root, output_root=output_root,
+                              config_path=config_path, metrics_root=metrics_root)
+                if processing_scope == "all-blocks-mechanical":
+                    from resting_eeg.preprocessing.all_blocks import process_all_blocks
+                    result = process_all_blocks(subject_id, **kwargs, access_config_path=access_config_path,
+                                                train_output_root=train_output_root, fit_parameters_from=fit_parameters_from)
+                else:
+                    result = process_subject(subject_id, **kwargs)
                 result = _verify_receipt(result, subject_id, config_path, output_root)
-                append_status(journal, run_id, subject_id, "processed_verified", result=result)
-                complete = append_status(journal, run_id, subject_id, "complete", result=result,
+                record_status(journal, run_id, subject_id, "processed_verified", result=result)
+                complete = record_status(journal, run_id, subject_id, "complete", result=result,
                                          source_payloads=plan["source_payloads"], raw_retained=True,
                                          cleanup_requested=delete_raw_after_success)
                 if delete_raw_after_success:
@@ -399,14 +432,14 @@ def stream_subjects(
                                         output_root=output_root, config_path=config_path, journal=journal,
                                         run_id=run_id, result=result, source_payloads=plan["source_payloads"],
                                         explicitly_requested=True)
-                    complete = append_status(journal, run_id, subject_id, "complete", result=result,
+                    complete = record_status(journal, run_id, subject_id, "complete", result=result,
                                              source_payloads=plan["source_payloads"], raw_retained=False,
                                              cleanup_requested=True)
                 terminal.append(complete)
             except Exception as exc:
                 status = {"downloading": "download_interrupted", "preprocessing": "preprocessing_failed",
                           "cleanup": "cleanup_failed"}.get(stage, "planning_failed")
-                terminal.append(append_status(journal, run_id, subject_id, status,
+                terminal.append(record_status(journal, run_id, subject_id, status,
                                              error_type=type(exc).__name__, error=str(exc),
                                              raw_preserved=stage != "cleanup",
                                              raw_directory_exists=(raw_root / subject_id).is_dir()))

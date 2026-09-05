@@ -1,0 +1,33 @@
+scope_name: scenario2-mechanical-heldout-v1
+allowed_splits:
+- Validation
+- Test
+allowed_purposes:
+- frozen_preprocessing
+- fixed_waveform_qc
+- compact_storage
+- output_verification
+forbidden_purposes:
+- plotting
+- waveform_visualization
+- psd
+- alpha
+- iaf
+- connectivity
+- wpli
+- classifier
+- generator
+- tstr
+- augmentation
+- hyperparameter_selection
+- threshold_fitting
+- normalization_fitting
+required_preprocessing_config_sha256: 5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b
+required_split_status: PROVISIONAL_METADATA_ONLY
+require_complete_study_block: true
+allow_interruption_fragments: false
+allow_incomplete_blocks: false
+fit_parameters_from: Train_only
+heldout_parameters_are: apply_only
+split_manifest_sha256: 6adc10b108a7e7b587757cbda630a3c4909c97f8cc2faf24320b0a6e89af0b26
+block_inventory_sha256: d5deff471d02baa55ac60539986595b82594d5137fcf1bffac6a5ec982b28742

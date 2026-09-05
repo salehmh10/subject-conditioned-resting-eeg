@@ -184,10 +184,10 @@ def test_preprocessing_failure_preserves_raw_and_partial_and_can_continue(staged
     partial.write_bytes(b"keep")
     results = streaming.stream_subjects(frame, **paths, execute=True, local_existing_only=True,
                                        delete_raw_after_success=True, continue_on_error=True)
-    assert [result["status"] for result in results] == ["preprocessing_failed", "complete"]
+    assert [result["status"] for result in results] == ["preprocessing_failed", "cleanup_failed"]
     assert (paths["raw_root"] / "sub-001").is_dir()
     assert partial.read_bytes() == b"keep"
-    assert not (paths["raw_root"] / "sub-002").exists()
+    assert (paths["raw_root"] / "sub-002").exists()
 
 
 def test_disk_shortage_stops_before_processing(staged, monkeypatch):
@@ -199,8 +199,8 @@ def test_disk_shortage_stops_before_processing(staged, monkeypatch):
     assert calls == []
 
 
-def test_explicit_deletion_happens_after_durable_complete_and_is_restartable(staged, monkeypatch):
-    frame, paths, calls = staged
+def test_explicit_deletion_happens_after_durable_complete_and_is_restartable(allblock_staged, monkeypatch):
+    frame, paths, calls = allblock_staged
     original_delete = streaming.shutil.rmtree
 
     def checked_delete(path):
@@ -232,8 +232,8 @@ def test_delete_helper_requires_explicit_flag(staged):
 
 
 @pytest.mark.parametrize("alteration", ["qc", "source", "processed", "hash", "receipt", "blocks", "config", "raw_config_hash", "freeze", "metadata", "partial"])
-def test_deletion_requires_every_verification(staged, monkeypatch, alteration):
-    frame, paths, _ = staged
+def test_deletion_requires_every_verification(allblock_staged, monkeypatch, alteration):
+    frame, paths, _ = allblock_staged
     process = streaming.process_subject
 
     def altered(subject_id, **kwargs):
@@ -375,3 +375,39 @@ def test_cli_filters_subjects_and_propagates_failure(staged, capsys):
     (paths["raw_root"] / str(frame.iloc[2]["relative_path"])).unlink()
     assert main(args + ["--execute", "--local-existing-only"]) == 1
     assert calls == []
+
+
+@pytest.fixture
+def allblock_staged(staged,monkeypatch):
+    """Mock only compact generation; exercise real source/journal/deletion guards."""
+    from resting_eeg.preprocessing import all_blocks
+    from resting_eeg.data import mechanical_access
+    frame,paths,calls=staged
+    original=streaming.process_subject
+    def process(subject,**kwargs):
+        result=original(subject,**kwargs)
+        result.update(scope=all_blocks.SCOPE,expected_blocks=[f'b{i}' for i in range(16)],
+                      authoritative_blocks=[dict(block_uid=f'b{i}') for i in range(16)],
+                      mechanical_access_config_sha256='a'*64,train_parameter_source_hash='b'*64,
+                      fit_parameters_from='Train_only',heldout_parameters_are='apply_only')
+        Path(result['output_path']).with_suffix('.provenance.json').write_text(json.dumps(result))
+        return result
+    def verify(path,config_hash,blocks,*args):
+        assert len(blocks)==16
+        with h5py.File(path,'r') as h:
+            if h.attrs['config_sha256']!=config_hash:raise ValueError('config mismatch')
+        return dict(processed_verified=True)
+    monkeypatch.setattr(streaming,'process_subject',process)
+    monkeypatch.setattr(all_blocks,'process_all_blocks',lambda subject,**kw:streaming.process_subject(subject,**kw))
+    monkeypatch.setattr(all_blocks,'verify_all_block_output',verify)
+    monkeypatch.setattr(mechanical_access,'load_access_config',lambda *a:({},'a'*64))
+    paths=dict(paths,processing_scope='all-blocks-mechanical',access_config_path=paths['config_path'],
+               journal_path=paths['metrics_root']/'streaming_subject_status.jsonl')
+    return frame,paths,calls
+
+
+def test_train_only_cannot_delete_raw(staged):
+    frame,paths,_=staged
+    result=streaming.stream_subjects(one(frame),**paths,execute=True,local_existing_only=True,delete_raw_after_success=True)[0]
+    assert result['status']=='cleanup_failed' and 'Train-only' in result['error']
+    assert (paths['raw_root']/'sub-001').is_dir()

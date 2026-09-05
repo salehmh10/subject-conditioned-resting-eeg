@@ -174,3 +174,38 @@ The pilot occupies 68,563,819 compact bytes (65.3876 MiB). A 211-subject plannin
 The actual orchestrator processed only staged pilot subjects with `--local-existing-only --keep-raw`. A second full pilot run reverified sources and reused all 15 byte-identical outputs without adding any waveform access record. Independent synthetic rebuilds produce identical arrays/masks/reasons; HDF5 creation timestamps may differ. All 105 raw files remain, totaling 7,013,640,445 bytes. Fourteen subjects satisfy the prepared cleanup checks; none was cleaned. No non-pilot EEG request, raw deletion, metadata-clone mutation, or Git push occurred.
 
 The current orchestrator deliberately stops at provisional Train. Later final-cohort QC needs an explicitly authorized mechanical held-out extension under this frozen method. If raw is cleaned before that extension, the verified source will have to be staged again to obtain held-out blocks. Final Test scientific outcomes remain protected by the separate study lock sequence.
+
+
+## 2026-09-05: frozen mechanical held-out authorization
+
+This amendment is written and committed before the first held-out value read.
+The user separately authorizes mechanical access to the 90 provisional Validation/Test
+blocks of the existing 15 pilot subjects through `MechanicalHeldoutAccessGate`.
+The frozen preprocessing YAML and SHA256 remain unchanged:
+`5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b`.
+The separate `configs/access/mechanical_heldout_v1.yaml` defines access purposes,
+manifest hashes and apply-only restrictions; it contains no preprocessing parameters.
+
+Validation/Test may apply verified Train-derived thresholds and bad-channel decisions
+but cannot fit any parameter, including normalization. Allowed operations are frozen
+preprocessing, fixed waveform QC, compact storage and output verification. Scientific
+outcomes remain sealed: no PSD, Alpha, IAF, topology, Connectivity, wPLI, classifier,
+generator, TSTR, augmentation, plots, tuning or scientific evaluation is authorized.
+All 150 previously exposed pilot blocks must remain Train or their subject must be
+excluded. Reuse their existing verified compact datasets without native Train rereads.
+Process sub-010250 identically and preserve its frozen Train-QC failure.
+
+Store all 16 complete blocks, including ineligible blocks with masks and reasons, in
+separate all-block HDF5 files. Keep the old Train files and original access registry.
+Provisional feasibility requires frozen Train QC (at least three eligible blocks per
+state), both assigned Validation blocks and all four assigned Test blocks eligible,
+plus source/header/output verification. No spare held-out blocks, reassignment,
+threshold changes, or subject rescue is permitted. This does not lock a final cohort,
+final split or final Test, and normalization remains unfitted.
+
+All-block storage and complete provenance/journal verification are now mandatory
+before any future explicitly requested raw deletion, superseding earlier Train-only
+cleanup eligibility. No pilot raw deletion, non-pilot download, metadata clone change,
+or Git push is authorized in this phase. Future streaming supports `--processing-scope
+all-blocks-mechanical`: fit on Train first, then mechanically apply to held-out, verify
+all 16 blocks, durably journal, and delete only with the explicit guarded flag.

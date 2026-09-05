@@ -90,6 +90,7 @@ def robust_z(x, floor):
 
 
 def fit_bad_channels(metrics, sanity, names, target_names, config):
+    require_train_fit(metrics, sanity)
     cfg = config['bad_channels']
     pooled = metrics.groupby('channel', sort=False)[['scale_uv', 'derivative_scale_uv', 'median_abs_correlation']].median().reindex(names)
     amp_z = robust_z(np.log10(np.maximum(pooled.scale_uv.to_numpy(), 1e-12)), cfg['log_scale_floor'])
@@ -159,6 +160,7 @@ def window_features(eeg_uv, veog_uv, config):
 
 
 def fit_window_thresholds(features, config, multiplier=None):
+    require_train_fit(features)
     # Deliberately no state argument or state grouping: one subject-wide reference.
     cfg = config['qc']
     fit = features.loc[features.finite & ~features.flat, cfg['features']].to_numpy()
@@ -215,3 +217,15 @@ def synthetic_validation(config):
                          pass_validation=bool(np.all(np.abs(gains[:3]-1)<.02) and np.max(gains[3:])<.01
                                               and config['edge']['guard_sec'] >= support)))
     return pd.DataFrame(rows)
+
+
+def require_train_fit(*frames):
+    """Reject split-tagged held-out features before any reference calculation.
+
+    Legacy synthetic utility fixtures have no split column. Production frames
+    are explicitly tagged by the gated Train pipeline.
+    """
+    for frame in frames:
+        for column in ('split', 'provisional_split'):
+            if column in frame and not frame[column].eq('Train').all():
+                raise ValueError('Only Train data may fit subject parameters')

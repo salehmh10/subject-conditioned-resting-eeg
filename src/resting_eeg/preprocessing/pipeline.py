@@ -85,7 +85,7 @@ def native_block_failure(sanity, uid, bads, config):
                 (rows.flat_fraction > config['qc']['maximum_repeated_difference_fraction']).any())
 
 
-def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path, metrics_root):
+def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path, metrics_root, train_registry_path=None):
     repo_root, raw_root, output_root, metrics_root = map(Path, (repo_root, raw_root, output_root, metrics_root))
     config, config_hash = load_config(config_path)
     authoritative = repo_root / 'outputs/metrics/scenario2'
@@ -99,7 +99,7 @@ def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path
         raise ValueError(f"Subject integrity failed: {integrity['failure_reason']}")
     gate = TrainAccessGate(authoritative/'provisional_block_split_manifest.csv',
                            authoritative/'lemon_block_inventory.csv',
-                           metrics_root/'pilot_waveform_access_registry.csv', repo_root)
+                           train_registry_path or metrics_root/'pilot_waveform_access_registry.csv', repo_root)
     blocks = gate.train_blocks(subject_id)
     if len(blocks) != 10 or {state: sum(b['state'] == state for b in blocks) for state in ('EO','EC')} != {'EO':5, 'EC':5}:
         raise ValueError('Expected five provisional Train blocks per state')
@@ -170,6 +170,8 @@ def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path
                         del compact
                 sanity = pd.DataFrame(native_sanity)
                 metric_frame = pd.concat(bad_metrics, ignore_index=True)
+                sanity['provisional_split'] = 'Train'
+                metric_frame['provisional_split'] = 'Train'
                 eeg_names = [names[i] for i in eeg_indices]
                 bads, bad_eligible, decisions = fit_bad_channels(metric_frame, sanity, eeg_names,
                                                                 config['target_channels'], config)
@@ -221,6 +223,7 @@ def process_subject(subject_id, *, repo_root, raw_root, output_root, config_path
                                            code_git_head=head)
                         del target, veog
                     feature_frame = pd.concat(all_features, ignore_index=True)
+                    feature_frame['provisional_split'] = 'Train'
                     reference_available = bool((feature_frame.finite & ~feature_frame.flat).any())
                     thresholds = (fit_window_thresholds(feature_frame, config) if reference_available
                                   else dict(zip(config['qc']['features'], config['qc']['threshold_caps'])))

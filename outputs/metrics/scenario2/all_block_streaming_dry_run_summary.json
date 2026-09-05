@@ -1,0 +1,10 @@
+{
+  "all_disk_checks_pass": true,
+  "downloads": 0,
+  "local_payload_pairs": 15,
+  "max_required_free_bytes": 2427576127,
+  "raw_deletions": 0,
+  "scope": "all_blocks_mechanical_provisional_v1",
+  "subjects": 211,
+  "value_reads": 0
+}

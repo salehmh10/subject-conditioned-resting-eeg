@@ -1,8 +1,7 @@
 """Prepare or execute one-subject-at-a-time provisional-Train preprocessing.
 
 The default is a read-only dry run. Future network staging requires --execute;
-raw deletion additionally requires --delete-raw-after-success. No held-out split
-can be selected. This phase must not execute downloads of non-pilot subjects.
+raw deletion additionally requires --delete-raw-after-success. Held-out access is frozen mechanical apply-only. This phase must not execute downloads of non-pilot subjects.
 """
 
 from __future__ import annotations
@@ -29,7 +28,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--destination", "--raw-root", dest="raw_root", type=Path, default=REPO_ROOT / "data_raw/MPI-LEMON")
     parser.add_argument("--metadata-root", type=Path, default=Path("D:/SHARIF/PROJECT/Datasets/MPI-LEMON"))
     parser.add_argument("--config", type=Path, default=REPO_ROOT / "configs/preprocessing/frozen_preprocessing_v1.yaml")
-    parser.add_argument("--output-root", type=Path, default=REPO_ROOT / "data_processed/MPI-LEMON")
+    parser.add_argument("--output-root", type=Path)
+    parser.add_argument("--processing-scope", choices=["train-only", "all-blocks-mechanical"], default="train-only")
+    parser.add_argument("--mechanical-access-config", type=Path, default=REPO_ROOT / "configs/access/mechanical_heldout_v1.yaml")
+    parser.add_argument("--train-output-root", type=Path, default=REPO_ROOT / "data_processed/MPI-LEMON")
+    parser.add_argument("--fit-parameters-from", choices=["Train_only"], default="Train_only")
     parser.add_argument("--metrics-root", type=Path, default=REPO_ROOT / "outputs/metrics/scenario2")
     parser.add_argument("--journal", type=Path)
     mode = parser.add_mutually_exclusive_group()
@@ -57,16 +60,18 @@ def main(argv: list[str] | None = None) -> int:
                                 subjects_file=args.subjects_file, max_subjects=args.max_subjects)
         results = stream_subjects(
             frame, repo_root=REPO_ROOT, raw_root=args.raw_root, metadata_root=args.metadata_root,
-            output_root=args.output_root, config_path=args.config, metrics_root=args.metrics_root,
+            output_root=args.output_root or REPO_ROOT / ("data_processed/MPI-LEMON-all-blocks-v1" if args.processing_scope == "all-blocks-mechanical" else "data_processed/MPI-LEMON"), config_path=args.config, metrics_root=args.metrics_root,
             execute=args.execute, local_existing_only=args.local_existing_only,
             delete_raw_after_success=args.delete_raw_after_success,
             continue_on_error=args.continue_on_error, retries=args.retries, timeout=args.timeout,
-            journal_path=args.journal,
+            journal_path=args.journal, processing_scope=args.processing_scope,
+            access_config_path=args.mechanical_access_config,train_output_root=args.train_output_root,
+            fit_parameters_from=args.fit_parameters_from,
         )
         for result in results:
             print(json.dumps(result, sort_keys=True))
         if not args.execute:
-            print("DRY RUN: no downloads, waveform access, journal writes, or raw deletion. Scope: provisional Train only.")
+            print("DRY RUN: no downloads, waveform access, journal writes, or raw deletion. Scope follows --processing-scope.")
         return int(any(result["status"] not in {"planned", "complete"} for result in results))
     except Exception as exc:
         print(f"Streaming failed: {type(exc).__name__}: {exc}", file=sys.stderr)
