@@ -1,0 +1,25 @@
+{
+    "timestamp_utc":  "2026-09-06T09:04:04.1004206Z",
+    "pytest_passed":  383,
+    "pytest_failures":  0,
+    "pytest_errors":  0,
+    "pytest_seconds":  71.345,
+    "pytest_sha256":  "3d05aa5b630331ea576e16b5f604829004fea45e9fde5fc6acf341fbf4851d4e",
+    "compileall_passed":  true,
+    "real_eeg_requests_during_tests":  0,
+    "coverage_audit_passed":  true,
+    "source_manifest_sha256":  "dd66de86255dda86ac96bcdd6fc2a52bdfcaaee26afc5bd7ecb3e55893b8cc05",
+    "baseline_protected_files":  770,
+    "preprocessing_unchanged":  true,
+    "mechanical_access_unchanged":  true,
+    "no_batch_006":  true,
+    "initial_legacy_assertion_failures":  "Six legacy tests expected Retry-After only for HTTP 429; updated to honor all transient statuses before passing rerun.",
+    "test_coverage":  {
+                          "network_range_pause_lock_heartbeat":  "test_network_autonomous.py; test_download_resume.py",
+                          "final_remainder":  "test_final_remainder.py",
+                          "streaming_cleanup_idempotency":  "test_streaming.py; test_batches.py; test_batch004.py",
+                          "train_only_apply_only_no_analysis_no_normalization":  "test_mechanical.py; test_preprocessing.py; test_loader_integrity.py",
+                          "d_only_storage_disk_guards":  "test_environment.py; test_storage_paths.py",
+                          "prior_evidence":  "test_batch002.py; test_batch003.py; test_batch004.py; test_final_remainder.py"
+                      }
+}

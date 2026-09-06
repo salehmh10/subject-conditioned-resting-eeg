@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: BATCH_004_AUTONOMOUS_RESUME_COMPLETE; 74/74 complete, scientific rules frozen, Batch 005 prohibited
+Status: Batch 005 final remainder authorized; starting 146/211 complete, scientific rules frozen, Batch 006 prohibited
 
 ## 1. Objective
 
@@ -330,3 +330,13 @@ All 62 previously unresolved Batch 004 members completed in their original froze
 The 528,482,304-byte sub-010232 prefix resumed via exact HTTP 206/Content-Range and full original size/SHA256 verification. The continuation received 39,959,722,354 body bytes, with no new outage episodes, reconnections, or extra retry bodies. Historical retries/interruptions are preserved. There was one continuous scientific continuation and no processing restart. A Windows venv PID-reporting correction was tested and committed only after processing; two empty-unresolved verification checks added no download or processing work. The first check's liveness-probe incident and the successful repeated supervision check are documented in the final handoff.
 
 Frozen outcomes: 71 Batch 004 Train-QC passes, 68 provisional-feasibility passes; raw deleted for 71 subjects and retained for sub-010146, sub-010163, and sub-010234. Cumulative totals are 146 subjects/2,336 blocks, 140 Train-QC passes, 136 provisional-feasibility passes, and 65 unassigned candidates. Final 355 offline tests, compileall, full read-only verification, and preservation/accounting checks passed. No scientific held-out analysis, normalization fit, final cohort/split lock, Batch 005, or push occurred. Exact evidence, final commit resolution, byte accounting, and all 62 outcomes are in BATCH_004_AUTONOMOUS_RESUME_HANDOFF.md and its external final acceptance record.
+
+## 2026-09-06: Final remainder Batch 005 authorization before network I/O
+
+The user explicitly authorizes planning, freezing and executing all 65 remaining structurally eligible subjects as final Batch 005. The clean starting HEAD db42b774d70d2ad058a7c02c03e9a99b0fc1f9cf and full Batch 004 verifier passed before changes. All 146 existing outputs/receipts, prior evidence and access registries were reverified; the six intentionally retained QC-failure raw subjects remain untouched. The 770-file starting baseline and coverage audit bind preservation to this assignment.
+
+The authoritative remainder reconciles exactly to 65 subjects / 130 assets, beginning with sub-010242 and ending with the final candidate sub-010321, with 42,976,220,335 declared bytes. The cap equals the exact computed sum and unused capacity is zero. All 211 candidates occur exactly once across previous completions and final membership, leaving zero unassigned candidates. Batch 006 is prohibited. This separate user authorization supersedes the earlier Batch 005 stop boundary without changing historical records.
+
+The persistent supervisor is generalized to Batch 005 while preserving the scientific pipeline, subject-at-a-time disk usage, D-only environment, 3-GiB C: guard, strict Range/source verification, unlimited same-asset network waiting and graceful pause. The new Retry-After handling honors every transient HTTP response. A dynamic staging check rejects another unresolved raw subject. Tests and a clean local implementation commit precede durable Batch-005-only authorization and network I/O. Completion requires 211 verified outputs and 3,376 blocks, final tests/verifiers, preservation audit, handoff and clean local results commit.
+
+Frozen preprocessing and mechanical access, Train-only fitting, held-out apply-only processing, all 16 blocks/masks/reasons, and guarded cleanup remain unchanged. Train-QC failures retain raw; held-out provisional infeasibility alone does not block cleanup. No scientific held-out analysis, normalization fit, final cohort/split lock, pagefile change, service, scheduled task, or Git push is authorized. See BATCH_005_FINAL_REMAINDER_RUNNER.md.

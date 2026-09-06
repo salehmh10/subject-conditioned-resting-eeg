@@ -178,10 +178,14 @@ def verify_frozen(directory, batch_id, manifest_path=None, requested_cap=None):
     return frame, plan, entry
 
 
-def freeze_batch(directory, batch_id, cap, frame, completed, head, hashes):
+def freeze_batch(directory, batch_id, cap, frame, completed, head, hashes, *, final_remainder=False):
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     name = batch_name(batch_id)
+    if int(batch_id) > 5:
+        raise ValueError('Batch 006 and all later batches are prohibited')
+    if final_remainder and batch_id != '005':
+        raise ValueError('Final remainder is authorized for Batch 005 only')
     with st._journal_lock(directory/'batch_ledger'):
         ledger = ledger_read(directory)
         if any(e['batch_id'] == batch_id for e in ledger['batches']):
@@ -199,13 +203,27 @@ def freeze_batch(directory, batch_id, cap, frame, completed, head, hashes):
             raise ValueError('Subjects duplicated across batches')
         if int(batch_id) != len(ledger['batches']) + 1:
             raise ValueError('Only the next sequential batch may be frozen')
+        if batch_id == '005':
+            if not final_remainder:
+                raise ValueError('Batch 005 requires final_remainder mode')
+            from resting_eeg.data.final_remainder import remainder_membership
+            _, exact = remainder_membership(frame, completed, assigned)
+            if cap != exact['declared_bytes']:
+                raise ValueError('Final remainder cap must equal the exact declared total')
         selected, plan = plan_membership(frame, cap, completed, assigned)
         plan.update(batch_id=batch_id, frozen_at_utc=utc_now(), authorization_head=head,
                     excluded_verified_completed=list(completed), **hashes)
+        if final_remainder:
+            plan.update(mode='final_remainder', final_remainder=True, future_batch_allowed=False,
+                previous_completed_count=len(completed), expected_final_completed_count=211,
+                remaining_unassigned_count_after_freeze=0,
+                hash_bindings='batch_ledger.json: plan_sha256 is canonical JSON; plan_file_sha256 hashes exact file bytes')
         manifest = directory/f'{name}_manifest.csv'
         if manifest.exists() or (directory/f'{name}_plan.json').exists():
             raise ValueError('Incomplete freeze transaction: preserve and investigate existing artifacts')
         csv_write(manifest, selected)
+        if final_remainder:
+            plan['manifest_sha256'] = sha256_file(manifest)
         write_json(directory/f'{name}_plan.json', plan)
         ledger['batches'].append(dict(batch_id=batch_id, batch_status='frozen', cap_bytes=cap,
             cap_gib=cap/GIB, manifest_path=str(manifest.resolve()), manifest_sha256=sha256_file(manifest),
@@ -348,6 +366,18 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
     report = network_preflight(frame, plan, p['raw_root'], p['output_root'])
     report.update(manifest_sha256=entry['manifest_sha256'], plan_sha256=entry['plan_sha256'],
                   plan_file_sha256=sha256_file(directory/f'{batch_name(batch_id)}_plan.json'), **hashes)
+    final_fields = {}
+    if batch_id == '005':
+        from resting_eeg.data.final_remainder import validate_coverage
+        from resting_eeg.data.network_wait import POLICY
+        audit = validate_coverage(root)
+        final_fields = dict(mode='final_remainder', final_remainder=True, future_batch_allowed=False,
+            subject_count=plan['subject_count'], asset_count=plan['asset_count'],
+            coverage_audit_sha256=sha256_file(directory/'batch_005_coverage_audit.json'),
+            coverage_audit_passed=audit['passed'], no_batch_006=True,
+            network_wait_policy=POLICY, network_wait_policy_sha256=canonical_hash(POLICY),
+            completed_subjects_reverified=[], unresolved_subject_ids=plan['subject_ids'])
+        report.update(**final_fields)
     print_preflight(report)
     name = batch_name(batch_id)
     preflight_file = directory/f'{name}_network_preflight.json'
@@ -373,6 +403,7 @@ def authorize(root, batch_id, directory, manifest_path=None, requested_cap=None)
         verified_existing_bytes=report['verified_existing_bytes'], valid_partial_bytes=report['valid_partial_bytes'],
         partial_prefixes=report['partial_prefixes'], system_drive=report['system_drive'], free_disk_bytes=report['free_disk_bytes'],
         storage_roots={k:str(v) for k,v in load_paths(root).items()})
+    auth.update(final_fields)
     write_json(auth_file, auth)
     return auth
 
@@ -394,6 +425,13 @@ def validate_authorization(root, batch_id, directory):
         raise ValueError('Authorized storage paths changed')
     if auth['network_preflight_sha256'] != sha256_file(directory/f'{batch_name(batch_id)}_network_preflight.json'):
         raise ValueError('Authorized network preflight changed')
+    if batch_id == '005':
+        from resting_eeg.data.final_remainder import validate_coverage
+        validate_coverage(root)
+        if auth.get('coverage_audit_sha256') != sha256_file(directory/'batch_005_coverage_audit.json'):
+            raise ValueError('Authorized final coverage audit changed')
+        if auth.get('mode') != 'final_remainder' or auth.get('future_batch_allowed') is not False or auth.get('no_batch_006') is not True:
+            raise ValueError('Final remainder authorization boundary changed')
     base_path = directory/f'{batch_name(batch_id)}_execution_authorization.json'
     for resume_path in sorted(directory.glob(f'{batch_name(batch_id)}_resume_authorization_*.json')):
         resumed = read_json(resume_path)
@@ -537,6 +575,17 @@ def progress_checkpoint(root, batch_id, directory, current_subject=None, *, fina
         download_journal_position=download.stat().st_size if download.exists() else 0,
         manifest_sha256=entry['manifest_sha256'], final=final,
         scientific_heldout_analysis=False, normalization_fitted=False, future_batch_planned=False)
+    if plan.get('final_remainder'):
+        record.update(frozen_membership=plan['subject_ids'],
+            completed_subjects=[s for s in plan['subject_ids'] if s not in pending], unresolved_subjects=pending,
+            train_qc_pass=[r['subject_id'] for r in completed if r['result']['qc_pass']],
+            train_qc_fail=[r['subject_id'] for r in completed if not r['result']['qc_pass']],
+            provisional_feasibility_pass=[r['subject_id'] for r in completed if r['result']['provisional_feasibility']['provisional_5_1_2_feasible']],
+            provisional_feasibility_fail=[r['subject_id'] for r in completed if not r['result']['provisional_feasibility']['provisional_5_1_2_feasible']],
+            resumed_prefix_bytes=sum(r.get('resumed_prefix_bytes',0) for r in events if r['status']=='response_validated'),
+            outage_episodes=sum(r['status']=='waiting_for_network' for r in events),
+            raw_deleted_subjects=list(raw_freed),
+            raw_retained_subjects=[s for s in plan['subject_ids'] if (p['raw_root']/s).exists()])
     write_json(runtime/f'{name}_progress.json',record)
     st.append_status(runtime/f'{name}_progress_journal.jsonl','batch-progress',current_subject or '',
                      'checkpoint',progress=record)
@@ -578,6 +627,12 @@ def execute_batch(root, batch_id, directory, *, manifest_path, requested_cap=Non
                 network_wait.check_stop()
                 network_wait.update(state='subject_preflight', current_subject=subject, current_asset=None)
             validate_authorization(root, batch_id, directory)
+            if batch_id == '005':
+                from resting_eeg.data.final_remainder import single_active_subject
+                retained = read_json(directory/'batch_005_starting_state.json')['retained_raw_subjects']
+                retained += [r['subject_id'] for r in read_journal(journal)
+                             if r['status']=='complete' and not r['result']['qc_pass']]
+                single_active_subject(p['raw_root'],subject,retained)
             print(f'BATCH {batch_id} [{index+1}/{len(plan["subject_ids"])}] {subject}', flush=True)
             options = {'network_wait': network_wait} if network_wait is not None else {}
             result = st.stream_subjects(frame.loc[frame.subject_id == subject], **p,

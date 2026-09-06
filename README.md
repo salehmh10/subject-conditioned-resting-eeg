@@ -4,6 +4,8 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
+**Batch 005 final remainder is authorized for planning and execution.** It includes all 65 remaining structural candidates in authoritative order, beginning with sub-010242; its exact computed network cap is 42,976,220,335 bytes, with zero unused capacity and no unassigned candidate after freeze. Batch 006 is prohibited. Engineering completion still requires 211 verified outputs and final acceptance. See [final remainder operating guide](docs/BATCH_005_FINAL_REMAINDER_RUNNER.md). The prior completed state below is preserved as the starting context.
+
 **BATCH_004_AUTONOMOUS_RESUME_COMPLETE.** The existing 45-GiB Batch 004 is **74/74 technically complete with 1,184 verified blocks**, zero unresolved subjects, and no remaining partials. All 62 previously unresolved members completed in frozen order; the 12 existing Batch 004 outputs and 72 earlier completions are unchanged. The ledger is `complete`.
 
 The preserved **504-MiB sub-010232 prefix** resumed with exact HTTP 206/Content-Range and passed full size/SHA256 verification. New response-body traffic was **39,959,722,354 bytes**, with **zero new outage episodes, reconnections, or extra retry bodies**. Unlimited network waiting, strict Range recovery, a persistent supervisor, watchdog, and safe stop remain implemented and tested.

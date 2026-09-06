@@ -61,7 +61,7 @@ def transient(exc):
 
 
 def retry_after(exc):
-    if not isinstance(exc, urllib.error.HTTPError) or exc.code != 429:
+    if not isinstance(exc, urllib.error.HTTPError) or exc.code not in TRANSIENT_HTTP:
         return 0.0
     value = exc.headers.get('Retry-After', '')
     try:

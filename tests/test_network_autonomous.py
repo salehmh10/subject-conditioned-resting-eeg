@@ -126,12 +126,12 @@ def test_unsupported_head_probe_is_one_byte_and_measured(tmp_path,monkeypatch):
 
 
 @pytest.mark.parametrize('code',[408,425,429,500,502,503,504])
-def test_http_transient_waits_and_429_honors_retry_after(tmp_path,monkeypatch,code):
+def test_http_transient_waits_and_honors_retry_after(tmp_path,monkeypatch,code):
     error=urllib.error.HTTPError(asset()['source_url'],code,'temporary',{'Retry-After':'777'},None)
     install(monkeypatch,error,NetworkResponse(PAYLOAD))
     control,_,delays,_=controller(tmp_path,monkeypatch)
     download.fetch_one(asset(),tmp_path/'a.eeg',network_wait=control,retries=0)
-    assert delays[0]==(777 if code==429 else 15)
+    assert delays[0]==777
 
 
 @pytest.mark.parametrize('code',[403,404])
@@ -271,7 +271,9 @@ def test_system_drive_guard_remains_hard(tmp_path,monkeypatch):
 
 def test_science_hashes_and_future_boundary_remain_frozen():
     assert b.frozen_hashes(ROOT)['preprocessing_config_sha256']==b.FROZEN_SHA
-    auto.validate_freeze(ROOT)
+    # Historical Batch 004 stays frozen after separately authorized Batch 005.
+    _,plan,entry=b.verify_frozen(ROOT/'outputs/metrics/scenario2/batches','004')
+    assert plan['cap_bytes']==45*b.GIB and entry['manifest_sha256']==auto.MANIFEST_SHA
     baseline=b.read_json(ROOT/'outputs/metrics/scenario2/batches/batch_004_starting_state.json')
     for record in baseline['files']:
         if 'preprocessing' in record['path']:
