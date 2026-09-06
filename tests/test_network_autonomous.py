@@ -335,3 +335,64 @@ def test_read_timeout_is_set_on_actual_socket(tmp_path):
     response.fp=SimpleNamespace(raw=SimpleNamespace(_sock=SimpleNamespace(settimeout=values.append)))
     with nw.NetworkWait(tmp_path,tmp_path/'STOP').watch(response):pass
     assert values==[120]
+
+
+@pytest.mark.parametrize('state,exit_code', [
+    ('waiting_for_network', None), ('batch_complete', 0),
+    ('manually_paused', 20), ('hard_blocked', 1),
+])
+def test_supervisor_accepts_actual_worker_behind_windows_launcher(state, exit_code):
+    base = dict(runner_pid=10, state='starting')
+    status = dict(supervision_token='current-run', worker_pid=30, state=state,
+        current_subject='sub-001', partial_bytes=11, completed_subjects=12,
+        unresolved_subjects=62, network_state='waiting_for_network')
+    actual = auto.supervisor_heartbeat(base, status, 20, 'current-run', exit_code)
+    assert actual['state'] == state and actual['worker_exit_code'] == exit_code
+    assert actual['runner_pid'] == 10 and actual['worker_launcher_pid'] == 20
+    assert actual['worker_pid'] == 30 and actual['partial_bytes'] == 11
+    assert actual['unresolved_subjects'] == 62
+
+
+def test_supervisor_ignores_durable_state_from_an_older_worker_run():
+    old = dict(supervision_token='old-run', worker_pid=20, state='batch_complete')
+    actual = auto.supervisor_heartbeat(dict(runner_pid=10, state='starting'), old, 20, 'new-run', None)
+    assert actual['state'] == 'starting' and 'supervision_token' not in actual
+
+
+@pytest.mark.parametrize('state,exit_code', [('downloading', 0), ('batch_complete', 1), ('manually_paused', 0)])
+def test_supervisor_rejects_exit_without_matching_durable_terminal_state(state, exit_code):
+    status = dict(supervision_token='run', worker_pid=30, state=state)
+    actual = auto.supervisor_heartbeat(dict(runner_pid=10), status, 20, 'run', exit_code)
+    assert actual['state'] == 'hard_blocked' and actual['project_state'] == auto.HARD_BLOCKED
+    assert 'matching durable' in actual['error']
+
+
+def test_worker_state_clears_finished_asset_and_preserves_last_network_time(tmp_path):
+    state = auto.WorkerState(tmp_path, tmp_path, {'subject_ids':['sub-001']}, [], 100,
+        supervision_token='run', last_network_success='2026-09-06T00:00:00+00:00')
+    state.update(current_subject='sub-001', current_asset='a.eeg', expected_asset_bytes=100, partial_bytes=11)
+    state.update(completed_subject='sub-001', current_subject=None, current_asset=None, state='batch_complete')
+    actual = state.snapshot()
+    assert actual['expected_asset_bytes'] == actual['partial_bytes'] == actual['unresolved_subjects'] == 0
+    assert actual['completed_subjects'] == 1 and actual['supervision_token'] == 'run'
+    assert actual['last_successful_network_time'] == '2026-09-06T00:00:00+00:00'
+
+
+@pytest.mark.parametrize('failure', [TimeoutError('mid-body timeout'), ConnectionResetError('mid-body reset')])
+def test_mid_body_network_failure_fsyncs_and_resumes_exact_received_prefix(tmp_path, monkeypatch, failure):
+    class Interrupted(NetworkResponse):
+        def read1(self, size):
+            if self.tell() == 0:
+                return self.read(11)
+            raise failure
+    calls = install(monkeypatch, Interrupted(PAYLOAD), resumed(11))
+    control, _, _, _ = controller(tmp_path, monkeypatch)
+    target = tmp_path/'a.eeg'
+    journal = download.DownloadJournal(tmp_path/'journal.jsonl')
+    download.fetch_one(asset(), target, retries=0, network_wait=control, journal=journal)
+    assert target.read_bytes() == PAYLOAD and calls[1].get_header('Range') == 'bytes=11-'
+    events = b.read_journal(journal.path)
+    waiting = next(r for r in events if r['status'] == 'waiting_for_network')
+    assert waiting['partial_bytes'] == 11 and waiting['partial_sha256'] == hashlib.sha256(PAYLOAD[:11]).hexdigest()
+    assert sum(r.get('received_body_bytes', 0) for r in events) == len(PAYLOAD)
+    assert not any(r['status'] == 'failed' for r in events)

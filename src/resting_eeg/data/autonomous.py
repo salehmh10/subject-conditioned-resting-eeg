@@ -11,6 +11,7 @@ import subprocess
 import sys
 import threading
 import traceback
+from uuid import uuid4
 
 from resting_eeg.common import canonical_hash, sha256_file, utc_now, write_json
 from resting_eeg.data import batches as b
@@ -73,17 +74,18 @@ def authorize(root):
 
 class WorkerState:
     """Memory updates per read; durable snapshot independent of network waits."""
-    def __init__(self, runtime, raw_root, plan, completed, received, *, interval=30):
+    def __init__(self, runtime, raw_root, plan, completed, received, *, interval=30,
+                 supervision_token=None, last_network_success=None):
         self.runtime, self.raw_root = Path(runtime), Path(raw_root)
         self.plan, self.completed = plan, set(completed)
         self.interval = interval
         self.lock = threading.RLock()
         self.done = threading.Event()
         self.persistence_error = None
-        self.value = dict(batch_id=BATCH, worker_pid=os.getpid(), state='preflight',
+        self.value = dict(batch_id=BATCH, worker_pid=os.getpid(), state='preflight', supervision_token=supervision_token,
             current_subject=None, current_asset=None, partial_bytes=0, expected_asset_bytes=0,
             network_state='not_requested', consecutive_connectivity_failures=0,
-            current_backoff_seconds=0, last_successful_network_time=None,
+            current_backoff_seconds=0, last_successful_network_time=last_network_success,
             received_response_body_bytes=received, manifest_sha256=MANIFEST_SHA)
         self.thread = threading.Thread(target=self._run, daemon=True, name='worker-heartbeat')
 
@@ -91,6 +93,9 @@ class WorkerState:
         if self.persistence_error is not None:
             raise RuntimeError('Worker heartbeat persistence failed') from self.persistence_error
         with self.lock:
+            if 'current_asset' in details and details['current_asset'] is None:
+                details.setdefault('partial_bytes', 0)
+                details.setdefault('expected_asset_bytes', 0)
             if subject := details.pop('completed_subject', None):
                 self.completed.add(subject)
             self.value['received_response_body_bytes'] += details.pop('received_delta', 0)
@@ -118,7 +123,10 @@ class WorkerState:
         if asset := value['current_asset']:
             target = self.raw_root/asset
             part = target.with_name(target.name+'.part')
-            value['partial_bytes'] = part.stat().st_size if part.exists() else 0
+            try:
+                value['partial_bytes'] = part.stat().st_size
+            except FileNotFoundError:
+                value['partial_bytes'] = 0  # Atomic promotion or guarded cleanup may finish concurrently.
         value['C_free_GiB'] = shutil.disk_usage('C:/').free/b.GIB if os.name == 'nt' else None
         value['D_free_GiB'] = b.st._free_bytes(self.raw_root)/b.GIB
         return value
@@ -145,7 +153,7 @@ class WorkerState:
         self.persist()
 
 
-def worker(root):
+def worker(root, supervision_token=None):
     p = b.paths(root); runtime = b.runtime_directory(root)
     directory, frame, plan, auth = validate_freeze(root)
     if auth.get('network_wait_policy') != POLICY or auth.get('network_wait_policy_sha256') != canonical_hash(POLICY):
@@ -154,8 +162,11 @@ def worker(root):
         raise ValueError('Autonomous preservation baseline differs from authorization')
     completed = auth['completed_subjects_reverified']
     plan = dict(plan, subject_payload_bytes={str(s):int(g.payload_size_bytes.sum()) for s,g in frame.groupby('subject_id', sort=False)})
-    received = sum(r.get('received_body_bytes', 0) for r in b.read_journal(runtime/'batch_004_download_journal.jsonl'))
-    with WorkerState(runtime, p['raw_root'], plan, completed, received) as state:
+    events = b.read_journal(runtime/'batch_004_download_journal.jsonl')
+    received = sum(r.get('received_body_bytes', 0) for r in events)
+    last_network = next((r['timestamp_utc'] for r in reversed(events) if r.get('received_body_bytes', 0)), None)
+    with WorkerState(runtime, p['raw_root'], plan, completed, received,
+                     supervision_token=supervision_token, last_network_success=last_network) as state:
         def disk_guard(remaining):
             system_drive_guard('autonomous_begin_or_resume_asset')
             required = remaining+b.st.PROCESSING_OVERHEAD_BYTES+b.st.COMPACT_OUTPUT_ALLOWANCE_BYTES+b.st.SAFETY_MARGIN_BYTES
@@ -204,6 +215,21 @@ def worker(root):
             signal.signal(signal.SIGINT, previous)
 
 
+def supervisor_heartbeat(base, status, launcher_pid, token, exit_code):
+    """Match one worker run even when the Windows venv launcher has another PID."""
+    if not token or status.get('supervision_token') != token:
+        status = {}
+    heartbeat = dict(base, **status)
+    heartbeat.update(timestamp_utc=utc_now(), runner_pid=base['runner_pid'],
+        worker_launcher_pid=launcher_pid, worker_pid=status.get('worker_pid', launcher_pid),
+        worker_exit_code=exit_code)
+    expected = {'batch_complete': 0, 'manually_paused': 20, 'hard_blocked': 1}
+    if exit_code is not None and (status.get('state') not in expected or expected[status['state']] != exit_code):
+        heartbeat.update(state='hard_blocked', project_state=HARD_BLOCKED,
+            error=f'Worker exited without matching durable completion/pause: exit {exit_code}; inspect stderr')
+    return heartbeat
+
+
 def supervisor(root):
     runtime = b.runtime_directory(root)
     runtime.mkdir(parents=True, exist_ok=True)
@@ -215,10 +241,17 @@ def supervisor(root):
         with pid_path.open('w', encoding='ascii') as handle:
             handle.write(str(os.getpid())); handle.flush(); os.fsync(handle.fileno())
         base = dict(timestamp_utc=utc_now(), batch_id=BATCH, runner_pid=os.getpid(),
-                    state='starting', manifest_sha256=MANIFEST_SHA)
+                    state='starting', manifest_sha256=MANIFEST_SHA,
+                    current_subject=None, current_asset=None, partial_bytes=0, expected_asset_bytes=0,
+                    subject_progress_percent=0, completed_subjects=None, unresolved_subjects=None,
+                    network_state='not_requested', consecutive_connectivity_failures=0,
+                    current_backoff_seconds=0, last_successful_network_time=None,
+                    received_response_body_bytes=None, C_free_GiB=None, D_free_GiB=None)
         write_json(runtime/f'{NAME}_heartbeat.json', base)
+        token = uuid4().hex
         with (runtime/f'{NAME}_stdout.log').open('a', encoding='utf-8') as out, (runtime/f'{NAME}_stderr.log').open('a', encoding='utf-8') as err:
-            child = subprocess.Popen([sys.executable, '-u', str(root/'scripts/data/s2_14_autonomous_batch_supervisor.py'), '--worker'],
+            child = subprocess.Popen([sys.executable, '-u', str(root/'scripts/data/s2_14_autonomous_batch_supervisor.py'),
+                '--worker', '--supervision-token', token],
                 cwd=root, stdout=out, stderr=err, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if os.name=='nt' else 0)
             old_handler = signal.signal(signal.SIGINT, lambda *_: (runtime/'STOP_BATCH_004').touch())
             try:
@@ -229,13 +262,7 @@ def supervisor(root):
                         code = None
                     path = runtime/f'{NAME}_worker_state.json'
                     status = b.read_json(path) if path.exists() else {}
-                    if status.get('worker_pid') != child.pid:
-                        status = {}
-                    heartbeat = dict(base, **{k:v for k,v in status.items() if k not in {'runner_pid'}})
-                    heartbeat.update(timestamp_utc=utc_now(), worker_pid=child.pid, worker_exit_code=code)
-                    if code is not None and status.get('state') not in {'batch_complete', 'manually_paused', 'hard_blocked'}:
-                        heartbeat.update(state='hard_blocked', project_state=HARD_BLOCKED,
-                            error=f'Worker exited without durable completion/pause: exit {code}; inspect stderr')
+                    heartbeat = supervisor_heartbeat(base, status, child.pid, token, code)
                     write_json(runtime/f'{NAME}_heartbeat.json', heartbeat)
                     if code is not None:
                         return code

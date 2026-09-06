@@ -1,0 +1,10 @@
+{
+  "compileall_passed": true,
+  "junit_sha256": "4cfca6d2e1f30463aed8eab1fe10a9a4eb52816488fea215a13b24e522b2c663",
+  "new_recovery_and_supervision_cases": 56,
+  "pytest_count": 355,
+  "pytest_elapsed_seconds": 38.01,
+  "real_network_requests_during_tests": false,
+  "timestamp_utc": "2026-09-06T02:45:21.603971+00:00",
+  "verification": "passed"
+}
