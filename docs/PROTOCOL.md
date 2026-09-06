@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 005 final remainder authorized; starting 146/211 complete, scientific rules frozen, Batch 006 prohibited
+Status: Full-cohort technical verification complete, 211/211 subjects and 3,376 blocks; scientific rules frozen, final cohort/split unlocked, Batch 006 prohibited
 
 ## 1. Objective
 
@@ -340,3 +340,13 @@ The authoritative remainder reconciles exactly to 65 subjects / 130 assets, begi
 The persistent supervisor is generalized to Batch 005 while preserving the scientific pipeline, subject-at-a-time disk usage, D-only environment, 3-GiB C: guard, strict Range/source verification, unlimited same-asset network waiting and graceful pause. The new Retry-After handling honors every transient HTTP response. A dynamic staging check rejects another unresolved raw subject. Tests and a clean local implementation commit precede durable Batch-005-only authorization and network I/O. Completion requires 211 verified outputs and 3,376 blocks, final tests/verifiers, preservation audit, handoff and clean local results commit.
 
 Frozen preprocessing and mechanical access, Train-only fitting, held-out apply-only processing, all 16 blocks/masks/reasons, and guarded cleanup remain unchanged. Train-QC failures retain raw; held-out provisional infeasibility alone does not block cleanup. No scientific held-out analysis, normalization fit, final cohort/split lock, pagefile change, service, scheduled task, or Git push is authorized. See BATCH_005_FINAL_REMAINDER_RUNNER.md.
+
+## 2026-09-07: Full-cohort streaming verification and acceptance boundary
+
+Final Batch 005 is 65/65 technically complete with 1,040 verified blocks, zero technical failures, worker exit 0, empty stderr, and a complete ledger. Supervisor/worker processes have exited and both persistent execution locks are free. The cumulative audit verifies all 211 structural candidates exactly once, 3,376 blocks, source/sidecar identities, Train-reference provenance, frozen manifest/configuration/authorization bindings, access registries, and all 770 protected prior files. No unresolved production partials/downloads or Batch 006 exist; the metadata clone remains clean and unchanged, and Git contains no signal payloads.
+
+Frozen engineering outcomes are 205 cumulative Train-QC passes and six failures, and 198 provisional 5/1/2-feasibility passes and 13 failures. Batch 005 contributes 65 Train-QC passes and 62 feasibility passes; sub-010260, sub-010291, and sub-010316 are technically complete but provisionally infeasible. All 65 Batch 005 raw directories are absent following verified cleanup. Raw remains for sub-010012, sub-010030, sub-010146, sub-010163, sub-010234, and sub-010250, with unchanged retained bytes and identities.
+
+Final offline validation passed 383 tests in 47.11 seconds using the exact guarded D: pytest base directory; compileall, the Batch 005 verifier, and the cumulative preservation audit passed. The earlier alternate-basetemp invocation was rejected before test collection and remains historical evidence. No tests, guards, scientific code, or frozen rules were changed for acceptance. Final compact results were written by `scripts/data/s2_15_final_remainder.py --write-results` without preprocessing.
+
+This documentation/results commit does not select a scientific cohort or change any block assignment. `PROVISIONAL_METADATA_ONLY`, Train-only fitting, mechanical held-out application, exposed-pilot Train preservation, and all existing QC/exclusion rules remain in force. Normalization remains unfitted and scientific held-out outcomes remain sealed. Final accepted status and exact committed HEAD require the post-commit clean-worktree verifier and external acceptance record described in [FULL_COHORT_STREAMING_HANDOFF.md](FULL_COHORT_STREAMING_HANDOFF.md). No push is authorized. Final Cohort and Split Lock is the next separate phase and has not begun.

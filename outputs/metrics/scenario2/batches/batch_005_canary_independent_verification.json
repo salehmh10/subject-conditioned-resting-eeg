@@ -1,0 +1,26 @@
+{
+  "blocks": 16,
+  "durable_cleanup_order": {
+    "complete": 5,
+    "processed_verified": 4,
+    "raw_deleted": 7
+  },
+  "frozen_hashes": {
+    "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+    "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+    "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced"
+  },
+  "heldout_apply_only": true,
+  "output_bytes": 7362025,
+  "output_sha256": "19e76213b571e2670783e71e30a3ff7ed31b5b582972ba6b1e441943e4615f7c",
+  "passed": true,
+  "provisional_feasible": true,
+  "raw_absent": true,
+  "raw_bytes_freed": 662056909,
+  "receipt_sha256": "4b3d12d0056b33b43dcdf10a69cd0a5fcfd391192f7169d2bb8e7a7c3a8f2c19",
+  "source_manifest_sidecars_verified": true,
+  "subject_id": "sub-010242",
+  "timestamp_utc": "2026-09-06T09:22:12.399969+00:00",
+  "train_qc_pass": true,
+  "train_reference_parameters_verified": true
+}

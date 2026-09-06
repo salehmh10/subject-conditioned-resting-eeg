@@ -1,0 +1,43 @@
+{
+  "detached_launcher_returned": true,
+  "early_outages": [
+    {
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>",
+      "error_type": "URLError",
+      "expected_bytes": 662011200,
+      "expected_sha256": "443bd5f2ec1d4a3457b32f19829ffc25d5e8a24315892d0099b0f43df8a8679b",
+      "partial_bytes": 0,
+      "partial_sha256": null,
+      "relative_path": "sub-010242/eeg/sub-010242_task-resting_eeg.eeg",
+      "status": "waiting_for_network",
+      "subject_id": "sub-010242",
+      "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010242\\eeg\\sub-010242_task-resting_eeg.eeg",
+      "terminal": false,
+      "timestamp_utc": "2026-09-06T09:13:27.176961+00:00"
+    },
+    {
+      "consecutive_failures": 1,
+      "expected_bytes": 662011200,
+      "expected_sha256": "443bd5f2ec1d4a3457b32f19829ffc25d5e8a24315892d0099b0f43df8a8679b",
+      "outage_seconds": 21.610000000015134,
+      "partial_bytes": 0,
+      "relative_path": "sub-010242/eeg/sub-010242_task-resting_eeg.eeg",
+      "status": "connectivity_restored",
+      "subject_id": "sub-010242",
+      "successful_probes": 2,
+      "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010242\\eeg\\sub-010242_task-resting_eeg.eeg",
+      "timestamp_utc": "2026-09-06T09:13:48.785042+00:00"
+    }
+  ],
+  "heartbeat_timestamp": "2026-09-06T09:15:00.143208+00:00",
+  "manifest_sha256": "0eb72ed7be098c63abf35838efa16618751a0348bfda97a8e98e21cfce81f002",
+  "matching_supervision_token": true,
+  "parent_pid": 15244,
+  "single_instance_locks_held": {
+    "batch_005_autoresume": true,
+    "batch_execution": true
+  },
+  "timestamp_utc": "2026-09-06T09:15:11.549375+00:00",
+  "worker_pid": 4864,
+  "worker_timestamp": "2026-09-06T09:15:03.449376+00:00"
+}

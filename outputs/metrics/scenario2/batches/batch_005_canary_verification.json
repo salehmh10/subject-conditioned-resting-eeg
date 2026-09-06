@@ -1,0 +1,14 @@
+{
+  "durable_completion": true,
+  "fit_parameters_from": "Train_only",
+  "heldout_parameters_are": "apply_only",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "n_blocks": 16,
+  "output_sha256": "19e76213b571e2670783e71e30a3ff7ed31b5b582972ba6b1e441943e4615f7c",
+  "passed": true,
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "raw_retained": false,
+  "subject_id": "sub-010242",
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced",
+  "verified_utc": "2026-09-06T09:20:08.122019+00:00"
+}
