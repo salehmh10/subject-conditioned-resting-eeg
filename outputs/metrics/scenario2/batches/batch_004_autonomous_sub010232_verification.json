@@ -1,0 +1,49 @@
+{
+  "blocks": 16,
+  "extra_body_bytes": 0,
+  "full_source_verification": {
+    "bytes": 676531600,
+    "expected_bytes": 676531600,
+    "expected_sha256": "b716f66c6fd877b4b265cbf0d354a6f71edee2ed7b184219a2eed93e40b577bc",
+    "relative_path": "sub-010232/eeg/sub-010232_task-resting_eeg.eeg",
+    "status": "resumed_and_verified",
+    "subject_id": "sub-010232",
+    "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010232\\eeg\\sub-010232_task-resting_eeg.eeg",
+    "timestamp_utc": "2026-09-06T02:14:45.486593+00:00"
+  },
+  "new_response_body_bytes": 148051055,
+  "output_sha256": "b461634b966e5dc3c37aa723a62a694905d730267de038a08b7529ef76c868db",
+  "provisional_feasibility": {
+    "EC_Test_eligible_blocks": 2,
+    "EC_Train_eligible_blocks": 5,
+    "EC_Validation_eligible_blocks": 1,
+    "EO_Test_eligible_blocks": 2,
+    "EO_Train_eligible_blocks": 4,
+    "EO_Validation_eligible_blocks": 1,
+    "label": "pilot_all_block_qc_feasible",
+    "provisional_5_1_2_feasible": true,
+    "reason": "",
+    "train_criterion_pass": true
+  },
+  "range_response": {
+    "attempt": 1,
+    "content_range": "bytes 528482304-676531599/676531600",
+    "expected_bytes": 676531600,
+    "expected_sha256": "b716f66c6fd877b4b265cbf0d354a6f71edee2ed7b184219a2eed93e40b577bc",
+    "http_status": 206,
+    "relative_path": "sub-010232/eeg/sub-010232_task-resting_eeg.eeg",
+    "resume_offset": 528482304,
+    "resumed_prefix_bytes": 528482304,
+    "status": "response_validated",
+    "subject_id": "sub-010232",
+    "target": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010232\\eeg\\sub-010232_task-resting_eeg.eeg",
+    "timestamp_utc": "2026-09-06T02:13:52.944855+00:00"
+  },
+  "raw_cleanup_verified": true,
+  "receipt_sha256": "a552b4020a4ab4e4bbc031f4a78dd83f52dbfd309c28fb342cf39e807cf3fdb8",
+  "reused_prefix_bytes": 528482304,
+  "subject_id": "sub-010232",
+  "timestamp_utc": "2026-09-06T02:16:51.803004+00:00",
+  "train_qc_pass": true,
+  "verification": "passed"
+}

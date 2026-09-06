@@ -1,0 +1,29 @@
+{
+  "blocks": 16,
+  "fit_parameters_from": "Train_only",
+  "heldout_parameters_are": "apply_only",
+  "mechanical_access_config_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+  "output_receipt_verified": true,
+  "output_sha256": "9b8ce86157d32b709e996846e95af57960057c986417a1fcea3523494a5550c4",
+  "preprocessing_config_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+  "provisional_feasibility": {
+    "EC_Test_eligible_blocks": 2,
+    "EC_Train_eligible_blocks": 5,
+    "EC_Validation_eligible_blocks": 1,
+    "EO_Test_eligible_blocks": 2,
+    "EO_Train_eligible_blocks": 5,
+    "EO_Validation_eligible_blocks": 1,
+    "label": "pilot_all_block_qc_feasible",
+    "provisional_5_1_2_feasible": true,
+    "reason": "",
+    "train_criterion_pass": true
+  },
+  "raw_cleanup_verified": true,
+  "receipt_sha256": "0a23e2e43e5e7115b8d93b0ad75897b8d1a3b7e9ca0758d74895ed49c0b7c2a4",
+  "source_hash_verified": true,
+  "subject_id": "sub-010090",
+  "timestamp_utc": "2026-09-05T23:01:52.158826+00:00",
+  "train_qc_pass": true,
+  "variable_batch_config_sha256": "41d53f288786880d9a92ea202a558abe0fa5030fb8a3a872c275e959e6048ced",
+  "verification": "passed"
+}

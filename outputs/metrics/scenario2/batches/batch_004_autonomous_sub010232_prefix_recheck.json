@@ -1,0 +1,28 @@
+{
+  "bytes": 528482304,
+  "no_network_request": true,
+  "path": "D:\\SHARIF\\PROJECT\\Datasets\\MPI-LEMON-Scenario2\\raw\\sub-010232\\eeg\\sub-010232_task-resting_eeg.eeg.part",
+  "sha256": "105dca88b62df36d3b88d0b66d3dfab76120b2b60c5672db904f7551180f86a1",
+  "timestamp_utc": "2026-09-06T02:09:08.159958+00:00",
+  "worker_state": {
+    "C_free_GiB": 13.426124572753906,
+    "D_free_GiB": 41.80514907836914,
+    "batch_id": "004",
+    "completed_subjects": 64,
+    "consecutive_connectivity_failures": 0,
+    "current_asset": null,
+    "current_backoff_seconds": 0,
+    "current_subject": "sub-010230",
+    "expected_asset_bytes": 1759,
+    "last_successful_network_time": "2026-09-06T02:08:58.703391+00:00",
+    "manifest_sha256": "0be1d41165aa55e30dc86e72724a752270de4a8bec7a50fbad5595a158e37fb5",
+    "network_state": "connected",
+    "partial_bytes": 1759,
+    "received_response_body_bytes": 42887405839,
+    "state": "preprocessing",
+    "subject_progress_percent": 100.0,
+    "timestamp_utc": "2026-09-06T02:09:08.768567+00:00",
+    "unresolved_subjects": 10,
+    "worker_pid": 30080
+  }
+}

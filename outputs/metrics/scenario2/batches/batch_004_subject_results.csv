@@ -11,65 +11,65 @@ sub-010086,complete,True,True,True,True,True,,,,True,False,630734464,0
 sub-010087,complete,True,True,True,True,True,,,,True,False,655683355,0
 sub-010088,complete,True,True,True,True,True,,,,True,False,670290544,0
 sub-010089,complete,True,True,True,True,True,,,,True,False,635644859,0
-sub-010090,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010091,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010092,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010093,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010094,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010104,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010136,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010137,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010138,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010141,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010142,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010146,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010148,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010150,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010152,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010155,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010157,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010162,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010163,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010164,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010165,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010166,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010168,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010170,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010176,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010183,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010191,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010192,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010193,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010194,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010195,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010196,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010197,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010199,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010200,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010201,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010202,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010204,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010207,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010210,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010213,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010214,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010215,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010218,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010219,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010220,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010222,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010223,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010224,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010226,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010227,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010228,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010230,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010231,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010232,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,528482304
-sub-010233,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010234,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010236,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010238,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010239,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010240,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
-sub-010241,download_interrupted,False,False,False,False,False,,<urlopen error [Errno 11001] getaddrinfo failed>,<urlopen error [Errno 11001] getaddrinfo failed>,False,True,0,0
+sub-010090,complete,True,True,True,True,True,,,,True,False,647734907,0
+sub-010091,complete,True,True,True,True,True,,,,True,False,660692943,0
+sub-010092,complete,True,True,True,True,True,,,,True,False,639885729,0
+sub-010093,complete,True,True,True,True,True,,,,True,False,628415687,0
+sub-010094,complete,True,True,True,True,True,,,,True,False,648813709,0
+sub-010104,complete,True,True,True,True,True,,,,True,False,645118510,0
+sub-010136,complete,True,True,True,True,True,,,,True,False,648131671,0
+sub-010137,complete,True,True,True,True,True,,,,True,False,707552710,0
+sub-010138,complete,True,True,True,True,True,,,,True,False,668739342,0
+sub-010141,complete,True,True,True,True,True,,,,True,False,661709672,0
+sub-010142,complete,True,True,True,True,True,,,,True,False,637058481,0
+sub-010146,complete,True,True,True,False,False,frozen_Train_QC_failed;EC_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible;EC_Test_assigned_block_ineligible,,frozen_Train_QC_failed,False,True,0,677023722
+sub-010148,complete,True,True,True,True,True,,,,True,False,643084866,0
+sub-010150,complete,True,True,True,True,True,,,,True,False,649966903,0
+sub-010152,complete,True,True,True,True,True,,,,True,False,668108118,0
+sub-010155,complete,True,True,True,True,True,,,,True,False,672335450,0
+sub-010157,complete,True,True,True,True,False,EC_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible,,,True,False,656835275,0
+sub-010162,complete,True,True,True,True,True,,,,True,False,627298516,0
+sub-010163,complete,True,True,True,False,False,frozen_Train_QC_failed;EC_Test_assigned_block_ineligible,,frozen_Train_QC_failed,False,True,0,659972502
+sub-010164,complete,True,True,True,True,True,,,,True,False,650734409,0
+sub-010165,complete,True,True,True,True,True,,,,True,False,636338057,0
+sub-010166,complete,True,True,True,True,True,,,,True,False,633138891,0
+sub-010168,complete,True,True,True,True,True,,,,True,False,636858902,0
+sub-010170,complete,True,True,True,True,True,,,,True,False,631838055,0
+sub-010176,complete,True,True,True,True,True,,,,True,False,619487691,0
+sub-010183,complete,True,True,True,True,True,,,,True,False,631503212,0
+sub-010191,complete,True,True,True,True,True,,,,True,False,704192469,0
+sub-010192,complete,True,True,True,True,True,,,,True,False,654368925,0
+sub-010193,complete,True,True,True,True,True,,,,True,False,655112783,0
+sub-010194,complete,True,True,True,True,True,,,,True,False,673055764,0
+sub-010195,complete,True,True,True,True,True,,,,True,False,658398933,0
+sub-010196,complete,True,True,True,True,True,,,,True,False,662180939,0
+sub-010197,complete,True,True,True,True,True,,,,True,False,621682456,0
+sub-010199,complete,True,True,True,True,True,,,,True,False,630920492,0
+sub-010200,complete,True,True,True,True,False,EO_Test_assigned_block_ineligible;EC_Test_assigned_block_ineligible,,,True,False,681996124,0
+sub-010201,complete,True,True,True,True,True,,,,True,False,649731282,0
+sub-010202,complete,True,True,True,True,True,,,,True,False,629494489,0
+sub-010204,complete,True,True,True,True,True,,,,True,False,678511751,0
+sub-010207,complete,True,True,True,True,True,,,,True,False,626543222,0
+sub-010210,complete,True,True,True,True,True,,,,True,False,660791971,0
+sub-010213,complete,True,True,True,True,True,,,,True,False,657208546,0
+sub-010214,complete,True,True,True,True,True,,,,True,False,660519313,0
+sub-010215,complete,True,True,True,True,True,,,,True,False,672894433,0
+sub-010218,complete,True,True,True,True,True,,,,True,False,641708497,0
+sub-010219,complete,True,True,True,True,True,,,,True,False,625538620,0
+sub-010220,complete,True,True,True,True,True,,,,True,False,647747280,0
+sub-010222,complete,True,True,True,True,True,,,,True,False,633239269,0
+sub-010223,complete,True,True,True,True,True,,,,True,False,634566093,0
+sub-010224,complete,True,True,True,True,True,,,,True,False,661275665,0
+sub-010226,complete,True,True,True,True,False,EO_Validation_assigned_block_ineligible,,,True,False,648007677,0
+sub-010227,complete,True,True,True,True,True,,,,True,False,662168475,0
+sub-010228,complete,True,True,True,True,True,,,,True,False,662278867,0
+sub-010230,complete,True,True,True,True,True,,,,True,False,688940119,0
+sub-010231,complete,True,True,True,True,True,,,,True,False,679478968,0
+sub-010232,complete,True,True,True,True,True,,,,True,False,676577453,0
+sub-010233,complete,True,True,True,True,True,,,,True,False,675162486,0
+sub-010234,complete,True,True,True,False,False,frozen_Train_QC_failed;EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible,,frozen_Train_QC_failed,False,True,0,620454807
+sub-010236,complete,True,True,True,True,True,,,,True,False,647734813,0
+sub-010238,complete,True,True,True,True,True,,,,True,False,675163723,0
+sub-010239,complete,True,True,True,True,True,,,,True,False,650895676,0
+sub-010240,complete,True,True,True,True,True,,,,True,False,661350083,0
+sub-010241,complete,True,True,True,True,True,,,,True,False,632644068,0

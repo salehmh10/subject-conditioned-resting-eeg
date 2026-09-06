@@ -1,5 +1,7 @@
 # Batch 004 persistent continuation
 
+Batch 004 is now 74/74 complete. See [final acceptance and all outcomes](BATCH_004_AUTONOMOUS_RESUME_HANDOFF.md). The instructions below document the authorized continuation and retained runner behavior; no further processing or Batch 005 is scheduled.
+
 The user authorized automatic continuation of the existing 74-member, 45-GiB Batch 004 on 2026-09-06. This supersedes the historical stop instruction in `BATCH_004_STREAMING_HANDOFF.md`. The original manifest, plan, authorization, scientific code/configuration, and completed results remain frozen. Batch 005 is prohibited.
 
 The clean starting HEAD was `cd06b3671569346deb1945fb208fb659a1ad6373`. The read-only verifier passed all 84 existing completions, 1,344 blocks, prior retained raw, frozen hashes, and current partial state. External `runtime/batches/batch_004_autonomous_starting_state.json` protects 357 existing output/receipt/raw files, original progress archives, and all three journal prefixes. It records the 12 completed Batch 004 members, 62 unresolved members derived in frozen order, and the sub-010232 prefix (528,482,304 bytes; SHA256 `105dca88b62df36d3b88d0b66d3dfab76120b2b60c5672db904f7551180f86a1`). The first continuation subject is sub-010090.
@@ -12,7 +14,7 @@ Persistent 403/404 contradicting the manifest, unsafe paths, identity/protocol/f
 
 The supervisor (`scripts/data/s2_14_autonomous_batch_supervisor.py`) holds an OS single-instance lock and monitors one child running `batches.execute_batch`. The child derives the unresolved list from the unchanged manifest and verified completion evidence. It never requests the 84 pre-existing completions. Process locks are released by the OS after exit; a stale lock filename alone does not mean a process is alive. An unexplained child exit is a hard invariant failure, with stderr preserved.
 
-After the implementation/tests/docs commit, create the numbered authorization and launch:
+The continuation was authorized and launched after its implementation/tests/docs commit with:
 
 ```powershell
 . .\scripts\setup_scenario2_environment.ps1
@@ -29,3 +31,5 @@ Historical download/streaming/progress journal lines remain unchanged. Continuat
 Pre-continuation validation: the full offline suite passed 344 tests in 78.55 seconds, including 45 added recovery/supervision cases; compileall passed. All tests used external D: temp/cache paths and mocked or synthetic network behavior. The read-only starting-state verifier passed before implementation changes. No real EEG request was made during implementation or testing.
 
 The Windows virtual-environment launcher and actual Python interpreter have different PIDs. During the successful 62-subject continuation, the worker snapshot remained accurate, but the original parent rejected it because it compared these PIDs. The parent consequently reported an incorrect hard-blocked status after the worker's successful exit. Both original terminal snapshots are preserved externally. A post-processing correction matches each child run by a fresh supervision token, records launcher and actual worker PIDs separately, and requires the durable terminal state to agree with the exit code. It also clears finished asset sizes and tolerates concurrent atomic promotion while sampling partial size. No scientific processing was interrupted or repeated for this correction. Additional offline regressions exercise these cases and timeout/reset recovery after body bytes have already arrived.
+
+Final validation passed 355 offline tests (56 recovery/supervision cases), compileall, the full read-only verifier, and preservation/accounting checks. The corrected completed-batch supervisor check passed without additional EEG requests or processing; final evidence is linked in the handoff.

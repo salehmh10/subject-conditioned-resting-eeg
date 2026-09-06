@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
 Version: 0.4
-Status: Batch 004 autonomous continuation authorized for its 62 unresolved members; scientific rules remain frozen
+Status: BATCH_004_AUTONOMOUS_RESUME_COMPLETE; 74/74 complete, scientific rules frozen, Batch 005 prohibited
 
 ## 1. Objective
 
@@ -322,3 +322,11 @@ The user explicitly authorizes continuation of exactly the 62 unresolved members
 The engineering-only network policy waits indefinitely on transient DNS/TCP/TLS/HTTP conditions, keeps the same subject/asset active, preserves partials, confirms recovery with two tiny probes, and resumes strict validated Range requests automatically. A detached single-instance supervisor, external D: heartbeat/logs, progress watchdog, and explicit graceful stop support operation independent of another conversational prompt. Hard identity/filesystem/disk/provenance/invariant failures stop without replacements. Tests and a local commit precede the numbered resume authorization and real requests. See BATCH_004_AUTONOMOUS_RUNNER.md for implementation and operating details.
 
 The exact 45-GiB cap, 74-member manifest/plan, original authorization, preprocessing/access hashes, Train-only fitting and held-out apply-only rules are unchanged. Original progress archives and journal prefixes are preserved. No Batch 005, scientific held-out analysis, normalization, final cohort/split lock, service, scheduled task, or Git push is authorized. Technical success requires 74 complete outputs and 1,184 verified blocks; final acceptance also requires tests, verifier, preservation checks, handoff, and clean Git.
+
+## 2026-09-06: Batch 004 autonomous continuation complete
+
+All 62 previously unresolved Batch 004 members completed in their original frozen order under implementation 0682fa0c065916cdb01bfa5115333ba5cf0e0084 and numbered authorization 001. Batch 004 is now 74/74 technically complete with 1,184 verified block groups, zero unresolved subjects/partials, and a complete ledger. The 12 existing Batch 004 completions and 72 earlier completions, prior raw, original authorizations, journal prefixes, and archived progress remain unchanged. Batch membership/cap and scientific hashes remain frozen.
+
+The 528,482,304-byte sub-010232 prefix resumed via exact HTTP 206/Content-Range and full original size/SHA256 verification. The continuation received 39,959,722,354 body bytes, with no new outage episodes, reconnections, or extra retry bodies. Historical retries/interruptions are preserved. There was one continuous scientific continuation and no processing restart. A Windows venv PID-reporting correction was tested and committed only after processing; two empty-unresolved verification checks added no download or processing work. The first check's liveness-probe incident and the successful repeated supervision check are documented in the final handoff.
+
+Frozen outcomes: 71 Batch 004 Train-QC passes, 68 provisional-feasibility passes; raw deleted for 71 subjects and retained for sub-010146, sub-010163, and sub-010234. Cumulative totals are 146 subjects/2,336 blocks, 140 Train-QC passes, 136 provisional-feasibility passes, and 65 unassigned candidates. Final 355 offline tests, compileall, full read-only verification, and preservation/accounting checks passed. No scientific held-out analysis, normalization fit, final cohort/split lock, Batch 005, or push occurred. Exact evidence, final commit resolution, byte accounting, and all 62 outcomes are in BATCH_004_AUTONOMOUS_RESUME_HANDOFF.md and its external final acceptance record.
