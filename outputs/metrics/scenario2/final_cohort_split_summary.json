@@ -1,0 +1,187 @@
+{
+  "accepted_streaming_head": "77a6c3745408acc7c40260794a731123dc43c93b",
+  "artifact_hashes": {
+    "final_block_split_manifest.csv": "a58605010f7371fe1805a7834c205f2da7be816515779e15f2ba082bfd201f8b",
+    "final_cohort_manifest.csv": "e9405aacd8109700ed55ef3df49b8b5ec0187a65b1c3d79049597fa27b490bc9"
+  },
+  "cohort_rule": "technical_complete AND train_qc_pass AND provisional_5_1_2_feasible",
+  "counts": {
+    "Test": 792,
+    "Train": 1980,
+    "Validation": 396,
+    "excluded_subjects": 17,
+    "included_subjects": 198,
+    "ineligible_assigned_Test_blocks": 0,
+    "ineligible_assigned_Train_blocks": 10,
+    "ineligible_assigned_Validation_blocks": 0,
+    "original_dataset_subjects": 215,
+    "post_download_exclusions": 13,
+    "structural_candidates": 211,
+    "structural_exclusions": 4,
+    "total_block_assignments": 3168
+  },
+  "ineligible_assigned_Train_blocks": [
+    {
+      "block_uid": "sub-010020_block-16",
+      "eye_state": "EO",
+      "subject_id": "sub-010020"
+    },
+    {
+      "block_uid": "sub-010024_block-14",
+      "eye_state": "EO",
+      "subject_id": "sub-010024"
+    },
+    {
+      "block_uid": "sub-010066_block-16",
+      "eye_state": "EO",
+      "subject_id": "sub-010066"
+    },
+    {
+      "block_uid": "sub-010196_block-05",
+      "eye_state": "EC",
+      "subject_id": "sub-010196"
+    },
+    {
+      "block_uid": "sub-010232_block-02",
+      "eye_state": "EO",
+      "subject_id": "sub-010232"
+    },
+    {
+      "block_uid": "sub-010263_block-12",
+      "eye_state": "EO",
+      "subject_id": "sub-010263"
+    },
+    {
+      "block_uid": "sub-010263_block-16",
+      "eye_state": "EO",
+      "subject_id": "sub-010263"
+    },
+    {
+      "block_uid": "sub-010276_block-02",
+      "eye_state": "EO",
+      "subject_id": "sub-010276"
+    },
+    {
+      "block_uid": "sub-010305_block-02",
+      "eye_state": "EO",
+      "subject_id": "sub-010305"
+    },
+    {
+      "block_uid": "sub-010315_block-14",
+      "eye_state": "EO",
+      "subject_id": "sub-010315"
+    }
+  ],
+  "pilot_exposure": {
+    "excluded_subject_blocks": 20,
+    "exposed_blocks": 150,
+    "included_subject_train_blocks": 130,
+    "passed": true,
+    "validation_or_test_violations": 0
+  },
+  "post_download_exclusions": [
+    {
+      "reason": "frozen_Train_QC_failed;EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010012"
+    },
+    {
+      "reason": "frozen_Train_QC_failed;EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010030"
+    },
+    {
+      "reason": "frozen_Train_QC_failed;EC_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible;EC_Test_assigned_block_ineligible",
+      "subject_id": "sub-010146"
+    },
+    {
+      "reason": "EC_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010157"
+    },
+    {
+      "reason": "frozen_Train_QC_failed;EC_Test_assigned_block_ineligible",
+      "subject_id": "sub-010163"
+    },
+    {
+      "reason": "EO_Test_assigned_block_ineligible;EC_Test_assigned_block_ineligible",
+      "subject_id": "sub-010200"
+    },
+    {
+      "reason": "EO_Validation_assigned_block_ineligible",
+      "subject_id": "sub-010226"
+    },
+    {
+      "reason": "frozen_Train_QC_failed;EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010234"
+    },
+    {
+      "reason": "frozen_Train_QC_failed;EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010250"
+    },
+    {
+      "reason": "EO_Validation_assigned_block_ineligible;EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010260"
+    },
+    {
+      "reason": "EO_Validation_assigned_block_ineligible",
+      "subject_id": "sub-010280"
+    },
+    {
+      "reason": "EO_Validation_assigned_block_ineligible;EC_Test_assigned_block_ineligible",
+      "subject_id": "sub-010291"
+    },
+    {
+      "reason": "EO_Test_assigned_block_ineligible",
+      "subject_id": "sub-010316"
+    }
+  ],
+  "processed_evidence": {
+    "all_block_output_count": 211,
+    "all_block_output_hash_bundle_sha256": "8bdd9a23febb6b582d953b06f39ab7467c6d97372cdb9e6d4b88d4c2c3901004",
+    "eeg_uv_arrays_loaded": false,
+    "normalization_flags_checked": 211,
+    "receipt_count": 211,
+    "receipt_hash_bundle_sha256": "744c548832572fef31f22646322f68d734e8e61d8efe25c06009fcddf549ca80"
+  },
+  "registry_verification": {
+    "all_train_assignments_covered": 2110,
+    "mechanical_unique_heldout_blocks": 1266,
+    "pilot_unique_train_blocks": 150,
+    "scientific_heldout_purposes": [],
+    "streaming_unique_train_blocks": 1960
+  },
+  "schema_version": "scenario2-final-cohort-split-summary-v1",
+  "status": "FINAL_COHORT_SPLIT_LOCKED",
+  "structural_exclusions": [
+    {
+      "reason": "insufficient_complete_blocks_for_5_1_2;study_runs_EO=3;study_runs_EC=3;complete_EO=2;complete_EC=3",
+      "subject_id": "sub-010015"
+    },
+    {
+      "reason": "insufficient_complete_blocks_for_5_1_2;study_runs_EO=5;study_runs_EC=6;complete_EO=5;complete_EC=5",
+      "subject_id": "sub-010100"
+    },
+    {
+      "reason": "state_annotations_unavailable_missing_events;events.tsv is absent; vmrk has zero marker entries",
+      "subject_id": "sub-010203"
+    },
+    {
+      "reason": "state_annotations_unavailable_no_state_markers;events.tsv contains no mapped EO/EC trial_type markers",
+      "subject_id": "sub-010285"
+    }
+  ],
+  "verification_results": {
+    "all_215_subjects_accounted_once": true,
+    "all_output_and_receipt_hashes_match": true,
+    "eeg_uv_arrays_loaded": false,
+    "every_final_block_exists_in_inventory": true,
+    "expected_exclusion_sets_match": true,
+    "final_roles_match_provisional_exactly": true,
+    "final_test_sealed": true,
+    "frozen_source_hashes_match": true,
+    "inclusion_rule_derived_from_frozen_evidence": true,
+    "ineligible_train_blocks_preserved_without_replacement": true,
+    "normalization_unfitted": true,
+    "per_subject_state_5_1_2": true,
+    "pilot_exposure_train_or_subject_excluded": true,
+    "scientific_heldout_outcomes_accessed": false
+  }
+}

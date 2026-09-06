@@ -397,3 +397,15 @@ Accept technical completion separately from scientific eligibility: all 211 stru
 Commit only compact execution/results evidence and final documentation locally, without amend or push. Preserve the 770 prior protected files and external execution journals, snapshots, locks, logs, raw data, and prior handoffs. Materialize repository `HANDOFF.md` now because successful terminal state and exited processes make it safe; keep the external live-run handoff unchanged. The compact completion audit retains `FULL_COHORT_STREAMING_AWAITING_FINAL_ACCEPTANCE` by design. The post-commit `--require-clean` verifier and external `final_acceptance.json` establish the exact accepted HEAD and `FULL_COHORT_STREAMING_COMPLETE`, avoiding a self-referential commit hash in tracked documentation.
 
 See [FULL_COHORT_STREAMING_HANDOFF.md](FULL_COHORT_STREAMING_HANDOFF.md) for counts, bytes, hashes, validation evidence, and the separate Final Cohort and Split Lock boundary. Batch 006 remains prohibited; scientific held-out analysis, normalization fitting, final cohort/split lock, and remote push have not occurred in this phase.
+
+## 2026-09-07: Final cohort and unchanged block split locked
+
+Timing: after accepted full-cohort technical verification and frozen QC application, before normalization fitting, model training, scientific Validation analysis, or Final Test.
+
+Final inclusion is the deterministic conjunction `technical_complete AND train_qc_pass AND provisional_5_1_2_feasible`. It admits 198 subjects and excludes 13 after download; the four pre-download structural exclusions remain unchanged. All 215 original subjects are accounted for exactly once. The exclusion identities and complete frozen reasons are recorded in `final_cohort_manifest.csv`; no subject was rescued or replaced.
+
+The final block manifest copies every provisional role exactly for included subjects: 1,980 Train, 396 Validation, and 792 Test assignments, with 5/1/2 per eye state and subject. Ten ineligible assigned Train blocks remain Train and explicitly ineligible. All included Validation/Test assignments satisfy the already-frozen feasibility rule. No block was moved, swapped, promoted, optimized, or replaced.
+
+The 150 pilot-exposed Train blocks reconcile as 130 retained Train blocks for included subjects plus 20 blocks belonging to excluded `sub-010250` and `sub-010280`; none becomes Validation or Test. Train and mechanical access registries cover all 3,376 original assignments exactly and contain no scientific held-out purpose.
+
+The deterministic lock binds the structural and technical subject manifests, QC summary and completion audit, provisional split, block inventory, all three access registries, both frozen configurations at byte and semantic levels, the accepted streaming record, and the accepted HDF5/receipt hash bundles. Block eligibility and window mask/reason hashes were read from stored QC metadata without loading `eeg_uv`. Normalization remains unfitted, Final Test remains sealed, Batch 006 remains absent, and no push is authorized.

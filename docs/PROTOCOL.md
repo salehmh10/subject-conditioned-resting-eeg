@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
-Version: 0.4
-Status: Full-cohort technical verification complete, 211/211 subjects and 3,376 blocks; scientific rules frozen, final cohort/split unlocked, Batch 006 prohibited
+Version: 0.5
+Status: Final cohort and unchanged block split locked for 198 subjects; normalization unfitted; Final Test sealed; Batch 006 prohibited
 
 ## 1. Objective
 
@@ -55,13 +55,13 @@ Complete recording blocks are the atomic unit. Random window-level splitting is 
 
 The study is a within-subject block holdout: subject identities occur in all partitions. It is not a held-out-subject generalization design.
 
-## 6. Provisional metadata-only allocation
+## 6. Provisional metadata-only allocation and final lock
 
 The 211-subject structural cohort supports 5 Train / 1 Validation / 2 Test blocks per subject and state. A deterministic candidate is stored as `provisional_block_split_manifest.csv` with status `PROVISIONAL_METADATA_ONLY`.
 
 Subjects are ordered by SHA256 of a fixed version seed and subject ID. A fixed 5/1/2 base schedule is rotated by subject rank modulo eight, with a four-position EC offset. This makes every block order appear in every role and balances each state/order cell within one subject of perfect balance. No waveform or outcome enters the allocation.
 
-This candidate is not final or locked. After outcome-blind QC rules are frozen and applied uniformly, the final eligible block set must be generated deterministically, checksummed, committed, and then frozen.
+The candidate remained provisional throughout preprocessing and full-cohort technical verification. On 2026-09-07, after the frozen outcome-blind QC was applied uniformly, final inclusion was derived as `technical_complete AND train_qc_pass AND provisional_5_1_2_feasible`. This locked 198 subjects without moving any block: 1,980 Train, 396 Validation, and 792 Test assignments. Ten ineligible assigned Train blocks remain assigned and marked ineligible; no held-out block was promoted, replaced, or rescued. The exact source and artifact hashes are in `outputs/metrics/scenario2/final_cohort_split_lock.json`.
 
 ## 7. Pilot analytical-access rule
 
@@ -79,6 +79,8 @@ Before the final manifest is created:
 4. generate, checksum, commit, and lock the final cohort/split manifest.
 
 Before Final Test is opened, additionally freeze preprocessing, normalization, model architectures, spectral-loss weight, checkpoint rule, CFG, classifiers and hyperparameters, augmentation ratio, IAAFT settings, random seeds, metrics, and the statistical analysis plan. Tuning uses Train and real Validation only. Final Test is evaluated once under the prespecified plan.
+
+The four pre-manifest steps above are complete. This does not open Final Test and does not authorize scientific Validation/Test analysis. Normalization remains unfitted; its next phase must fit one global channelwise scaler from unique usable samples in eligible final Real Train blocks only.
 
 QC quantities may determine pass/fail eligibility and feasibility under frozen rules. They must not be optimized to construct an unusually clean or easy Validation/Test set. Alpha power, IAF, connectivity, classifier accuracy, generator loss, TSTR, augmentation utility, and any final scientific outcome may never drive inclusion or allocation.
 

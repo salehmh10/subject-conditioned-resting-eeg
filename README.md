@@ -4,13 +4,11 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 ## Current status
 
-**Full-cohort streaming has 211/211 technically verified subjects and 3,376 blocks.** Final Batch 005 completed all 65 subjects / 1,040 blocks with worker exit 0, empty stderr, zero technical failures, and a complete ledger. Its supervisor and worker have exited and both execution locks are free. No unresolved production downloads, partials, unassigned candidates, or Batch 006 remain.
+**The final scientific cohort and block split are locked.** Frozen outcome-blind engineering evidence yields 198 included subjects, 13 post-download exclusions, and the four earlier structural exclusions, accounting for all 215 dataset subjects exactly once. The unchanged provisional allocation contributes 1,980 Train, 396 Validation, and 792 Test block assignments.
 
-Batch 005 has **65 Train-QC passes and 62 provisional-feasibility passes**. Cumulative counts are **205 Train-QC passes / 6 failures** and **198 provisional-feasibility passes / 13 failures**. These are frozen engineering outcomes; the final scientific cohort and split remain unlocked. All 65 Batch 005 raw directories were deleted after verified completion. The six prior Train-QC-failure subjects retain **3,902,615,061 bytes** of raw data. Total processed storage is **2,510,529,290 bytes**.
+Every included subject retains exactly 5 Train / 1 Validation / 2 Test blocks per eye state. Ten assigned Train blocks remain explicitly ineligible without promotion or replacement; every included Validation/Test block is eligible. The 150 pilot-exposed blocks reconcile as 130 retained Train blocks and 20 blocks belonging to excluded subjects, with no Validation/Test exposure violation.
 
-**383 offline tests, compileall, the Batch 005 read-only verifier, and the cumulative audit passed.** All 770 protected prior files, 211 outputs/receipts, source identities, Train references, access registries, and frozen hashes were checked. Exact final committed HEAD and acceptance status are recorded externally after the local documentation/results commit and clean-worktree verifier, as described in the [final streaming handoff](docs/FULL_COHORT_STREAMING_HANDOFF.md). The compact audit intentionally retains its pre-acceptance state; the external final acceptance record establishes `FULL_COHORT_STREAMING_COMPLETE`.
-
-Start with [HANDOFF.md](HANDOFF.md). Earlier batch handoffs and the external live-run handoff remain historical evidence. No worker restart, Batch 006, scientific held-out analysis, normalization fitting, final cohort/split lock, or Git push is part of this acceptance phase. **Next action: Final Cohort and Split Lock, as a separate phase.**
+The deterministic manifests and lock are under `outputs/metrics/scenario2/`; [FINAL_COHORT_SPLIT_HANDOFF.md](docs/FINAL_COHORT_SPLIT_HANDOFF.md) records hashes and verification. Full-cohort historical evidence remains unchanged. Normalization is still unfitted, Final Test remains sealed, Batch 006 does not exist, and no Git push occurred. **Next action: Train-only normalization as a separate phase.**
 
 ## Verified dataset facts
 
@@ -33,7 +31,7 @@ The four structural exclusions are:
 
 The remaining 211 subjects each have eight complete EO and eight complete EC blocks after explicit acquisition-interruption fragments are separated for `sub-010059` and `sub-010081`. Therefore 5 Train / 1 Validation / 2 Test blocks per subject and state is structurally feasible.
 
-[`outputs/metrics/scenario2/provisional_block_split_manifest.csv`](outputs/metrics/scenario2/provisional_block_split_manifest.csv) is explicitly `PROVISIONAL_METADATA_ONLY`; it is not final or locked. Final membership requires waveform QC, a checksum, and a new commit.
+[`outputs/metrics/scenario2/provisional_block_split_manifest.csv`](outputs/metrics/scenario2/provisional_block_split_manifest.csv) remains the immutable metadata-only assignment source and historical record. Its roles are now copied without reassignment into [`final_block_split_manifest.csv`](outputs/metrics/scenario2/final_block_split_manifest.csv) for the 198 subjects admitted by frozen QC and feasibility evidence. The machine-readable source and artifact bindings are in [`final_cohort_split_lock.json`](outputs/metrics/scenario2/final_cohort_split_lock.json).
 
 ## Reproduce the pre-download package
 
