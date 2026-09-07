@@ -1,23 +1,25 @@
 # Target
-Deterministically derive, verify, commit, and externally accept the final Scenario 2 cohort and unchanged block-level Train/Validation/Test lock.
+Fit, independently verify, freeze, locally commit, and externally accept one global 19-channel scaler from eligible final Real Train unique usable samples.
 
 # Context
-Starting branch `main` at accepted HEAD `77a6c3745408acc7c40260794a731123dc43c93b`; full-cohort streaming is complete for 211 structural candidates and 3,376 blocks.
+Starting main HEAD `9fa49dba1fda8fd0e37852ccdce642372aecca70`, clean and externally accepted. Final cohort/split: 198 subjects; 1,980 Train / 396 Validation / 792 Test. Ten Train blocks are frozen-ineligible; 1,970 are eligible.
 
 # Assumptions
-Frozen QC, provisional assignments, access rules, and source evidence are immutable. No EEG signal arrays, normalization fitting, model training, scientific held-out analysis, Batch 006, or push is authorized.
+Frozen cohort, split, preprocessing, QC, masks, HDF5 and receipts remain immutable. Only eligible Train EEG is read; opaque container hashing and existing metadata preservation verification remain permitted. No training, held-out scientific analysis, Batch 006, or push.
 
 # Done Criteria
-Required deterministic artifacts, tests, independent reviews, guarded full verification, one local commit, clean worktree, and external acceptance record all pass with 198 included subjects and unchanged 5/1/2 assignments.
+One finite global channelwise float64 mean/population std (ddof=0; std >= 1e-6 uV), auditable 1,980 blocks, deduplicated samples, exact volume accounting, independent normalized second pass, deterministic artifacts, focused/full tests, compileall, two independent reviews, all preservation verifiers, current docs, one local non-merge commit, clean post-commit verification and external acceptance.
 
 # Current Plan
-Create the single authorized local commit, reverify its clean state, and write the durable external acceptance record.
+The tracked package is complete. Resolve the terminal Git/acceptance state through the canonical external final_acceptance.json; commit once and run clean post-commit verifiers before s2_20 if acceptance is not yet present.
 
 # Completed Steps
-Read required instructions/evidence; verified every start invariant; implemented the deterministic generator, verifier, acceptance gate, and 15 focused tests; generated the four lock artifacts twice byte-identically; archived the prior report; and completed three independent reviews.
+All starting invariants and clean final-lock verifier passed. Scenario 1 organization reviewed read-only. Implemented s2_18 fitting, s2_19 independent verification, s2_20 external acceptance, reusable numerical/identity functions and 28 focused tests. Generated all three artifacts and verified independent coverage/statistics plus byte-identical refit. Documentation and exact volume/scaler tables written.
+
+Scenario 1 organizational pattern: numbered responsibilities, visible high-level stages, explicit paths/parameters, intermediate artifacts and concise checks. Adopted in s2_18/s2_19/s2_20; no dependency or scientific code imported. Its README reproduction section is a placeholder; Scenario 2 explicitly documents execution order.
 
 # Current State
-The final-lock candidate contains 215 subject rows and 3,168 unchanged assignments for 198 included subjects. All pre-commit artifacts, documentation, reviews, tests, compilation, and verification pass; no normalization, training, scientific held-out analysis, Batch 006, or push occurred.
+Scaler fitted and independently verified. Exactly 12,881,152 unique samples = 100,634 seconds (27.95388888888889 hours), EO/EC 49,460/51,174 seconds. 49,500 candidate, 47,898 mask-usable and 47,835 fitting windows; 63 usable windows in ineligible blocks contribute zero. No source files or held-out signals changed/read by fitting. Both independent reviews and all pre-commit preservation verifiers pass. The exact final committed HEAD and clean post-commit state are intentionally recorded externally at runtime/docs/train_normalization_lock_20260907/final_acceptance.json.
 
 # Open Questions
 None.
@@ -26,7 +28,7 @@ None.
 None.
 
 # Verification Results
-Start invariants pass; full guarded suite passes 398/398, including 15/15 final-lock tests; compileall and the pre-commit verifier pass. Three independent reviews pass with every valid finding resolved. Regeneration is byte-identical; counts are 1,980/396/792, pilot accounting is 130 included Train plus 20 excluded, 10 ineligible Train blocks remain unchanged, all 211 normalization flags are false, and no `eeg_uv` samples were read for the lock.
+Full guarded suite: 426 passed in 42.98 seconds (28 normalization/acceptance cases). Previous run: 421 passed. Review found a tuple-return API integration issue, repaired and covered by a committed-metadata-only loader test; production metadata smoke passed. Verification script now exposes its stages directly. Independent max absolute z mean = 1.8302699640687466e-17; max population z std deviation = 1.9984014443252818e-15, tolerance 1e-12. All 1,980 block audit rows match independent bitmap coverage and deterministic artifacts match byte-for-byte. Compileall, previous full-cohort preservation verifier, final-cohort verifier and both reviewer cycles pass with no unresolved findings. C: guard and exact D: pytest base remain unchanged.
 
 # Next Step
-Commit once, run both clean-state verifiers, and write `final_acceptance.json` outside Git.
+Read the canonical external acceptance record and compare its final_committed_head with clean HEAD. If it matches and status is TRAIN_NORMALIZATION_LOCKED, this phase is complete; the next separately authorized phase is REAL-DATA BASELINES. If absent, create the single local commit only while HEAD is the starting commit, then rerun all three verifiers with --require-clean and run s2_20; do not recommit or push. Limits: max_iterations=10, max_retries_per_error=2, max_reviewer_cycles=2; implementation iteration=3 and both review cycles completed.

@@ -1,7 +1,7 @@
 # Scenario 2 Study Protocol
 
-Version: 0.5
-Status: Final cohort and unchanged block split locked for 198 subjects; normalization unfitted; Final Test sealed; Batch 006 prohibited
+Version: 0.6
+Status: Final cohort/split and one global Train-only normalization scaler locked; Final Test sealed; Batch 006 prohibited
 
 ## 1. Objective
 
@@ -80,7 +80,7 @@ Before the final manifest is created:
 
 Before Final Test is opened, additionally freeze preprocessing, normalization, model architectures, spectral-loss weight, checkpoint rule, CFG, classifiers and hyperparameters, augmentation ratio, IAAFT settings, random seeds, metrics, and the statistical analysis plan. Tuning uses Train and real Validation only. Final Test is evaluated once under the prespecified plan.
 
-The four pre-manifest steps above are complete. This does not open Final Test and does not authorize scientific Validation/Test analysis. Normalization remains unfitted; its next phase must fit one global channelwise scaler from unique usable samples in eligible final Real Train blocks only.
+The four pre-manifest steps above are complete. This does not open Final Test and does not authorize scientific Validation/Test analysis. One global channelwise scaler is now fitted from unique usable samples in eligible final Real Train blocks only; the same scaler must later be applied unchanged to every real/synthetic partition.
 
 QC quantities may determine pass/fail eligibility and feasibility under frozen rules. They must not be optimized to construct an unusually clean or easy Validation/Test set. Alpha power, IAF, connectivity, classifier accuracy, generator loss, TSTR, augmentation utility, and any final scientific outcome may never drive inclusion or allocation.
 
@@ -352,3 +352,10 @@ Frozen engineering outcomes are 205 cumulative Train-QC passes and six failures,
 Final offline validation passed 383 tests in 47.11 seconds using the exact guarded D: pytest base directory; compileall, the Batch 005 verifier, and the cumulative preservation audit passed. The earlier alternate-basetemp invocation was rejected before test collection and remains historical evidence. No tests, guards, scientific code, or frozen rules were changed for acceptance. Final compact results were written by `scripts/data/s2_15_final_remainder.py --write-results` without preprocessing.
 
 This documentation/results commit does not select a scientific cohort or change any block assignment. `PROVISIONAL_METADATA_ONLY`, Train-only fitting, mechanical held-out application, exposed-pilot Train preservation, and all existing QC/exclusion rules remain in force. Normalization remains unfitted and scientific held-out outcomes remain sealed. Final accepted status and exact committed HEAD require the post-commit clean-worktree verifier and external acceptance record described in [FULL_COHORT_STREAMING_HANDOFF.md](FULL_COHORT_STREAMING_HANDOFF.md). No push is authorized. Final Cohort and Split Lock is the next separate phase and has not begun.
+
+
+## 2026-09-07: Train-only normalization fit and lock
+
+The frozen section 11 definition is implemented without scientific amendment: global 19-channel mean/population std, ddof=0, float64 centered streaming accumulation, and a 1e-6 uV minimum std. Final included eligible Real Train contributes 12,881,152 unique samples (100,634 seconds). All 1,980 Train assignments are audited; 1,970 are eligible and ten contribute zero. Window unions are block-local, so overlaps count once. Independent Boolean coverage, compensated normalized Train statistics and byte-identical refitting pass. See [TRAIN_NORMALIZATION_HANDOFF.md](TRAIN_NORMALIZATION_HANDOFF.md) for exact scaler/volume/hashes and acceptance evidence.
+
+Stored physical-unit HDF5 data and frozen preprocessing flags remain unchanged; the scaler is a separate artifact. No Validation/Test EEG is used for fit or second-pass checks. No state/subject/block/window refits, QC changes, scientific held-out analysis, training, synthetic generation, Batch 006 or push occurred. Final Test remains sealed. Real-data baselines are the next separately authorized phase.

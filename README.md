@@ -8,7 +8,9 @@ Scenario 2 studies subject- and eye-state-conditioned generation with MPI-LEMON 
 
 Every included subject retains exactly 5 Train / 1 Validation / 2 Test blocks per eye state. Ten assigned Train blocks remain explicitly ineligible without promotion or replacement; every included Validation/Test block is eligible. The 150 pilot-exposed blocks reconcile as 130 retained Train blocks and 20 blocks belonging to excluded subjects, with no Validation/Test exposure violation.
 
-The deterministic manifests and lock are under `outputs/metrics/scenario2/`; [FINAL_COHORT_SPLIT_HANDOFF.md](docs/FINAL_COHORT_SPLIT_HANDOFF.md) records hashes and verification. Full-cohort historical evidence remains unchanged. Normalization is still unfitted, Final Test remains sealed, Batch 006 does not exist, and no Git push occurred. **Next action: Train-only normalization as a separate phase.**
+One global Train-only 19-channel normalization scaler is now fitted and frozen from **12,881,152 unique usable samples (100,634 seconds; 27.953889 hours)** in the **1,970 eligible Train blocks**. All 1,980 assignments remain auditable; ineligible blocks contribute zero and overlap is counted once. Independent Train-only coverage/statistics verification and byte-identical refitting pass.
+
+Run the sequential normalization workflow: `s2_18_fit_train_normalization.py`, `s2_19_verify_train_normalization.py`, then post-commit `s2_20_accept_train_normalization.py`. [TRAIN_NORMALIZATION_HANDOFF.md](docs/TRAIN_NORMALIZATION_HANDOFF.md) provides exact counts, channel means/stds, hashes, commands and external acceptance. [FINAL_COHORT_SPLIT_HANDOFF.md](docs/FINAL_COHORT_SPLIT_HANDOFF.md) remains the historical cohort-lock evidence. Final Test remains sealed, Batch 006 does not exist, and no Git push occurred. **Next action: Real-data baselines in a separate phase.**
 
 ## Verified dataset facts
 

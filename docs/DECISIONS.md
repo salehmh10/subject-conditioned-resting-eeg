@@ -409,3 +409,14 @@ The final block manifest copies every provisional role exactly for included subj
 The 150 pilot-exposed Train blocks reconcile as 130 retained Train blocks for included subjects plus 20 blocks belonging to excluded `sub-010250` and `sub-010280`; none becomes Validation or Test. Train and mechanical access registries cover all 3,376 original assignments exactly and contain no scientific held-out purpose.
 
 The deterministic lock binds the structural and technical subject manifests, QC summary and completion audit, provisional split, block inventory, all three access registries, both frozen configurations at byte and semantic levels, the accepted streaming record, and the accepted HDF5/receipt hash bundles. Block eligibility and window mask/reason hashes were read from stored QC metadata without loading `eeg_uv`. Normalization remains unfitted, Final Test remains sealed, Batch 006 remains absent, and no push is authorized.
+
+
+## 2026-09-07: Fit the previously frozen Train-only normalization definition
+
+Timing: after accepted final cohort/split HEAD `9fa49dba1fda8fd0e37852ccdce642372aecca70`, before model training or scientific held-out analysis. This implements the frozen normalization definition, not a scientific deviation.
+
+Use one float64 global channelwise mean/population std (ddof=0), pooled across included subjects and EO/EC. Only the within-block union of usable 512-sample windows in eligible final Train assignments contributes. Audit all 1,980 assignments; exclude all samples from the ten frozen-ineligible blocks. The 47,898 mask-usable windows include 63 ineligible-block windows, leaving 47,835 fitting windows and 12,881,152 unique samples (27.95388888888889 hours). Preserve both window counts explicitly; never use the descriptive duration to alter QC or membership.
+
+Preserve Scenario 1 organizational readability through sequential fitting, independent verification and post-commit acceptance scripts (`s2_18`/`s2_19`/`s2_20`), with explicit paths/stages and reusable simple computation. No Scenario 1 dependency or scientific code is imported. Independent verification uses a different bitmap coverage algorithm and compensated normalized-statistics pass with 1e-12 tolerance, followed by an exact deterministic refit.
+
+Keep the scaler separate from immutable physical-unit HDF5 files. Historical normalization-unfitted flags continue to describe preprocessing storage; this phase creates the global scaler without rewriting those records. Preserve old cohort artifacts and source bundles. Local acceptance requires one non-merge commit, full guarded tests, compileall, both independent reviewers, all clean post-commit verifiers and an external record. No push or Final Test opening is authorized. See [TRAIN_NORMALIZATION_HANDOFF.md](TRAIN_NORMALIZATION_HANDOFF.md).
