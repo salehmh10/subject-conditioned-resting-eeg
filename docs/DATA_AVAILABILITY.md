@@ -1,6 +1,6 @@
 # Data and artifact availability
 
-The study uses [MPI-LEMON, Babayan et al. (2019)](https://www.nature.com/articles/sdata2018308), resting-state EEG. The official [NEMAR distribution metadata](https://github.com/nemarDatasets/nm000179/blob/main/dataset_description.json) lists CC BY 4.0 and dataset DOI [10.82901/nemar.nm000179](https://doi.org/10.82901/nemar.nm000179). Obtain recordings through the official distribution and retain its required attribution. Dataset licensing is separate from the license of this repository's code.
+The study uses [MPI-LEMON, Babayan et al. (2019)](https://www.nature.com/articles/sdata2018308), resting-state EEG. The official [NEMAR distribution metadata](https://github.com/nemarDatasets/nm000179/blob/main/dataset_description.json) lists CC BY 4.0 and dataset DOI [10.82901/nemar.nm000179](https://doi.org/10.82901/nemar.nm000179). Obtain recordings through the official distribution and retain its required attribution. The dataset's CC BY 4.0 terms apply to the dataset and do not grant a license to this repository's code.
 
 ## Included
 
