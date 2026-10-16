@@ -24,8 +24,9 @@ code, tests, training, sampling, inference or statistical estimation. Release
 checks concern copied bytes, publication contents and metadata only. Full
 research execution retains its external artifact and original-path requirements.
 
-Author metadata, CITATION.cff, a project license, a formal versioned release and
-DOI archiving are deferred at the maintainer's request. The package's proposed
+The original project code is now covered by the [MIT License](../LICENSE).
+Citation author metadata, CITATION.cff, a formal versioned release and DOI
+archiving remain deferred at the maintainer's request. The package's proposed
 1.0.0 metadata does not imply a published GitHub release. For now, reference the
 repository URL and exact commit. The dataset DOI is a separate citation and
 must not be presented as this software's DOI.

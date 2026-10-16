@@ -2,7 +2,17 @@
 
 Research code and preserved results for subject- and eye-state-conditioned diffusion models of MPI-LEMON resting EEG. The study asks whether synthetic EEG retains individual physiology and whether that fidelity translates into better classification of eyes-open versus eyes-closed recordings.
 
-The completed comparison includes **198 participants**, three generators, three classifier families, and **11 training conditions**. Evaluation holds out complete recording blocks from the same participants. The repository provides scientific source code, frozen provenance, aggregate result tables, figures, and a local presentation app.
+The completed comparison includes **198 participants**, three generators, three classifier families, and **11 training conditions**. Evaluation holds out complete recording blocks from the same participants; these results do not demonstrate generalization to new participants. The repository provides scientific source code, frozen provenance, aggregate result tables, figures, and a local presentation app.
+
+The paper names **SC / SSC / SSC-C** correspond to the historical **B0 / B1 / B2** identifiers used in the code and saved outputs:
+
+| Historical identifier | Paper name | Model and conditioning |
+|---|---|---|
+| B0 | SC | **State-conditioned diffusion model.** The only conditioning input is eye state. Subject IDs are used only to group sampling and evaluation; they are not inputs to the model. |
+| B1 | SSC | **Subject-and-state-conditioned diffusion model.** A shared model conditioned on eye state and subject identity, initialized from B0 (SC). |
+| B2 | SSC-C | **Validation-selected continuation of SSC.** Further training of B1 (SSC), with the same architecture and v-prediction objective, without an additional spectral loss (spectral-loss weight = 0). |
+
+File names and result identifiers retain B0/B1/B2 for compatibility with the preserved code, outputs, and provenance. SC/SSC/SSC-C are the corresponding paper names, not additional models.
 
 **Main finding:** full-dose B2 augmentation increased EEGNet subject-macro balanced accuracy from **88.417% to 89.135%** on held-out real Test blocks. The gain was **0.718 percentage points**, with a saved paired 95% subject-bootstrap interval of **[0.250, 1.201]**. B2 did not establish a clear advantage over B1, and full-dose B2 augmentation reduced performance for both classical classifiers. Utility therefore depended on the classifier.
 
@@ -41,9 +51,9 @@ To redraw the saved result figures, see the [aggregate reproduction commands](do
 | Blocks per participant and state | 5 Train / 1 Validation / 2 Test |
 | Eligible windows | 47,835 Train / 9,635 Validation / 19,131 Test |
 | Signal representation | 19 channels, 128 Hz, 4-second windows, 2-second stride |
-| B0 | Eye-state-conditioned diffusion model |
-| B1 | Subject- and eye-state-conditioned model initialized from B0 |
-| B2 | Selected continuation of B1; same architecture, zero spectral-loss weight |
+| B0 = SC | Eye-state conditioning only; subject IDs group sampling and evaluation |
+| B1 = SSC | Shared subject- and eye-state-conditioned model initialized from B0 (SC) |
+| B2 = SSC-C | Validation-selected continuation of B1 (SSC); same architecture and v-prediction objective, spectral-loss weight = 0 |
 | Utility classifiers | Log-bandpower + logistic regression; OAS/Riemannian + linear SVM; EEGNetv4-style network |
 | Final utility design | 11 conditions; 55 fits; three EEGNet training seeds per condition |
 | Primary utility metric | Balanced accuracy computed within each participant, then averaged equally over participants |
@@ -89,8 +99,14 @@ No training, sampling, Final Test evaluation, bootstrap resampling, or historica
 
 Repository: [salehmh10/subject-conditioned-resting-eeg](https://github.com/salehmh10/subject-conditioned-resting-eeg).
 
-This is an initial public snapshot. Author metadata, `CITATION.cff`, a software license, and a formal archival release are deferred at the maintainer's request. No software or paper DOI is asserted here. Until citation metadata is supplied, identify the repository URL and exact commit used. Cite the underlying [MPI-LEMON dataset publication, Babayan et al. (2019)](https://www.nature.com/articles/sdata2018308), and the applicable dataset distribution, separately when using its data.
+This is an initial public snapshot. Citation author metadata, `CITATION.cff`, and a formal archival release remain deferred at the maintainer's request. No software or paper DOI is asserted here. Until citation metadata is supplied, identify the repository URL and exact commit used. Cite the underlying [MPI-LEMON dataset publication, Babayan et al. (2019)](https://www.nature.com/articles/sdata2018308), and the applicable dataset distribution, separately when using its data.
 
-Public availability does not grant an open-source license to the original project code. Dataset and dependency terms are described in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+## License
+
+The original project code is licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Saleh Mohammadhasani
+
+MPI-LEMON data, dependencies, IEEE templates, and other third-party materials retain their own licenses and copyright notices; the project's MIT license does not relicense them. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for scope and attribution.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for changes and [CHANGELOG.md](CHANGELOG.md) for the publication packaging history.

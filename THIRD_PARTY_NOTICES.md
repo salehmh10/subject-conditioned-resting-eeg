@@ -1,8 +1,9 @@
 # Attribution and third-party materials
 
-No license for the original project code has been selected or granted in this
-initial public snapshot. The maintainer has deferred that decision. The EEG
-dataset, dependencies and cited publications retain their own licenses.
+The original project code is licensed under the [MIT License](LICENSE), with
+copyright (c) 2026 Saleh Mohammadhasani. This license does not replace the
+licenses or copyright notices of the EEG dataset, dependencies, IEEE templates,
+cited publications, or other third-party materials.
 
 ## MPI-LEMON / NEMAR dataset
 
@@ -33,3 +34,9 @@ font, third-party paper PDF, LaTeX distribution, or private runtime is bundled.
 The presentation bundle comes from the existing aggregate distribution. No
 waveform preview or standalone HTML with embedded recordings is included.
 Scientific references are in [references.bib](results/provenance/references.bib).
+
+## Templates and other third-party materials
+
+IEEE templates and other third-party materials, wherever supplied, remain
+governed by their original notices and terms. They are not relicensed under the
+project's MIT license. Preserve those notices with any copies or distributions.
