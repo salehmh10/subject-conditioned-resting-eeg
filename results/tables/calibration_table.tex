@@ -1,0 +1,13 @@
+% Matched disjoint Train block calibration; all compared against Real A.
+{\fontsize{10}{12}\selectfont\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.14}
+\begin{tabular}{@{}p{5.4cm}ccccc@{}}
+\toprule
+معیار & \lr{Real--Real} & \lr{B0} & \lr{B1} & \lr{B2} & جهت مطلوب \\
+\midrule
+\lr{Log-PSD MAE (dB)} & \lr{1.0634} & \lr{3.6926} & \lr{1.3727} & \lr{1.2096} & کمتر \\
+\lr{Sliced Wasserstein-1 (Train-z)} & \lr{0.3237} & \lr{0.4227} & \lr{0.3338} & \lr{0.3298} & کمتر \\
+\lr{Alpha dwPLI$^2$ edge MAE} & \lr{0.0503} & \lr{0.0773} & \lr{0.0582} & \lr{0.0563} & کمتر \\
+\lr{Alpha dwPLI$^2$ edge $r$} & \lr{0.3548} & \lr{0.0453} & \lr{0.1913} & \lr{0.2153} & بیشتر \\
+\bottomrule
+\end{tabular}
+}

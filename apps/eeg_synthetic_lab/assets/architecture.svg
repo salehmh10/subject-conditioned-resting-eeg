@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">Verified shared temporal 1D U-Net architecture</title>
+  <desc id="desc">Input and output have 19 EEG channels by 512 samples. A time embedding and eye-state embedding condition all generators. A participant embedding is added for B1 and B2. Encoder and decoder widths are 64, 128, 256, 256, with skip concatenations, attention at the deeper levels and bottleneck, and two residual blocks per level.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#7b97a8"/></marker>
+    <marker id="tealarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#087f8c"/></marker>
+    <style>text{font-family:Arial,sans-serif;fill:#233c58}.title{font-size:29px;font-weight:700}.sub{font-size:18px;fill:#536b7e}.label{font-size:21px;font-weight:700}.small{font-size:17px;fill:#536b7e}.box{fill:#f3f7fa;stroke:#a7bdcb;stroke-width:1.5}.core{fill:#e9f4f4;stroke:#087f8c;stroke-width:1.7}.flow{fill:none;stroke:#7b97a8;stroke-width:2;marker-end:url(#arrow)}.skip{fill:none;stroke:#b3c5cf;stroke-width:1.6;stroke-dasharray:7 5;marker-end:url(#arrow)}.condition{fill:none;stroke:#087f8c;stroke-width:2;marker-end:url(#tealarrow)}</style>
+  </defs>
+  <rect width="1440" height="720" rx="16" fill="white"/>
+  <text x="35" y="46" class="title">A shared temporal 1D U-Net</text>
+  <text x="35" y="77" class="sub">B0: eye state  ·  B1 / B2: participant + eye state  ·  B2 retains the B1 architecture</text>
+  <g text-anchor="middle">
+    <rect x="40" y="105" width="320" height="80" rx="9" class="box"/>
+    <text x="200" y="137" class="label">Diffusion time</text><text x="200" y="163" class="small">Sinusoidal 64-D → 256-D</text>
+    <rect x="405" y="105" width="320" height="80" rx="9" class="box"/>
+    <text x="565" y="137" class="label">Eye state · EO / EC</text><text x="565" y="163" class="small">2 × 64 embedding → 256-D</text>
+    <rect x="770" y="105" width="600" height="80" rx="9" fill="#f0edf8" stroke="#625ab4" stroke-width="1.5"/>
+    <text x="1070" y="137" class="label">Participant identity · B1 and B2 only</text><text x="1070" y="163" class="small">198 × 128 embedding → 256-D projection</text>
+    <path d="M200 185V206H620V224" class="condition"/><path d="M565 185V224" class="condition"/><path d="M1070 185V206H710V224" class="condition"/>
+    <rect x="425" y="226" width="490" height="62" rx="9" class="core"/>
+    <text x="670" y="252" class="label">Additive conditioning</text><text x="670" y="276" class="small">Injected into every residual block</text>
+    <rect x="30" y="322" width="150" height="76" rx="9" class="box"/>
+    <text x="105" y="351" class="label">Noisy EEG</text><text x="105" y="377" class="small">19 × 512</text>
+    <rect x="230" y="326" width="210" height="60" rx="8" class="core"/><text x="335" y="363" class="label">64 channels</text>
+    <rect x="230" y="414" width="210" height="60" rx="8" class="core"/><text x="335" y="451" class="label">128 channels</text>
+    <rect x="230" y="502" width="210" height="66" rx="8" class="core"/><text x="335" y="530" class="label">256 channels</text><text x="335" y="552" class="small">4-head attention</text>
+    <rect x="230" y="596" width="210" height="66" rx="8" class="core"/><text x="335" y="624" class="label">256 channels</text><text x="335" y="646" class="small">4-head attention</text>
+    <rect x="970" y="326" width="210" height="60" rx="8" class="core"/><text x="1075" y="363" class="label">64 channels</text>
+    <rect x="970" y="414" width="210" height="60" rx="8" class="core"/><text x="1075" y="451" class="label">128 channels</text>
+    <rect x="970" y="502" width="210" height="66" rx="8" class="core"/><text x="1075" y="530" class="label">256 channels</text><text x="1075" y="552" class="small">4-head attention</text>
+    <rect x="970" y="596" width="210" height="66" rx="8" class="core"/><text x="1075" y="624" class="label">256 channels</text><text x="1075" y="646" class="small">4-head attention</text>
+    <rect x="1240" y="322" width="165" height="76" rx="9" class="box"/>
+    <text x="1322" y="351" class="label">v-prediction</text><text x="1322" y="377" class="small">19 × 512</text>
+    <path d="M180 360H227" class="flow"/><path d="M1180 360H1237" class="flow"/>
+    <path d="M335 386V411" class="flow"/><path d="M335 474V499" class="flow"/><path d="M335 568V593" class="flow"/>
+    <path d="M1075 414V389" class="flow"/><path d="M1075 502V477" class="flow"/><path d="M1075 596V571" class="flow"/>
+    <path d="M440 356H965" class="skip"/><path d="M440 444H965" class="skip"/><path d="M440 535H965" class="skip"/>
+    <text x="705" y="337" class="small">Concatenated skip features</text>
+    <text x="705" y="398" class="small">Strided Conv1d ↓</text><text x="705" y="424" class="small">↑ ConvTranspose1d</text>
+    <text x="705" y="482" class="small">2 residual blocks per level</text><text x="705" y="507" class="small">GroupNorm · SiLU · dropout 0</text>
+    <rect x="565" y="596" width="280" height="66" rx="8" class="box"/>
+    <text x="705" y="624" class="label">Bottleneck</text><text x="705" y="648" class="small">Residual blocks + attention</text>
+    <path d="M440 629H561" class="flow"/><path d="M845 629H966" class="flow"/>
+    <path d="M425 257H335V322" class="condition"/><path d="M915 257H1075V322" class="condition"/>
+  </g>
+  <text x="35" y="699" class="small">Architecture schematic from verified model definitions; different training histories are not a controlled causal test of participant conditioning.</text>
+</svg>

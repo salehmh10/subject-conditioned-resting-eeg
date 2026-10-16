@@ -1,0 +1,36 @@
+{
+  "b1_required_change": {
+    "add_subject_conditioning": true,
+    "continue_v_prediction": true,
+    "do_not_modify_frozen_B0_artifact": true,
+    "preserve_B0_backbone_initialization": true,
+    "subject_count": 198
+  },
+  "bulk_generation_before_B1_B2_freeze": false,
+  "current_conditioning": {
+    "EC": 1,
+    "EO": 0,
+    "eye_state": true,
+    "subject": false
+  },
+  "effective_contract_key": "effective_contract",
+  "frozen_b0_generator": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b0\\b0_v_raw_epoch020_v1\\checkpoints\\b0_v_raw_epoch020_generator_v1.pt",
+  "frozen_b0_selection_manifest": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b0\\b0_v_raw_epoch020_v1\\metrics\\b0_frozen_selection_v1.json",
+  "input_shape": [
+    19,
+    512
+  ],
+  "known_B0_limitation_to_track_in_B1": {
+    "B1_should_be_evaluated_for_subject_specific_and_connectivity_changes": true,
+    "alpha_dwpli2_connectivity": "limited, especially EO"
+  },
+  "load_key": "model_state_dict",
+  "prediction_target": "v",
+  "sampling_rate_hz": 128,
+  "selected_model_state_sha256": "3beab59ffbc6dbd88ac9bcc6bab5bdd5303aef7b355ca38219a0cace2c760bd9",
+  "status": "B0_TO_B1_HANDOFF_READY",
+  "validation_test_policy": {
+    "Final_Test": "SEALED",
+    "Validation": "may be used only according to predeclared B1 selection protocol"
+  }
+}

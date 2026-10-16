@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "scope": "aggregate shared edition",
+  "bundle_sha256": "3334576d37f1618d2cb0dbb9033be1d5a5b84acb98cc61cb5b38e02f0064d102",
+  "note": "Derived from the locally validated bundle. Local participant arrays and preview pool omitted. The HTML includes one tiny Train-only illustrative example when available."
+}

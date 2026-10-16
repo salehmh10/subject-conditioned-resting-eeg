@@ -1,0 +1,370 @@
+{
+  "classifier_families": {
+    "EEGNETV4": {
+      "checkpoint_rule": "Only the final model state at the fixed update budget is used. No best-Validation checkpoint selection.",
+      "optimization_budget_rule": "Use a fixed number of optimizer updates for every training condition. The budget equals 24 complete epochs over the 47,835-window Real Train set using the original EEGNetv4 baseline batch size. For larger augmented datasets, cycle/reshuffle the loader only until the same update budget is reached. Validation must NOT be used for early stopping or checkpoint selection.",
+      "recipe": "Reuse the exact previously established EEGNetv4 architecture, optimizer family, batch size, and fixed non-budget hyperparameters. No architecture or hyperparameter tuning is allowed during utility experiments.",
+      "role": "primary downstream utility classifier",
+      "threshold_rule": "probability threshold 0.5; no threshold tuning",
+      "training_seeds": [
+        20262301,
+        20262302,
+        20262303
+      ]
+    },
+    "LOGBANDPOWER_LOGREG": {
+      "learned_preprocessing_rule": "Any learned feature scaling must be fit only on that condition's training data and then applied unchanged to Validation/Test.",
+      "recipe": "Reuse the exact previously established real-only LogBandpower + LogisticRegression implementation and fixed hyperparameters. No new hyperparameter search is allowed.",
+      "role": "classical spectral utility classifier",
+      "threshold_rule": "fixed classifier default decision threshold; no threshold tuning",
+      "training_seeds": [
+        20262301
+      ]
+    },
+    "OAS_RIEMANN_LINEAR_SVM": {
+      "learned_preprocessing_rule": "OAS/covariance transforms, reference geometry, tangent-space mapping, and any feature scaling must be fit only on that condition's training data.",
+      "recipe": "Reuse the exact previously established OAS/Riemannian + linear-SVM implementation and fixed hyperparameters. No new hyperparameter search is allowed.",
+      "role": "covariance/Riemannian utility classifier",
+      "threshold_rule": "fixed zero decision boundary; no threshold tuning",
+      "training_seeds": [
+        20262301
+      ]
+    }
+  },
+  "data_contract": {
+    "Final_Test": {
+      "assigned_blocks": 792,
+      "status_at_s2_72": "SEALED"
+    },
+    "Train": {
+      "assigned_blocks": 1980,
+      "eligible_blocks": 1970,
+      "usable_windows": 47835
+    },
+    "Validation": {
+      "assigned_blocks": 396,
+      "role": "development-only utility evaluation; not an independent final performance estimate",
+      "usable_windows": 9635
+    },
+    "normalization": {
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\train_normalization.json",
+      "sha256": "82af5c196145756f09658ba5fd887a9953962349c23af922eca20df6b86d7379"
+    },
+    "split_manifest": {
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\final_block_split_manifest.csv",
+      "sha256": "a58605010f7371fe1805a7834c205f2da7be816515779e15f2ba082bfd201f8b"
+    },
+    "subjects": 198,
+    "window": {
+      "channels": 19,
+      "samples": 512,
+      "sampling_rate_hz": 128,
+      "seconds": 4.0,
+      "stride_samples": 256
+    }
+  },
+  "data_handling_rules": {
+    "EC_label": 1,
+    "EO_label": 0,
+    "classifier_input": "EEG only: 19 channels x 512 samples",
+    "evaluation_regime": "seen-subject, within-subject complete-block holdout",
+    "normalization": "the same frozen Train-only global 19-channel mean/std used by Scenario 2; no per-subject, per-state, or per-window normalization",
+    "real_test_access_at_protocol_freeze": false,
+    "real_train_windows": 47835,
+    "real_validation_windows": 9635,
+    "subject_id_as_classifier_feature": false,
+    "subject_id_use": "allowed only for subject-stratified synthetic matching, bookkeeping, and subject-macro evaluation",
+    "subject_state_pool_matching": "For each frozen subject and eye state, synthetic 1x count must equal the number of usable eligible Real Train windows in that exact subject-state stratum.",
+    "synthetic_samples_never_added_to_validation_or_test": true,
+    "synthetic_training_only": true,
+    "task": "binary eye-state classification"
+  },
+  "final_test_policy": {
+    "current_status": "SEALED",
+    "final_test_classifier_families": [
+      "LOGBANDPOWER_LOGREG",
+      "OAS_RIEMANN_LINEAR_SVM",
+      "EEGNETV4"
+    ],
+    "final_test_conditions": [
+      "REAL_ONLY",
+      "REAL_DUPLICATE_1X_CONTROL",
+      "TSTR_B1_1X",
+      "TSTR_B2_1X",
+      "REAL_PLUS_B1_0P5X",
+      "REAL_PLUS_B1_1X",
+      "REAL_PLUS_B2_0P5X",
+      "REAL_PLUS_B2_1X"
+    ],
+    "may_be_opened_during_bulk_generation": false,
+    "may_be_opened_during_validation_utility_training": false,
+    "may_be_opened_in_s2_72": false,
+    "opening_preconditions": [
+      "B1 1x synthetic pool complete and integrity-verified",
+      "B2 1x synthetic pool complete and integrity-verified",
+      "nested 0.5x index manifests frozen",
+      "all utility classifier artifacts for every predeclared condition frozen",
+      "all classifier recipe/hyperparameter audits complete",
+      "Validation utility report complete",
+      "no condition is added, removed, or retuned based on Validation performance",
+      "final-test execution script records hashes of every frozen input artifact"
+    ],
+    "rule": "All final classifiers remain trained only on the frozen Real Train and/or frozen synthetic Train pools. Validation is development-only. The same frozen classifier artifacts are evaluated on Final Test.",
+    "train_plus_validation_refit": false
+  },
+  "frozen_models": {
+    "B1": {
+      "generator_file_sha256": "16d274df20670f4a2085e98c08c3415ed2f9e8dfe59fda9df70db31425cc094a",
+      "generator_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b1\\b1_subject_state_raw_epoch010_v1\\checkpoints\\b1_subject_state_raw_epoch010_generator_v1.pt",
+      "model_state_sha256": "e7526bd1fab7eb2bb11cdfd6fd0c0256df6bff48c90afcb6aa663256d9f25519"
+    },
+    "B2": {
+      "full_checkpoint_file_sha256": "cfc115f2bfa0475d20551dcb1f66be1b48f5984024e4492939fece135613af5e",
+      "full_checkpoint_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_full_checkpoint_v1.pt",
+      "generator_file_sha256": "642b35154bc5c19f629d6980a4f2f612e248261c20bb1ca1eb8be525bcd6cd13",
+      "generator_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_generator_v1.pt",
+      "model_state_sha256": "3fbe75c75cb06af4961a7b381aa34a973b2645c85b6d7875f8afbd8286c94597",
+      "selection_record_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\metrics\\b2_frozen_selection_v1.json",
+      "selection_record_sha256": "41a2eb11694463c7a0bd360f84e378150a9bb02775ea67371f95732aadab6df4"
+    }
+  },
+  "governance": {
+    "B1_frozen_before_protocol": true,
+    "B2_frozen_before_protocol": true,
+    "Final_Test_accessed_by_s2_72": false,
+    "new_classifier_hyperparameter_search_allowed": false,
+    "new_generator_selection_allowed": false,
+    "new_generator_training_allowed": false,
+    "post_validation_condition_pruning_allowed": false
+  },
+  "historical_real_only_validation_anchors": {
+    "EEGNETV4_historical_best_epoch": 24,
+    "EEGNETV4_subject_macro_BA": 0.868417,
+    "LOGBANDPOWER_LOGREG_subject_macro_BA": 0.833953,
+    "OAS_RIEMANN_LINEAR_SVM_subject_macro_BA": 0.803087,
+    "note": "Historical development anchors only; not pass/fail thresholds for the new utility experiment."
+  },
+  "no_tuning_rules": [
+    "Do not retrain, reselect, or modify frozen B1.",
+    "Do not retrain, reselect, or modify frozen B2.",
+    "Do not add a new generator after s2_72.",
+    "Do not add a 2x synthetic ratio after seeing utility results.",
+    "Do not generate a separate 0.5x diffusion pool.",
+    "Do not tune classifier hyperparameters on the new utility Validation results.",
+    "Do not tune decision thresholds.",
+    "Do not use Validation for EEGNet early stopping/checkpoint selection.",
+    "Do not drop an unfavorable predeclared condition before Final Test.",
+    "Do not use subject identity as a classifier input feature.",
+    "Do not fit any learned transform or scaler on Validation or Test.",
+    "Do not access Final Test until all preconditions are satisfied."
+  ],
+  "primary_classifier": "EEGNETV4",
+  "primary_comparisons": [
+    {
+      "id": "P1_TSTR_B2_VS_B1",
+      "interpretation": "Does the selected B2 generator provide more class-relevant synthetic-only training data than B1?",
+      "left": "TSTR_B2_1X",
+      "right": "TSTR_B1_1X"
+    },
+    {
+      "id": "P2_AUG_B2_1X_VS_REAL",
+      "interpretation": "Does 1x B2 synthetic augmentation improve the primary downstream classifier over real-only training?",
+      "left": "REAL_PLUS_B2_1X",
+      "right": "REAL_ONLY"
+    },
+    {
+      "id": "P3_AUG_B2_1X_VS_B1_1X",
+      "interpretation": "Does B2 provide better augmentation utility than B1 at the same synthetic-data ratio?",
+      "left": "REAL_PLUS_B2_1X",
+      "right": "REAL_PLUS_B1_1X"
+    }
+  ],
+  "primary_metric": "subject-macro balanced accuracy",
+  "protocol_version": "b1_vs_b2_utility_protocol_v1",
+  "remaining_stage_plan": [
+    {
+      "Final_Test_access": false,
+      "action": "Generate one subject/state-matched 1x pool for frozen B1 and one for frozen B2 using common random streams and resumable atomic shards.",
+      "name": "resumable_bulk_synthetic_generation",
+      "stage": "s2_73"
+    },
+    {
+      "Final_Test_access": false,
+      "action": "Audit counts, hashes, finite values, scale sanity, subject/state coverage; freeze deterministic nested 0.5x index manifests.",
+      "name": "synthetic_pool_integrity_and_nested_subset_freeze",
+      "stage": "s2_74"
+    },
+    {
+      "Final_Test_access": false,
+      "action": "Train every predeclared classifier/condition on Train sources only, freeze classifier artifacts, and evaluate on real Validation as development evidence. No condition selection.",
+      "name": "utility_classifier_training_and_validation_development_report",
+      "stage": "s2_75"
+    },
+    {
+      "Final_Test_access": false,
+      "action": "Verify hashes, classifier completeness, protocol compliance, and confirm that no configuration changed after Validation.",
+      "name": "final_test_preflight_and_utility_artifact_freeze",
+      "stage": "s2_76"
+    },
+    {
+      "Final_Test_access": true,
+      "action": "Open Final Test for the first time and evaluate all frozen predeclared classifier artifacts on the real Test set.",
+      "name": "single_final_test_evaluation",
+      "stage": "s2_77"
+    },
+    {
+      "Final_Test_access": false,
+      "action": "Produce final B1/B2 fidelity + utility tables, statistical comparisons, limitations, manifests, and report-ready summary.",
+      "name": "scenario2_final_summary",
+      "stage": "s2_78"
+    }
+  ],
+  "scientific_question": "Evaluate whether frozen subject+state-conditioned synthetic EEG transfers to real eye-state classification and whether B2 has better downstream utility than B1.",
+  "secondary_metrics": [
+    "subject-macro ROC-AUC",
+    "global balanced accuracy",
+    "global ROC-AUC",
+    "per-subject balanced-accuracy distribution"
+  ],
+  "statistics": {
+    "EEGNET_seed_aggregation": "For each condition, compute metrics separately for all 3 frozen training seeds and report mean +/- population SD. For paired condition comparisons, each bootstrap replicate resamples subjects, recomputes the metric for each matched EEGNet seed, averages across the 3 seeds, and then takes the paired condition difference.",
+    "bootstrap_repetitions": 5000,
+    "bootstrap_seed": 20262401,
+    "bootstrap_unit": "subject",
+    "classical_seed_aggregation": "single fixed fit per condition",
+    "confidence_interval": "paired nonparametric 95% subject bootstrap",
+    "directional_positive_rule": "If the point estimate is above 0 but the paired 95% CI includes 0, report directional positive evidence, not a definitive improvement.",
+    "no_posthoc_threshold_change": true,
+    "strong_positive_evidence_rule": "For a predeclared primary comparison, call the evidence strong positive only if the paired 95% bootstrap CI for the primary subject-macro BA difference is entirely above 0."
+  },
+  "status": "S2_72_B1_VS_B2_UTILITY_PROTOCOL_FROZEN",
+  "synthetic_generation": {
+    "2x_pool_in_this_protocol": false,
+    "batch_size": 64,
+    "common_random_numbers_across_B1_B2": true,
+    "common_rng_scope": "entire ancestral reverse-sampling RNG stream for each matched subject-state shard",
+    "diffusion_steps": 1000,
+    "expected_windows_per_generator": 47835,
+    "generation_master_seed": 20262201,
+    "generation_seed_formula": "generation_seed = 20262201 + 2 * subject_index + eye_state_label",
+    "half_ratio": 0.5,
+    "half_subset_master_seed": 20262251,
+    "half_subset_rule": "For every subject-state stratum with n samples in the frozen 1x pool, use floor(n/2) indices from a deterministic permutation. The exact same retained pool indices are used for B1 and B2.",
+    "pool_ratio_per_generator": 1.0,
+    "precision": "FP32",
+    "prediction_target": "v",
+    "reason_for_no_2x": "The 1x pool already supports TSTR, full 1x augmentation, and nested 0.5x augmentation. A 2x pool would approximately double diffusion generation cost and is not required for the predeclared primary B1-vs-B2 utility questions.",
+    "sampler": "ancestral DDPM",
+    "storage": {
+      "atomic_write": true,
+      "dtype": "float32",
+      "format": "one compressed NPZ shard per generator x subject x eye_state",
+      "metadata_required": [
+        "generator_name",
+        "generator_model_state_sha256",
+        "subject_id",
+        "subject_index",
+        "eye_state",
+        "eye_state_label",
+        "generation_seed",
+        "sample_indices",
+        "sampling_rate_hz",
+        "n_channels",
+        "n_times"
+      ],
+      "monolithic_duplicate_pool_files_for_0p5x": false,
+      "nested_0p5x_is_index_manifest_only": true,
+      "resume_rule": "A completed shard may be reused only if its metadata, expected shape, sample count, generator hash, and file SHA256 agree with its manifest. A partial or unverifiable shard must be regenerated from its predeclared subject-state seed.",
+      "shape_per_shard": "(n_subject_state, 19, 512)"
+    },
+    "subject_state_count_matching": "For each frozen subject and eye state, synthetic 1x count must equal the number of usable eligible Real Train windows in that exact subject-state stratum."
+  },
+  "utility_conditions": [
+    {
+      "id": "REAL_ONLY",
+      "role": "real-only baseline",
+      "short_name": "TRTR",
+      "synthetic_generator": null,
+      "synthetic_ratio": 0.0,
+      "train_sources": [
+        "Real Train"
+      ]
+    },
+    {
+      "id": "REAL_DUPLICATE_1X_CONTROL",
+      "role": "size/weighting sanity control; adds no new EEG information",
+      "short_name": "Real+Real duplicate",
+      "synthetic_generator": null,
+      "synthetic_ratio": 0.0,
+      "train_sources": [
+        "Real Train",
+        "exact duplicate of Real Train"
+      ]
+    },
+    {
+      "id": "TSTR_B1_1X",
+      "role": "synthetic-only B1 utility",
+      "short_name": "TSTR-B1",
+      "synthetic_generator": "B1",
+      "synthetic_ratio": 1.0,
+      "train_sources": [
+        "B1 synthetic 1x"
+      ]
+    },
+    {
+      "id": "TSTR_B2_1X",
+      "role": "synthetic-only B2 utility",
+      "short_name": "TSTR-B2",
+      "synthetic_generator": "B2",
+      "synthetic_ratio": 1.0,
+      "train_sources": [
+        "B2 synthetic 1x"
+      ]
+    },
+    {
+      "id": "REAL_PLUS_B1_0P5X",
+      "role": "B1 augmentation dose",
+      "short_name": "Real+B1 0.5x",
+      "synthetic_generator": "B1",
+      "synthetic_ratio": 0.5,
+      "train_sources": [
+        "Real Train",
+        "nested B1 synthetic 0.5x"
+      ]
+    },
+    {
+      "id": "REAL_PLUS_B1_1X",
+      "role": "full B1 augmentation",
+      "short_name": "Real+B1 1x",
+      "synthetic_generator": "B1",
+      "synthetic_ratio": 1.0,
+      "train_sources": [
+        "Real Train",
+        "B1 synthetic 1x"
+      ]
+    },
+    {
+      "id": "REAL_PLUS_B2_0P5X",
+      "role": "B2 augmentation dose",
+      "short_name": "Real+B2 0.5x",
+      "synthetic_generator": "B2",
+      "synthetic_ratio": 0.5,
+      "train_sources": [
+        "Real Train",
+        "nested B2 synthetic 0.5x"
+      ]
+    },
+    {
+      "id": "REAL_PLUS_B2_1X",
+      "role": "primary B2 augmentation condition",
+      "short_name": "Real+B2 1x",
+      "synthetic_generator": "B2",
+      "synthetic_ratio": 1.0,
+      "train_sources": [
+        "Real Train",
+        "B2 synthetic 1x"
+      ]
+    }
+  ],
+  "validation_role": "Development evidence and implementation sanity only. Because B2 selection already used Validation evidence, new Validation utility numbers must not be presented as independent final performance estimates."
+}

@@ -1,0 +1,343 @@
+{
+  "schema_version": "publication-evidence-inventory-v1",
+  "scope": "Explicit copy of saved final-study aggregate evidence; no research execution or statistical recalculation",
+  "source_path_base": "Original research repository root; source_path values are repository-relative",
+  "byte_preservation": "Original content copied byte-for-byte, including historical paths and line endings",
+  "historical_context": "Earlier frozen records describe their then-current state (for example Test still sealed). The s2_77 completion receipt records the later completed Final Test.",
+  "deliberate_pseudonymous_metadata": [
+    "The frozen B1 handoff preserves public dataset pseudonyms in subject embedding index order.",
+    "The Train-only normalization JSON preserves public dataset pseudonyms with sample counts needed to describe the frozen scaler. No waveform arrays, participant clinical records or participant-level predictive performance are exported."
+  ],
+  "validation_scope": "Only copy integrity (SHA256/size) is checked during publication preparation. Prior scientific values are not re-evaluated.",
+  "files": [
+    {
+      "path": "evidence/fidelity/b0_extension/s2_74e_b0_analysis_plan_v1.json",
+      "source_path": "outputs/runs/scenario2/characterization/b0_fidelity_extension_s2_74e_v1/protocol/s2_74e_b0_analysis_plan_v1.json",
+      "sha256": "cff07ee2d6ba4ab9a37e3c6eb704510f3ce2e0325915904d2177e9aacb0fe64e",
+      "size_bytes": 390898,
+      "kind": "frozen_fidelity_protocol"
+    },
+    {
+      "path": "evidence/fidelity/b0_extension/s2_74e_b0_complete_report_v1.json",
+      "source_path": "outputs/runs/scenario2/characterization/b0_fidelity_extension_s2_74e_v1/metrics/s2_74e_b0_complete_report_v1.json",
+      "sha256": "e09514b6c776d8c4106b6c9f54ea072abc89b62b7938827cc87ba282ce2ab735",
+      "size_bytes": 111980,
+      "kind": "saved_aggregate_fidelity"
+    },
+    {
+      "path": "evidence/fidelity/b1_b2/s2_74b_analysis_plan_v1.json",
+      "source_path": "outputs/runs/scenario2/characterization/final_pool_fidelity_s2_74b_v1/protocol/s2_74b_analysis_plan_v1.json",
+      "sha256": "1df6596a89c90f516e3c62b747cf62bd56dbff1d0dbb2beee707bd13ecafa921",
+      "size_bytes": 388949,
+      "kind": "frozen_fidelity_protocol"
+    },
+    {
+      "path": "evidence/fidelity/b1_b2/s2_74b_complete_report_v1.json",
+      "source_path": "outputs/runs/scenario2/characterization/final_pool_fidelity_s2_74b_v1/metrics/s2_74b_complete_report_v1.json",
+      "sha256": "96526a457f51dca014f1c4733acfe94fa006d9d5cc95e60f9e6dd097f368518c",
+      "size_bytes": 69404,
+      "kind": "saved_aggregate_fidelity"
+    },
+    {
+      "path": "evidence/frozen/scenario2/ablation/b0_pool_integrity_half_subset_s2_74d_v1/manifests/s2_74d_b0_freeze_manifest_v1.json",
+      "source_path": "outputs/frozen/scenario2/ablation/b0_pool_integrity_half_subset_s2_74d_v1/manifests/s2_74d_b0_freeze_manifest_v1.json",
+      "sha256": "f63d3fcf1abe0e0dc67da1584c79a3cb5b9bf6872b3da8db546907b973de39e2",
+      "size_bytes": 2522,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b0/b0_v_raw_epoch020_v1/handoff/b0_to_b1_handoff_v1.json",
+      "source_path": "outputs/frozen/scenario2/b0/b0_v_raw_epoch020_v1/handoff/b0_to_b1_handoff_v1.json",
+      "sha256": "42da77a9b4dc606484b90e7fe3e42b9ff08814bccae346e260a6c9c5d89e05f9",
+      "size_bytes": 1395,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b0/b0_v_raw_epoch020_v1/metrics/b0_frozen_selection_summary_v1.txt",
+      "source_path": "outputs/frozen/scenario2/b0/b0_v_raw_epoch020_v1/metrics/b0_frozen_selection_summary_v1.txt",
+      "sha256": "358a0707561a08fca4fb4168543b544961e15dbc4f4728f633d093a34d4fc6d2",
+      "size_bytes": 2008,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b0/b0_v_raw_epoch020_v1/metrics/b0_frozen_selection_v1.json",
+      "source_path": "outputs/frozen/scenario2/b0/b0_v_raw_epoch020_v1/metrics/b0_frozen_selection_v1.json",
+      "sha256": "00c8092289532ef407ff61c305ef064c960f646705d4090581dffd2b65cdde49",
+      "size_bytes": 5465,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b1/b1_subject_state_raw_epoch010_v1/handoff/b1_to_b2_handoff_v1.json",
+      "source_path": "outputs/frozen/scenario2/b1/b1_subject_state_raw_epoch010_v1/handoff/b1_to_b2_handoff_v1.json",
+      "sha256": "80f5eeb679da0edd34573110e8b1d180f0593cf4d4a05bad72d5d524af269b47",
+      "size_bytes": 5480,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b1/b1_subject_state_raw_epoch010_v1/metrics/b1_frozen_selection_summary_v1.txt",
+      "source_path": "outputs/frozen/scenario2/b1/b1_subject_state_raw_epoch010_v1/metrics/b1_frozen_selection_summary_v1.txt",
+      "sha256": "2e4722b59408139db7bd0dc0770cbd8d6ee28b0bdfe1eecd69f22d90cd20efed",
+      "size_bytes": 2482,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b1/b1_subject_state_raw_epoch010_v1/metrics/b1_frozen_selection_v1.json",
+      "source_path": "outputs/frozen/scenario2/b1/b1_subject_state_raw_epoch010_v1/metrics/b1_frozen_selection_v1.json",
+      "sha256": "950b757151c8ab41df46909373d9da04b8ad06d19462b836072b5ba89530bef6",
+      "size_bytes": 4524,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/handoff/b2_to_utility_handoff_v1.json",
+      "source_path": "outputs/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/handoff/b2_to_utility_handoff_v1.json",
+      "sha256": "75338107aa7ff41fd54a95c06d3bc677fa5311efd0ed24a3b77dbeea5e1ca8e4",
+      "size_bytes": 2104,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/metrics/b2_freeze_manifest_v1.json",
+      "source_path": "outputs/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/metrics/b2_freeze_manifest_v1.json",
+      "sha256": "adbea8bebee5b5adbcf40dddb4e3a9e6c14664402956fe72330ef072eda27845",
+      "size_bytes": 2718,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/metrics/b2_frozen_selection_summary_v1.txt",
+      "source_path": "outputs/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/metrics/b2_frozen_selection_summary_v1.txt",
+      "sha256": "e89aa1a2c087a6d0b29564153c94fe32fcc105b8adc5e8a5467a5a8ae54fd80e",
+      "size_bytes": 1126,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/metrics/b2_frozen_selection_v1.json",
+      "source_path": "outputs/frozen/scenario2/b2/b2_validation_selected_replication_e1_v1/metrics/b2_frozen_selection_v1.json",
+      "sha256": "41a2eb11694463c7a0bd360f84e378150a9bb02775ea67371f95732aadab6df4",
+      "size_bytes": 3386,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/utility/b1_b2_pool_integrity_half_subset_v1/manifests/s2_74_freeze_manifest_v1.json",
+      "source_path": "outputs/frozen/scenario2/utility/b1_b2_pool_integrity_half_subset_v1/manifests/s2_74_freeze_manifest_v1.json",
+      "sha256": "7928c9f7be94b369240ab2145f480a478dfaa14c65e9fc4799f36671bfa3b1c5",
+      "size_bytes": 2281,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/frozen/scenario2/utility/s2_76_v2_final_test_preflight_v1/manifests/s2_76_v2_pre_final_test_freeze_manifest.json",
+      "source_path": "outputs/frozen/scenario2/utility/s2_76_v2_final_test_preflight_v1/manifests/s2_76_v2_pre_final_test_freeze_manifest.json",
+      "sha256": "68df0a06b54505afa419e1170a31184631afe45ed6d3f2e89ac9fc28f99b1046",
+      "size_bytes": 54829,
+      "kind": "frozen_model_or_utility_metadata"
+    },
+    {
+      "path": "evidence/preprocessing/final_cohort_split_lock.json",
+      "source_path": "outputs/metrics/scenario2/final_cohort_split_lock.json",
+      "sha256": "c591a46aafaa11cda0cb5b8fd3f39d1a5df61ac3fa8973fae96f804857edfe0f",
+      "size_bytes": 5580,
+      "kind": "frozen_preprocessing_metadata"
+    },
+    {
+      "path": "evidence/preprocessing/train_normalization.json",
+      "source_path": "outputs/metrics/scenario2/train_normalization.json",
+      "sha256": "82af5c196145756f09658ba5fd887a9953962349c23af922eca20df6b86d7379",
+      "size_bytes": 10799,
+      "kind": "frozen_preprocessing_metadata"
+    },
+    {
+      "path": "evidence/protocols/scenario2/b2/sampling_robust_checkpoint_selector_v2/metrics/s2_69_sampling_robust_selector_protocol_v2.json",
+      "source_path": "outputs/protocols/scenario2/b2/sampling_robust_checkpoint_selector_v2/metrics/s2_69_sampling_robust_selector_protocol_v2.json",
+      "sha256": "e656ae724fa6112c8a2ce34c20ae8363202b773ec7c8db474afd9cf8db3be3f9",
+      "size_bytes": 4108,
+      "kind": "historical_frozen_protocol"
+    },
+    {
+      "path": "evidence/protocols/scenario2/utility/b0_amended_11_condition_120epoch_es_v2/manifests/s2_75a_v2_120epoch_es_amendment.json",
+      "source_path": "outputs/protocols/scenario2/utility/b0_amended_11_condition_120epoch_es_v2/manifests/s2_75a_v2_120epoch_es_amendment.json",
+      "sha256": "86688d27dcd7d961e2ac96e4e2bd5de1b4278b4d14e123a8efb1b47a2d5a0650",
+      "size_bytes": 15151,
+      "kind": "historical_frozen_protocol"
+    },
+    {
+      "path": "evidence/protocols/scenario2/utility/b1_vs_b2_utility_protocol_v1/metrics/s2_72_b1_vs_b2_downstream_utility_protocol_manifest_v1.json",
+      "source_path": "outputs/protocols/scenario2/utility/b1_vs_b2_utility_protocol_v1/metrics/s2_72_b1_vs_b2_downstream_utility_protocol_manifest_v1.json",
+      "sha256": "c33ab53dae4714674b195ca085e94647eb58b5612f57c3bdec3fd25cd449a975",
+      "size_bytes": 2797,
+      "kind": "historical_frozen_protocol"
+    },
+    {
+      "path": "evidence/protocols/scenario2/utility/b1_vs_b2_utility_protocol_v1/metrics/s2_72_b1_vs_b2_downstream_utility_protocol_v1.json",
+      "source_path": "outputs/protocols/scenario2/utility/b1_vs_b2_utility_protocol_v1/metrics/s2_72_b1_vs_b2_downstream_utility_protocol_v1.json",
+      "sha256": "5b98ff09d977006b96ea80e43d4f13f33742745b734d5dfa94bb1eaacb682a22",
+      "size_bytes": 17291,
+      "kind": "historical_frozen_protocol"
+    },
+    {
+      "path": "evidence/provenance/paper_source_map.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/source_map.csv",
+      "sha256": "e52cfae87bf60c0521256e9a1bd6c2e6f214151041187027fe14ddbd13f3d90f",
+      "size_bytes": 29577,
+      "kind": "historical_paper_source_map"
+    },
+    {
+      "path": "evidence/utility/test/manifests/s2_77_final_test_complete.json",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_test_s2_77_v1/manifests/s2_77_final_test_complete.json",
+      "sha256": "f09f648926bef3f0a92a96cf1e914a587df530b313046344aef70c4882fe93f8",
+      "size_bytes": 491,
+      "kind": "saved_final_test_result"
+    },
+    {
+      "path": "evidence/utility/test/manifests/s2_77_single_test_access.json",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_test_s2_77_v1/manifests/s2_77_single_test_access.json",
+      "sha256": "ff95640c84a1a460b33ac5d892dac0047732ec99dd8a66de300f690f3dbf543f",
+      "size_bytes": 546,
+      "kind": "saved_final_test_result"
+    },
+    {
+      "path": "evidence/utility/test/s2_77_v2_complete_final_test_report.json",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_test_s2_77_v1/s2_77_v2_complete_final_test_report.json",
+      "sha256": "24f565c60880f6ab889c08a528b3f34edfe1ddf455842283a7f4f6f66ac6face",
+      "size_bytes": 23219,
+      "kind": "saved_final_test_result"
+    },
+    {
+      "path": "evidence/utility/test/tables/all_11_condition_summary.csv",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_test_s2_77_v1/tables/all_11_condition_summary.csv",
+      "sha256": "be9f65367be6833438971db10d70df504d12c5503b6e0834c7373d51f07c0223",
+      "size_bytes": 4146,
+      "kind": "saved_final_test_result"
+    },
+    {
+      "path": "evidence/utility/test/tables/all_55_final_test_fits.csv",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_test_s2_77_v1/tables/all_55_final_test_fits.csv",
+      "sha256": "45aabfac80603aed92e3e5d0c5e8d34d5e248c6d04845c58a2ebae6fa8497f0d",
+      "size_bytes": 7978,
+      "kind": "saved_final_test_result"
+    },
+    {
+      "path": "evidence/utility/test/tables/frozen_paired_subject_contrasts.csv",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_test_s2_77_v1/tables/frozen_paired_subject_contrasts.csv",
+      "sha256": "5dd387b73c7ece1f1bc56334a2ea33d3e498866b2d6f24f7d8f3fef5141a2ae4",
+      "size_bytes": 4424,
+      "kind": "saved_final_test_result"
+    },
+    {
+      "path": "evidence/utility/validation/all_55_classifier_validation_runs.csv",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_validation/all_55_classifier_validation_runs.csv",
+      "sha256": "ae5b568664b384515c4567a3cca75d01fc330cd1184d7ce848d01f58260de074",
+      "size_bytes": 7481,
+      "kind": "saved_validation_result"
+    },
+    {
+      "path": "evidence/utility/validation/s2_75b_v2_complete_validation_report.json",
+      "source_path": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es/final_validation/s2_75b_v2_complete_validation_report.json",
+      "sha256": "c84c4ff6ffe3d6450529745766d97d9a75fbf60435f2a3294e1024ae77b714b8",
+      "size_bytes": 23646,
+      "kind": "saved_validation_result"
+    },
+    {
+      "path": "results/tables/calibration_table.tex",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/calibration_table.tex",
+      "sha256": "9dcee387781621d2d1d5f0667d2c0e1d05c10f1e1ad24876d16d6ff3afe8cfc5",
+      "size_bytes": 742,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/fidelity_representative.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/fidelity_representative.csv",
+      "sha256": "bc1616d0a9902cd50e86d8ac813aca05c5a47aced91e472d9e3933ebd27214d5",
+      "size_bytes": 3763,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/fidelity_table.tex",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/fidelity_table.tex",
+      "sha256": "e6a180792516b3b8a29d1fdc3457161cd6593f57e831e9f88f1a7206089b9c6e",
+      "size_bytes": 1947,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/final_test_table.tex",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/final_test_table.tex",
+      "sha256": "24921a1a0389f11d69764a33f5f98c50dbd2102c9acf12dab99c235dce7d1cca",
+      "size_bytes": 1053,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/utility_contrasts.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/utility_contrasts.csv",
+      "sha256": "e19db366e775c612d275d4108f763975f64b6ad9e726ba67d2b6ac544dd65878",
+      "size_bytes": 3619,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/utility_learning_curves.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/utility_learning_curves.csv",
+      "sha256": "68fc531a84eb3ef47be9bec39f155a78d41bfe842fc1caf54385848edf312702",
+      "size_bytes": 113863,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/utility_stopping.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/utility_stopping.csv",
+      "sha256": "09d9bd96cee00e0f72264890dfa227ae1bc07c358bc606c8f38f1072b51e2d48",
+      "size_bytes": 1642,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/utility_summary.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/utility_summary.csv",
+      "sha256": "bc30138354a4bdc68503df33254f68d846f7c540ef4b347a581e285c8116cc76",
+      "size_bytes": 3074,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/utility_test_all_55_fits.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/utility_test_all_55_fits.csv",
+      "sha256": "ce255683fc3f383bf1db0fc86d65b0fc06b17fec03d8d6e70d4a1a45d31fe3b7",
+      "size_bytes": 7975,
+      "kind": "saved_paper_table"
+    },
+    {
+      "path": "results/tables/utility_validation_all_55_fits.csv",
+      "source_path": "reports/supervisor_eeg_synthetic_report/tables/utility_validation_all_55_fits.csv",
+      "sha256": "e1ca0a74f1c2fa11e94f2f38db87886b6d04001802928eee2d2649b3bcab0493",
+      "size_bytes": 7478,
+      "kind": "saved_paper_table"
+    }
+  ],
+  "omitted_dependencies": [
+    {
+      "category": "EEG arrays and checkpoints",
+      "reason": "Raw/processed EEG, synthetic pools, model weights, fitted classifiers and window predictions are excluded. No such artifacts were opened or rehashed for this export. Their recorded references/hashes remain in historical frozen metadata."
+    },
+    {
+      "category": "Participant result diagnostics",
+      "reason": "Per-subject utility tables, fidelity subject JSON/CSV files, waveform previews and individual predictions are not part of this compact evidence export. Historical public-pseudonym cohort/QC metadata already tracked in Git is retained separately for provenance."
+    },
+    {
+      "category": "Detailed cohort assignments are not duplicated",
+      "source_paths": [
+        "outputs/metrics/scenario2/final_block_split_manifest.csv",
+        "outputs/metrics/scenario2/final_cohort_manifest.csv",
+        "outputs/metrics/scenario2/final_cohort_split_summary.json"
+      ],
+      "reason": "These original tracked paths are retained in the publication repository and covered by provenance/source_inventory.json. The included cohort lock also records their original sizes and SHA256s. This evidence subtree does not duplicate them."
+    },
+    {
+      "category": "Synthetic subset row indices",
+      "reason": "Per-subject/state nested-subset view and master files are omitted. The included s2_74/s2_74d freeze manifests retain subset counts and original file hashes."
+    },
+    {
+      "category": "Training receipts and caches",
+      "reason": "Individual run receipts, cache manifests and generation journals are omitted. Saved aggregate result tables and previously extracted all-seed learning/stopping tables are included unchanged; this export does not independently reconstruct them."
+    },
+    {
+      "category": "Aggregate plot source details",
+      "reason": "Participant-level PSD/connectivity arrays used by some historical figures are omitted. Existing figures may be included elsewhere as saved presentation assets, but cannot all be reconstructed from this compact evidence set."
+    },
+    {
+      "category": "Historical source-map dependencies",
+      "reason": "paper_source_map.csv is copied unchanged and describes original workspace paths, including intentionally omitted dependencies. Resolve included source paths through this inventory. It is not a claim that every mapped dependency is shipped."
+    }
+  ]
+}

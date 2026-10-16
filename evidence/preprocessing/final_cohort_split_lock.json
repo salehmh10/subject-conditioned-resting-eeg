@@ -1,0 +1,126 @@
+{
+  "accepted_streaming_head": "77a6c3745408acc7c40260794a731123dc43c93b",
+  "artifact_bindings": {
+    "final_block_split_manifest.csv": {
+      "bytes": 1062582,
+      "rows": 3168,
+      "schema_version": "scenario2-final-block-split-manifest-v1",
+      "sha256": "a58605010f7371fe1805a7834c205f2da7be816515779e15f2ba082bfd201f8b"
+    },
+    "final_cohort_manifest.csv": {
+      "bytes": 55970,
+      "rows": 215,
+      "schema_version": "scenario2-final-cohort-manifest-v1",
+      "sha256": "e9405aacd8109700ed55ef3df49b8b5ec0187a65b1c3d79049597fa27b490bc9"
+    },
+    "final_cohort_split_summary.json": {
+      "bytes": 6123,
+      "schema_version": "scenario2-final-cohort-split-summary-v1",
+      "sha256": "fe90564149a5a7740d66952134473ec45122dd1c5acf51f7d7b5e6a0c0551adb"
+    }
+  },
+  "deterministic_serialization": {
+    "csv": "UTF-8, LF, fixed schema column order, stable subject/block order",
+    "json": "UTF-8, LF, sorted keys, indent=2, allow_nan=false, terminal newline",
+    "timestamps_included": false
+  },
+  "processed_evidence_bindings": {
+    "all_block_output_count": 211,
+    "all_block_output_hash_bundle_sha256": "8bdd9a23febb6b582d953b06f39ab7467c6d97372cdb9e6d4b88d4c2c3901004",
+    "eeg_uv_arrays_loaded": false,
+    "normalization_flags_checked": 211,
+    "receipt_count": 211,
+    "receipt_hash_bundle_sha256": "744c548832572fef31f22646322f68d734e8e61d8efe25c06009fcddf549ca80"
+  },
+  "schema_version": "scenario2-final-cohort-split-lock-v1",
+  "scientific_boundaries": {
+    "block_roles": "unchanged_from_provisional_metadata_only_assignment",
+    "cohort_inputs": "frozen_outcome_blind_engineering_evidence_only",
+    "eeg_uv_arrays_loaded": false,
+    "final_test_sealed": true,
+    "normalization_unfitted": true,
+    "scientific_heldout_outcomes_accessed": false
+  },
+  "source_bindings": {
+    "accepted_full_cohort_record": {
+      "accepted_streaming_head": "77a6c3745408acc7c40260794a731123dc43c93b",
+      "bytes": 49388,
+      "path": "runtime/docs/final_acceptance_20260907_resume/final_acceptance.json",
+      "sha256": "d1795d9c5358840e2d7b806fe57d21b4be2685773d17769192d05d7eb654a390",
+      "state": "FULL_COHORT_STREAMING_COMPLETE"
+    },
+    "block_inventory": {
+      "bytes": 757140,
+      "path": "outputs/metrics/scenario2/lemon_block_inventory.csv",
+      "sha256": "d5deff471d02baa55ac60539986595b82594d5137fcf1bffac6a5ec982b28742"
+    },
+    "full_cohort_completion_audit": {
+      "bytes": 14645,
+      "path": "outputs/metrics/scenario2/batches/full_cohort_streaming_completion_audit.json",
+      "sha256": "76af2a13a3a592e2b1035d9f36cb2c3c7578733ca17e2707cbba91f4bc03d738"
+    },
+    "full_cohort_qc_summary": {
+      "bytes": 7748,
+      "path": "outputs/metrics/scenario2/batches/full_cohort_streaming_qc_summary.json",
+      "sha256": "c7bdbc41171e85cbf5c4a63008ea5978f1145d4e6709842124b832b58dcdae05"
+    },
+    "full_cohort_subject_manifest": {
+      "bytes": 54818,
+      "path": "outputs/metrics/scenario2/batches/full_cohort_streaming_subject_manifest.csv",
+      "sha256": "81705601b558d5429de50cb9d26084de530d99708dbec0867c1f6f6c3fd52be6"
+    },
+    "mechanical_access_config": {
+      "bytes": 928,
+      "path": "configs/access/mechanical_heldout_v1.yaml",
+      "semantic_sha256": "d04b43f1ebe32bf41293d14e7c2f034e03c567ed0063350630aa81410e2500d4",
+      "sha256": "4fbf4106c7f42957325cd12ba66294fd2d1a43e435e5f7282a318e8102976053"
+    },
+    "mechanical_access_config_semantic_hash": {
+      "bytes": 66,
+      "path": "configs/access/mechanical_heldout_v1.sha256",
+      "sha256": "fee08f305ea02f2f4427926c906cbbb1aed3605a02027821554c93b747c28f0c"
+    },
+    "mechanical_heldout_access_registry": {
+      "bytes": 710473,
+      "path": "outputs/metrics/scenario2/pilot_mechanical_heldout_access_registry.csv",
+      "sha256": "50ffc3a04886ae7211a51162e664d8c34ac4a6342a93f3de9ff54312e85b389b"
+    },
+    "metadata_inventory": {
+      "bytes": 111821,
+      "path": "outputs/metrics/scenario2/lemon_metadata_inventory.csv",
+      "sha256": "bf7b1f27ed9f1d7c0dcd137c4e52009a758803fec72d2fb702ab59963912457c"
+    },
+    "pilot_waveform_access_registry": {
+      "bytes": 63156,
+      "path": "outputs/metrics/scenario2/pilot_waveform_access_registry.csv",
+      "sha256": "cc0ff1542f7cb026e491c36d1211ee119095d6a9a6334b81002dea6aec489fed"
+    },
+    "preprocessing_config": {
+      "bytes": 4058,
+      "path": "configs/preprocessing/frozen_preprocessing_v1.yaml",
+      "semantic_sha256": "5ed46e77f318e2f6162cbd34f600951980117cef979bbdf12640094721d7947b",
+      "sha256": "da57489746e66fa819da16217e585cdd0ca3b4e5cbe4491603e831be98889110"
+    },
+    "preprocessing_config_semantic_hash": {
+      "bytes": 66,
+      "path": "configs/preprocessing/frozen_preprocessing_v1.sha256",
+      "sha256": "4f58fdf9cc66e9487f76842eade2346cecdb403a9fa7edd2e646957dfdf6ac6d"
+    },
+    "provisional_split_manifest": {
+      "bytes": 467701,
+      "path": "outputs/metrics/scenario2/provisional_block_split_manifest.csv",
+      "sha256": "6adc10b108a7e7b587757cbda630a3c4909c97f8cc2faf24320b0a6e89af0b26"
+    },
+    "streaming_train_access_registry": {
+      "bytes": 825560,
+      "path": "outputs/metrics/scenario2/streaming_train_access_registry.csv",
+      "sha256": "60bc00030f6f5e910776b8d7ad90e6f5fbbe12b57f2eede7b5e984a1dc811da9"
+    },
+    "structural_cohort_manifest": {
+      "bytes": 53785,
+      "path": "outputs/metrics/scenario2/lemon_structural_cohort_manifest.csv",
+      "sha256": "85bf4786b2edf06b0c6653c94bc5c3b71e5fa116c0c95d0d826e71cfabac43a3"
+    }
+  },
+  "status": "FINAL_COHORT_SPLIT_LOCKED"
+}

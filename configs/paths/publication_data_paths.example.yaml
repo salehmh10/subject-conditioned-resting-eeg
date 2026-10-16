@@ -1,0 +1,11 @@
+# Example override for resting_eeg.data.paths.load_paths only.
+# Copy to local_data_paths.yaml or select through SCENARIO2_PATH_CONFIG.
+# Relative roots below resolve against the repository root.
+# All writable directories must be outside both the repository and metadata clone.
+# This example does not modify hardcoded paths in frozen historical scripts.
+metadata_root: ../data/MPI-LEMON
+scenario2_data_root: ../data/MPI-LEMON-Scenario2
+raw_root: raw
+processed_root: processed
+temp_root: temp
+runtime_root: runtime

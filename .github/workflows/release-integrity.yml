@@ -1,0 +1,53 @@
+name: Release copy integrity
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-publication-copies:
+    name: Verify copied bytes and publication metadata
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out publication repository
+        uses: actions/checkout@v4
+      - name: Select Python for standard-library verification
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify original source and evidence copies
+        run: python tools/verify_copy_integrity.py --root .
+      - name: Check publication metadata
+        shell: python
+        run: |
+          import json
+          import re
+          import tomllib
+          from pathlib import Path
+
+          root = Path.cwd()
+          project = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+          assert project["name"] == "subject-conditioned-resting-eeg"
+          assert re.fullmatch(r"\d+\.\d+\.\d+", project["version"])
+          assert project["requires-python"] == ">=3.12"
+          expected = (
+              "README.md",
+              "docs/INSTALLATION.md",
+              "configs/paths/publication_data_paths.example.yaml",
+              "provenance/source_inventory.json",
+              "evidence/provenance/evidence_inventory.json",
+          )
+          for relative in expected:
+              assert (root / relative).is_file(), f"Missing publication metadata: {relative}"
+          for relative in expected[-2:]:
+              inventory = json.loads((root / relative).read_text(encoding="utf-8"))
+              assert isinstance(inventory.get("files"), list) and inventory["files"], relative
+          print("Publication metadata is present and parseable.")
+          print("This workflow does not install dependencies, import scientific code, run tests, download data, or reproduce experiments.")

@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a problem with the publication package, saved results, or documented setup.
+title: "[Bug]: "
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Installation or dependency metadata
+        - Copy-integrity verification
+        - Saved results or plotting
+        - Presentation application
+        - Archived research code
+        - Documentation
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Release tag or commit
+      description: Identify the repository version used.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include operating system, Python version, installed dependency group, and CPU/CUDA build if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps or command
+      description: Provide the smallest example that shows the problem, including the working directory.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Expected and observed behavior
+      description: Include relevant error text and identify any saved result or source file involved.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting information
+      description: Small synthetic examples or aggregate output are useful. Do not attach credentials or original participant recordings.

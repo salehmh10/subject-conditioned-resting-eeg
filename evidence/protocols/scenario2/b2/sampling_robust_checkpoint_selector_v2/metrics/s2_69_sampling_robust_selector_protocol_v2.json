@@ -1,0 +1,68 @@
+{
+  "Final_Test_accessed": false,
+  "VAL_CONF_confirmation_rule": "Only the single VAL-DEV-selected checkpoint may be evaluated on VAL-CONF. It must pass ALL existing B2 guards on ALL THREE VAL-CONF sampling seeds (3/3). No re-selection, no alternate checkpoint, and no threshold relaxation.",
+  "VAL_DEV_robust_eligibility_rule": "A checkpoint is robust-eligible only if it passes ALL existing B2 guards on ALL THREE VAL-DEV sampling seeds (3/3).",
+  "VAL_DEV_selection_rule": "Among robust-eligible E1-E5 checkpoints, select the checkpoint with lowest MEAN full 1-40 Hz PSD MAE across the three VAL-DEV sampling seeds. Tie -> lower mean bandpower MAE -> lower mean alpha-effect MAE -> earlier epoch. If no robust-eligible checkpoint exists, that training run fails and VAL-CONF is not accessed for that run.",
+  "Validation_EEG_accessed": true,
+  "candidate_evaluated": false,
+  "cross_training_seed_replication_rule": "Both predeclared fresh training runs PRIMARY and REPLICATION must independently yield a VAL-DEV robust-selected checkpoint that passes all three VAL-CONF seeds.",
+  "formal_freeze_candidate_if_successful": "The predeclared PRIMARY run's selected checkpoint becomes the sole formal B2 freeze candidate. REPLICATION confirms the selector mechanism and is not allowed to replace PRIMARY.",
+  "formal_model_freeze_decision_made": false,
+  "future_fresh_training_runs": {
+    "PRIMARY": {
+      "loader_seed": 20262002,
+      "master_seed": 20262001,
+      "noise_seed": 20262003
+    },
+    "REPLICATION": {
+      "loader_seed": 20262102,
+      "master_seed": 20262101,
+      "noise_seed": 20262103
+    },
+    "training_recipe": {
+      "AMP": true,
+      "EMA": false,
+      "batch_size": 64,
+      "epochs": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "gradient_clip_norm": 1.0,
+      "initialization": "exact Frozen B1 RAW epoch10",
+      "lambda_spectral": 0.0,
+      "learning_rate": 5e-05,
+      "prediction_target": "v",
+      "weight_decay": 0.0001
+    }
+  },
+  "new_training_executed": false,
+  "reason_for_change": "s2_68 showed that the nearest failed fresh checkpoint missed only EO parent-relative scale at point ratio 0.88985912 versus lower guard 0.90, but subject bootstrap did not justify retroactive acceptance. Therefore the final family explicitly requires sampling-seed robustness rather than changing thresholds.",
+  "sampling_seeds": {
+    "VAL_CONF": [
+      20261512,
+      20261921,
+      20261922
+    ],
+    "VAL_DEV": [
+      20261511,
+      20261911,
+      20261912
+    ],
+    "important": "Seed 20261511 on VAL-DEV and seed 20261512 on VAL-CONF reuse the already-locked s2_66 Frozen-B1 baselines. The remaining four seeds are new and frozen before any s2_70 continuation training."
+  },
+  "scientific_role": "Final continuation-B2 selector family after s2_67 single-sampling-seed replication failure.",
+  "seedwise_guard_rule": "For every candidate checkpoint and every sampling seed, apply the unchanged existing B2 eligibility helper relative to the Frozen-B1 baseline generated with the SAME cohort and the SAME sampling seed. No threshold changes.",
+  "status": "S2_69_SAMPLING_ROBUST_CHECKPOINT_SELECTOR_V2_FROZEN",
+  "terminal_failure_rule": "If either fresh training run fails VAL-DEV robust selection or 3/3 VAL-CONF confirmation, continuation-B2 is CLOSED. No additional rescue selector, threshold change, epoch sweep, or training-seed replacement is allowed. Frozen B1 remains the robust generator for downstream utility.",
+  "thresholds_changed": false,
+  "validation_cohorts": {
+    "VAL_CONF_reference": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\protocols\\scenario2\\b2\\validation_checkpoint_selector_v1\\references\\s2_66_val_conf_real_reference_v1.npz",
+    "VAL_DEV_reference": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\protocols\\scenario2\\b2\\validation_checkpoint_selector_v1\\references\\s2_66_val_dev_real_reference_v1.npz",
+    "real_windows_per_subject_state": 5,
+    "subjects_per_cohort": 64,
+    "synthetic_windows_per_subject_state_per_sampling_seed": 4
+  }
+}

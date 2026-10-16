@@ -1,0 +1,53 @@
+{
+  "frozen_inputs": {
+    "B1_generator": {
+      "model_state_sha256": "e7526bd1fab7eb2bb11cdfd6fd0c0256df6bff48c90afcb6aa663256d9f25519",
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b1\\b1_subject_state_raw_epoch010_v1\\checkpoints\\b1_subject_state_raw_epoch010_generator_v1.pt",
+      "sha256": "16d274df20670f4a2085e98c08c3415ed2f9e8dfe59fda9df70db31425cc094a"
+    },
+    "B2_generator": {
+      "model_state_sha256": "3fbe75c75cb06af4961a7b381aa34a973b2645c85b6d7875f8afbd8286c94597",
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_generator_v1.pt",
+      "sha256": "642b35154bc5c19f629d6980a4f2f612e248261c20bb1ca1eb8be525bcd6cd13"
+    },
+    "B2_selection": {
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\metrics\\b2_frozen_selection_v1.json",
+      "sha256": "41a2eb11694463c7a0bd360f84e378150a9bb02775ea67371f95732aadab6df4"
+    },
+    "normalization": {
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\train_normalization.json",
+      "sha256": "82af5c196145756f09658ba5fd887a9953962349c23af922eca20df6b86d7379"
+    },
+    "split_manifest": {
+      "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\metrics\\scenario2\\final_block_split_manifest.csv",
+      "sha256": "a58605010f7371fe1805a7834c205f2da7be816515779e15f2ba082bfd201f8b"
+    }
+  },
+  "locked_decisions": {
+    "Final_Test_conditions_count": 8,
+    "Final_Test_currently_sealed": true,
+    "classifier_families": [
+      "LOGBANDPOWER_LOGREG",
+      "OAS_RIEMANN_LINEAR_SVM",
+      "EEGNETV4"
+    ],
+    "nested_ratios": [
+      0.5,
+      1.0
+    ],
+    "primary_classifier": "EEGNETV4",
+    "primary_metric": "subject-macro balanced accuracy",
+    "synthetic_pool_max_ratio": 1.0,
+    "utility_condition_count": 8
+  },
+  "protocol_json": {
+    "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\protocols\\scenario2\\utility\\b1_vs_b2_utility_protocol_v1\\metrics\\s2_72_b1_vs_b2_downstream_utility_protocol_v1.json",
+    "sha256": "5b98ff09d977006b96ea80e43d4f13f33742745b734d5dfa94bb1eaacb682a22"
+  },
+  "protocol_status": "S2_72_B1_VS_B2_UTILITY_PROTOCOL_FROZEN",
+  "protocol_text": {
+    "path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\protocols\\scenario2\\utility\\b1_vs_b2_utility_protocol_v1\\metrics\\s2_72_b1_vs_b2_downstream_utility_protocol_v1.txt",
+    "sha256": "4abf6cc5ba12e67042489e328fe6d1f614d10c11753daa780671fdf19d39e0a9"
+  },
+  "status": "S2_72_UTILITY_PROTOCOL_MANIFEST_COMPLETE"
+}

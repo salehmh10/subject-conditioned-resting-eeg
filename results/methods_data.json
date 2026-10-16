@@ -1,0 +1,171 @@
+{
+  "audit_scope": "existing metadata/source only; no raw signals/checkpoints read or experiment executed",
+  "dataset": "MPI-LEMON",
+  "n_subjects": 198,
+  "same_subject_sets_across_splits_verified": true,
+  "zero_duplicated_block_uids_verified": true,
+  "split_assigned_block_counts": {
+    "Train": 1980,
+    "Validation": 396,
+    "Test": 792
+  },
+  "split_eligible_window_counts": {
+    "Train": 47835,
+    "Validation": 9635,
+    "Final Test": 19131
+  },
+  "train_eligible_windows_by_eye_state": {
+    "EC": 24533,
+    "EO": 23302
+  },
+  "test_windows_by_eye_state": {
+    "EO": 9353,
+    "EC": 9778
+  },
+  "n_channels": 19,
+  "channels": [
+    "Fp1",
+    "Fp2",
+    "F7",
+    "F8",
+    "F3",
+    "F4",
+    "Fz",
+    "T7",
+    "T8",
+    "C3",
+    "C4",
+    "Cz",
+    "P7",
+    "P8",
+    "P3",
+    "P4",
+    "Pz",
+    "O1",
+    "O2"
+  ],
+  "fs_hz": 128,
+  "window_samples": 512,
+  "stride_samples": 256,
+  "window_seconds": 4,
+  "stride_seconds": 2,
+  "normalization": {
+    "fit_split": "Train",
+    "method": "global channelwise mean and population SD of unique covered samples",
+    "ddof": 0,
+    "unique_sample_count": 12881152,
+    "unique_duration_seconds": 100634.0,
+    "usable_assigned_windows_including_ineligible_blocks": 47898,
+    "fit_windows_excluding_ineligible_blocks": 47835,
+    "shared_over_subject_state_block_window": true
+  },
+  "backbone": {
+    "name": "1D temporal U-Net",
+    "widths": [
+      64,
+      128,
+      256,
+      256
+    ],
+    "residual_blocks_per_level": 2,
+    "attention_heads": 4,
+    "attention_levels_zero_indexed": [
+      2,
+      3
+    ],
+    "bottleneck_attention": true,
+    "normalization": "GroupNorm",
+    "activation": "SiLU",
+    "dropout": 0,
+    "time_sinusoid_dim": 64,
+    "time_condition_dim": 256,
+    "state_embedding_shape": [
+      2,
+      64
+    ],
+    "condition_dim": 256,
+    "subject_embedding_shape": [
+      198,
+      128
+    ],
+    "subject_projection": [
+      128,
+      256,
+      256
+    ],
+    "subject_injection_module": "state_projection",
+    "residual_block_injection": "add channel-projected condition after first convolution",
+    "B0_parameters": 8402771,
+    "B1_B2_parameters": 8526931,
+    "subject_branch_parameters": 124160
+  },
+  "diffusion": {
+    "prediction_target": "v",
+    "objective": "MSE(v_pred, v)",
+    "lambda_spectral_selected_B2": 0.0,
+    "timesteps": 1000,
+    "cosine_s": 0.008,
+    "sampler": "ancestral DDPM",
+    "precision": "FP32",
+    "sampling_batch": 64,
+    "v_target": "sqrt(alpha_bar)*epsilon - sqrt(1-alpha_bar)*x0",
+    "x0_reconstruction": "sqrt(alpha_bar)*xt - sqrt(1-alpha_bar)*v_pred"
+  },
+  "selected_epochs": {
+    "B0_v_finetune": 20,
+    "B1_finetune": 10,
+    "B2_continuation": 1
+  },
+  "synthetic_windows_per_model": 47835,
+  "synthetic_half_pool_windows": 23757,
+  "EEGNet_final": {
+    "max_epochs": 120,
+    "min_epochs_for_stopping": 8,
+    "patience": 6,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0,
+    "batch_size": 128,
+    "F1": 8,
+    "D": 2,
+    "F2": 16,
+    "temporal_kernel_samples": 64,
+    "separable_kernel_samples": 16,
+    "dropout": 0.5,
+    "pool_sizes": [
+      4,
+      8
+    ],
+    "checkpoint_selection": "Real Validation subject-macro BA; ties lower Validation cross-entropy",
+    "seed_count": 3,
+    "seeds": [
+      20262301,
+      20262302,
+      20262303
+    ],
+    "seed_SD_ddof": 0,
+    "new_synthetic_pool_per_seed": false,
+    "updates_per_epoch": {
+      "47835": 374,
+      "71592": 560,
+      "95670": 748
+    }
+  },
+  "final_test_bootstrap": {
+    "CI": "percentile 95%",
+    "formal_confirmatory_significance": false,
+    "matched_seeds_for_EEGNet": true,
+    "multiplicity_adjusted": false,
+    "repetitions": 5000,
+    "seed": 20262401,
+    "unit": "subject"
+  },
+  "specific_target_diffusion_paper_identifiable": true,
+  "specific_target_diffusion_paper": {
+    "key": "klein2024",
+    "url": "https://arxiv.org/abs/2403.18486",
+    "doi": "10.3217/978-3-99161-014-4-077",
+    "scope": "ERP conditional diffusion; project adapts evaluation ideas to resting EEG"
+  },
+  "bibliography_count": 10
+}

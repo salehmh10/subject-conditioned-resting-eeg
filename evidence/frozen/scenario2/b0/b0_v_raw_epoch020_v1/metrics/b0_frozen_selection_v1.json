@@ -1,0 +1,124 @@
+{
+  "alternative_epoch40_metrics_recorded_for_transparency": {
+    "alpha_bandpower_MAE_dB": 1.051980549152542,
+    "alpha_dwPLI2_r_EC": 0.5068660639151003,
+    "alpha_dwPLI2_r_EO": 0.26020087436481193,
+    "alpha_effect_channel_MAE_dB": 2.085870761566753,
+    "normalized_std_ratio_EC": 0.7652687430381775,
+    "normalized_std_ratio_EO": 0.7954728007316589
+  },
+  "b0_frozen": true,
+  "freeze_schema_version": 1,
+  "frozen_artifacts": {
+    "confirmatory_metrics_csv": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\runs\\scenario2\\b0_v\\raw_candidate_confirmatory_v1\\metrics\\b0_v_raw_candidate_confirmatory_metrics_v1.csv",
+    "confirmatory_protocol": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\runs\\scenario2\\b0_v\\raw_candidate_confirmatory_v1\\metrics\\b0_v_raw_candidate_confirmatory_protocol_v1.json",
+    "confirmatory_summary": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\runs\\scenario2\\b0_v\\raw_candidate_confirmatory_v1\\metrics\\b0_v_raw_candidate_confirmatory_summary_v1.json",
+    "confirmatory_summary_sha256": "8408afcb875c819ab0167f1911081f77a80afc5854f67247a6f09e5e0182f57a",
+    "full_archival_checkpoint": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b0\\b0_v_raw_epoch020_v1\\checkpoints\\b0_v_raw_epoch020_full_checkpoint_v1.pt",
+    "full_archival_checkpoint_sha256": "d080c2b120b2f671169a99c7aa136d38b6d1923d2d63c2894b67cd3d29328427",
+    "lean_generator_checkpoint": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b0\\b0_v_raw_epoch020_v1\\checkpoints\\b0_v_raw_epoch020_generator_v1.pt",
+    "selected_model_state_sha256": "3beab59ffbc6dbd88ac9bcc6bab5bdd5303aef7b355ca38219a0cace2c760bd9"
+  },
+  "governance": {
+    "b1_may_initialize_from_this_frozen_B0": true,
+    "bulk_synthetic_generation_started": false,
+    "final_test_accessed": false,
+    "post_training_weight_selection_documented": true,
+    "selected_after_train_only_generative_fidelity_audit": true,
+    "validation_eeg_accessed_during_confirmatory_selection": false
+  },
+  "known_limitations": {
+    "connectivity": {
+      "EC_relative_frobenius": 0.9793781615465182,
+      "EC_upper_triangle_r": 0.6446343706848606,
+      "EO_relative_frobenius": 3.0889306295759518,
+      "EO_upper_triangle_r": 0.011411109275678476,
+      "description": "Alpha debiased-squared wPLI fidelity is weak/state-asymmetric, especially EO. B0 is therefore not claimed to reproduce complete phase-lag connectivity structure.",
+      "status": "LIMITED"
+    },
+    "interpretation_boundary": "B0 is the state-only baseline generator. Its known connectivity limitation is retained rather than adding subject/spectral/connectivity mechanisms that would blur B0/B1/B2 roles."
+  },
+  "prediction_target": "v",
+  "selected_confirmatory_metrics": {
+    "O1_real_alpha_effect_dB": 6.805464467981857,
+    "O1_synthetic_alpha_effect_dB": 4.757854343825787,
+    "O2_real_alpha_effect_dB": 6.90709608582751,
+    "O2_synthetic_alpha_effect_dB": 5.803603987456768,
+    "alpha_bandpower_MAE_dB": 0.7276565632725628,
+    "alpha_dwPLI2_r_EC": 0.6446343706848606,
+    "alpha_dwPLI2_r_EO": 0.011411109275678476,
+    "alpha_dwPLI2_relF_EC": 0.9793781615465182,
+    "alpha_dwPLI2_relF_EO": 3.0889306295759518,
+    "alpha_effect_channel_MAE_dB": 1.2475820331364489,
+    "beta_bandpower_MAE_dB": 0.8461782703903401,
+    "correlation_r_EC": 0.9934354661703261,
+    "correlation_r_EO": 0.9957571607051555,
+    "delta_bandpower_MAE_dB": 0.45588258431794126,
+    "normalized_std_ratio_EC": 1.0332974195480347,
+    "normalized_std_ratio_EO": 1.0458375215530396,
+    "theta_bandpower_MAE_dB": 0.5151212029316663,
+    "uv_std_ratio_EC": 0.9842618107795715,
+    "uv_std_ratio_EO": 0.9902212619781494
+  },
+  "selected_epoch": 20,
+  "selected_model": "B0_STATE_ONLY_DDPM_V",
+  "selected_weight_kind": "raw",
+  "selection_basis": {
+    "confirmatory_synthetic_per_candidate": {
+      "EC": 256,
+      "EO": 256
+    },
+    "criterion_win_counts": {
+      "20": 4,
+      "40": 1
+    },
+    "criterion_winners": {
+      "alpha_bandpower_fidelity": 20,
+      "alpha_dwpli2_fidelity": 40,
+      "alpha_effect_fidelity": 20,
+      "scale_fidelity": 20,
+      "spatial_correlation_fidelity": 20
+    },
+    "decision_rule": "Primary candidate auto-recommended when winning at least 3 of 5 predefined confirmatory criteria.",
+    "final_test_used": false,
+    "partition": "Real Train reference only",
+    "principal_named_criteria": [
+      "scale_fidelity",
+      "alpha_effect_fidelity",
+      "alpha_bandpower_fidelity",
+      "spatial_correlation_fidelity",
+      "alpha_dwpli2_fidelity"
+    ],
+    "validation_eeg_used_for_fidelity_selection": false
+  },
+  "selection_timeline": [
+    {
+      "epoch": 125,
+      "role": "representation and state-conditioned diffusion pretraining",
+      "stage": "epsilon_pretraining"
+    },
+    {
+      "epochs_executed": 40,
+      "selected_epoch": 20,
+      "selected_weight_kind": "raw",
+      "stage": "v_prediction_finetuning"
+    },
+    {
+      "result": "RAW weights consistently outperformed slow EMA on key generator-fidelity diagnostics",
+      "stage": "raw_vs_ema_diagnostic"
+    },
+    {
+      "candidates": [
+        20,
+        40
+      ],
+      "criterion_win_counts": {
+        "20": 4,
+        "40": 1
+      },
+      "recommended_epoch": 20,
+      "stage": "confirmatory_candidate_audit"
+    }
+  ],
+  "status": "B0_SELECTION_FROZEN"
+}

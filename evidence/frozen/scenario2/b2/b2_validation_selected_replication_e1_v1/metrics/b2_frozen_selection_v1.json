@@ -1,0 +1,71 @@
+{
+  "formal_frozen_artifacts": {
+    "full_checkpoint": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_full_checkpoint_v1.pt",
+    "full_checkpoint_sha256": "cfc115f2bfa0475d20551dcb1f66be1b48f5984024e4492939fece135613af5e",
+    "lean_generator": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_generator_v1.pt",
+    "lean_generator_sha256": "642b35154bc5c19f629d6980a4f2f612e248261c20bb1ca1eb8be525bcd6cd13"
+  },
+  "interpretation": {
+    "B2_final_test_superiority_established": false,
+    "B2_is_official_frozen_model_checkpoint": true,
+    "Final_Test_remains_sealed_at_freeze": true,
+    "VAL_DEV_and_VAL_CONF_are_development_data_for_this_selection": true,
+    "training_recipe_reproducibility_claim": false
+  },
+  "model_name": "B2",
+  "model_version": "b2_validation_selected_replication_e1_v1",
+  "original_s2_70_protocol_result": {
+    "PRIMARY_success": false,
+    "REPLICATION_success": true,
+    "continuation_B2_terminally_closed_under_original_rule": true,
+    "cross_training_seed_selector_replicated": false,
+    "record_preserved_and_not_rewritten": true
+  },
+  "parent_B1": {
+    "generator_file_sha256": "16d274df20670f4a2085e98c08c3415ed2f9e8dfe59fda9df70db31425cc094a",
+    "generator_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b1\\b1_subject_state_raw_epoch010_v1\\checkpoints\\b1_subject_state_raw_epoch010_generator_v1.pt",
+    "model_state_sha256": "e7526bd1fab7eb2bb11cdfd6fd0c0256df6bff48c90afcb6aa663256d9f25519"
+  },
+  "selected_source": {
+    "checkpoint": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\runs\\scenario2\\b2\\final_sampling_robust_fresh_seed_selector_v1\\checkpoints\\s2_70_replication_epoch_001_raw.pt",
+    "epoch": 1,
+    "model_state_sha256": "3fbe75c75cb06af4961a7b381aa34a973b2645c85b6d7875f8afbd8286c94597",
+    "run": "REPLICATION",
+    "source_file_sha256": "cfc115f2bfa0475d20551dcb1f66be1b48f5984024e4492939fece135613af5e",
+    "stage": "s2_70"
+  },
+  "selection_basis": {
+    "B1_VAL_CONF_full_psd_mean_db": 0.5771060614189933,
+    "B2_VAL_CONF_full_psd_mean_db": 0.38878192162875536,
+    "VAL_CONF": {
+      "alpha_effect_mae_db_mean": 0.469252933082402,
+      "full_psd_mae_db_mean": 0.38878192162875536,
+      "full_psd_mae_db_std_ddof0": 0.026261628293042957,
+      "mean_bandpower_mae_db_mean": 0.39510327185914385,
+      "sampling_seeds": [
+        20261512,
+        20261921,
+        20261922
+      ],
+      "seed_count": 3,
+      "seed_pass_count": 3
+    },
+    "VAL_DEV": {
+      "alpha_effect_mae_db_mean": 0.4345636014345904,
+      "full_psd_mae_db_mean": 0.3855269029571485,
+      "full_psd_mae_db_std_ddof0": 0.015013363087831594,
+      "mean_bandpower_mae_db_mean": 0.5155282937286526,
+      "sampling_seeds": [
+        20261511,
+        20261911,
+        20261912
+      ],
+      "seed_count": 3,
+      "seed_pass_count": 3
+    },
+    "decision_timing": "after observing s2_70 validation results",
+    "decision_type": "POST_S2_70_MODEL_LEVEL_VALIDATION_SELECTION",
+    "relative_reduction_in_mean_VAL_CONF_full_psd_vs_B1": 0.3263250074469587
+  },
+  "status": "B2_SELECTION_FROZEN"
+}

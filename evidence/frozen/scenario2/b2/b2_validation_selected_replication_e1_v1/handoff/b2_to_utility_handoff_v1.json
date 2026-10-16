@@ -1,0 +1,31 @@
+{
+  "B2_generation_contract": {
+    "architecture": "same subject+state conditional diffusion architecture as B1",
+    "conditioning": "subject index + eye state",
+    "no_per_subject_or_window_normalization": true,
+    "normalization": "same locked Train-only global 19-channel scaler",
+    "prediction_target": "v",
+    "sampler_family": "ancestral DDPM / v-prediction / FP32"
+  },
+  "official_models": {
+    "B1": {
+      "generator_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b1\\b1_subject_state_raw_epoch010_v1\\checkpoints\\b1_subject_state_raw_epoch010_generator_v1.pt",
+      "role": "frozen baseline/comparator generator"
+    },
+    "B2": {
+      "full_checkpoint_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_full_checkpoint_v1.pt",
+      "generator_path": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\checkpoints\\b2_validation_selected_replication_e1_generator_v1.pt",
+      "model_state_sha256": "3fbe75c75cb06af4961a7b381aa34a973b2645c85b6d7875f8afbd8286c94597",
+      "role": "official validation-selected upgraded generator",
+      "selection_record": "D:\\SHARIF\\PROJECT\\subject-conditioned-resting-eeg\\outputs\\frozen\\scenario2\\b2\\b2_validation_selected_replication_e1_v1\\metrics\\b2_frozen_selection_v1.json"
+    }
+  },
+  "scientific_limit": "B2 is a formally frozen checkpoint selected using development validation evidence. This checkpoint passed all 3 VAL-DEV and all 3 VAL-CONF sampling seeds. This does not establish that the short-continuation training recipe is reproducibly successful across arbitrary training seeds.",
+  "status": "B2_TO_UTILITY_HANDOFF_FROZEN",
+  "utility_stage_rules": {
+    "Final_Test_currently_sealed": true,
+    "do_not_retrain_or_reselect_B2": true,
+    "do_not_use_VAL_DEV_or_VAL_CONF_to_choose_a_new_B2": true,
+    "freeze_utility_protocol_before_Final_Test": true
+  }
+}

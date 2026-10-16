@@ -1,0 +1,5 @@
+{
+  "fidelity_b0": "outputs/runs/scenario2/characterization/b0_fidelity_extension_s2_74e_v1",
+  "fidelity_b1_b2": "outputs/runs/scenario2/characterization/final_pool_fidelity_s2_74b_v1",
+  "utility_v2": "outputs/runs/scenario2/utility/eleven_condition_s2_75_v2_120epoch_es"
+}

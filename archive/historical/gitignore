@@ -1,0 +1,114 @@
+﻿# =========================================================
+# Scenario 2 - Subject-Conditioned Resting-State EEG
+# =========================================================
+
+# ---------------------------------------------------------
+# Raw / processed EEG data
+# ---------------------------------------------------------
+data_raw/
+data_processed/
+data_normalized/
+datasets/
+
+*.edf
+*.bdf
+*.set
+*.fdt
+*.vhdr
+*.vmrk
+*.eeg
+*.mat
+
+*.npy
+*.npz
+*.h5
+*.hdf5
+
+*.zarr/
+*.fif
+
+# ---------------------------------------------------------
+# Model artifacts
+# ---------------------------------------------------------
+outputs/checkpoints/
+outputs/samples/
+outputs/logs/
+outputs/tmp/
+outputs/metrics/scenario2/subjects/
+outputs/metrics/scenario2/*.lock
+
+runs/
+wandb/
+
+*.pt
+*.pth
+*.ckpt
+
+# ---------------------------------------------------------
+# Large local outputs
+# ---------------------------------------------------------
+*.joblib
+*.pkl
+
+# ---------------------------------------------------------
+# Third-party papers / literature
+# ---------------------------------------------------------
+papers/
+literature/
+references/
+
+# ---------------------------------------------------------
+# Secrets
+# ---------------------------------------------------------
+.env
+.env.*
+*.key
+*.pem
+credentials.*
+
+# ---------------------------------------------------------
+# Python
+# ---------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.so
+
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+.venv/
+venv/
+
+# ---------------------------------------------------------
+# Jupyter
+# ---------------------------------------------------------
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------
+# IDE
+# ---------------------------------------------------------
+.vscode/
+.idea/
+
+# ---------------------------------------------------------
+# OS
+# ---------------------------------------------------------
+Thumbs.db
+.DS_Store
+
+# ---------------------------------------------------------
+# Temporary files
+# ---------------------------------------------------------
+*.tmp
+*.temp
+*.bak
+~$*
+
+# Durable all-block execution journal stays local; commit compact audit evidence.
+outputs/metrics/scenario2/streaming_all_block_status.jsonl
+outputs/metrics/scenario2/batches/*.lock
+outputs/metrics/scenario2/batches/*_streaming_journal.jsonl
+outputs/metrics/scenario2/batches/*_download_journal.jsonl
+outputs/metrics/scenario2/batches/pilot_cleanup_journal.jsonl
+configs/paths/local_data_paths.yaml

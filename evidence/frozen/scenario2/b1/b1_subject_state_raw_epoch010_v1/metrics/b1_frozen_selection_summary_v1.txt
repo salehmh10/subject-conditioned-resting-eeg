@@ -1,0 +1,75 @@
+SCENARIO 2 — FROZEN B1 SELECTION
+
+STATUS
+B1_SELECTION_FROZEN
+
+SELECTED GENERATOR
+Model: B1 subject+state DDPM-v
+Definition: p(EEG | subject, eye_state)
+Selected checkpoint: RAW epoch 10
+EMA: OFF
+
+PARENT
+Frozen B0: B0-v RAW epoch 20
+B0 remains read-only.
+
+SELECTION
+Candidates: RAW epochs 10, 20, 30
+Generic wins: {'10': 4, '20': 1, '30': 0}
+Subject-specific wins: {'10': 3, '20': 1, '30': 1}
+Total wins: {'10': 7, '20': 2, '30': 1}
+Diagnostic direction:
+RAW_EPOCH_10_PRIMARY_SUBJECT_AWARE_CANDIDATE
+
+SELECTED EPOCH-10 GENERIC FIDELITY
+Normalized std ratio EO: 1.007392
+Normalized std ratio EC: 1.023688
+Mean bandpower MAE: 0.520337 dB
+Alpha-effect channel MAE: 0.343778 dB
+Channel-correlation r EO: 0.998433
+Channel-correlation r EC: 0.998486
+Alpha dwPLI2 r EO: 0.265347
+Alpha dwPLI2 r EC: 0.392783
+
+SELECTED EPOCH-10 SUBJECT-SPECIFIC FIDELITY
+Subject fingerprint standardized RMSE mean: 0.609339
+Subject fingerprint Pearson r median: 0.871292
+Correct-vs-median-wrong distance margin mean: 0.719020
+Top-1 subject retrieval: 0.750000
+Top-5 subject retrieval: 0.937500
+Top-1 chance: 0.015625
+Top-5 chance: 0.078125
+Correct closer than fixed wrong: 0.984375
+
+KNOWN LIMITATION
+Alpha phase-lag connectivity fidelity remains limited.
+Epoch 20 won the alpha dwPLI2 criterion, but epoch 10 was selected
+because it satisfied the frozen dual-domain rule:
+4/5 generic criteria + 3/5 subject-specific criteria.
+
+AUDIT AMENDMENT
+The failed V1 audit required 8 distinct EO and 8 distinct EC Train
+blocks per subject, which was structurally impossible.
+V1 stopped before candidate generation and was not used for selection.
+V2 used 5 distinct Train blocks per state and was frozen before generation.
+
+DATA GOVERNANCE
+Validation used during B1 full training: YES
+Validation used in final subject-aware generator selection: NO
+Final Test accessed: NO
+Bulk synthetic generation started: NO
+
+FROZEN IDENTIFIERS
+Selected source checkpoint SHA256:
+a27a75465fdae10da295cb2f40c9df17da9fd21c1c8cbcb3a9cd21ddee12fdeb
+
+Selected model-state SHA256:
+e7526bd1fab7eb2bb11cdfd6fd0c0256df6bff48c90afcb6aa663256d9f25519
+
+FROZEN GENERATOR
+D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\outputs\frozen\scenario2\b1\b1_subject_state_raw_epoch010_v1\checkpoints\b1_subject_state_raw_epoch010_generator_v1.pt
+
+NEXT SCIENTIFIC STAGE
+B2 = initialize from this frozen B1 RAW epoch-10 generator,
+retain subject + eye-state conditioning, continue v-prediction,
+and add the predeclared spectral-regularization objective.

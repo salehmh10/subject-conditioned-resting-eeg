@@ -1,0 +1,27 @@
+:root { --ink: #233c58; --teal: #087f8c; --muted: #536b7e; }
+.stApp { background: #f5f8fa; color: var(--ink); }
+.block-container { max-width: 1550px; padding-top: 3.5rem; padding-bottom: 3.5rem; }
+h1,h2,h3,h4 { color: var(--ink); letter-spacing: -.025em; }
+h1 { font-size: 2.4rem !important; line-height: 1.18 !important; margin: .35rem 0 .8rem; }
+h2 { font-size: 1.8rem !important; }
+.page-intro { font-size: 1.08rem; line-height: 1.65; color: var(--muted); max-width: 1050px; margin-bottom: 1.5rem; }
+.kicker { font-size: .72rem; letter-spacing: .17em; font-weight: 800; color: var(--teal); margin-top: .45rem; }
+[data-testid="stSidebar"] { background: #fff; border-right: 1px solid #dce6ed; }
+[data-testid="stSidebar"] .block-container { padding-top: 1.5rem; }
+[data-testid="stMetric"] { background: #fff; border: 1px solid #dce6ed; border-radius: 12px; padding: 1rem 1.15rem; }
+[data-testid="stMetricValue"] { font-size: 2rem; font-weight: 700; color: var(--ink); }
+[data-testid="stMetricLabel"] { color: var(--muted); }
+[data-testid="stPlotlyChart"] { background: white; border: 1px solid #dce6ed; border-radius: 12px; overflow: hidden; padding: .35rem; }
+.finding { background: #e9f4f4; border-left: 3px solid #087f8c; border-radius: 0 10px 10px 0; padding: 1rem 1.25rem; margin: 1rem 0 1.45rem; color: #24465c; font-size: 1.05rem; line-height: 1.6; }
+.finding span { display: block; font-size: .68rem; letter-spacing: .13em; color: #087f8c; font-weight: 800; margin-bottom: .25rem; }
+.brand { color: #233c58; font-weight: 800; font-size: 1.33rem; line-height: 1.1; margin-bottom: .35rem; }
+.brand-sub { font-size: .77rem; color: #6a7d8d; margin-bottom: 1.5rem; line-height: 1.45; }
+.step-counter { text-align: center; color: #536b7e; font-size: 1rem; padding-top: .55rem; font-weight: 600; }
+.stTabs [data-baseweb="tab-list"] { gap: 1.5rem; }
+.stTabs [data-baseweb="tab"] { font-size: .92rem; }
+[data-testid="stExpander"] { background: #fff; border-color: #dce6ed; border-radius: 8px; }
+[data-testid="stSidebar"] hr { margin: 1.2rem 0; }
+[data-testid="stCaptionContainer"] { color: #536b7e; line-height: 1.5; }
+.stButton button,.stDownloadButton button { border-radius: 8px; min-height: 2.4rem; }
+footer { visibility: hidden; }
+@media (max-width: 1400px) { h1 { font-size: 2.05rem !important; } .block-container { padding-top: 3.2rem; } }

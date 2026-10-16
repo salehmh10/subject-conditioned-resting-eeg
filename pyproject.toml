@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=78.1,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "subject-conditioned-resting-eeg"
+version = "1.0.0"
+description = "Publication companion for subject-conditioned resting-state EEG generation and evaluation"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<3",
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+results = [
+  "matplotlib>=3.9,<4",
+]
+# Install the app and research groups in different virtual environments.
+# These app pins match apps/eeg_synthetic_lab/requirements.txt.
+app = [
+  "streamlit==1.50.0",
+  "plotly==6.3.1",
+  "numpy==2.3.3",
+  "pandas==2.3.3",
+]
+# Direct scientific dependencies reflect requirements_current_exact.txt.
+# Install the desired PyTorch CPU/CUDA build first; see docs/INSTALLATION.md.
+research = [
+  "numpy==2.5.2",
+  "pandas==2.3.3",
+  "PyYAML==6.0.3",
+  "scipy==1.18.1",
+  "mne==1.12.1",
+  "h5py==3.16.0",
+  "matplotlib==3.11.1",
+  "scikit-learn==1.9.0",
+  "pyriemann==0.12",
+  "torch==2.11.0",
+]
+dev = [
+  "pytest>=8,<10",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["resting_eeg", "resting_eeg.*"]
+namespaces = false

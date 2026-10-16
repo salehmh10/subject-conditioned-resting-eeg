@@ -112,3 +112,24 @@ outputs/metrics/scenario2/batches/*_streaming_journal.jsonl
 outputs/metrics/scenario2/batches/*_download_journal.jsonl
 outputs/metrics/scenario2/batches/pilot_cleanup_journal.jsonl
 configs/paths/local_data_paths.yaml
+
+# Publication working products and dependency installations
+.publication-work/
+.venv-*/
+node_modules/
+build/
+dist/
+*.egg-info/
+.cache/
+.tmp/
+artifacts/
+*.zip
+*.tar
+*.tar.gz
+*.log
+*.aux
+*.toc
+*.out
+apps/eeg_synthetic_lab/data/presentation_bundle/previews.json
+apps/eeg_synthetic_lab/data/presentation_bundle/source_manifest.json
+apps/eeg_synthetic_lab/exports/

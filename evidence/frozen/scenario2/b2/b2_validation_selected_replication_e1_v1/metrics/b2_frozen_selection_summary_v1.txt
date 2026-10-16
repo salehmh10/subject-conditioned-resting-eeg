@@ -1,0 +1,39 @@
+SCENARIO 2 — FORMAL B2 FREEZE SUMMARY
+========================================
+
+Official model:
+  B2
+
+Frozen version:
+  b2_validation_selected_replication_e1_v1
+
+Selected source:
+  stage = s2_70
+  run   = REPLICATION
+  epoch = E1
+
+Selection evidence:
+  VAL-DEV  = 3/3 sampling seeds PASS
+  VAL-CONF = 3/3 sampling seeds PASS
+
+Mean full PSD MAE:
+  B2 VAL-DEV  = 0.385527 dB
+  B2 VAL-CONF = 0.388782 dB
+  B1 VAL-CONF = 0.577106 dB
+
+Relative reduction in mean VAL-CONF full PSD MAE vs B1:
+  32.63%
+
+Important interpretation:
+  - This exact checkpoint is now the official frozen B2 model.
+  - Its selection used development validation evidence.
+  - The original s2_70 cross-training-seed replication rule FAILED.
+  - That failure is preserved and not rewritten.
+  - Therefore this freeze supports a model-level claim for this selected
+    checkpoint, NOT a claim that the training recipe succeeds reliably
+    across arbitrary training seeds.
+  - Final Test was not accessed before this freeze.
+
+Next:
+  Freeze the downstream utility protocol before opening Final Test.
+  Compare frozen B1 and frozen B2 in utility experiments.

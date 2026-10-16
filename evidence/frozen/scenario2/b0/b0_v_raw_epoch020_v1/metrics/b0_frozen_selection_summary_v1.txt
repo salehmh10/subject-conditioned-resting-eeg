@@ -1,0 +1,64 @@
+SCENARIO 2 — FROZEN B0 SELECTION
+
+STATUS
+B0_SELECTION_FROZEN
+
+SELECTED GENERATOR
+Model: B0-v state-only DDPM
+Prediction target: v
+Selected fine-tuning checkpoint: RAW epoch 20
+EMA selected for final B0 generation: NO
+
+PROVENANCE
+B0 epsilon pretraining source: epoch 125
+Then: v-prediction fine-tuning for 40 epochs
+Final selected weights: RAW epoch 20
+
+CONFIRMATORY SELECTION
+Candidate epochs: 20 and 40
+Criterion wins: epoch 20 = 4, epoch 40 = 1
+Confirmatory diagnostic direction:
+RAW_EPOCH_20_PRIMARY_CONFIRMATORY_CANDIDATE
+
+SELECTED EPOCH-20 METRICS
+Normalized std ratio EO: 1.045838
+Normalized std ratio EC: 1.033297
+Physical std ratio EO: 0.990221
+Physical std ratio EC: 0.984262
+Alpha bandpower MAE: 0.727657 dB
+Alpha-effect channel MAE: 1.247582 dB
+O1 alpha EC-EO — Real: 6.805464 dB
+O1 alpha EC-EO — Synthetic: 4.757854 dB
+O2 alpha EC-EO — Real: 6.907096 dB
+O2 alpha EC-EO — Synthetic: 5.803604 dB
+Spatial correlation r EO: 0.995757
+Spatial correlation r EC: 0.993435
+
+KNOWN LIMITATION
+Alpha debiased-squared wPLI fidelity remains limited and state-asymmetric.
+EO alpha dwPLI2 r: 0.011411
+EC alpha dwPLI2 r: 0.644634
+EO alpha dwPLI2 relF: 3.088931
+EC alpha dwPLI2 relF: 0.979378
+
+This limitation is explicitly retained because B0 is the state-only baseline.
+No claim is made that B0 fully reproduces phase-lag connectivity.
+
+DATA GOVERNANCE
+Validation EEG used in confirmatory fidelity selection: NO
+Final Test accessed: NO
+Bulk synthetic generation started: NO
+
+FROZEN IDENTIFIERS
+Source checkpoint SHA256:
+d080c2b120b2f671169a99c7aa136d38b6d1923d2d63c2894b67cd3d29328427
+
+Selected RAW model-state SHA256:
+3beab59ffbc6dbd88ac9bcc6bab5bdd5303aef7b355ca38219a0cace2c760bd9
+
+FROZEN GENERATOR
+D:\SHARIF\PROJECT\subject-conditioned-resting-eeg\outputs\frozen\scenario2\b0\b0_v_raw_epoch020_v1\checkpoints\b0_v_raw_epoch020_generator_v1.pt
+
+NEXT SCIENTIFIC STAGE
+B1 = initialize from this frozen B0 RAW generator,
+add subject conditioning, and fine-tune without changing the frozen B0 artifact.
