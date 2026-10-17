@@ -17,6 +17,12 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# CPU-only supplementary analysis. Saved-output verification uses only stdlib.
+validation-analysis = [
+  "numpy==2.5.2",
+  "scipy==1.18.1",
+  "h5py==3.16.0",
+]
 results = [
   "matplotlib>=3.9,<4",
 ]

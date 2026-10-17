@@ -1,0 +1,408 @@
+{
+  "schema": "validation_reference_public_metadata_v1",
+  "extract_notice": "Public aggregate extract, not the original frozen plan or verification record. No subject identifiers, window indices, participant results or absolute inventories are included.",
+  "analysis_settings": {
+    "schema": "round3_exploratory_validation_v1",
+    "status": "SETTINGS_FROZEN_BEFORE_WAVEFORM_READS",
+    "allowed_real_splits": [
+      "Train",
+      "Validation"
+    ],
+    "new_training": false,
+    "new_generation": false,
+    "model_selection": false,
+    "threads": 2,
+    "window": {
+      "fs": 128,
+      "samples": 512,
+      "channels": 19
+    },
+    "features": {
+      "welch": "Hann, nperseg=256, noverlap=128, constant detrend, density, one-sided; mean linear PSD then 10log10",
+      "log_psd_mae": "absolute dB difference averaged over 19 channels and 1..40Hz inclusive",
+      "bands_hz_inclusive": [
+        [
+          1.0,
+          4.0
+        ],
+        [
+          4.0,
+          8.0
+        ],
+        [
+          8.0,
+          13.0
+        ],
+        [
+          13.0,
+          30.0
+        ]
+      ],
+      "alpha": "median of window-wise 10log10 integrated8..13Hz power; EC-minus-EO 19-channel vector, channel MAE and Pearson r",
+      "fingerprint": "median 10log10 bandpowers, band-major76-vector; Pearson retrieval over198same-state real references; pessimistic ties",
+      "nearest": "min waveform RMSE over19x512globallyTrain-standardized coordinates against all same-stratumTrain windows; median of querydistances, then meanEO/EC and participants",
+      "precision": "Stored float32 standardized windows promoted to float64 for computations"
+    },
+    "comparisons": {
+      "full": "All fixed synthetic windows versus all eligible Validation windows; Train-vs-Validation reference and exact Train-reference reproduction also computed",
+      "matched": "One frozen without-replacement subset per source/stratum, n=min(nTrain,nValidation); same indices acrosssyntheticmodels; same realValidationreference; no repeated-selection search",
+      "nearest": "Validationqueries vs allTrain; originalfullsynthetic-stratum medians fromsavedtables; also matchedsyntheticquery subset vs allTrain; no privacythreshold",
+      "dispersion": "OriginalTableII first3rows: participantmeansofstates orparticipantalphaerror, median/Q1/Q3/IQR, pairedSSC-minus-SC bootstrapCI"
+    },
+    "bootstrap": {
+      "seed": 2026101703,
+      "repetitions": 5000,
+      "unit": "participant",
+      "interval": "percentile95%, unadjusted, conditional on fixed data/model/pool/subset",
+      "seeds_resampled": false
+    }
+  },
+  "analysis_environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "h5py": "3.16.0"
+  },
+  "cohort": {
+    "participants": 198,
+    "states": 2,
+    "Train_windows": 47835,
+    "Validation_windows": 9635,
+    "matched_windows_per_source": 9635,
+    "matched_min": 15,
+    "matched_max": 25
+  },
+  "source_references": [
+    {
+      "artifact": "outputs/metrics/scenario2/final_block_split_manifest.csv",
+      "sha256": "a58605010f7371fe1805a7834c205f2da7be816515779e15f2ba082bfd201f8b",
+      "publication_path": "outputs/metrics/scenario2/final_block_split_manifest.csv",
+      "availability": "packaged"
+    },
+    {
+      "artifact": "outputs/metrics/scenario2/train_normalization.json",
+      "sha256": "82af5c196145756f09658ba5fd887a9953962349c23af922eca20df6b86d7379",
+      "publication_path": "outputs/metrics/scenario2/train_normalization.json",
+      "availability": "packaged"
+    },
+    {
+      "artifact": "reports/icspis_2026_paper/tools/analyze_round3.py",
+      "sha256": "418892ffff6e31f92f38112da3506369581b8e555935a6889c4397c3ae4f70b6",
+      "publication_path": "evidence/validation_reference/original_source/analyze_round3.py",
+      "availability": "packaged"
+    },
+    {
+      "artifact": "outputs/runs/scenario2/ablation/b0_state_only_1x_s2_74c_v1/manifests/s2_74c_b0_pool_manifest_v1.json",
+      "sha256": "ab815430d369b318aa28dfa8b777541fb106628c8ee3dd99f72bb3eede0c79a5",
+      "publication_path": null,
+      "availability": "external_not_distributed"
+    },
+    {
+      "artifact": "outputs/runs/scenario2/utility/bulk_synthetic_b1_b2_1x_v1/manifests/s2_73_pool_manifest_v1.json",
+      "sha256": "befe649a3d2f6c7087329ad9eca9e7484d77b8d66d14d11c27a802e7a432a03f",
+      "publication_path": null,
+      "availability": "external_not_distributed"
+    },
+    {
+      "artifact": "outputs/runs/scenario2/characterization/b0_fidelity_extension_s2_74e_v1/tables/subject_state_metrics.csv",
+      "sha256": "e1a08a2fb25d8b7745905df39e5996f7a84dee8fe42d8698cc99219977a47332",
+      "publication_path": null,
+      "availability": "external_not_distributed"
+    },
+    {
+      "artifact": "outputs/runs/scenario2/characterization/b0_fidelity_extension_s2_74e_v1/tables/subject_alpha_effect.csv",
+      "sha256": "1699fd01cbf66f801a75a11468f55c2d5aaa5696a3931c472527b9ed3f917f16",
+      "publication_path": null,
+      "availability": "external_not_distributed"
+    },
+    {
+      "artifact": "reports/icspis_2026_paper/figure_sources/fidelity_data.json",
+      "sha256": "716aff2451326c8fe183fafce6b0f45ff0ec6e2d79570c9a64ad0adf068f5f9f",
+      "publication_path": "results/fidelity_data.json",
+      "availability": "packaged"
+    },
+    {
+      "artifact": "scripts/data/s2_74b_final_pool_fidelity.py",
+      "sha256": "09dcaa49c74f7ab055f0932054f0cc97ec346a71558dcdc8b036c6d52536e8ed",
+      "publication_path": "scripts/data/s2_74b_final_pool_fidelity.py",
+      "availability": "packaged"
+    },
+    {
+      "artifact": "scripts/data/s2_74e_b0_fidelity_extension.py",
+      "sha256": "2a7643e39b935e72131906221bcfba71d7f5d638a2141977a564efe0208ebc79",
+      "publication_path": "scripts/data/s2_74e_b0_fidelity_extension.py",
+      "availability": "packaged"
+    },
+    {
+      "artifact": "reports/icspis_2026_paper/analysis_round3/plan.json",
+      "sha256": "0be340b11198078bdbcb0d5db71acef4042a8c2a6f7c9a92e64648fa2a2e5b43",
+      "publication_path": null,
+      "availability": "external_not_distributed",
+      "reason": "Contains participant selections, indices and absolute inventories; intentionally not distributed."
+    },
+    {
+      "artifact": "reports/icspis_2026_paper/analysis_round3/verification.json",
+      "sha256": "d6c5aad14123408b1bce03586476e980b8139fbf20143d099edc43aa6376978a",
+      "publication_path": null,
+      "availability": "external_not_distributed",
+      "reason": "Original contains environment-specific paths; only labeled aggregate assertions are extracted."
+    },
+    {
+      "artifact": "reports/icspis_2026_paper/main.tex",
+      "sha256": "04af8fdadde520da0efd04a16406fd7a31cd059016bfdd6478cd44029d3912e6",
+      "publication_path": null,
+      "availability": "external_not_distributed",
+      "reason": "Manuscript source is not republished by this update."
+    },
+    {
+      "artifact": "reports/icspis_2026_paper/tables/utility.tex",
+      "sha256": "36fc77933f591f153713219b29fb5528cd4332e50221ff72d7d5a5abb122340f",
+      "publication_path": null,
+      "availability": "external_not_distributed",
+      "reason": "Manuscript source is not republished by this update."
+    }
+  ],
+  "archived_verification": {
+    "source_sha256": "d6c5aad14123408b1bce03586476e980b8139fbf20143d099edc43aa6376978a",
+    "status": "PASS",
+    "n_checks": 47,
+    "boundary": "These are saved assertions from the original local verification, not checks independently repeated by the public aggregate verifier.",
+    "checks": [
+      {
+        "check": "immutable_plan_hash",
+        "passed": true
+      },
+      {
+        "check": "immutable_analysis_script_hash",
+        "passed": true
+      },
+      {
+        "check": "summary_hash_matches_completion",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:final_block_split_manifest.csv",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:train_normalization.json",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:analyze_round3.py",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:s2_74c_b0_pool_manifest_v1.json",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:s2_73_pool_manifest_v1.json",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:subject_state_metrics.csv",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:subject_alpha_effect.csv",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:fidelity_data.json",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:s2_74b_final_pool_fidelity.py",
+        "passed": true
+      },
+      {
+        "check": "source_unchanged:s2_74e_b0_fidelity_extension.py",
+        "passed": true
+      },
+      {
+        "check": "original_Train_metric:log_psd_mae_db:B0",
+        "passed": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "check": "original_Train_metric:log_psd_mae_db:B1",
+        "passed": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "check": "original_Train_metric:log_psd_mae_db:B2",
+        "passed": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "check": "original_Train_metric:sd_md_pooled_uv:B0",
+        "passed": true,
+        "max_abs_error": 1.7763568394002505e-15
+      },
+      {
+        "check": "original_Train_metric:sd_md_pooled_uv:B1",
+        "passed": true,
+        "max_abs_error": 1.3322676295501878e-15
+      },
+      {
+        "check": "original_Train_metric:sd_md_pooled_uv:B2",
+        "passed": true,
+        "max_abs_error": 1.1102230246251565e-15
+      },
+      {
+        "check": "original_Train_metric:alpha_effect_mae_db:B0",
+        "passed": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "check": "original_Train_metric:alpha_effect_mae_db:B1",
+        "passed": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "check": "original_Train_metric:alpha_effect_mae_db:B2",
+        "passed": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_counts:EO:B0",
+        "passed": true
+      },
+      {
+        "check": "original_Train_fingerprint_top1:EO:B0",
+        "passed": true,
+        "old_proportion": 0.005050505050505051,
+        "new_proportion": 0.005050505050505051,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_top5:EO:B0",
+        "passed": true,
+        "old_proportion": 0.03535353535353535,
+        "new_proportion": 0.03535353535353535,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_counts:EO:B1",
+        "passed": true
+      },
+      {
+        "check": "original_Train_fingerprint_top1:EO:B1",
+        "passed": true,
+        "old_proportion": 0.7525252525252525,
+        "new_proportion": 0.7525252525252525,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_top5:EO:B1",
+        "passed": true,
+        "old_proportion": 0.8484848484848485,
+        "new_proportion": 0.8484848484848484,
+        "abs_error": 1.1102230246251565e-16
+      },
+      {
+        "check": "original_Train_fingerprint_counts:EO:B2",
+        "passed": true
+      },
+      {
+        "check": "original_Train_fingerprint_top1:EO:B2",
+        "passed": true,
+        "old_proportion": 0.7171717171717171,
+        "new_proportion": 0.7171717171717171,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_top5:EO:B2",
+        "passed": true,
+        "old_proportion": 0.797979797979798,
+        "new_proportion": 0.797979797979798,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_counts:EC:B0",
+        "passed": true
+      },
+      {
+        "check": "original_Train_fingerprint_top1:EC:B0",
+        "passed": true,
+        "old_proportion": 0.010101010101010102,
+        "new_proportion": 0.010101010101010102,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_top5:EC:B0",
+        "passed": true,
+        "old_proportion": 0.030303030303030304,
+        "new_proportion": 0.030303030303030304,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_counts:EC:B1",
+        "passed": true
+      },
+      {
+        "check": "original_Train_fingerprint_top1:EC:B1",
+        "passed": true,
+        "old_proportion": 0.8434343434343434,
+        "new_proportion": 0.8434343434343434,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_top5:EC:B1",
+        "passed": true,
+        "old_proportion": 0.9242424242424242,
+        "new_proportion": 0.9242424242424242,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_counts:EC:B2",
+        "passed": true
+      },
+      {
+        "check": "original_Train_fingerprint_top1:EC:B2",
+        "passed": true,
+        "old_proportion": 0.9595959595959596,
+        "new_proportion": 0.9595959595959596,
+        "abs_error": 0.0
+      },
+      {
+        "check": "original_Train_fingerprint_top5:EC:B2",
+        "passed": true,
+        "old_proportion": 0.9747474747474747,
+        "new_proportion": 0.9747474747474747,
+        "abs_error": 0.0
+      },
+      {
+        "check": "complete_unique_participant_set",
+        "passed": true
+      },
+      {
+        "check": "all_participant_caches_bound_to_frozen_plan",
+        "passed": true
+      },
+      {
+        "check": "no_Test_waveform_reads_reported",
+        "passed": true
+      },
+      {
+        "check": "no_training_generation_or_model_selection",
+        "passed": true
+      },
+      {
+        "check": "all_per_participant_values_finite",
+        "passed": true,
+        "n_rows": 14058
+      },
+      {
+        "check": "all_per_participant_metric_groups_have_198_unique_participants",
+        "passed": true
+      },
+      {
+        "check": "expected_eligible_and_matched_window_counts",
+        "passed": true
+      }
+    ]
+  },
+  "verification_boundary": "The public verifier validates packaged bytes, aggregate structure/arithmetic and reported correspondence. It cannot independently recompute signal features, rankings, participant-paired bootstrap intervals or participant-level reproduction assertions."
+}

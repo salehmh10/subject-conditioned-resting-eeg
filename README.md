@@ -16,6 +16,8 @@ File names and result identifiers retain B0/B1/B2 for compatibility with the pre
 
 **Main finding:** full-dose B2 augmentation increased EEGNet subject-macro balanced accuracy from **88.417% to 89.135%** on held-out real Test blocks. The gain was **0.718 percentage points**, with a saved paired 95% subject-bootstrap interval of **[0.250, 1.201]**. B2 did not establish a clear advantage over B1, and full-dose B2 augmentation reduced performance for both classical classifiers. Utility therefore depended on the classifier.
 
+The completed paper also reports an **exploratory post hoc Validation-reference analysis**. Against the 9,635 Validation windows, log-PSD MAE is 3.766 / 1.462 / 1.349 dB for SC / SSC / SSC-C, versus 1.112 dB for real Train. Validation blocks were held out from generator gradient training but used in development and model selection, including SSC-C selection. This comparison is therefore selection-dependent, not independent confirmation. Identification remains below real block-to-block retrieval, and continuation does not improve every retrieval measure. See the [saved results and interpretation](docs/RESULTS.md#exploratory-validation-reference-results-table-iii).
+
 ![Validation and Final Test performance across all eleven training conditions and three classifiers](results/figures/utility_validation_test.png)
 
 The figure separates development Validation from Final Test. EEGNet error bars show population SD across three classifier seeds, not the subject-bootstrap confidence interval.
@@ -25,11 +27,21 @@ The figure separates development Validation from Final Test. EEGNet error bars s
 - [Results](docs/RESULTS.md): all 11 conditions, paired comparisons, and fidelity findings.
 - [Methods](docs/PUBLICATION_METHODS.md): data, preprocessing, generators, and evaluation.
 - [Reproducibility](docs/REPRODUCIBILITY.md): what the public package supports and what requires the original research environment.
+- [Portable Validation analysis](docs/PORTABLE_VALIDATION_ANALYSIS.md): separate derivative, input mapping, and external-data requirements.
 - [Pipeline map](docs/PIPELINE.md): how the historical scripts relate to the completed study.
 - [Data availability](docs/DATA_AVAILABILITY.md) and [limitations](docs/LIMITATIONS.md).
 - [EEG Synthetic Lab](apps/eeg_synthetic_lab/README.md): explore the prepared aggregate evidence locally.
 
 The CSV tables and figures can be read directly without installing Python or obtaining EEG recordings. The presentation app uses a prepared aggregate bundle. Training and scientific evaluation are separate workflows that require external data and artifacts.
+
+To verify the packaged outputs in a fresh clone, using Python 3.12 and its standard library only:
+
+```console
+python -B tools/verify_copy_integrity.py --root .
+python -B tools/verify_validation_evidence.py --root .
+```
+
+These commands run offline without EEG, checkpoints, synthetic pools, or scientific dependencies. They check packaged hashes, aggregate schemas and arithmetic, and consistency with the recorded paper results. Aggregate-only verification cannot independently recompute signal features or paired bootstrap intervals; it is not full scientific replication.
 
 To launch the app from a suitable Python environment at the repository root:
 
@@ -79,8 +91,10 @@ The [complete results table](docs/RESULTS.md) retains all doses, all TSTR condit
 src/resting_eeg/       Original scientific package
 scripts/              Original staged research scripts
 configs/              Research configuration and path policy
-tests/                Historical research tests
+tests/                Historical research tests and new offline publication checks
 evidence/             Curated frozen records and saved scientific reports
+evidence/validation_reference/  Archived original source and aggregate Validation evidence
+tools/                Saved-output verifiers and separate portable analysis derivative
 results/tables/       Portable CSV extracts of completed results
 results/figures/      Prepared scientific figures
 apps/eeg_synthetic_lab/  Aggregate local presentation
@@ -89,11 +103,15 @@ docs/                 Publication documentation and retained historical material
 
 The [evidence inventory](evidence/provenance/evidence_inventory.json) maps publication copies to their original paths and hashes. Original scientific source and selected evidence are preserved; historical absolute paths and phase-specific restrictions remain part of their provenance. The public package is not a claim that every historical experiment runs unchanged from a fresh clone.
 
+The [Validation publication inventory](evidence/validation_reference/publication_inventory.json) separately records preserved originals, explicitly labeled public metadata extracts, and the portable derivative's lineage. The original analysis, summary, and completion receipt retain their bytes and hashes. Participant-level analysis outputs, frozen window selections, and the original environment-specific plan are excluded.
+
 ## Interpretation and scope
 
-This is a study of **new blocks from known participants**. Fidelity compares generated signals with Real Train; it is not an independent Test evaluation of generation. Model histories and development selection differ, so the comparison does not isolate a pure causal effect of subject conditioning. Fingerprint recovery and zero exact-copy detections do not establish a privacy guarantee. See the [full limitations](docs/LIMITATIONS.md).
+This is a study of **new blocks from known participants**. Original fidelity uses Real Train; the supplementary analysis uses Validation blocks already involved in development. Neither is an independent Test evaluation of generation. Model histories and development selection differ, so the comparison does not isolate a pure causal effect of subject conditioning. Fingerprint recovery, nearest-window distances, and zero exact-copy detections do not establish a privacy guarantee. See the [full limitations](docs/LIMITATIONS.md).
 
 No training, sampling, Final Test evaluation, bootstrap resampling, or historical test suite was rerun to prepare this publication repository. Reported values are preserved outcomes of the completed study.
+
+The supplementary analysis originally ran with Python 3.12.3, NumPy 2.5.2, SciPy 1.18.1, and h5py 3.16.0; it does not require PyTorch, MNE, or a GPU. The portable derivative's full external-data execution remains untested in this update. Its help/configuration checks and the saved-output verifiers are separate from research execution. The paper and its final figures are unchanged.
 
 ## Citation
 

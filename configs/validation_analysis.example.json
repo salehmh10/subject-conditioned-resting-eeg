@@ -1,0 +1,25 @@
+{
+  "schema": "portable_validation_analysis_config_v1",
+  "processed_hdf5_dir": "../../external-round3/processed-hdf5",
+  "split_manifest": "../outputs/metrics/scenario2/final_block_split_manifest.csv",
+  "normalization": "../outputs/metrics/scenario2/train_normalization.json",
+  "pool_dirs": {
+    "B0": "../../external-round3/sc-pool",
+    "B1": "../../external-round3/ssc-ssc-c-pool",
+    "B2": "../../external-round3/ssc-ssc-c-pool"
+  },
+  "pool_manifests": {
+    "B0": "../../external-round3/sc-pool/manifests/s2_74c_b0_pool_manifest_v1.json",
+    "B1": "../../external-round3/ssc-ssc-c-pool/manifests/s2_73_pool_manifest_v1.json"
+  },
+  "original_fidelity_tables": "../../external-round3/original-fidelity-tables",
+  "original_aggregate_fidelity": "../results/fidelity_data.json",
+  "original_fidelity_scripts": {
+    "B0": "../scripts/data/s2_74e_b0_fidelity_extension.py",
+    "B1_B2": "../scripts/data/s2_74b_final_pool_fidelity.py"
+  },
+  "original_script": "../evidence/validation_reference/original_source/analyze_round3.py",
+  "frozen_plan": "../../external-round3/private-original-plan.json",
+  "frozen_plan_sha256": "0be340b11198078bdbcb0d5db71acef4042a8c2a6f7c9a92e64648fa2a2e5b43",
+  "output_dir": "../../external-round3/portable-output-new"
+}

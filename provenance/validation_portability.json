@@ -1,0 +1,76 @@
+{
+  "schema": "validation_portability_v1",
+  "source_lineage": {
+    "original_source_path": "evidence/validation_reference/original_source/analyze_round3.py",
+    "original_source_sha256": "418892ffff6e31f92f38112da3506369581b8e555935a6889c4397c3ae4f70b6",
+    "derivative_path": "tools/analyze_validation_portable.py",
+    "derivative_sha256": "8b2790000440b063ac32c47477782cda185373fb89b2787902169a86e57c3988",
+    "changes": [
+      "Replace original machine-specific roots with explicit JSON-configured inputs and a separate output directory.",
+      "Resolve frozen source references by content identity and nested real/synthetic locations through documented metadata mapping, preserving frozen plan bytes.",
+      "Validate metadata, planned counts, selections and hashes before execution; defer waveform content checks to explicit external-data execution.",
+      "Use lazy scientific imports so help and configuration validation require only the Python standard library.",
+      "Guard output creation and execution provenance against overwriting preserved results or reusing incompatible participant caches.",
+      "Retain scientific metric definitions, precision, random seeds, selected indices, pessimistic fingerprint ties, equal participant weighting, and bootstrap settings."
+    ],
+    "static_ast_equal_functions": [
+      "corr",
+      "signal_features",
+      "small_features",
+      "distance_metrics",
+      "nearest",
+      "read_real",
+      "aggregate"
+    ],
+    "static_comparison_boundary": "AST equality checks definitions without executing them; it is not a numerical or end-to-end reproduction test."
+  },
+  "recorded_analysis_environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "h5py": "3.16.0"
+  },
+  "execution_boundary": "Full external-data execution is untested in this publication update. No training, generation, waveform access, Test evaluation, new analysis, or bootstrap rerun was performed.",
+  "files": [
+    {
+      "path": "tools/analyze_validation_portable.py",
+      "sha256": "8b2790000440b063ac32c47477782cda185373fb89b2787902169a86e57c3988",
+      "size_bytes": 48149
+    },
+    {
+      "path": "configs/validation_analysis.example.json",
+      "sha256": "2a9424e8538a77f8d490a85a31f5b3a068e4eb46694bb5038b85121e136a6b83",
+      "size_bytes": 1262
+    },
+    {
+      "path": "docs/PORTABLE_VALIDATION_ANALYSIS.md",
+      "sha256": "822d388974fdf7960f4414643378a3a9cd35712507f87220e54edb3e45444f9f",
+      "size_bytes": 10321
+    },
+    {
+      "path": "requirements-validation-analysis.txt",
+      "sha256": "2ff1231723f8e95dc45e60876af6fb5bac47826af3440867b94c83cb1ba2c2db",
+      "size_bytes": 241
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "76080b4861ee7f469769d25b5698fe08029020da5398dd5aad5aaef1da280295",
+      "size_bytes": 1498
+    },
+    {
+      "path": "tools/verify_validation_evidence.py",
+      "sha256": "8903ad48d6de1c6f04b5e1cc95ed3de370b1b68eee2a00647ab6330738a326e5",
+      "size_bytes": 22137
+    },
+    {
+      "path": "tests/test_validation_portable.py",
+      "sha256": "3115a3b8c7684b6faf6cfa0ae14803f130245fda88c341fbe308b421d79b274e",
+      "size_bytes": 16982
+    },
+    {
+      "path": "tests/test_validation_evidence.py",
+      "sha256": "f1f967b30ef6855d870974570bb5311c5a1c6560a0b5f6bafcb327052f1c5f30",
+      "size_bytes": 6813
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Recorded execution environment: Python 3.12.3.
+# CPU-only supplementary Validation-reference analysis; no PyTorch/MNE/GPU.
+# Saved-output verification does not require installing these dependencies.
+numpy==2.5.2
+scipy==1.18.1
+h5py==3.16.0

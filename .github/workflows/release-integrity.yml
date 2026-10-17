@@ -1,4 +1,4 @@
-name: Release copy integrity
+name: Publication evidence integrity
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   verify-publication-copies:
-    name: Verify copied bytes and publication metadata
+    name: Verify saved evidence and portable interfaces
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
@@ -24,6 +24,10 @@ jobs:
           python-version: "3.12"
       - name: Verify original source and evidence copies
         run: python tools/verify_copy_integrity.py --root .
+      - name: Verify saved Validation-reference results without scientific dependencies
+        run: python -B -S tools/verify_validation_evidence.py --root .
+      - name: Check portable CLI and verification failures without waveform access
+        run: python -B -S -m unittest discover -s tests -p 'test_validation_*.py'
       - name: Check publication metadata
         shell: python
         run: |
@@ -50,4 +54,5 @@ jobs:
               inventory = json.loads((root / relative).read_text(encoding="utf-8"))
               assert isinstance(inventory.get("files"), list) and inventory["files"], relative
           print("Publication metadata is present and parseable.")
-          print("This workflow does not install dependencies, import scientific code, run tests, download data, or reproduce experiments.")
+          print("This workflow checks saved aggregates and software interfaces using the standard library.")
+          print("It does not install scientific dependencies, download data, access waveforms, or rerun experiments.")

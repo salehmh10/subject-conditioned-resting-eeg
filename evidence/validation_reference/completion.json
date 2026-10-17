@@ -1,0 +1,12 @@
+{
+  "status": "COMPLETE",
+  "completed_utc": "2026-10-17T13:30:44.600748+00:00",
+  "participants": 198,
+  "plan_sha256": "0be340b11198078bdbcb0d5db71acef4042a8c2a6f7c9a92e64648fa2a2e5b43",
+  "script_sha256": "418892ffff6e31f92f38112da3506369581b8e555935a6889c4397c3ae4f70b6",
+  "summary_sha256": "aaf8da34784a75b5454e960973ad6eaeecd281b203f2ba818e12cb5a64a77766",
+  "all_original_reproduction_checks_passed": true,
+  "Test_waveforms_read": false,
+  "new_training": false,
+  "new_generation": false
+}
